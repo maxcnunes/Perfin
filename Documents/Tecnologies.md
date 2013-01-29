@@ -11,5 +11,6 @@ Technologies Supposed to be Used
 - JQuery
 - MVC 4
 - C#5
+- [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) - Asynchronous Module Definition
 
 Something else? Add to above /\
