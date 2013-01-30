@@ -9,3 +9,10 @@ Add New Commit
 Update Local Remote Repository
 ==============================
 1. Execute `git pull`
+
+
+
+
+ git reset --hard HEAD~1
+
+ git rm NOME_DA_PASTA_OU_ARQUIVO
