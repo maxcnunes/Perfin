@@ -10,6 +10,9 @@ Update Local Remote Repository
 ==============================
 1. Execute `git pull`
 
+Update Local Remote Repository Avoiding the Amount of Merges
+==============================
+1. Execute `git pull --rebase`
 
 Update many files
 ===================
@@ -25,7 +28,6 @@ Delete the last commit before Push
 ==================================
 - `git reset --hard HEAD~1`
 
-
-
-
- 
+Discard a File Change
+==================================
+- `git checkout --YOUR_FILE_NAME`
