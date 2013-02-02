@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Perfin.Models")]
+[assembly: AssemblyTitle("Perfin.Model.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Perfin.Models")]
+[assembly: AssemblyProduct("Perfin.Model.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ce1bae96-2f29-4347-9d6f-96bf28a6b408")]
+[assembly: Guid("b36c2b2c-b3b0-4d1f-821d-62d58276f236")]
 
 // Version information for an assembly consists of the following four values:
 //

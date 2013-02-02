@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Perfin.Models
+namespace Perfin.Model
 {
     public class Account
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Perfin.Model;
 
-namespace Perfin.Models.Tests
+namespace Perfin.Test.Model
 {
     [TestClass]
     public class UserTest

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Models", "Perfin.Models\Perfin.Models.csproj", "{6DEB23E3-31A3-463F-AF28-AEAB391281B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Model", "Perfin.Model\Perfin.Model.csproj", "{6DEB23E3-31A3-463F-AF28-AEAB391281B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Models.Tests", "Perfin.Models.Tests\Perfin.Models.Tests.csproj", "{BDB0256C-A824-4E3D-9DC1-E00F322B2434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Test", "Perfin.Test\Perfin.Test.csproj", "{BDB0256C-A824-4E3D-9DC1-E00F322B2434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

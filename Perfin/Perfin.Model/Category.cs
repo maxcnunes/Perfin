@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Perfin.Models
+namespace Perfin.Model
 {
-    /// <summary>
-    /// Class account type
-    /// -> Income
-    /// -> Expense
-    /// </summary>
-    public class AccountType
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Parent { get; set; }
     }
 }
