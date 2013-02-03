@@ -17,17 +17,17 @@ namespace Perfin.Test.Data
 
 
 
-        [TestMethod]
-        public void Should_Create_Well_New_Instance_DBContext()
-        {
-            var fac = new RepositoryFactories();
-            var provider = new RepositoryProvider(fac);
-            uow = new PerfinUow(provider);
+        //[TestMethod]
+        //public void Should_Create_Well_New_Instance_DBContext()
+        //{
+        //    var fac = new RepositoryFactories();
+        //    var provider = new RepositoryProvider(fac);
+        //    uow = new PerfinUow(provider);
 
-            uow.Users.Add(new Perfin.Model.User());
-            uow.Commit();
+        //    uow.Users.Add(new Perfin.Model.User());
+        //    uow.Commit();
 
-            var all = uow.Users.GetAll();
-        }
+        //    var all = uow.Users.GetAll();
+        //}
     }
 }
