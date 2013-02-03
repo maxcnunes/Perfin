@@ -50,15 +50,28 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Data\EFRepositoryTest.cs" />
     <Compile Include="Model\AccountTest.cs" />
     <Compile Include="Model\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
+      <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
+      <Name>Perfin.Data.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data\Perfin.Data.csproj">
+      <Project>{9ca32c62-0e5c-4a3e-9446-e7e0445897a4}</Project>
+      <Name>Perfin.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Perfin.Model\Perfin.Model.csproj">
       <Project>{6deb23e3-31a3-463f-af28-aeab391281b6}</Project>
       <Name>Perfin.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

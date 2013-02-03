@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Model", "Perfin.Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Test", "Perfin.Test\Perfin.Test.csproj", "{BDB0256C-A824-4E3D-9DC1-E00F322B2434}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Data", "Perfin.Data\Perfin.Data.csproj", "{9CA32C62-0E5C-4A3E-9446-E7E0445897A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Data.Contract", "Perfin.Data.Contract\Perfin.Data.Contract.csproj", "{EB9DA9FC-19E0-4AE1-B905-CC4477BFFEB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{BDB0256C-A824-4E3D-9DC1-E00F322B2434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB0256C-A824-4E3D-9DC1-E00F322B2434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB0256C-A824-4E3D-9DC1-E00F322B2434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CA32C62-0E5C-4A3E-9446-E7E0445897A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CA32C62-0E5C-4A3E-9446-E7E0445897A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CA32C62-0E5C-4A3E-9446-E7E0445897A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CA32C62-0E5C-4A3E-9446-E7E0445897A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB9DA9FC-19E0-4AE1-B905-CC4477BFFEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB9DA9FC-19E0-4AE1-B905-CC4477BFFEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB9DA9FC-19E0-4AE1-B905-CC4477BFFEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB9DA9FC-19E0-4AE1-B905-CC4477BFFEB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
