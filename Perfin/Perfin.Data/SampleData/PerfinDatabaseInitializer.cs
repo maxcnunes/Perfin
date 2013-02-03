@@ -6,8 +6,9 @@ using System.Data.Entity;
 namespace Perfin.Data.SampleData
 { 
     public class PerfinDatabaseInitializer :
-        //CreateDatabaseIfNotExists<PerfinDbContext>        // when model is stable
-        DropCreateDatabaseIfModelChanges<PerfinDbContext> // when iterating
+        //DropCreateDatabaseAlways<PerfinDbContext>
+        CreateDatabaseIfNotExists<PerfinDbContext>        // when model is stable
+        //DropCreateDatabaseIfModelChanges<PerfinDbContext> // when iterating
     {
 
         protected override void Seed(PerfinDbContext context)
@@ -31,7 +32,12 @@ namespace Perfin.Data.SampleData
             var users = new List<User>();
             Array.ForEach(names, name =>
                 {
-                    var item = new User {Name = name};
+                    var item = new User {
+                        Name = name,
+                        Email = string.Empty,
+                        Login = string.Empty,
+                        Password = string.Empty
+                    };
                     users.Add(item);
                     context.Users.Add(item);
                 });

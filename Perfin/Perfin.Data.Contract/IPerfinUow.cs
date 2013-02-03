@@ -11,6 +11,6 @@ namespace Perfin.Data.Contract
         void Commit();
 
         // Repositories
-        //IUserRepository UserRepository { get; }
+        IRepository<User> Users { get; }
     }
 }

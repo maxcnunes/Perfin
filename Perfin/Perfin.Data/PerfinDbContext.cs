@@ -14,7 +14,10 @@ namespace Perfin.Data
         }
 
         public PerfinDbContext()
-            : base(nameOrConnectionString: "Perfin") { }
+            : base(nameOrConnectionString: "PerfinDbContext")
+        {
+                Database.SetInitializer(new PerfinDatabaseInitializer());
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
