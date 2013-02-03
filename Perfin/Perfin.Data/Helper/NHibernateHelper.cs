@@ -2,8 +2,10 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using Perfin.Common;
+using Perfin.Common.Helper;
 
-namespace Tracker.Data.NHibernate
+namespace Perfin.Data.Helper
 {
 	public class NHibernateHelper
 	{
@@ -15,9 +17,16 @@ namespace Tracker.Data.NHibernate
 			get { return _sessionFactory ?? (_sessionFactory = CreateSessionFactory()); }
 		}
 
-		public NHibernateHelper(string connectionString)
+        public NHibernateHelper()
+        {
+            var defaultConnection = ConfigurationManagerHelper.GetConnectionString("Perfin");
+            _connectionString = defaultConnection;
+        }
+
+        public NHibernateHelper(string connectionString)
 		{
-			_connectionString = connectionString;
+            Check.NotNullOrEmpty(connectionString, "connectionString");
+            _connectionString = connectionString;
 		}
 
 		private ISessionFactory CreateSessionFactory()

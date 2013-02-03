@@ -1,16 +1,15 @@
 ﻿using FluentNHibernate.Mapping;
 using Perfin.Model;
 
-namespace Tracker.Data.NHibernate.Maps
+namespace Perfin.Data.Map
 {
-	public class DriverMap : ClassMap<User>
+	public class UserMap : ClassMap<User>
 	{
-		public DriverMap()
+		public UserMap()
 		{
 			Table("User");
             Id(x => x.Id).GeneratedBy.Increment();
 			Map(x => x.Login);
-			//References(x => x.Truck).Column("TruckId");
 		}
 	}
 }

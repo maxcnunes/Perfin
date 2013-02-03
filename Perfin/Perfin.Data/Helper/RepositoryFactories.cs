@@ -10,8 +10,8 @@ namespace Perfin.Data
     /// </summary>
     /// <remarks>
     /// An instance of this class contains repository factory functions for different types.
-    /// Each factory function takes an EF <see cref="DbContext"/> and returns
-    /// a repository bound to that DbContext.
+    /// Each factory function takes an EF <see cref="DbSession"/> and returns
+    /// a repository bound to that DbSession.
     /// <para>
     /// Designed to be a "Singleton", configured at web application start with
     /// all of the factory functions needed to create any type of repository.
@@ -32,7 +32,7 @@ namespace Perfin.Data
         {
             return new Dictionary<Type, Func<ISession, object>>
                 {
-                   //{typeof(IUserRepository), dbContext => new UserRepository(dbContext)}
+                   //{typeof(IUserRepository), dbSession => new UserRepository(dbSession)}
                 };
         }
 
@@ -69,7 +69,6 @@ namespace Perfin.Data
         /// </remarks>
         public Func<ISession, object> GetRepositoryFactory<T>()
         {
-
             Func<ISession, object> factory;
             _repositoryFactories.TryGetValue(typeof(T), out factory);
             return factory;
@@ -80,7 +79,7 @@ namespace Perfin.Data
         /// </summary>
         /// <typeparam name="T">The root type of the repository, typically an entity type.</typeparam>
         /// <returns>
-        /// A factory that creates the <see cref="IRepository{T}"/>, given an EF <see cref="DbContext"/>.
+        /// A factory that creates the <see cref="IRepository{T}"/>, given an EF <see cref="DbSession"/>.
         /// </returns>
         /// <remarks>
         /// Looks first for a custom factory in <see cref="_repositoryFactories"/>.
@@ -99,7 +98,7 @@ namespace Perfin.Data
         /// <typeparam name="T">Type of the repository's root entity</typeparam>
         protected virtual Func<ISession, object> DefaultEntityRepositoryFactory<T>() where T : class
         {
-            return dbContext => new Tracker.Data.NHibernate.Repository<T>(dbContext);
+            return dbSession => new Repository<T>(dbSession);
         }
 
         /// <summary>
@@ -108,7 +107,7 @@ namespace Perfin.Data
         /// <remarks>
         /// A dictionary key is a System.Type, typically a repository type.
         /// A value is a repository factory function
-        /// that takes a <see cref="DbContext"/> argument and returns
+        /// that takes a <see cref="DbSession"/> argument and returns
         /// a repository object. Caller must know how to cast it.
         /// </remarks>
         private readonly IDictionary<Type, Func<ISession, object>> _repositoryFactories;

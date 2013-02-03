@@ -57,26 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\IRepositoryProvider.cs" />
-    <Compile Include="Helpers\PredicateBuilder.cs" />
-    <Compile Include="Helpers\RepositoryFactories.cs" />
-    <Compile Include="Helpers\RepositoryProvider.cs" />
-    <Compile Include="Infrastructure\CachedReadOnlyRepository.cs" />
-    <Compile Include="Infrastructure\IGuidKeyedReadOnlyRepository.cs" />
-    <Compile Include="Infrastructure\IGuidKeyedRepository.cs" />
-    <Compile Include="Infrastructure\IIntKeyedReadOnlyRepository.cs" />
-    <Compile Include="Infrastructure\IIntKeyedRepository.cs" />
-    <Compile Include="Infrastructure\IReadOnlyRepository.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
-    <Compile Include="Maps\DriverMap.cs" />
-    <Compile Include="NHibernateHelper.cs" />
+    <Compile Include="Helper\IRepositoryProvider.cs" />
+    <Compile Include="Helper\PredicateBuilder.cs" />
+    <Compile Include="Helper\RepositoryFactories.cs" />
+    <Compile Include="Helper\RepositoryProvider.cs" />
+    <Compile Include="Map\UserMap.cs" />
+    <Compile Include="Helper\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
+      <Project>{3301ba3c-44df-463b-be43-c3d38b55d38e}</Project>
+      <Name>Perfin.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
       <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
       <Name>Perfin.Data.Contract</Name>
@@ -87,7 +83,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

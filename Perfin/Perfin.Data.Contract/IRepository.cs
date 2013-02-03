@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Perfin.Data.Contract
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
     {
-        IQueryable<T> GetAll();
-        T GetById(int id);
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        void Delete(int id);
+        void Add(TEntity entity);
+        void Add(IEnumerable<TEntity> entities);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+        void Delete(IEnumerable<TEntity> entities);
     }
 }

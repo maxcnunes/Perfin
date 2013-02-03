@@ -1,7 +1,7 @@
 ﻿using NHibernate;
 
 using System;
-using Tracker.Data.Infrastructure;
+using Perfin.Data.Contract;
 
 
 namespace Perfin.Data
@@ -12,16 +12,16 @@ namespace Perfin.Data
     /// to find one in its cache of repositories.
     /// </summary>
     /// <remarks>
-    /// Repositories created by this provider tend to require a <see cref="DbContext"/>
+    /// Repositories created by this provider tend to require a <see cref="DbSession"/>
     /// to retrieve data.
     /// </remarks>
     public interface IRepositoryProvider
     {
         /// <summary>
-        /// Get and set the <see cref="DbContext"/> with which to initialize a repository
+        /// Get and set the <see cref="DbSession"/> with which to initialize a repository
         /// if one must be created.
         /// </summary>
-        ISession DbContext { get; set; }
+        ISession DbSession { get; set; }
 
         /// <summary>
         /// Get an <see cref="IRepository{T}"/> for entity type, T.
@@ -29,7 +29,7 @@ namespace Perfin.Data
         /// <typeparam name="T">
         /// Root entity type of the <see cref="IRepository{T}"/>.
         /// </typeparam>
-        Tracker.Data.Infrastructure.IRepository<T> GetRepositoryForEntityType<T>() where T : class;
+        Perfin.Data.Contract.IRepository<T> GetRepositoryForEntityType<T>() where T : class;
 
         /// <summary>
         /// Get a repository of type T.
@@ -38,7 +38,7 @@ namespace Perfin.Data
         /// Type of the repository, typically a custom repository interface.
         /// </typeparam>
         /// <param name="factory">
-        /// An optional repository creation function that takes a <see cref="DbContext"/>
+        /// An optional repository creation function that takes a <see cref="DbSession"/>
         /// and returns a repository of T. Used if the repository must be created.
         /// </param>
         /// <remarks>

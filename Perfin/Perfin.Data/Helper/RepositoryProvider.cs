@@ -21,10 +21,10 @@ namespace Perfin.Data
         }
 
         /// <summary>
-        /// Get and set the <see cref="DbContext"/> with which to initialize a repository
+        /// Get and set the <see cref="DbSession"/> with which to initialize a repository
         /// if one must be created.
         /// </summary>
-        public ISession DbContext { get; set; }
+        public ISession DbSession { get; set; }
 
         /// <summary>
         /// Get or create-and-cache the default <see cref="IRepository{T}"/> for an entity of type T.
@@ -35,9 +35,9 @@ namespace Perfin.Data
         /// <remarks>
         /// If can't find repository in cache, use a factory to create one.
         /// </remarks>
-        public Tracker.Data.Infrastructure.IRepository<T> GetRepositoryForEntityType<T>() where T : class
+        public Perfin.Data.Contract.IRepository<T> GetRepositoryForEntityType<T>() where T : class
         {
-            return GetRepository<Tracker.Data.Infrastructure.IRepository<T>>(
+            return GetRepository<Perfin.Data.Contract.IRepository<T>>(
                 _repositoryFactories.GetRepositoryFactoryForEntityType<T>());
         }
 
@@ -48,7 +48,7 @@ namespace Perfin.Data
         /// Type of the repository, typically a custom repository interface.
         /// </typeparam>
         /// <param name="factory">
-        /// An optional repository creation function that takes a DbContext argument
+        /// An optional repository creation function that takes a DbSession argument
         /// and returns a repository of T. Used if the repository must be created and
         /// caller wants to specify the specific factory to use rather than one
         /// of the injected <see cref="RepositoryFactories"/>.
@@ -68,7 +68,7 @@ namespace Perfin.Data
             }
 
             // Not found or null; make one, add to dictionary cache, and return it.
-            return MakeRepository<T>(factory, DbContext);
+            return MakeRepository<T>(factory, DbSession);
         }
 
         /// <summary>
@@ -83,22 +83,22 @@ namespace Perfin.Data
 
         /// <summary>Make a repository of type T.</summary>
         /// <typeparam name="T">Type of repository to make.</typeparam>
-        /// <param name="dbContext">
-        /// The <see cref="DbContext"/> with which to initialize the repository.
+        /// <param name="dbSession">
+        /// The <see cref="DbSession"/> with which to initialize the repository.
         /// </param>        
         /// <param name="factory">
-        /// Factory with <see cref="DbContext"/> argument. Used to make the repository.
+        /// Factory with <see cref="DbSession"/> argument. Used to make the repository.
         /// If null, gets factory from <see cref="_repositoryFactories"/>.
         /// </param>
         /// <returns></returns>
-        protected virtual T MakeRepository<T>(Func<ISession, object> factory, ISession dbContext)
+        protected virtual T MakeRepository<T>(Func<ISession, object> factory, ISession dbSession)
         {
             var f = factory ?? _repositoryFactories.GetRepositoryFactory<T>();
             if (f == null)
             {
                 throw new NotImplementedException("No factory for repository type, " + typeof(T).FullName);
             }
-            var repo = (T)f(dbContext);
+            var repo = (T)f(dbSession);
             Repositories[typeof(T)] = repo;
             return repo;
         }

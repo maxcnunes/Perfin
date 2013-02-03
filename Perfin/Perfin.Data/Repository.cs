@@ -1,11 +1,11 @@
 ﻿using NHibernate;
 using System.Linq;
 using NHibernate.Linq;
-using Tracker.Data.Infrastructure;
+using Perfin.Data.Contract;
 
-namespace Tracker.Data.NHibernate
+namespace Perfin.Data
 {
-	public class Repository<T> : NHibernateContext, IIntKeyedRepository<T> where T : class 
+	public class Repository<T> : NHibernateContext, IRepository<T> where T : class 
 	{
 		private readonly ISession _session;
 
@@ -16,56 +16,43 @@ namespace Tracker.Data.NHibernate
 
 		#region IRepository<T> Members
 
-		public bool Add(T entity)
+		public void Add(T entity)
 		{
 			_session.Save(entity);
-			return true;
 		}
 
-		public bool Add(System.Collections.Generic.IEnumerable<T> items)
+        public void Add(System.Collections.Generic.IEnumerable<T> items)
 		{
 			foreach (T item in items)
-			{
 				_session.Save(item);
-			}
-			return true;
 		}
 
-		public bool Update(T entity)
+        public void Update(T entity)
 		{
 			_session.Update(entity);
-			return true;
 		}
 
-		public bool Delete(T entity)
+        public void Delete(T entity)
 		{
 			_session.Delete(entity);
-			return true;
 		}
 
-		public bool Delete(System.Collections.Generic.IEnumerable<T> entities)
+		public void Delete(System.Collections.Generic.IEnumerable<T> entities)
 		{
 			foreach (T entity in entities)
-			{
 				_session.Delete(entity);
-			}
-			return true;
 		}
 
 		#endregion
 
-		#region IIntKeyedRepository<T> Members
+        #region IReadOnlyRepository<T> Members
 
-		public T FindBy(int id)
+        public T GetById(int id)
 		{
 			return _session.Get<T>(id);
 		}
 
-		#endregion
-
-		#region IReadOnlyRepository<T> Members
-
-		public IQueryable<T> All()
+		public IQueryable<T> GetAll()
 		{
 			return _session.Linq<T>();
 		}
@@ -77,7 +64,7 @@ namespace Tracker.Data.NHibernate
 
 		public IQueryable<T> FilterBy(System.Linq.Expressions.Expression<System.Func<T, bool>> expression)
 		{
-			return All().Where(expression).AsQueryable();
+			return GetAll().Where(expression).AsQueryable();
 		}
 
 		#endregion

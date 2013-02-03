@@ -1,40 +1,37 @@
 ﻿using System;
 using System.Data;
 using NHibernate;
-using Tracker.Data.Infrastructure;
+using Perfin.Data.Contract;
 using Perfin.Model;
 using Perfin.Data;
+using Perfin.Data.Helper;
 
-namespace Tracker.Data.NHibernate
+namespace Perfin.Data
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private readonly ISessionFactory _sessionFactory;
-		private readonly ITransaction _transaction;
-		public ISession Session { get; private set; }
+		private ITransaction _transaction;
+        public ISession DbSession { get; private set; }
 
         public UnitOfWork(IRepositoryProvider repositoryProvider)
 		{
-            CreateDbContext();
+            CreateDbSession();
 
-            //ISessionFactory sessionFactory
-			//_sessionFactory = sessionFactory;
-
-            //private const string _connectionString =@"Server=localhost; Port=3306; Database=trucktracker; Uid=root; Pwd='your_own_password';";
-            const string _connectionString = @"Server=localhost; Port=3306; Database=perfin; Uid=root; Pwd=123;";
-
-            NHibernateHelper helper = new NHibernateHelper(_connectionString);
-            _sessionFactory = helper.SessionFactory;
-
-            Session = _sessionFactory.OpenSession();
-            Session.FlushMode = FlushMode.Auto;
-            _transaction = Session.BeginTransaction(IsolationLevel.ReadCommitted);
-
-            _sessionFactory = helper.SessionFactory;
-
-            repositoryProvider.DbContext = Session;
+            repositoryProvider.DbSession = DbSession;
             RepositoryProvider = repositoryProvider;   
 		}
+
+        protected void CreateDbSession()
+        {
+            NHibernateHelper helper = new NHibernateHelper();
+            var _sessionFactory = helper.SessionFactory;
+
+            DbSession = _sessionFactory.OpenSession();
+            DbSession.FlushMode = FlushMode.Auto;
+            _transaction = DbSession.BeginTransaction(IsolationLevel.ReadCommitted);
+
+            _sessionFactory = helper.SessionFactory;
+        }
 
         public IRepository<User> Users { get { return GetStandardRepository<User>(); } }
 
@@ -49,36 +46,25 @@ namespace Tracker.Data.NHibernate
             return RepositoryProvider.GetRepository<T>();
         }
 
-        protected void CreateDbContext()
-        {
 
-        }
-
-        //private ISession DbContext { get; set; }
 
 		public void Dispose()
 		{
-			if(Session.IsOpen)
-			{
-				Session.Close();
-			}
+            if (DbSession.IsOpen)
+                DbSession.Close();
 		}
 
 		public void Commit()
 		{
 			if(!_transaction.IsActive)
-			{
 				throw new InvalidOperationException("No active transation");
-			}
 			_transaction.Commit();
 		}
 
 		public void Rollback()
 		{
 			if(_transaction.IsActive)
-			{
 				_transaction.Rollback();
-			}
 		}
 	}
 }
