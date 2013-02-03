@@ -26,14 +26,14 @@ namespace Perfin.Test.Model
             var password = "password";
             var name = "name"; 
 
-            user.Id = id;
+            //user.Id = id;
             user.Login = login;
             user.Email = email;
             user.Password = password;
             user.Name = name;
 
             Assert.IsNotNull(user);
-            Assert.AreEqual(id, user.Id);
+            //Assert.AreEqual(id, user.Id);
             Assert.AreEqual(login, user.Login);
             Assert.AreEqual(email, user.Email);
             Assert.AreEqual(password, user.Password);
