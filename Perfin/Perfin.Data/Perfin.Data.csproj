@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\IRepositoryProvider.cs" />
+    <Compile Include="Helpers\PredicateBuilder.cs" />
+    <Compile Include="Helpers\RepositoryFactories.cs" />
+    <Compile Include="Helpers\RepositoryProvider.cs" />
     <Compile Include="Infrastructure\CachedReadOnlyRepository.cs" />
     <Compile Include="Infrastructure\IGuidKeyedReadOnlyRepository.cs" />
     <Compile Include="Infrastructure\IGuidKeyedRepository.cs" />

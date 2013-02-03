@@ -4,44 +4,88 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tracker.Data.NHibernate;
 using Perfin.Model;
+using Ninject;
+using Perfin.Data;
+using Tracker.Data.Infrastructure;
+
 
 namespace NHibernateLayerTests
 {
-	/// <summary>
-	/// These are not meant to be 'unit' level tests. They represent
-	/// integration level operations and are meant to demonstrate
-	/// how to excercise the fluent nhibernate repository.
-	/// </summary>
-	[TestClass]
-	public class RepositoryTests
-	{
+    /// <summary>
+    /// These are not meant to be 'unit' level tests. They represent
+    /// integration level operations and are meant to demonstrate
+    /// how to excercise the fluent nhibernate repository.
+    /// </summary>
+    [TestClass]
+    public class RepositoryTests
+    {
         //private const string _connectionString =@"Server=localhost; Port=3306; Database=trucktracker; Uid=root; Pwd='your_own_password';";
         private const string _connectionString = @"Server=localhost; Port=3306; Database=perfin; Uid=root; Pwd=123;";
 
 
-		[TestMethod]
-		public void Add_100_Trucks_With_1000_Location_Points_Each()
-		{
-			NHibernateHelper helper = new NHibernateHelper(_connectionString);
+        //[TestMethod, Ignore]
+        //public void Add_100_Trucks_With_1000_Location_Points_Each()
+        //{
+        //    NHibernateHelper helper = new NHibernateHelper(_connectionString);
 
-			for (int i = 0; i < 100; i++)
-			{
-				// Notice the unit of work we are using is to commit
-				//	one truck's data at a time.
-				UnitOfWork unitOfWork = new UnitOfWork(helper.SessionFactory);
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        // Notice the unit of work we are using is to commit
+        //        //	one truck's data at a time.
+        //        UnitOfWork unitOfWork = new UnitOfWork();
 
-                Repository<User> repository = new Repository<User>(unitOfWork.Session);
+        //        Repository<User> repository = new Repository<User>(unitOfWork.Session);
 
+        //        var user = new User
+        //        {
+        //            Login = string.Format("User {0}", i + 1)
+        //        };
+
+        //        repository.Add(user);
+
+        //        unitOfWork.Commit();
+        //    }
+        //}
+
+        IUnitOfWork unitOfWork;
+
+        [TestInitialize]
+        public void DependencyResolver()
+        {
+            var kernel = new StandardKernel(); // Ninject IoC
+
+            // These registrations are "per instance request".
+            // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
+
+            kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
+            kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+
+
+            unitOfWork = kernel.Get<IUnitOfWork>();
+
+            //// Tell WebApi how to use our Ninject IoC
+            //config.DependencyResolver = new NinjectDependencyResolver(kernel);
+        }
+
+        [TestMethod]
+        public void Add_10_Users()
+        {
+            // Notice the unit of work we are using is to commit
+            //	one truck's data at a time.
+            //UnitOfWork unitOfWork = new UnitOfWork(new Perfin.Data.RepositoryProvider(new Perfin.Data.RepositoryFactories()));
+
+            for (int i = 0; i < 10; i++)
+            {
                 var user = new User
                 {
                     Login = string.Format("User {0}", i + 1)
                 };
 
-				repository.Add(user);
-
-				unitOfWork.Commit();
-			}
-		}
+                unitOfWork.Users.Add(user);
+            }
+            unitOfWork.Commit();
+        }
 
         //[TestMethod]
         //public void Count_The_Number_Of_Locations_In_The_Db()
@@ -207,10 +251,10 @@ namespace NHibernateLayerTests
         //        // Move the truck
         //        float angle = (float) random.NextDouble()*2.0f*(float)Math.PI;
         //        latitude += maxChangerPerPoint*(float)Math.Cos(angle);
-			
+
         //        longitude += maxChangerPerPoint*(float) Math.Sin(angle);
         //        timeStamp = timeStamp.AddHours(hoursPerPoint);
         //    }
         //}
-	}
+    }
 }
