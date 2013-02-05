@@ -31,3 +31,8 @@ Delete the last commit before Push
 Discard a File Change
 ==================================
 - `git checkout --YOUR_FILE_NAME`
+
+
+Compare a Dir or a file with the Server respective Dir or file
+==================================
+- `git dif repository ........
