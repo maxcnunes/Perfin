@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Perfin.Model
 {
+    /// <summary>
+    /// Account is the main Item in Entry 
+    /// </summary>
     public class Account
     {
         public int Id { get; set; }

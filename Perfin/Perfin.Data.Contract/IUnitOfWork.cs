@@ -13,5 +13,8 @@ namespace Perfin.Data.Contract
          * Repositories
          */
         IUserRepository Users { get; }
+
+        ICategoryRepository Categories { get; }
+
 	}
 }

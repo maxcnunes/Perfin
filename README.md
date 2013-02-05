@@ -8,7 +8,7 @@ Perfin é uma pequena aplicação web Open Source para Controle Financeiro Pesso
 
 Porque Open Source
 ==================
-Esdesenvolvida com  o intuito de aplicar conhecimentos no quais estamos estudando para elevar nosso nível de desenvolvimento. Utilizando tecnologias atualizadas, como: (completar).
+E desenvolvida com  o intuito de aplicar conhecimentos no quais estamos estudando para elevar nosso nível de desenvolvimento. Utilizando tecnologias atualizadas, como: (completar).
 
 
 Quem pode contribuir
@@ -24,7 +24,7 @@ Configurations
 3. Create the databse "Perfin"
 4. Create the tabel "User" running the follow query:
 
-```sql
+``` sql
 delimiter $$
 
 CREATE TABLE `user` (
@@ -33,6 +33,15 @@ CREATE TABLE `user` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
 ```
+
+CREATE TABLE `CATEGORY` (	
+	`Id` int(11) NOT NULL,
+  	`Name` varchar(45) NOT NULL,
+  	`Parent` INTEGER DEFAULT 0 , 
+
+	PRIMARY KEY (`Id`)
+) ENGINE=InnoDB 
+
 
 
 (THIS TEXT MUST BE TRANSLATED TO ENGLISH)

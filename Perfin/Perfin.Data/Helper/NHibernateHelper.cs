@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -31,10 +32,18 @@ namespace Perfin.Data.Helper
 
 		private ISessionFactory CreateSessionFactory()
 		{
-			return Fluently.Configure()
-				.Database(MySQLConfiguration.Standard.ConnectionString(_connectionString))
-				.Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-				.BuildSessionFactory();
+		    try
+		    {
+                return Fluently.Configure()
+                .Database(MySQLConfiguration.Standard.ConnectionString(_connectionString))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .BuildSessionFactory();
+		    }
+		    catch (Exception)
+		    {
+		                
+		        throw;
+		    }
 		}
 	}
 }

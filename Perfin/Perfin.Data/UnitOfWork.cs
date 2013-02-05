@@ -37,9 +37,10 @@ namespace Perfin.Data
          * Repositories
          */
         public IUserRepository Users { get { return GetRepository<IUserRepository>(); } }
+	    public ICategoryRepository Categories { get { return GetRepository<ICategoryRepository>(); } }
 
 
-        protected IRepositoryProvider RepositoryProvider { get; set; }
+	    protected IRepositoryProvider RepositoryProvider { get; set; }
 
         private IRepository<T> GetStandardRepository<T>() where T : class
         {
