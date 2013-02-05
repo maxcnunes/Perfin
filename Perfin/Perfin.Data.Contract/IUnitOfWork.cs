@@ -12,6 +12,6 @@ namespace Perfin.Data.Contract
         /*
          * Repositories
          */
-        IRepository<User> Users { get; }
+        IUserRepository Users { get; }
 	}
 }

@@ -80,6 +80,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
+      <Project>{3301ba3c-44df-463b-be43-c3d38b55d38e}</Project>
+      <Name>Perfin.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
       <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
       <Name>Perfin.Data.Contract</Name>

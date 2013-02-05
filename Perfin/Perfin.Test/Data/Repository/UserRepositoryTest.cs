@@ -14,46 +14,33 @@ namespace Perfin.Test.Data.Repository
     public class UserRepositoryTest
     {
         IUnitOfWork unitOfWork;
-        IList<User> users = new List<User>
-        {
-            new User{Login = "Pedro"},
-            new User{Login = "Maria"},
-            new User{Login = "Souza"},
-            new User{Login = "Margarida"},
-            new User{Login = "Joana"},
-            new User{Login = "Paula"},
-            new User{Login = "Bordao"},
-            new User{Login = "Fred"},
-            new User{Login = "John"},
-            new User{Login = "Mario"}
-        };
+
+        /*
+         * Initialize
+         */
 
         [TestInitialize]
-        public void DependencyResolver()
+        public void Initialize()
         {
             var kernel = new StandardKernel(); // Ninject IoC
-
-            // These registrations are "per instance request".
-            // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
 
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
-
             unitOfWork = kernel.Get<IUnitOfWork>();
-
-            //// Tell WebApi how to use our Ninject IoC
-            //config.DependencyResolver = new NinjectDependencyResolver(kernel);
         }
 
-        [TestMethod]
-        public void Should_Add_10_Users()
-        {
-            users.ToList().ForEach(user => unitOfWork.Users.Add(user));
-            unitOfWork.Commit();
+        /*
+         * Tests
+         */
 
-            users.ToList().ForEach(user => Assert.IsTrue(user.Id > 0));
+        [TestMethod]
+        public void Should_Create_User_On_Database()
+        {
+            var user = CreateNewUserToTest();
+
+            Assert.IsTrue(user.Id > 0);
         }
 
         [TestMethod]
@@ -87,6 +74,45 @@ namespace Perfin.Test.Data.Repository
             unitOfWork.Commit();
 
             Assert.IsNull(unitOfWork.Users.GetById(user.Id));
+        }
+
+        [TestMethod]
+        public void Should_Get_User_By_Login_On_Database()
+        {
+            // Create new user to test
+            var user = CreateNewUserToTest();
+
+            // Assert the user was successfully created
+            Assert.IsTrue(user.Id > 0);
+
+            // Get user by login
+            var userFromDb = unitOfWork.Users.GetByLogin(user.Login);
+
+            Assert.IsNotNull(userFromDb);
+        }
+
+        /*
+         * Helper Methods
+         */
+
+        private User CreateNewUserToTest(string userName = null, bool commitInTheEnd = true)
+        {
+            // Get login available
+            if (string.IsNullOrEmpty(userName))
+            {
+                var random = new Random();
+                userName = "mylogin";
+
+                while (unitOfWork.Users.GetByLogin(userName) != null)
+                    userName = string.Format("mylogin{0}", random.Next());
+            }
+
+            // Create new user to test
+            var user = new User(userName, "mypassword");
+            unitOfWork.Users.Add(user);
+            if(commitInTheEnd)
+                unitOfWork.Commit();
+            return user;
         }
 
         public User GetUserOnDatabase()

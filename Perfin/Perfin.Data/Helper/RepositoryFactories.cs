@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Perfin.Data.Contract;
 using NHibernate;
+using Perfin.Data.Repository;
 
 namespace Perfin.Data
 {
@@ -32,14 +33,14 @@ namespace Perfin.Data
         {
             return new Dictionary<Type, Func<ISession, object>>
                 {
-                   //{typeof(IUserRepository), dbSession => new UserRepository(dbSession)}
+                   { typeof(IUserRepository), dbSession => new UserRepository(dbSession) }
                 };
         }
 
         /// <summary>
         /// Constructor that initializes with runtime Perfin repository factories
         /// </summary>
-        public RepositoryFactories()  
+        public RepositoryFactories()
         {
             _repositoryFactories = GetPerfinFactories();
         }

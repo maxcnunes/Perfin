@@ -25,7 +25,7 @@ namespace Perfin.Data.Helper
 
         public NHibernateHelper(string connectionString)
 		{
-            Check.NotNullOrEmpty(connectionString, "connectionString");
+            Check.Argument.NotNullOrEmpty(connectionString, "connectionString");
             _connectionString = connectionString;
 		}
 

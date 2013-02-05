@@ -33,7 +33,11 @@ namespace Perfin.Data
             _sessionFactory = helper.SessionFactory;
         }
 
-        public IRepository<User> Users { get { return GetStandardRepository<User>(); } }
+        /*
+         * Repositories
+         */
+        public IUserRepository Users { get { return GetRepository<IUserRepository>(); } }
+
 
         protected IRepositoryProvider RepositoryProvider { get; set; }
 
@@ -47,13 +51,9 @@ namespace Perfin.Data
         }
 
 
-
-		public void Dispose()
-		{
-            if (DbSession.IsOpen)
-                DbSession.Close();
-		}
-
+        /// <summary>
+        /// Save pending changes to database
+        /// </summary>
 		public void Commit()
 		{
 			if(!_transaction.IsActive)
@@ -61,10 +61,29 @@ namespace Perfin.Data
 			_transaction.Commit();
 		}
 
+        /// <summary>
+        /// Undo pending changes
+        /// </summary>
 		public void Rollback()
 		{
 			if(_transaction.IsActive)
 				_transaction.Rollback();
 		}
+
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (DbSession != null && DbSession.IsOpen)
+                    DbSession.Close();
+            }
+        }
 	}
 }

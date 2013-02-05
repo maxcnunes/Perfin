@@ -8,22 +8,25 @@ namespace Perfin.Common
 {
     public class Check
     {
-        public static void NotNull<T>(T value, string parameterName) where T : class
+        public class Argument
         {
-            if (value == null)
-                throw new ArgumentNullException(parameterName);
-        }
+            public static void NotNull<T>(T value, string parameterName) where T : class
+            {
+                if (value == null)
+                    throw new ArgumentNullException(parameterName);
+            }
 
-        public static void NotNull<T>(T? value, string parameterName) where T : struct
-        {
-            if (value == null)
-                throw new ArgumentNullException(parameterName);
-        }
+            public static void NotNull<T>(T? value, string parameterName) where T : struct
+            {
+                if (value == null)
+                    throw new ArgumentNullException(parameterName);
+            }
 
-        public static void NotNullOrEmpty(string value, string parameterName)
-        {
-            if (string.IsNullOrEmpty(value as string))
-                throw new ArgumentNullException(parameterName);
+            public static void NotNullOrEmpty(string value, string parameterName)
+            {
+                if (string.IsNullOrEmpty(value as string))
+                    throw new ArgumentNullException(parameterName);
+            }
         }
     }
 }

@@ -7,40 +7,40 @@ namespace Perfin.Data
 {
 	public class Repository<T> : NHibernateContext, IRepository<T> where T : class 
 	{
-		private readonly ISession _session;
+		protected readonly ISession _dbSession;
 
-		public Repository(ISession session)
+		public Repository(ISession dbSession)
 		{
-			_session = session;
+            _dbSession = dbSession;
 		}
 
 		#region IRepository<T> Members
 
 		public void Add(T entity)
 		{
-			_session.Save(entity);
+			_dbSession.Save(entity);
 		}
 
         public void Add(System.Collections.Generic.IEnumerable<T> items)
 		{
 			foreach (T item in items)
-				_session.Save(item);
+				_dbSession.Save(item);
 		}
 
         public void Update(T entity)
 		{
-			_session.Update(entity);
+			_dbSession.Update(entity);
 		}
 
         public void Delete(T entity)
 		{
-			_session.Delete(entity);
+			_dbSession.Delete(entity);
 		}
 
 		public void Delete(System.Collections.Generic.IEnumerable<T> entities)
 		{
 			foreach (T entity in entities)
-				_session.Delete(entity);
+				_dbSession.Delete(entity);
 		}
 
 		#endregion
@@ -49,12 +49,12 @@ namespace Perfin.Data
 
         public T GetById(int id)
 		{
-			return _session.Get<T>(id);
+			return _dbSession.Get<T>(id);
 		}
 
 		public IQueryable<T> GetAll()
 		{
-			return _session.Linq<T>();
+			return _dbSession.Linq<T>();
 		}
 
 		public T FindBy(System.Linq.Expressions.Expression<System.Func<T, bool>> expression)
@@ -68,6 +68,5 @@ namespace Perfin.Data
 		}
 
 		#endregion
-
 	}
 }

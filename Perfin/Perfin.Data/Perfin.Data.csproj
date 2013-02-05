@@ -61,10 +61,15 @@
     <Compile Include="Helper\PredicateBuilder.cs" />
     <Compile Include="Helper\RepositoryFactories.cs" />
     <Compile Include="Helper\RepositoryProvider.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="Map\UserMap.cs" />
     <Compile Include="Helper\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="SampleData\PerfinDatabaseInitializer.cs" />
+    <Compile Include="SampleData\PeopleNames.cs" />
+    <Compile Include="SampleData\SampleTextGenerator.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup />
