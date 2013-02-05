@@ -10,9 +10,9 @@ Update Local Remote Repository
 ==============================
 1. Execute `git pull`
 
-Update Local Remote Repository Avoiding the Amount of Merges
+Update Local Repository Avoiding the Amount of Merges
 ==============================
-1. Execute `git pull --rebase`
+1. Execute `git pull --rebase` or `git pull --rebase origin master`
 
 Update many files
 ===================
@@ -33,6 +33,7 @@ Discard a File Change
 - `git checkout --YOUR_FILE_NAME`
 
 
-Compare a Dir or a file with the Server respective Dir or file
+Show Differences Between the Remote and Local Repository
 ==================================
-- `git dif repository ........
+- `git diff`
+- type `q` to leave the text
