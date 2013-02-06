@@ -23,5 +23,6 @@ Configurations
 2. Install [MySQL Connector/Net 6.6.4](http://www.mysql.com/downloads/connector/net/)
 3. Create the databse "Perfin"
 4. Execute the script `\Perfin\Perfin\Scripts.Database\GenerateMySQLDatabse.sql` into the database.
+5. Installing NuGet packages from packages.config executing `c:\path\to\nuget.exe install -o packages project-folder\packages.config` or just Turn on "Allow NuGet to download missing packages during build" on Visual Studio as you can see on [Scott Halseman Post](http://www.hanselman.com/blog/NuGet20NETPackageManagerReleasedGOUPGRADENOWAndHeresWhy.aspx)
 
-(THIS TEXT MUST BE TRANSLATED TO ENGLISH)
+*(ALL THIS TEXT MUST BE TRANSLATED TO ENGLISH)*
