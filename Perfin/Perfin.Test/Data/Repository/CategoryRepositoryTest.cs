@@ -12,21 +12,21 @@ namespace Perfin.Test.Data.Repository
     public class CategoryRepositoryTest
     {
         IUnitOfWork unitOfWork;
-        
+
         /*
          * Initialize
          */
-        //[TestInitialize]
-        //public void Initialize()
-        //{
-        //    var kernel = new StandardKernel(); // Ninject IoC
+        [TestInitialize]
+        public void Initialize()
+        {
+            var kernel = new StandardKernel(); // Ninject IoC
 
-        //    kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
-        //    kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
-        //    kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
+            kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
-        //    unitOfWork = kernel.Get<IUnitOfWork>();
-        //}
+            unitOfWork = kernel.Get<IUnitOfWork>();
+        }
 
 
 
