@@ -26,7 +26,7 @@ Commit a removed file
 
 Delete the last commit before Push
 ==================================
-- `git reset --hard HEAD~1`
+- `git reset --hard HEAD~1` or `git commit -c ORIG_HEAD`
 
 Discard a File Change
 ==================================

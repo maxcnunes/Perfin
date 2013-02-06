@@ -1,7 +1,8 @@
 ﻿using NHibernate;
-using System.Linq;
 using NHibernate.Linq;
+using Perfin.Common;
 using Perfin.Data.Contract;
+using System.Linq;
 
 namespace Perfin.Data
 {
@@ -11,6 +12,8 @@ namespace Perfin.Data
 
 		public Repository(ISession dbSession)
 		{
+            Check.Argument.NotNull(dbSession, "dbSession");
+
             _dbSession = dbSession;
 		}
 
