@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Check.cs" />
+    <Compile Include="Exceptions\BusinessRuleViolationException.cs" />
+    <Compile Include="Exceptions\DataOperationException.cs" />
     <Compile Include="Helper\ConfigurationManagerHelper.cs" />
     <Compile Include="Helper\CryptographyHelper.cs" />
     <Compile Include="Violation\IRuleEntity.cs" />

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Perfin.Model;
-using NHibernate;
+﻿using NHibernate;
 using NHibernate.Criterion;
 using Perfin.Data.Contract;
+using Perfin.Model;
 
 namespace Perfin.Data.Repository
 {

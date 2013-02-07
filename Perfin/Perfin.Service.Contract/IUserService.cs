@@ -6,7 +6,11 @@ namespace Perfin.Service.Contract
     public interface IUserService : IService<User>
     {
         bool LoginIsAvailable(string login);
+
         bool Authenticate(string login, string password);
+
         void ChangePassword(string oldPassword, string newPassword);
+
+        void Register(string login, string password, string passwordConfirm);
     }
 }

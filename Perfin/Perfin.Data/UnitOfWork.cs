@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data;
-using NHibernate;
+﻿using NHibernate;
 using Perfin.Data.Contract;
-using Perfin.Model;
-using Perfin.Data;
 using Perfin.Data.Helper;
+using System;
+using System.Data;
 
 namespace Perfin.Data
 {

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Reflection;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using Perfin.Common;
 using Perfin.Common.Helper;
+using System;
+using System.Reflection;
 
 namespace Perfin.Data.Helper
 {

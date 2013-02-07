@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Perfin.Data.Contract;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using Perfin.Data;
+using Perfin.Data.Contract;
 using Perfin.Model;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 
@@ -63,7 +62,6 @@ namespace Perfin.Test.Data.Repository
 
             Assert.IsTrue(user.Login == string.Empty);
         }
-
 
         [TestMethod]
         public void Should_Delete_First_User_On_Database()
