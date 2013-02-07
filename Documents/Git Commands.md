@@ -20,6 +20,10 @@ Update many files
 - `git add .` stages new and modified, without deleted
 - `git add -u` stages modified and deleted, without new
 
+Commit a removed folder
+=====================
+- `git rm -r FOLDER_NAME/`
+
 Commit a removed file
 =====================
 - `git rm FILE_NAME_DELETED`
