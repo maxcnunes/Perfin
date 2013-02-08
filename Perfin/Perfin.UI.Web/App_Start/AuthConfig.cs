@@ -22,6 +22,7 @@ namespace Perfin.UI.Web
             //    consumerKey: "",
             //    consumerSecret: "");
 
+            //perfin -> personal_finances
             OAuthWebSecurity.RegisterFacebookClient(
                 appId: "337227989727451",
                 appSecret: "18e052e24896d80a6e57b3ce70c8d921");
