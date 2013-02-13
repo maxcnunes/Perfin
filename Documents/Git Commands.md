@@ -45,4 +45,4 @@ Show Differences Between the Remote and Local Repository
 
 Checking out a local branch from a remote branch (Tracking Branches)
 ====================================================================
-- `git checkout --track REMOTE_NAME/BRANCH_NAME´
+- `git checkout --track REMOTE_NAME/BRANCH_NAME`
