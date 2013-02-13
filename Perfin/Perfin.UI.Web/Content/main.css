@@ -18,6 +18,9 @@
     font-weight: normal;
 }
 /*=====LAYOUT=====*/
+#wrapper {
+    margin:10px;
+}
 .one_wrap {
     width: 100%;
     display: inline-block;
