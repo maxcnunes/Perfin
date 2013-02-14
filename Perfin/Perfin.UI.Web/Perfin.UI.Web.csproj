@@ -134,7 +134,9 @@
   <ItemGroup>
     <Content Include="Content\boilerplate-main.css" />
     <Content Include="Content\boilerplate-normalize.css" />
+    <Content Include="Content\font-awesome\css\font-awesome-ie7.min.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.svg" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\main.css" />
@@ -198,6 +200,7 @@
     <Content Include="Content\font-awesome\font\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\font\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="index.html" />
     <Content Include="Scripts\jquery-1.7.1.js" />
