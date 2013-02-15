@@ -335,6 +335,7 @@ dl.user_info {
         border-radius: 3px 0px 0px 0px;
         border-right: solid 1px #e0e5e6;*/
         border-left: 1px solid rgba(255, 255, 255, 0.2);
+        margin-left:0;
     }
 
         dl.user_info dd a.welcome_user {
@@ -2630,4 +2631,9 @@ h2#title-current-page {
 h2#title-current-page span {
     font-size:15px;
     font-family: 'Cabin', Helvetica, Arial, sans-serif;
+}
+
+
+fieldset {
+    margin:10px 20px;
 }

@@ -26,8 +26,14 @@ namespace Perfin.UI.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 // "~/Content/boilerplate-normalize.css",
                 // "~/Content/boilerplate-main.css",
+                
+                //bootstrap
+                "~/Content/bootstrap/css/bootstrap.css",
+
+
                "~/Content/reset.css",
                 "~/Content/main.css"//,"~/Content/site.css"
+                
             ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

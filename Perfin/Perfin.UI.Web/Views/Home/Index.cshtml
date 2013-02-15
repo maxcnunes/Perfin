@@ -1,150 +1,55 @@
-﻿<div id="wrapper">
-    <!--Main Navigation-->
-    <nav id="main-nav">
-        <ul>
-            <li class="green"><a class="icon-home" href="">@*Dashboard*@</a></li>
-            <li class="blue"><a class="icon-tag" href="">@*Categories*@</a></li>
-            <li class="yellow"><a class="icon-map-marker" href="">@*Maps*@</a></li>
-            <li class="purple"><a class="icon-calendar" href="">@*Calendar*@</a></li>
-            <li class="red"><a class="icon-bar-chart" href="">@*Charts*@</a></li>
-            <li class="dark-gray"><a class="icon-cogs" href="">@*Settgins*@</a></li>
-        </ul>
-    </nav>
+﻿<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Dashboard</a>
+</nav>
 
-    <!--Main Content-->
-    <section id="main_content">
+<h2 id="title-current-page">Dashboard <span>All informations about your personal finance on the same place</span></h2>
 
-        <!--Sub Navigation-->
-        <nav id="sub-nav">
-
-            <!--UserInfo-->
-            <dl class="user_info">
-                <dt><a href="#">
-                    <img src="/content/images/user.png" alt=""></a></dt>
-                <dd>
-                    <a class="welcome_user" href="#">Welcome,<strong>User Name</strong></a>
-                    <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
-                    <a class="logout" href="login.html">Logout</a>
-                    <a class="user_messages" href="#"><span>12</span></a>
-                </dd>
-            </dl>
-
-            <!--Responsive Nav-->
-            <a class="res_icon" href="#"></a>
-            <ul id="responsive_nav" style="display: none;">
-                <li>
-                    <a href="index.html">Dashboard</a>
-                </li>
-
-                <li>
-                    <a href="">Categories</a>
-                    <ul>
-                        <li><a href="">Categories</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="">Maps</a>
-                    <ul>
-                        <li><a href="">Maps</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="">Calendar</a>
-                    <ul>
-                        <li><a href="">Calendar</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="">Charts</a>
-                    <ul>
-                        <li><a href="">Charts</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="">Settings</a>
-                    <ul>
-                        <li><a href="">Settings</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-
-            <!--Responsive Nav ends-->
-
-            <h2>Dashboard</h2>
-            <ul>
-                <li><a href="#"><i class="icon-home icon-large"></i>Index</a></li>
-                <li><a href="#"><i class="icon-money icon-large"></i>Entries</a></li>
-                <li><a href="#"><i class="icon-book icon-large"></i>Account Plan </a></li>
-                <li><a href="#"><i class="icon-briefcase icon-large"></i>Annual Balance</a></li>
-            </ul>
-        </nav>
-
-        <!--Content Wrap-->
-        <div id="content_wrap">
-
-            <!-- Breadcrumb -->
-            <nav id="breadcrumb">
-                <i class="icon-home icon-large"></i>
-                <a href="#" class="home">Perfin</a>
-                <i class="icon-double-angle-right icon-large"></i>
-                <a href="#" class="current">Dashboard</a>
-            </nav>
-
-            <h2 id="title-current-page">Dashboard <span>All informations about your personal finance on the same place</span></h2>
-
-            <ul id="status-container">
-                <li>
-                    <a href="#">
-                        <span class="status-top">
-                            <i class="icon-money icon-4x pull-left green"></i>
-                            <span class="status-title">Week Balance</span>
-                        </span>
-                        <span class="status-value">R$ 2.000,00</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="status-top">
-                            <i class="icon-money icon-4x pull-left green"></i>
-                            <span class="status-title">Month Balance</span>
-                        </span>
-                        <span class="status-value">R$ 2.000,00</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="status-top">
-                            <i class="icon-money icon-4x pull-left green"></i>
-                            <span class="status-title">Month Debts</span>
-                        </span>
-                        <span class="status-value">R$ 2.000,00</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="status-top">
-                            <i class="icon-money icon-4x pull-left green"></i>
-                            <span class="status-title">Year Balance</span>
-                        </span>
-                        <span class="status-value">R$ 2.000,00</span>
-                    </a>
-                </li>
-            </ul>
-            <br />
-            <br />
-            <div>
-
-                <h2 style="font-size: 50px">[ INSERT HERE:
-                    <br />
-                    TABS WITH CHARTS AND OTHER INFORMATIONS ]</h2>
-            </div>
-
-        </div>
-
-    </section>
+<!-- Status -->
+<ul id="status-container">
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Week Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Debts</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Year Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+</ul>
+<br />
+<br />
+<br />
+<div>
+    <h4 style="font-size: 30px">[ INSERT HERE: TABS WITH CHARTS AND OTHER INFORMATIONS ]</h4>
 </div>

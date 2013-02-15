@@ -1,0 +1,34 @@
+﻿<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Category</a>
+</nav>
+
+<h2 id="title-current-page">Create Category <span>Create a category and let more organized your finances</span></h2>
+
+<form>
+    <fieldset>
+        @*<legend>Create</legend>*@
+        <label>Category Name</label>
+        <input type="text" class="span5" placeholder="Transport...">
+        <span class="help-block">Category is a group to organize your finances.</span>
+
+        <label>Parent Category</label>
+        <select class="span5">
+                <option>None</option>
+                <option>Study</option>
+                <option>Travel</option>
+                <option>Feed</option>
+            </select>
+        <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
+
+
+        <label class="inline">
+        </label>
+        <button type="submit" class="btn">Save</button>
+    </fieldset>
+</form>
+
+@Html.ActionLink("Temp Link to List Category", "List")

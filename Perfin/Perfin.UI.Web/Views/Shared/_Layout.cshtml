@@ -37,7 +37,103 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+    <div id="wrapper">
+    <!--Main Navigation-->
+    <nav id="main-nav">
+        <ul>
+            <li class="green"><a class="icon-home" href="@Url.Action("Index", "Home")">@*Dashboard*@</a></li>
+            <li class="blue"><a class="icon-tag" href="@Url.Action("Index", "Category")">@*Categories*@</a></li>
+            <li class="yellow"><a class="icon-map-marker" href="">@*Maps*@</a></li>
+            <li class="purple"><a class="icon-calendar" href="">@*Calendar*@</a></li>
+            <li class="red"><a class="icon-bar-chart" href="">@*Charts*@</a></li>
+            <li class="dark-gray"><a class="icon-cogs" href="">@*Settgins*@</a></li>
+        </ul>
+    </nav>
+
+    <!--Main Content-->
+    <section id="main_content">
+
+        <!--Sub Navigation-->
+        <nav id="sub-nav">
+
+            <!--UserInfo-->
+            <dl class="user_info">
+                <dt><a href="#">
+                    <img src="/content/images/user.png" alt=""></a></dt>
+                <dd>
+                    <a class="welcome_user" href="#">Welcome,<strong>User Name</strong></a>
+                    <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
+                    <a class="logout" href="login.html">Logout</a>
+                    <a class="user_messages" href="#"><span>12</span></a>
+                </dd>
+            </dl>
+
+            <!--Responsive Nav-->
+            <a class="res_icon" href="#"></a>
+            <ul id="responsive_nav" style="display: none;">
+                <li>
+                    <a href="index.html">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="">Categories</a>
+                    <ul>
+                        <li><a href="">Categories</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="">Maps</a>
+                    <ul>
+                        <li><a href="">Maps</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="">Calendar</a>
+                    <ul>
+                        <li><a href="">Calendar</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="">Charts</a>
+                    <ul>
+                        <li><a href="">Charts</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="">Settings</a>
+                    <ul>
+                        <li><a href="">Settings</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <!--Responsive Nav ends-->
+
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="#"><i class="icon-home icon-large"></i>Index</a></li>
+                <li><a href="#"><i class="icon-money icon-large"></i>Entries</a></li>
+                <li><a href="#"><i class="icon-book icon-large"></i>Account Plan </a></li>
+                <li><a href="#"><i class="icon-briefcase icon-large"></i>Annual Balance</a></li>
+            </ul>
+        </nav>
+
+        <!--Content Wrap-->
+        <div id="content_wrap">
+
+             @RenderBody()
+
+        </div>
+
+    </section>
+</div>
+
+   
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
