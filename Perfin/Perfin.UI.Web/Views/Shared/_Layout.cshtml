@@ -1,48 +1,151 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
-            </div>
-        </footer>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+
+    @Styles.Render("~/Content/css", "~/Content/fonts/css")
+
+    <!-- Including Lobster and Cabin from Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+
+    @Scripts.Render("~/bundles/modernizr")    
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Perfin</a>
+                @*<div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link">Username</a>
+                    </p>
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>*@
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!--Main Navigation-->
+        <nav id="main-menu">
+            <ul>
+                <li class="green"><a class="icon-home" href="@Url.Action("Index", "Home")">@*Dashboard*@</a></li>
+                <li class="blue"><a class="icon-tag" href="@Url.Action("Index", "Category")">@*Categories*@</a></li>
+                <li class="yellow"><a class="icon-map-marker" href="">@*Maps*@</a></li>
+                <li class="purple"><a class="icon-calendar" href="">@*Calendar*@</a></li>
+                <li class="red"><a class="icon-bar-chart" href="">@*Charts*@</a></li>
+                <li class="dark-gray"><a class="icon-cogs" href="">@*Settgins*@</a></li>
+            </ul>
+        </nav>
+
+        <!--Main Content-->
+        <section id="main_content">
+
+            <!--Sub Navigation-->
+            <nav id="sub-menu">
+
+                <!--UserInfo-->
+                <dl class="user_info">
+                    <dt><a href="#">
+                        <img src="/content/images/user.png" alt=""></a></dt>
+                    <dd>
+                        <a class="welcome_user" href="#">Welcome,<strong>User Name</strong></a>
+                        <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
+                        <a class="logout" href="login.html"><i class="icon-signout"></i>Logout</a>
+                        @*
+                            Not delete this code below
+                            <a class="user_messages" href="#"><span>12</span></a>
+                        *@
+                    </dd>
+                </dl>
+
+                <!--Responsive Nav-->
+                <a class="res_icon" href="#"></a>
+                <ul id="responsive_nav" style="display: none;">
+                    <li>
+                        <a href="index.html">Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="">Categories</a>
+                        <ul>
+                            <li><a href="">Categories</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="">Maps</a>
+                        <ul>
+                            <li><a href="">Maps</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="">Calendar</a>
+                        <ul>
+                            <li><a href="">Calendar</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="">Charts</a>
+                        <ul>
+                            <li><a href="">Charts</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="">Settings</a>
+                        <ul>
+                            <li><a href="">Settings</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!--Responsive Nav ends-->
+
+                @RenderSection("sub_menu")
+            </nav>
+
+            <!--Content Wrap-->
+            <div id="content_wrap">
+
+                @RenderBody()
+
+            </div>
+
+        </section>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
 </html>
