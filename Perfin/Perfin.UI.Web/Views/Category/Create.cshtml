@@ -1,0 +1,48 @@
+﻿@section sub_menu{
+    <h2>Category</h2>
+    <ul>
+        <li><a href="@Url.Action("Index")"><i class="icon-reorder icon-large"></i>List</a></li>
+        <li><a href="@Url.Action("Create")"><i class="icon-plus-sign icon-large"></i>Create</a></li>
+    </ul>
+}
+
+<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Category</a>
+</nav>
+
+
+
+<form>
+    <fieldset>
+        <legend class="title-description">Create Category <span>Create a category and let more organized your finances</span></legend>
+
+
+        <section class="fields">
+            <label>Category Name</label>
+            <input type="text" class="span5" placeholder="Transport...">
+            <span class="help-block">Category is a group to organize your finances.</span>
+
+            <label>Parent Category</label>
+            <select class="span5">
+                <option>None</option>
+                <option>Study</option>
+                <option>Travel</option>
+                <option>Feed</option>
+            </select>
+            <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
+        </section>
+
+
+        <div class="form-actions">
+
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="reset" class="btn">Cancel</button>
+
+        </div>
+
+    </fieldset>
+</form>

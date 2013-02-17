@@ -6,11 +6,24 @@ using System.Web.Mvc;
 
 namespace Perfin.UI.Web.Controllers
 {
-    public class HomeController : Controller
+    public class CategoryController : Controller
     {
+        //
+        // GET: /Category/
+
         public ActionResult Index()
         {
             return View();
         }
+
+
+        //
+        // GET: /Category/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
     }
 }
