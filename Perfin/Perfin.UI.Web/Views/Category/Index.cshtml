@@ -1,4 +1,12 @@
-﻿<!-- Breadcrumb -->
+﻿@section sub_menu{
+    <h2>Category</h2>
+    <ul>
+        <li><a href="@Url.Action("Index")"><i class="icon-reorder icon-large"></i>List</a></li>
+        <li><a href="@Url.Action("Create")"><i class="icon-plus-sign icon-large"></i>Create</a></li>
+    </ul>
+}
+
+<!-- Breadcrumb -->
 <nav id="breadcrumb">
     <i class="icon-home icon-large"></i>
     <a href="#" class="home">Perfin</a>
@@ -6,29 +14,56 @@
     <a href="#" class="current">Category</a>
 </nav>
 
-<h2 id="title-current-page">Create Category <span>Create a category and let more organized your finances</span></h2>
+
 
 <form>
     <fieldset>
-        @*<legend>Create</legend>*@
-        <label>Category Name</label>
-        <input type="text" class="span5" placeholder="Transport...">
-        <span class="help-block">Category is a group to organize your finances.</span>
+        <legend class="title-description">List Category <span>All your categories</span></legend>
 
-        <label>Parent Category</label>
-        <select class="span5">
-                <option>None</option>
-                <option>Study</option>
-                <option>Travel</option>
-                <option>Feed</option>
-            </select>
-        <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
-
-
-        <label class="inline">
-        </label>
-        <button type="submit" class="btn">Save</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                    <th>Parent Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Transport</td>
+                    <td>---</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-info" href="#"><i class="icon-pencil"></i></a>
+                            <a class="btn btn-danger" href="#"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Feed</td>
+                    <td>---</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn" href="#"><i class="icon-pencil"></i></a>
+                            <a class="btn btn-danger" href="#"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Study</td>
+                    <td>---</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn" href="#"><i class="icon-pencil"></i></a>
+                            <a class="btn" href="#"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </fieldset>
 </form>
-
-@Html.ActionLink("Temp Link to List Category", "List")

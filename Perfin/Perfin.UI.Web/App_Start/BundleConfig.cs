@@ -24,15 +24,16 @@ namespace Perfin.UI.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                // "~/Content/boilerplate-normalize.css",
+                 "~/Content/boilerplate-normalize.css",
                 // "~/Content/boilerplate-main.css",
                 
                 //bootstrap
                 "~/Content/bootstrap/css/bootstrap.css",
+                "~/Content/bootstrap/css/bootstrap-responsive.css",
 
 
-               "~/Content/reset.css",
-                "~/Content/main.css"//,"~/Content/site.css"
+               //"~/Content/reset.css",
+                "~/Content/main.css"
                 
             ));
 
@@ -49,6 +50,12 @@ namespace Perfin.UI.Web
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+
+            bundles.Add(new StyleBundle("~/Content/fonts/css").Include(
+                //Font Awesome Stylesheet
+                "~/Content/font-awesome/css/font-awesome.css"
+           ));
         }
     }
 }

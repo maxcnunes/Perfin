@@ -16,30 +16,43 @@
     <meta name="viewport" content="width=device-width">
 
 
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css", "~/Content/fonts/css")
 
-    <!-- Font Awesome Stylesheet -->
-    <link rel="stylesheet" href="~/Content/font-awesome/css/font-awesome.css" />
-
-    <!-- Including Open Sans Condensed from Google Fonts -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic" />
-
+    <!-- Including Lobster and Cabin from Google Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
 
-    <link href="http://fonts.googleapis.com/css?family=Allan:bold" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Cardo" rel="stylesheet" type="text/css">
-
-    <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
-
-
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/modernizr")    
 </head>
 <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Perfin</a>
+                @*<div class="nav-collapse collapse">
+                    <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link">Username</a>
+                    </p>
+                    <ul class="nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>*@
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
     <div id="wrapper">
         <!--Main Navigation-->
-        <nav id="main-nav">
+        <nav id="main-menu">
             <ul>
                 <li class="green"><a class="icon-home" href="@Url.Action("Index", "Home")">@*Dashboard*@</a></li>
                 <li class="blue"><a class="icon-tag" href="@Url.Action("Index", "Category")">@*Categories*@</a></li>
@@ -54,7 +67,7 @@
         <section id="main_content">
 
             <!--Sub Navigation-->
-            <nav id="sub-nav">
+            <nav id="sub-menu">
 
                 <!--UserInfo-->
                 <dl class="user_info">
@@ -63,8 +76,11 @@
                     <dd>
                         <a class="welcome_user" href="#">Welcome,<strong>User Name</strong></a>
                         <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
-                        <a class="logout" href="login.html">Logout</a>
-                        <a class="user_messages" href="#"><span>12</span></a>
+                        <a class="logout" href="login.html"><i class="icon-signout"></i>Logout</a>
+                        @*
+                            Not delete this code below
+                            <a class="user_messages" href="#"><span>12</span></a>
+                        *@
                     </dd>
                 </dl>
 
@@ -114,13 +130,7 @@
 
                 <!--Responsive Nav ends-->
 
-                <h2>Dashboard</h2>
-                <ul>
-                    <li><a href="#"><i class="icon-home icon-large"></i>Index</a></li>
-                    <li><a href="#"><i class="icon-money icon-large"></i>Entries</a></li>
-                    <li><a href="#"><i class="icon-book icon-large"></i>Account Plan </a></li>
-                    <li><a href="#"><i class="icon-briefcase icon-large"></i>Annual Balance</a></li>
-                </ul>
+                @RenderSection("sub_menu")
             </nav>
 
             <!--Content Wrap-->

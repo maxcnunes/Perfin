@@ -18,9 +18,9 @@ namespace Perfin.UI.Web.Controllers
 
 
         //
-        // GET: /Category/List
+        // GET: /Category/Create
 
-        public ActionResult List()
+        public ActionResult Create()
         {
             return View();
         }

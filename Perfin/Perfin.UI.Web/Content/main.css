@@ -1,4 +1,5 @@
-﻿body {
+﻿
+body {
     background: #ddd;
     color: #424242;
     font-family: 'Cabin', Helvetica, Arial, sans-serif;
@@ -27,28 +28,27 @@ p {
 /*===== Layout =====*/
 #wrapper {
     margin: 10px;
+    padding-top: 40px;
 }
 
 
 
-/*==== MainNav ====*/
-#main-nav {
+/*==== Main Menu ====*/
+#main-menu {
     float: left;
     padding-top: 102px;
     font-family: CorbelRegular /*CORBEL*/;
 }
 
-    #main-nav ul {
+    #main-menu ul {
         margin: 0px;
         padding: 0px;
     }
 
-        #main-nav ul li {
-          
+        #main-menu ul li {
             clear: both;
             width: 80px;
             padding: 5px;
-        
             text-align: center;
             list-style: none;
             box-shadow: 0 0 10px rgba(100, 100, 100, 0.2) inset,1px 1px 1px #CCC;
@@ -58,48 +58,48 @@ p {
         }
 
             /*==== Color Themes ====*/
-            #main-nav ul li.green {
+            #main-menu ul li.green {
                 /* This is the color of the menu item */
                 background-color: #00c08b;
                 /* This is the color of the icon */
                 color: #127a5d;
             }
 
-            #main-nav ul li.red {
+            #main-menu ul li.red {
                 background-color: #ea5080;
                 color: #aa2a52;
             }
 
-            #main-nav ul li.blue {
+            #main-menu ul li.blue {
                 background-color: #53bfe2;
                 color: #2884a2;
             }
 
-            #main-nav ul li.yellow {
+            #main-menu ul li.yellow {
                 background-color: #f8c54d;
                 color: #ab8426;
             }
 
-            #main-nav ul li.purple {
+            #main-menu ul li.purple {
                 background-color: #df6dc2;
                 color: #9f3c85;
             }
 
-            #main-nav ul li.dark-gray {
+            #main-menu ul li.dark-gray {
                 background-color: #636363;
                 color: #ccc;
             }
 
-            #main-nav ul li:hover {
+            #main-menu ul li:hover {
                 text-shadow: 0px 1px 0px #f4f4f4;
             }
 
-                #main-nav ul li:hover a {
+                #main-menu ul li:hover a {
                     font-size: 34px;
                     margin: -6px -6px -5px -6px;
                 }
 
-            #main-nav ul li a {
+            #main-menu ul li a {
                 /*color: #d8e0e2;
                 text-decoration: none;
                 display: block;
@@ -115,7 +115,7 @@ p {
 
 
 
-            #main-nav ul li.active {
+            #main-menu ul li.active {
                 background: url(../images/active_tab.png) no-repeat left top #fff;
                 border-radius: 5px 0px 0px 5px;
                 box-shadow: 0px 3px 0px 0px #444d50;
@@ -124,7 +124,7 @@ p {
                 padding-right: 6px;
             }
 
-                #main-nav ul li.active a {
+                #main-menu ul li.active a {
                     color: #4a4a4a;
                     text-shadow: none;
                     font-family: 'CorbelBold';
@@ -132,8 +132,8 @@ p {
                 }
 
 
-/*==== SubNav ====*/
-#sub-nav {
+/*==== Sub Menu ====*/
+#sub-menu {
     width: 210px;
     height: 100%;
     float: left;
@@ -141,7 +141,7 @@ p {
 }
 
 
-    #sub-nav h2 {
+    #sub-menu h2 {
         font-size: 28px;
         padding: 0px 15px;
         margin-top: 21px;
@@ -149,11 +149,11 @@ p {
         text-shadow: 0px 1px 0px #ffffff;
     }
 
-    #sub-nav ul {
+    #sub-menu ul {
         margin: 21px 15px;
     }
 
-        #sub-nav ul li {
+        #sub-menu ul li {
             list-style: none;
             padding: 12px 0px;
             border-top: solid 1px #dcdfe0;
@@ -161,7 +161,7 @@ p {
             box-shadow: inset 0px 1px 0px #ffffff;
         }
 
-            #sub-nav ul li a {
+            #sub-menu ul li a {
                 color: #818386;
                 font-size: 14px;
                 text-decoration: none;
@@ -170,22 +170,22 @@ p {
             }
 
 
-                #sub-nav ul li a:hover i {
+                #sub-menu ul li a:hover i {
                     font-size: 18px;
                     margin: -2px auto;
                 }
 
-                #sub-nav ul li a span {
+                #sub-menu ul li a span {
                     font-size: 21px;
                     float: left;
                     margin: -4px 8px 0px 5px;
                 }
 
-            #sub-nav ul li.active a {
+            #sub-menu ul li.active a {
                 font-family: 'CorbelBold';
             }
 
-                #sub-nav ul li.active a span {
+                #sub-menu ul li.active a span {
                     color: #478cfe;
                     text-shadow: 0px 1px 0px #f4f4f4;
                 }
@@ -250,10 +250,14 @@ dl.user_info {
             float: left;
             color: #f5f5f5;
             text-decoration: none;
-            padding-left: 15px;
-            background: url(images/logoff.png) no-repeat left center;
             margin-top: 5px;
         }
+
+            dl.user_info dd a.logout i {
+                color: #424242;
+            }
+
+
 
         dl.user_info dd a.user_messages {
             padding-right: 28px;
@@ -282,6 +286,8 @@ dl.user_info {
     background: url(images/bg_main_content.png) repeat-y left center #fff;
     border-radius: 4px 3px 3px 3px;
     min-height: 750px;
+    z-index: 0;
+    position: relative;
 }
 
 #content_wrap {
@@ -372,25 +378,39 @@ ul#status-container {
     }
 
 
-/*==== Title Current Page ====*/
-h2#title-current-page {
+/*==== Title Description ====*/
+.title-description {
+    font-family: 'Lobster', Georgia, Times, serif;
     font-size: 30px;
     margin: 5px 5px 10px 5px;
     line-height: 40px;
     border-bottom: solid 1px #dcdfe0;
     box-shadow: inset 0px 1px 0px #ffffff;
+    background:#fff;
 }
 
-    h2#title-current-page span {
+    .title-description span {
         font-size: 15px;
         font-family: 'Cabin', Helvetica, Arial, sans-serif;
+        font-weight: normal;
     }
 
 
 
 /*==== Forms ====*/
 fieldset {
-    margin: 10px 20px;
+    margin: 10px 0;
+    background: url(images/background.jpg);
+}
+    fieldset .fields {
+        margin:0px 20px;
+        
+    }
+
+
+
+.form-actions {
+   /* margin: 20px -20px;*/
 }
 
 
@@ -407,9 +427,15 @@ fieldset {
 @media only screen and (max-width: 1080px) {
 }
 
+@media only screen and (max-width: 980px) {
+    #wrapper {
+        padding-top: 0;
+    }
+}
+
 @media only screen and (max-width: 780px) {
 
-    #sub-nav {
+    #sub-menu {
         width: 155px;
     }
 
@@ -433,7 +459,7 @@ fieldset {
             margin-bottom: 0px;
         }
 
-    #sub-nav ul li a span {
+    #sub-menu ul li a span {
         display: none;
     }
 }
@@ -463,16 +489,16 @@ fieldset {
         border-radius: 4px 4px 0px 0px;
     }
 
-    nav#main-nav {
+    nav#main-menu {
         display: none;
     }
 
-    #sub-nav {
+    #sub-menu {
         border-radius: 3px 3px 0px 0px;
         overflow: hidden;
     }
 
-        #sub-nav > ul {
+        #sub-menu > ul {
             display: none;
         }
 
@@ -488,7 +514,7 @@ fieldset {
         max-width: 100%;
     }
 
-    #sub-nav {
+    #sub-menu {
         width: 100%;
         clear: both;
     }
@@ -540,11 +566,11 @@ fieldset {
         background-image: none;
     }
 
-    nav#main-nav {
+    nav#main-menu {
         display: none;
     }
 
-    #sub-nav > ul {
+    #sub-menu > ul {
         display: none;
     }
 
@@ -560,7 +586,7 @@ fieldset {
         max-width: 100%;
     }
 
-    #sub-nav {
+    #sub-menu {
         width: 100%;
         clear: both;
     }
