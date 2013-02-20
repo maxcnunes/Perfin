@@ -38,6 +38,11 @@ Discard a File Change
 
 
 Show Differences Between the Remote and Local Repository
-==================================
-- `git diff`
-- type `q` to leave the text
+========================================================
+1. `git diff`
+2.  type `q` to leave the text
+
+
+Checking out a local branch from a remote branch (Tracking Branches)
+====================================================================
+- `git checkout --track REMOTE_NAME/BRANCH_NAME`

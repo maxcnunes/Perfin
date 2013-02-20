@@ -1,45 +1,65 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@section sub_menu{
+    <h2>Dashboard</h2>
+    <ul>
+        <li><a href="#"><i class="icon-home icon-large"></i>Index</a></li>
+        <li><a href="#"><i class="icon-money icon-large"></i>Entries</a></li>
+        <li><a href="#"><i class="icon-book icon-large"></i>Account Plan </a></li>
+        <li><a href="#"><i class="icon-briefcase icon-large"></i>Annual Balance</a></li>
+    </ul>
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-            <p>
-                To learn more about ASP.NET MVC visit
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
-                If you have any questions about ASP.NET MVC visit
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-}
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
 
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
+<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Dashboard</a>
+</nav>
 
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+<h2 class="title-description">Dashboard <span>All informations about your personal finance on the same place</span></h2>
+<!-- Status -->
+<ul id="status-container">
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Week Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
     </li>
-</ol>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Debts</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Year Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+</ul>
+<br />
+<br />
+<br />
+<div>
+    <h4 style="font-size: 30px; text-align: center;">[ INSERT HERE: TABS WITH CHARTS AND OTHER INFORMATIONS ]</h4>
+</div>
+
