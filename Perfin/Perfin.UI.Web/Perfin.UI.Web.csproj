@@ -142,8 +142,11 @@
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Scripts\app\dataservice.category.js" />
+    <Content Include="Scripts\app\dataservice.js" />
     <Content Include="Scripts\app\model.category.js" />
     <Content Include="Scripts\app\model.js" />
+    <Content Include="Scripts\app\presenter.js" />
     <Content Include="Scripts\lib\amplify.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
