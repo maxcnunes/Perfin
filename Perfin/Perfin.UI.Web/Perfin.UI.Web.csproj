@@ -124,7 +124,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,12 +142,21 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\app\sort.js" />
+    <Content Include="Scripts\app\vm.category.js" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\dataservice.category.js" />
     <Content Include="Scripts\app\dataservice.js" />
+    <Content Include="Scripts\app\messenger.js" />
     <Content Include="Scripts\app\model.category.js" />
     <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\presenter.js" />
+    <Content Include="Scripts\app\route-mediator.js" />
+    <Content Include="Scripts\app\router.js" />
+    <Content Include="Scripts\app\store.js" />
     <Content Include="Scripts\lib\amplify.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
@@ -232,6 +242,9 @@
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />
+    <Content Include="Scripts\lib\sammy-0.7.4.js" />
+    <Content Include="Scripts\lib\underscore.js" />
+    <Content Include="Scripts\lib\toastr-1.1.5.js" />
     <Content Include="Views\Shared\404.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -255,6 +268,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
+      <Project>{3301ba3c-44df-463b-be43-c3d38b55d38e}</Project>
+      <Name>Perfin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
+      <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
+      <Name>Perfin.Data.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data\Perfin.Data.csproj">
+      <Project>{9ca32c62-0e5c-4a3e-9446-e7e0445897a4}</Project>
+      <Name>Perfin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Model\Perfin.Model.csproj">
+      <Project>{6deb23e3-31a3-463f-af28-aeab391281b6}</Project>
+      <Name>Perfin.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service.Contract\Perfin.Service.Contract.csproj">
+      <Project>{f56901e7-288c-4951-beb2-6131ad60e4eb}</Project>
+      <Name>Perfin.Service.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service\Perfin.Service.csproj">
+      <Project>{59a6321b-bf10-488d-add8-6ff94c62024d}</Project>
+      <Name>Perfin.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
