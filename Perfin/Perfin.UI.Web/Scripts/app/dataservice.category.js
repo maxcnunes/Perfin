@@ -12,16 +12,23 @@
                 }),
 
                 amplify.request.define('category', 'ajax', {
-                    url: '/api/category/{id}',
+                    url: '/api/categories/{id}',
                     dataType: 'json',
                     type: 'GET'
                     //cache:true
                 }),
 
                 amplify.request.define('categoryUpdate', 'ajax', {
-                    url: '/api/',
+                    url: '/api/categories',
                     dataType: 'json',
                     type: 'PUT',
+                    contentType: 'application/json; charset=utf-8'
+                }),
+
+                amplify.request.define('categoryDelete', 'ajax',{
+                    url:'/api/categories/{id}',
+                    dataType: 'json',
+                    type: 'DELETE',
                     contentType: 'application/json; charset=utf-8'
                 });
             },
@@ -50,6 +57,15 @@
                     success: callbacks.success,
                     error:callbacks.error
                 });
+            },
+            
+            deleteCategory = function(callbacks, id){
+                return amplify.request({
+                    resourceId: 'categoryDelete',
+                    data: { id : id },
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
             };
 
         init();
@@ -58,7 +74,8 @@
         return {
             getCatetories: getCatetories,
             getCategory: getCategory,
-            updateCategory: updateCategory
+            updateCategory: updateCategory,
+            deleteCategory: deleteCategory
         };
 
 
