@@ -20,7 +20,12 @@ define('config',
             storeExpirationMs = (1000 * 60 * 60 * 24), // 1 day
             title = 'Perfin > ',
             toasts = {
-                changesPending: 'Please save or cancel your changes before leaving the page.'
+                changesPending: 'Please save or cancel your changes before leaving the page.',
+                errorSavingData: 'Data could not be saved. Please check the logs.',
+                errorGettingData: 'Could not retrieve data.  Please check the logs.',
+                invalidRoute: 'Cannot navigate. Invalid route',
+                retreivedData: 'Data retrieved successfully',
+                savedData: 'Data saved successfully'
             },
 
 

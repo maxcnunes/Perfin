@@ -142,8 +142,10 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\app\datacontext.js" />
     <Content Include="Scripts\app\sort.js" />
     <Content Include="Scripts\app\vm.category.js" />
+    <Content Include="Scripts\app\model.mapper.js" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -157,6 +159,7 @@
     <Content Include="Scripts\app\route-mediator.js" />
     <Content Include="Scripts\app\router.js" />
     <Content Include="Scripts\app\store.js" />
+    <Content Include="Scripts\app\vm.js" />
     <Content Include="Scripts\lib\amplify.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
@@ -239,6 +242,7 @@
     <Content Include="Scripts\lib\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\lib\knockout-2.1.0.js" />
     <Content Include="Scripts\lib\modernizr-2.5.3.js" />
+    <None Include="Scripts\lib\require.intellisense.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />

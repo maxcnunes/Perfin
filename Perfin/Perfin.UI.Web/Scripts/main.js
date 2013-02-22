@@ -1,7 +1,10 @@
 ﻿(function () {
+    // Establish the root object, 'window' in the browser, or 'global' on the server.
     var root = this;
 
+    // Load the 3rd party libraries
     define3rdPartyModules();
+    // Load our app/custom plug-ins and bootstrap the app
     loadPluginsAndBoot();
 
     function define3rdPartyModules() {
@@ -9,12 +12,12 @@
         // We define them and put them in the root object.
         define('jquery', [], function () { return root.jQuery; });
         define('ko', [], function () { return root.ko; });
-        //define('amplify', [], function () { return root.amplify; });
+        define('amplify', [], function () { return root.amplify; });
         //define('infuser', [], function () { return root.infuser; });
         //define('moment', [], function () { return root.moment; });
-        //define('sammy', [], function () { return root.Sammy; });
-        //define('toastr', [], function () { return root.toastr; });
-        //define('underscore', [], function () { return root._; });
+        define('sammy', [], function () { return root.Sammy; });
+        define('toastr', [], function () { return root.toastr; });
+        define('underscore', [], function () { return root._; });
     }
 
     function loadPluginsAndBoot() {
@@ -27,6 +30,7 @@
     }
 
     function boot() {
+        // Start-up the app, now that all prerequisites are in place.
         //require(['bootstrapper'], function (bs) { bs.run(); });
     }
 })();
