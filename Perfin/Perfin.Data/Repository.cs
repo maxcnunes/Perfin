@@ -35,6 +35,11 @@ namespace Perfin.Data
 			_dbSession.Update(entity);
 		}
 
+        public void Delete(int id)
+        {
+            _dbSession.Delete(id);
+        }
+
         public void Delete(T entity)
 		{
 			_dbSession.Delete(entity);
@@ -71,5 +76,8 @@ namespace Perfin.Data
 		}
 
 		#endregion
-	}
+
+
+        
+    }
 }
