@@ -1,3 +1,10 @@
+Links for more commands
+==============
+
+1. http://www.git-tower.com/files/cheatsheet/Git_Cheat_Sheet_grey.pdf
+
+
+
 Add New Commit
 ==============
 
