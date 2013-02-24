@@ -62,7 +62,7 @@ namespace Perfin.Data
 
 		public IQueryable<T> GetAll()
 		{
-			return _dbSession.Linq<T>();
+			return _dbSession.Query<T>();
 		}
 
 		public T FindBy(System.Linq.Expressions.Expression<System.Func<T, bool>> expression)
