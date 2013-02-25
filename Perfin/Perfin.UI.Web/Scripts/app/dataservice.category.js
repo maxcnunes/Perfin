@@ -18,6 +18,13 @@
                     //cache:true
                 }),
 
+                amplify.request.define('categoryAdd', 'ajax', {
+                    url: '/api/categories',
+                    dataType: 'json',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8'
+                }),
+
                 amplify.request.define('categoryUpdate', 'ajax', {
                     url: '/api/categories',
                     dataType: 'json',
@@ -50,6 +57,15 @@
                 });
             },
 
+            addCategory = function (callbacks, data) {
+                return amplify.request({
+                    resourceId: 'categoryAdd',
+                    data: data,
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
+            },
+
             updateCategory = function (callbacks, data) {
                 return amplify.request({
                     resourceId: 'categoryUpdate',
@@ -74,13 +90,11 @@
         return {
             getCatetories: getCatetories,
             getCategory: getCategory,
+            addCategory: addCategory,
             updateCategory: updateCategory,
             deleteCategory: deleteCategory
         };
 
 
     }
-
-
-
-});
+);

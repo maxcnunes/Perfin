@@ -3,7 +3,7 @@
 	function (model) {
 		
 		// Private Members
-		var
+	    var
 			category = {
 				getDtoId: function (dto) {
 					return dto.id;
@@ -17,7 +17,7 @@
 			};
 
 		// Public Members
-		return {
+	    return {
 			cateogry: category
 		};
 	}

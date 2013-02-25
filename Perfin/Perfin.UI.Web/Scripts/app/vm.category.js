@@ -97,7 +97,7 @@ define('vm.category',
 				}
 			}),
 
-			tmpName = function () {
+			tmplName = function () {
 				return canEdit() ? 'category.edit' : 'category.view';
 			};
 
@@ -113,7 +113,8 @@ define('vm.category',
 			isValid: isValid,
 			saveCmd: saveCmd,
 			category: category,
-			tmplName: tmplName
+			tmplName: tmplName,
+			name: 'CATEGORY'// JUST TEST, REMOVE LATER
 		};
 	}
 );

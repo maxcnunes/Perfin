@@ -16,5 +16,10 @@
         Category.Nullo.isNullo = true;
         Category.Nullo.dirtyFlag().reset();
 
+        Category.datacontext = function (dc) {
+            if (dc) { _dc = dc; }
+            return _dc;
+        }
+
         return Category;
     });

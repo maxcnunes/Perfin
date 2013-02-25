@@ -40,24 +40,23 @@ namespace Perfin.UI.Web
                 //"~/Scripts/lib/activity-indicator.js",
                 //"~/Scripts/lib/jquery.mockjson.js",
                 //"~/Scripts/lib/TrafficCop.js",
-                //"~/Scripts/lib/infuser.js", // depends on TrafficCop
+                "~/Scripts/lib/infuser.js", // depends on TrafficCop
 
                 // Knockout and its plugins
                 "~/Scripts/lib/knockout-{version}.js",
-                // NOT USED YET
-                //"~/Scripts/lib/knockout.activity.js",
-                //"~/Scripts/lib/knockout.asyncCommand.js",
-                //"~/Scripts/lib/knockout.dirtyFlag.js",
-                //"~/Scripts/lib/knockout.validation.js",
-                //"~/Scripts/lib/koExternalTemplateEngine.js",
+                "~/Scripts/lib/knockout.activity.js",
+                "~/Scripts/lib/knockout.asyncCommand.js",
+                "~/Scripts/lib/knockout.dirtyFlag.js",
+                "~/Scripts/lib/knockout.validation.js",
+                "~/Scripts/lib/koExternalTemplateEngine.js",
 
-                 // NOT USED YET
-                //// Other 3rd party libraries
-                //"~/Scripts/lib/underscore.js",
+
+                // Other 3rd party libraries
+                "~/Scripts/lib/underscore.js",
                 //"~/Scripts/lib/moment.js",
-                //"~/Scripts/lib/sammy.*",
-                "~/Scripts/lib/amplify.*"
-                //"~/Scripts/lib/toastr.js"
+                "~/Scripts/lib/sammy-{version}.js",
+                "~/Scripts/lib/amplify.*",
+                "~/Scripts/lib/toastr-{version}.js"
             ));
 
             // NOT USED YET
@@ -77,8 +76,9 @@ namespace Perfin.UI.Web
                 "~/Content/bootstrap/css/bootstrap.css",
                 "~/Content/bootstrap/css/bootstrap-responsive.css",
 
-                //"~/Content/toastr.css", NOT USED YET
-                //"~/Content/toastr-responsive.css" NOT USED YET
+                // Toastr Notifications
+                "~/Content/toastr.css",
+                "~/Content/toastr-responsive.css",
 
                // Main css
                 "~/Content/main.css"
@@ -102,10 +102,6 @@ namespace Perfin.UI.Web
             //// Custom LESS files
             //bundles.Add(new Bundle("~/Content/Less", new LessTransform(), new CssMinify())
             //    .Include("~/Content/styles.less"));
-
-
-
-
         }
     }
 }

@@ -1,11 +1,7 @@
 ﻿define('router',
     ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'route-mediator', 'store'],
     function ($, _, Sammy, presenter, config, routeMediator, store) {
-
-        // Private Members
         var
-            // Properties
-            //------------------------------------
             currentHash = '',
             defaultRoute = '',
             isRedirecting = false,
@@ -13,8 +9,6 @@
             startupUrl = '',
             window = config.window,
 
-            // Methods
-            //------------------------------------
             sammy = new Sammy.Application(function () {
                 if (Sammy.Title) {
                     this.use(Sammy.Title);
@@ -22,7 +16,10 @@
                 }
 
                 this.get('', function () {
-                    this.app.runRoute('get', startupUrl);
+                    //---------------------------------------------------------------//
+                    // FIX THIS CODE LATER,  have been loaded default view infinitely //
+                    //---------------------------------------------------------------//
+                    //this.app.runRoute('get', startupUrl);
                 });
             }),
 
@@ -63,7 +60,6 @@
                     if (!isRedirecting && !response.val) {
                         isRedirecting = true;
                         logger.warning(response.message);
-
                         // Keep hash url the same in address bar
                         context.app.setLocation(currentHash);
                     }
@@ -71,9 +67,8 @@
                         isRedirecting = false;
                         currentHash = context.app.getLocation();
                     }
-
                     // Cancel the route if this returns false
-                    return reponse.val;
+                    return response.val;
                 });
             },
 
@@ -86,19 +81,15 @@
                     defaultRoute = options.route;
                 }
 
-                sammy.get(options.route, function (context) { // context is 'this'
+                sammy.get(options.route, function (context) { //context is 'this'
                     store.save(config.stateKeys.lastView, context.path);
-
                     options.callback(context.params); // Activate the viewmodel
-
                     $('.view').hide();
-
                     presenter.transitionTo(
                         $(options.view),
                         context.path,
                         options.group
                     );
-
                     if (this.title) {
                         this.title(options.title);
                     }
@@ -109,20 +100,18 @@
                 var url = store.fetch(config.stateKeys.lastView);
 
                 // 1) if i browse to a location, use it
-                // 2) otherwise, use url i grabbed from storage
-                // 3) otherwise, use the default route
+                // 2) otherwise, use the url i grabbed from storage
+                // 3) otherwise use the default route
                 startupUrl = sammy.getLocation() || url || defaultRoute;
 
                 if (!startupUrl) {
                     logger.error('No route was indicated.');
                     return;
                 }
-
                 sammy.run();
                 registerBeforeLeaving();
                 navigateTo(startupUrl);
             };
-
 
         return {
             navigateBack: navigateBack,
@@ -130,5 +119,4 @@
             register: register,
             run: run
         };
-    }
-);
+    });

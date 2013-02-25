@@ -1,8 +1,12 @@
 ﻿define('vm',
-    ['vm.category'],
-    function (category) {
+    [
+        'vm.category',
+        'vm.shell'
+    ],
+    function (category, shell) {
         return {
-            category: category
+            category: category,
+            shell: shell
         };
     }
 );

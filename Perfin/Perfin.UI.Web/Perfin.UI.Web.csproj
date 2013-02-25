@@ -42,6 +42,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.6.6.4\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySQL.Data.Entities.6.5.4.0\lib\net40\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.2-unstable-8\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -122,7 +133,12 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\GlobalConfig.cs" />
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="App_Start\NinjectDependencyResolver.cs" />
+    <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ValidationActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -142,10 +158,22 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Scripts\app\amplify.js" />
+    <Content Include="Scripts\app\binder.js" />
+    <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\datacontext.js" />
+    <Content Include="Scripts\app\dataprimer.js" />
+    <Content Include="Scripts\app\ko.bindingHandlers.js" />
+    <Content Include="Scripts\app\ko.debug.helpers.js" />
+    <Content Include="Scripts\app\route-config.js" />
     <Content Include="Scripts\app\sort.js" />
+    <Content Include="Scripts\app\underscore.js" />
+    <Content Include="Scripts\app\utils.js" />
     <Content Include="Scripts\app\vm.category.js" />
     <Content Include="Scripts\app\model.mapper.js" />
+    <Content Include="index.cshtml" />
+    <Content Include="Scripts\app\vm.shell.js" />
+    <Content Include=".htaccess" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -226,8 +254,7 @@
     <Content Include="Content\font-awesome\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.woff" />
     <Content Include="Content\font-awesome\font\FontAwesome.otf" />
-    <None Include="Scripts\lib\jquery-1.7.1.intellisense.js" />
-    <Content Include="index.html" />
+    <Content Include="Scripts\lib\infuser.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.js" />
     <Content Include="Scripts\lib\jquery-1.7.1.min.js" />
     <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
@@ -239,17 +266,21 @@
     <Content Include="Scripts\lib\jquery.validate.min.js" />
     <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lib\json2.js" />
     <Content Include="Scripts\lib\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\lib\knockout-2.1.0.js" />
+    <Content Include="Scripts\lib\knockout.activity.js" />
+    <Content Include="Scripts\lib\knockout.asyncCommand.js" />
+    <Content Include="Scripts\lib\knockout.dirtyFlag.js" />
+    <Content Include="Scripts\lib\knockout.validation.js" />
+    <Content Include="Scripts\lib\koExternalTemplateEngine.js" />
     <Content Include="Scripts\lib\modernizr-2.5.3.js" />
-    <None Include="Scripts\lib\require.intellisense.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />
     <Content Include="Scripts\lib\sammy-0.7.4.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\toastr-1.1.5.js" />
-    <Content Include="Views\Shared\404.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -257,18 +288,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Templ\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

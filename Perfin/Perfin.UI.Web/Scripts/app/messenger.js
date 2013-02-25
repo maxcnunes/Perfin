@@ -1,7 +1,7 @@
 ﻿define('messenger',
     ['amplify', 'config'],
     function (amplify, config) {
-
+        
         // Private Members
         var
             priority = 1,

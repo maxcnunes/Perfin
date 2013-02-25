@@ -44,7 +44,7 @@ define('presenter',
                 });
             },
 
-            toggleActivity = function () {
+            toggleActivity = function (show) {
                 $('#busyindicator').activity(show);
             },
 

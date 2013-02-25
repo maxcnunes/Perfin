@@ -7,6 +7,7 @@ define('model',
     function (category) {
         var
             model = {
+                // Category Model
                 Category : category
             };
 

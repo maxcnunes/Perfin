@@ -21,16 +21,16 @@
     }
 
     function loadPluginsAndBoot() {
-        //// Plugins must be loaded after jQuery and Knockout, 
-        //// since they depend on them.
-        //requirejs([
-        //        'ko.bindingHandlers',
-        //        'ko.debug.helpers'
-        //], boot);
+        // Plugins must be loaded after jQuery and Knockout, 
+        // since they depend on them.
+        requirejs([
+                'ko.bindingHandlers',
+                'ko.debug.helpers'
+        ], boot);
     }
 
     function boot() {
         // Start-up the app, now that all prerequisites are in place.
-        //require(['bootstrapper'], function (bs) { bs.run(); });
+        require(['bootstrapper'], function (bs) { bs.run(); });
     }
 })();

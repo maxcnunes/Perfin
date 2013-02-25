@@ -18,10 +18,16 @@ namespace Perfin.UI.Web
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            // Tell WebApi to use our custom Ioc (Ninject)
+            IocConfig.RegisterIoc(GlobalConfiguration.Configuration);
+
+            // Web API template created these 3
+            //WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
         }
     }
 }
