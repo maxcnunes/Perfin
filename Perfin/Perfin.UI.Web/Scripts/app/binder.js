@@ -7,6 +7,9 @@
             ids = config.viewsIds,
 
             getView = function (viewName) {
+                if ($(viewName).size() <= 0)
+                    throw Error('Not found view by id: ' + viewName);
+                
                 return $(viewName).get(0);
             },
 
