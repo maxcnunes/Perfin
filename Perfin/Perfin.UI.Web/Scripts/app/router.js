@@ -8,6 +8,7 @@
             logger = config.logger,
             startupUrl = '',
             window = config.window,
+            rootUrl = window.location.pathname,// usually is '/'
 
             sammy = new Sammy.Application(function () {
                 if (Sammy.Title) {
@@ -15,11 +16,9 @@
                     this.setTitle(config.title);
                 }
 
-                this.get('', function () {
-                    //---------------------------------------------------------------//
-                    // FIX THIS CODE LATER,  have been loaded default view infinitely //
-                    //---------------------------------------------------------------//
-                    //this.app.runRoute('get', startupUrl);
+                // define a route for the root url that usually is '/'
+                this.get(rootUrl, function () {
+                    this.app.runRoute('get', startupUrl);
                 });
             }),
 
@@ -97,12 +96,19 @@
             },
 
             run = function () {
+                var browseLocation =  sammy.getLocation();
                 var url = store.fetch(config.stateKeys.lastView);
+
+                // Force the browseLocation never be defined with the rootUrl value
+                // because it cause a infenitely loop on app.runRoute
+                if (browseLocation === rootUrl)
+                    browseLocation = undefined;
 
                 // 1) if i browse to a location, use it
                 // 2) otherwise, use the url i grabbed from storage
                 // 3) otherwise use the default route
-                startupUrl = sammy.getLocation() || url || defaultRoute;
+                startupUrl = browseLocation || url || defaultRoute;
+
 
                 if (!startupUrl) {
                     logger.error('No route was indicated.');
