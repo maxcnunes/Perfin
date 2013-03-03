@@ -275,12 +275,15 @@
     <Content Include="Scripts\lib\knockout.validation.js" />
     <Content Include="Scripts\lib\koExternalTemplateEngine.js" />
     <Content Include="Scripts\lib\modernizr-2.5.3.js" />
+    <Content Include="Scripts\lib\TrafficCop.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />
     <Content Include="Scripts\lib\sammy-0.7.4.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\toastr-1.1.5.js" />
+    <Content Include="Tmpl\_shell.tmpl.html" />
+    <Content Include="Tmpl\_category.edit.tmpl.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,11 +294,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\category.cshtml" />
+    <Content Include="Views\shell.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Templ\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

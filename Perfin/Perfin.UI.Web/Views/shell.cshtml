@@ -1,3 +1,16 @@
-﻿<section id="home-view" class="view">
+﻿<section id="shell-view" class="view">
     <span data-bind="text: name"></span>
+    <!-- Knockout Debugging -->
+    <div style="border: white dotted thin">
+        <h4>Debug Data Bind JSON</h4>
+        <pre data-bind="text:ko.utils.debugInfo($data)"></pre>
+    </div>
 </section>
+
+
+<!--    
+<div style="border:white dotted thin">
+    <h4>Sessions JSON</h4>
+    <pre data-bind="text:ko.utils.debugInfo(sessions)"></pre>
+</div>
+-->

@@ -15,7 +15,11 @@ define('vm.shell',
 
 			init = function () {
 				activate();
-			};
+			},
+
+            tmplName = function () {
+                return 'shell';
+            };
 
 		init();
 
@@ -24,6 +28,7 @@ define('vm.shell',
 			activate: activate,
 			currentUser: currentUser,
 			menuHashes: menuHashes,
+			tmplName: tmplName,
 			name: 'MAIN'// JUST TEST, REMOVE LATER
 		};
 	}

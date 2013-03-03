@@ -58,9 +58,9 @@
     <div id="wrapper">
         <!--Main Navigation-->
         <nav id="main-menu">
-            <ul>
-                <li class="green"><a class="icon-home" href="/Home/">@*Dashboard*@</a></li>
-                <li class="blue"><a class="icon-tag" href="/Category/">@*Categories*@</a></li>
+            <ul id="shell-view" data-bind="with: menuHashes">
+                <li class="green"><a class="icon-home" data-bind="attr: {href: categories}">@*Dashboard*@</a></li>
+                <li class="blue"><a class="icon-tag" data-bind="attr: {href: categories}">@*Categories*@</a></li>
                 <li class="yellow"><a class="icon-map-marker" href="">@*Maps*@</a></li>
                 <li class="purple"><a class="icon-calendar" href="">@*Calendar*@</a></li>
                 <li class="red"><a class="icon-bar-chart" href="">@*Charts*@</a></li>
@@ -140,8 +140,7 @@
 
             <!--Content Wrap-->
             <div id="content_wrap">
-                <span data-bind="text: name"></span>
-
+                @RenderPage("Views/category.cshtml")
             </div>
 
         </section>

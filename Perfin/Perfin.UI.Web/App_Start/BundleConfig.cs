@@ -39,7 +39,7 @@ namespace Perfin.UI.Web
                 //// jQuery plugins
                 //"~/Scripts/lib/activity-indicator.js",
                 //"~/Scripts/lib/jquery.mockjson.js",
-                //"~/Scripts/lib/TrafficCop.js",
+                "~/Scripts/lib/TrafficCop.js",
                 "~/Scripts/lib/infuser.js", // depends on TrafficCop
 
                 // Knockout and its plugins

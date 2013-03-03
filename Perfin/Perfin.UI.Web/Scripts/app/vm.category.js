@@ -98,7 +98,8 @@ define('vm.category',
 			}),
 
 			tmplName = function () {
-				return canEdit() ? 'category.edit' : 'category.view';
+			    return 'category.edit';
+			    //return canEdit() ? 'category.edit' : 'category.view';
 			};
 
 

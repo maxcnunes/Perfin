@@ -152,6 +152,38 @@ define('datacontext',
         // Extend Categories entitySet
         //----------------------------
 
+        categories.getCategoryById = function (categoryModel, callbacks, forceRefresh) {
+            //return $.Deferred(function (def) {
+            //    var
+            //        id = categoryModel.id(),
+            //        cat = categories.getLocalById(id);
+
+            //    if (cat.isNullo || forceRefresh) {
+            //        // get fresh from database
+            //        dataservice.category.getCategory(
+            //            {
+            //                success: function (dto) {
+            //                    // updates the session returned from getLocalById() above
+            //                    cat = categories.mapDtoToContext(dto);
+            //                    if (callbacks && callbacks.success) { callbacks.success(cat); }
+            //                    def.resolve(dto);
+            //                },
+            //                error: function (response) {
+            //                    logger.error('oops! could not retrieve categories ' + categoryId);
+            //                    if (callbacks && callbacks.error) { callbacks.error(response); }
+            //                    def.reject(response);
+            //                }
+            //            },
+            //            getCurrentUserId(),
+            //            categoryId
+            //        );
+            //    } else {
+            //        if (callbacks && callbacks.success) { callbacks.success(cat); }
+            //        def.resolve(cat);
+            //    }
+            //}).promise();
+        };
+
         categories.addData = function (categoryModel, callbacks) {
             var categoryModelJson = ko.toJson(categoryModel);
 

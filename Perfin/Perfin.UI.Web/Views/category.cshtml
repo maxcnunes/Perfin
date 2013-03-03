@@ -1,17 +1,45 @@
-﻿@{
-    Layout = null;
-}
+﻿<section id="category-view" class="view">
 
-<!DOCTYPE html>
+    <!-- Breadcrumb -->
+    <nav id="breadcrumb">
+        <i class="icon-home icon-large"></i>
+        <a href="#" class="home">Perfin</a>
+        <i class="icon-double-angle-right icon-large"></i>
+        <a href="#" class="current">Category</a>
+    </nav>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>category</title>
-</head>
-<body>
-    <div>
-        
-    </div>
-</body>
-</html>
+
+
+    <form>
+        <fieldset>
+            <legend class="title-description">Create Category 
+                <span>Create a category and let more organized your finances</span>
+            </legend>
+
+            @*Form Fields Category*@
+            <div data-bind="template: {name: tmplName}"></div>
+
+            <div class="form-actions">
+
+                <button type="submit" class="btn btn-primary" data-bind="command: saveCmd, activity: saveCmd.isExecuting">Save changes</button>
+                <button type="reset" class="btn" data-bind="command: cancelCmd, activity: cancelCmd.isExecuting">Cancel</button>
+                <button class="btn btn-info button-back" data-bind="command: goBackCmd">Back</button>
+
+            </div>
+
+            @* Example buttons knockout : Delete later
+            
+            <button class="button-back" data-bind="command: goBackCmd"></button>
+
+            <div class="save-cancel-button-bar">
+                <button class="button-cancel"
+                    data-bind="command: cancelCmd, activity: cancelCmd.isExecuting">
+                    Cancel</button>
+                <button class="button-save"
+                    data-bind="command: saveCmd, activity: saveCmd.isExecuting">
+                    Save</button>
+            </div>*@
+
+        </fieldset>
+    </form>
+</section>

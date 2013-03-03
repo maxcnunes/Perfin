@@ -11,7 +11,7 @@ define('config',
             currentUserId = 1, // First User (just on development enviroment)
             currentUser = ko.observable(),
             // Links for the module pages
-            hashes = { 
+            hashes = {
                 categories : '#/categories'
             },
             logger = toastr, // use toastr for the logger
@@ -23,10 +23,12 @@ define('config',
             },
             storeExpirationMs = (1000 * 60 * 60 * 24), // 1 day
             title = 'Perfin > ',
+            toastrTimeout = 2000,
 
+            // View Ids (Html Section Id)
             viewsIds = {
                 shell: '#shell-view',
-                categories: '#categories-view'
+                categories: '#category-view'
             },
 
             toasts = {
@@ -43,11 +45,35 @@ define('config',
             //------------------------
             dataserviceInit = function () { },
 
+            configureExternalTemplates = function () {
+                infuser.defaults.templatePrefix = "_";
+                infuser.defaults.templateSuffix = ".tmpl.html";
+                infuser.defaults.templateUrl = "/Tmpl";
+            },
+
+            validationInit = function () {
+                ko.validation.configure({
+                    registerExtenders: true,    //default is true
+                    messagesOnModified: true,   //default is true
+                    insertMessages: true,       //default is true
+                    parseInputAttributes: true, //default is false
+                    writeInputAttributes: true, //default is false
+                    messageTemplate: null,      //default is null
+                    decorateElement: true       //default is false. Applies the .validationElement CSS class
+                });
+            },
+
             init = function () {
                 dataserviceInit();
+
+                toastr.options.timeOut = toastrTimeout;
+                configureExternalTemplates();
+                validationInit();
             };
 
 
+        init();
+        
 
         // Public Members
         return {

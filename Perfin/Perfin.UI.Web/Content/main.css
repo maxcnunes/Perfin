@@ -421,6 +421,11 @@ fieldset {
     margin: 40px auto;
 }
 
+/*=== Views ===*/
+.view {
+    display:none;
+}
+
 /*--------------
   RESPONSIVE
 --------------*/
