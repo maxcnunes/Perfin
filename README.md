@@ -1,19 +1,16 @@
 Perfin
 ======
 
-O que é o Perfin
+What is the Perfin
 ================
-Perfin é uma pequena aplicação web Open Source para Controle Financeiro Pessoal.
+This is an **open oource** small web application for Personal Financial Control.
 
 
-Porque Open Source
+Why Open Source
 ==================
-E desenvolvida com  o intuito de aplicar conhecimentos no quais estamos estudando para elevar nosso nível de desenvolvimento. Utilizando tecnologias atualizadas, como: (completar).
-
-
-Quem pode contribuir
-====================
-Qualquer um, basta fazer um fork.
+This project have being developed for two reasons:
+1. We have not found any app that we really liked and enjoyed to use for a long time.
+2. We have been seen many new frameworks and patterns lately emerging and this app was the best way we found to practice all these news.
 
 
 Configurations
