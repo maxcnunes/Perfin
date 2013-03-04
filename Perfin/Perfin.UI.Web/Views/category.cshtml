@@ -16,6 +16,14 @@
                 <span>Create a category and let more organized your finances</span>
             </legend>
 
+            @*Debug Knockout
+            <div style="border: white dotted thin">
+                <h4>Debug Data Bind JSON</h4>
+                <pre data-bind="text:ko.utils.debugInfo($data)"></pre>
+            </div>*@
+
+            <span data-bind="text: saveCmd"></span>
+
             @*Form Fields Category*@
             <div data-bind="template: {name: tmplName}"></div>
 

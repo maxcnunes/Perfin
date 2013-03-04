@@ -152,37 +152,32 @@ define('datacontext',
         // Extend Categories entitySet
         //----------------------------
 
-        categories.getCategoryById = function (categoryModel, callbacks, forceRefresh) {
-            //return $.Deferred(function (def) {
-            //    var
-            //        id = categoryModel.id(),
-            //        cat = categories.getLocalById(id);
-
-            //    if (cat.isNullo || forceRefresh) {
-            //        // get fresh from database
-            //        dataservice.category.getCategory(
-            //            {
-            //                success: function (dto) {
-            //                    // updates the session returned from getLocalById() above
-            //                    cat = categories.mapDtoToContext(dto);
-            //                    if (callbacks && callbacks.success) { callbacks.success(cat); }
-            //                    def.resolve(dto);
-            //                },
-            //                error: function (response) {
-            //                    logger.error('oops! could not retrieve categories ' + categoryId);
-            //                    if (callbacks && callbacks.error) { callbacks.error(response); }
-            //                    def.reject(response);
-            //                }
-            //            },
-            //            getCurrentUserId(),
-            //            categoryId
-            //        );
-            //    } else {
-            //        if (callbacks && callbacks.success) { callbacks.success(cat); }
-            //        def.resolve(cat);
-            //    }
-            //}).promise();
-        };
+        categories.getCategoryById = function (id, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var category = categories.getLocalById(id);
+                if (id !== undefined && (category.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.category.getCategory({
+                        success: function (dto) {
+                            // updates the category returned from getLocalById() above
+                            category = categories.mapDtoToContext(dto);
+                            category.isBrief(false); // now a full person
+                            callbacks.success(category);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve category ' + id);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+                            def.reject(response);
+                        }
+                    },
+                    id);
+                } else {
+                    callbacks.success(category);
+                    def.resolve(category);
+                }
+            }).promise();
+        },
 
         categories.addData = function (categoryModel, callbacks) {
             var categoryModelJson = ko.toJson(categoryModel);
