@@ -16,7 +16,7 @@ define('vm.category',
 			// Knockout Computeds
 			//----------------------------------
 			canEdit = ko.computed(function () {
-				return category() && config.currentUser() && config.currentUser().id() == speader.id();
+			    return category();// && config.currentUser() && config.currentUser().id() == speader.id();
 			}),
 
 			isDirty = ko.computed(function () {
@@ -54,9 +54,8 @@ define('vm.category',
 
 			getCategory = function (completeCallback, forceRefresh) {
 				var callback = function () {
-					if (completeCallback) {
+					if (completeCallback)
 						completeCallback();
-					}
 
 					validationErrors = ko.validation.group(category());
 				};

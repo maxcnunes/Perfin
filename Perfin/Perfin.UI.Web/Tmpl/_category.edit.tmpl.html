@@ -1,6 +1,6 @@
-﻿<section class="fields">
-    <label>Category Name</label>
-    <input type="text" class="span5" placeholder="Transport...">
+﻿<section class="fields" data-bind="with: category">
+    <label for="name">Category Name</label>
+    <input type="text" id="name" class="span5" data-bind="value: name" placeholder="Transport...">
     <span class="help-block">Category is a group to organize your finances.</span>
 
     <label>Parent Category</label>
