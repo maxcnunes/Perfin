@@ -48,8 +48,15 @@ Show Differences Between the Remote and Local Repository
 ========================================================
 1. `git diff`
 2.  type `q` to leave the text
+3. `git diff HEAD` ( In this case we want the diff of our most recent commit)
 
 
 Checking out a local branch from a remote branch (Tracking Branches)
 ====================================================================
 - `git checkout --track REMOTE_NAME/BRANCH_NAME`
+
+
+Create a new Branch
+====================================================================
+- `git branch BRANCH_NAME`
+
