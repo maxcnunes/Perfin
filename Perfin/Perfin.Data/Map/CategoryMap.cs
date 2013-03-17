@@ -10,10 +10,7 @@ namespace Perfin.Data.Map
             Table("Category");
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Unique();
-            Map(x => x.Parent).Not.Nullable();
-            //Map(x => x.Email).Not.Nullable();
-            //Map(x => x.Name).Not.Nullable();
-            //Map(x => x.Salt).Not.Nullable();
+            //Map(x => x.Parent).Nullable();
         }
     }
 }
