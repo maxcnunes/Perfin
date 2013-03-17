@@ -32,8 +32,7 @@ namespace Perfin.UI.Web
 
             // 3rd Party JavaScript files
             bundles.Add(new ScriptBundle("~/bundles/jsextlibs").Include(
-                // NOT USED YET
-                //"~/Scripts/lib/json2.js", // IE7 needs this
+                "~/Scripts/lib/json2.js", // IE7 needs this
 
                 // NOT USED YET
                 //// jQuery plugins

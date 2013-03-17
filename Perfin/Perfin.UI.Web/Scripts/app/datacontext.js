@@ -217,7 +217,7 @@ define('datacontext',
         };
 
         categories.updateData = function (categoryModel, callbacks) {
-            var categoryModelJson = ko.toJson(categoryModel);
+            var categoryModelJson = ko.toJSON(categoryModel);
 
             return $.Deferred(function (def) {
                 dataservice.category.updateCategory({
