@@ -30,17 +30,6 @@ namespace Perfin.UI.Web
                 .Include("~/Content/durandal.css")
                 .Include("~/Content/app.css")
               );
-
-            // Tests - Jasmine
-            bundles.Add(
-                new ScriptBundle("~/scripts/jstests")
-                  .Include("~/Scripts/jasmine.js")
-                  .Include("~/Scripts/jasmine-html.js")
-                  .IncludeDirectory("~/App/tests", "*.js", searchSubdirectories: true)
-                  //.IncludeDirectory("~/App/viewmodels", "*.js", searchSubdirectories: true)
-                  //just examples: remove this later
-                  .IncludeDirectory("~/Scripts/jasmine-samples", "*.js", searchSubdirectories: true)
-                );
         }
 
         public static void AddDefaultIgnorePatterns(IgnoreList ignoreList)

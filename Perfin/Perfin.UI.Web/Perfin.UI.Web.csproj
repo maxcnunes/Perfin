@@ -160,6 +160,8 @@
     <Content Include="App\main.js" />
     <Content Include="App\repositories\category.js" />
     <Content Include="App\services\logger.js" />
+    <Content Include="Tests\main.js" />
+    <Content Include="Tests\repositories\category.spec.js" />
     <Content Include="App\viewmodels\category\add.js" />
     <Content Include="App\viewmodels\category\details.js" />
     <Content Include="App\viewmodels\category\show.js" />
@@ -233,7 +235,6 @@
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\tests\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
