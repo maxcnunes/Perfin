@@ -158,6 +158,7 @@
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
     <Content Include="App\repositories\category.js" />
+    <Content Include="App\services\logger.js" />
     <Content Include="App\viewmodels\category\add.js" />
     <Content Include="App\viewmodels\category\details.js" />
     <Content Include="App\viewmodels\category\show.js" />
