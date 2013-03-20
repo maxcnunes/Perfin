@@ -21,6 +21,9 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
             router.useConvention();
             router.mapNav('welcome');
             router.mapNav('flickr');
+            router.mapNav("category/show");
+            router.mapNav("category/add");
+            router.mapNav("category/details/:id");
 
             app.adaptToDevice();
 
