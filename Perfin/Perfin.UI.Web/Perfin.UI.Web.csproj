@@ -124,6 +124,8 @@
   <ItemGroup>
     <Compile Include="App_Start\DurandalBundleConfig.cs" />
     <Compile Include="App_Start\DurandalConfig.cs" />
+    <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,7 +216,9 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -228,11 +232,36 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
+      <Project>{3301ba3c-44df-463b-be43-c3d38b55d38e}</Project>
+      <Name>Perfin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
+      <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
+      <Name>Perfin.Data.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data\Perfin.Data.csproj">
+      <Project>{9ca32c62-0e5c-4a3e-9446-e7e0445897a4}</Project>
+      <Name>Perfin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Model\Perfin.Model.csproj">
+      <Project>{6deb23e3-31a3-463f-af28-aeab391281b6}</Project>
+      <Name>Perfin.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service.Contract\Perfin.Service.Contract.csproj">
+      <Project>{f56901e7-288c-4951-beb2-6131ad60e4eb}</Project>
+      <Name>Perfin.Service.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service\Perfin.Service.csproj">
+      <Project>{59a6321b-bf10-488d-add8-6ff94c62024d}</Project>
+      <Name>Perfin.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
