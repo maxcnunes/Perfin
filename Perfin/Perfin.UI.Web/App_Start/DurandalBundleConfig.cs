@@ -13,6 +13,7 @@ namespace Perfin.UI.Web {
           .Include("~/Scripts/knockout-{version}.js")
           .Include("~/Scripts/sammy-{version}.js")
           .Include("~/Scripts/bootstrap.min.js")
+          .Include("~/Scripts/toastr.min.js")
         );
 
       bundles.Add(
@@ -21,6 +22,7 @@ namespace Perfin.UI.Web {
           .Include("~/Content/bootstrap.min.css")
           .Include("~/Content/bootstrap-responsive.min.css")
           .Include("~/Content/font-awesome.min.css")
+          .Include("~/Content/toastr.css")
 		  .Include("~/Content/durandal.css")
           .Include("~/Content/app.css")
         );
