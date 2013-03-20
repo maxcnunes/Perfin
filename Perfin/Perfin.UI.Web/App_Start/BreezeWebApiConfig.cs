@@ -2,7 +2,8 @@ using System.Web.Http;
 
 [assembly: WebActivator.PreApplicationStartMethod(
     typeof(Perfin.UI.Web.App_Start.BreezeWebApiConfig), "RegisterBreezePreStart")]
-namespace Perfin.UI.Web.App_Start {
+namespace Perfin.UI.Web.App_Start
+{
   ///<summary>
   /// Inserts the Breeze Web API controller route at the front of all Web API routes
   ///</summary>

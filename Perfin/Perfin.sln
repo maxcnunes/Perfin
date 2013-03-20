@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Model", "Perfin.Model\Perfin.Model.csproj", "{6DEB23E3-31A3-463F-AF28-AEAB391281B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Test", "Perfin.Test\Perfin.Test.csproj", "{BDB0256C-A824-4E3D-9DC1-E00F322B2434}"
@@ -22,7 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3C2254
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.UI.Web", "Perfin.UI.Web\Perfin.UI.Web.csproj", "{86D7315F-E0BF-4806-B934-EB440C4FEF18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.UI.Web", "Perfin.UI.Web\Perfin.UI.Web.csproj", "{31ACC47E-B96E-4265-A711-E0480C750C42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +58,10 @@ Global
 		{F56901E7-288C-4951-BEB2-6131AD60E4EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F56901E7-288C-4951-BEB2-6131AD60E4EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F56901E7-288C-4951-BEB2-6131AD60E4EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{86D7315F-E0BF-4806-B934-EB440C4FEF18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{86D7315F-E0BF-4806-B934-EB440C4FEF18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{86D7315F-E0BF-4806-B934-EB440C4FEF18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{86D7315F-E0BF-4806-B934-EB440C4FEF18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31ACC47E-B96E-4265-A711-E0480C750C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31ACC47E-B96E-4265-A711-E0480C750C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31ACC47E-B96E-4265-A711-E0480C750C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31ACC47E-B96E-4265-A711-E0480C750C42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,26 +1,42 @@
-﻿define(['durandal/system', 'durandal/plugins/router', 'services/logger'],
-    function (system, router, logger) {
+﻿define(['durandal/system', 'services/logger', 'durandal/plugins/router', 'config', 'services/datacontext'],
+    function (system, logger, router, config, datacontext) {
+
+        var adminRoutes = ko.computed(function() {
+            return router.allRoutes().filter(function(r) {
+                return r.settings.admin;
+            });
+        });
+
         var shell = {
             activate: activate,
+            addSession: addSession,
+            adminRoutes: adminRoutes,
             router: router
         };
-        
         return shell;
 
-        //#region Internal Methods
         function activate() {
             return boot();
+            // IMPORTANT - IMPLEMENT LATER
+            //return datacontext.primeData()
+            //    .then(boot)
+            //    .fail(failedInitialization);
         }
-
+        
         function boot() {
-            router.mapNav('home');
-            router.mapNav('details');
-            log('Hot Towel SPA Loaded!', null, true);
-            return router.activate('home');
+            logger.log('CodeCamper JumpStart Loaded!', null, system.getModuleId(shell), true);
+            router.map(config.routes);
+            return router.activate(config.startModule);
         }
 
-        function log(msg, data, showToast) {
-            logger.log(msg, data, system.getModuleId(shell), showToast);
+        function addSession(item) {
+            router.navigateTo(item.hash);
         }
-        //#endregion
-    });
+
+
+        function failedInitialization(error) {
+            var msg = 'App initialization failed: ' + error.message;
+            logger.logError(msg, error, system.getModuleId(shell), true);
+        }
+    }
+);

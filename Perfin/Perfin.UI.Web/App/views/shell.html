@@ -1,14 +1,12 @@
 ﻿<div>
     <header>
-        <!--ko compose: {view: 'nav'} --><!--/ko-->
+        <!-- ko compose: {view: 'nav'} -->
+        <!-- /ko-->
     </header>
-     <section id="content" class="main container-fluid">
+    <section id="content" class="main container-fluid">
         <!--ko compose: {model: router.activeItem, 
-            afterCompose: router.afterCompose, 
+            afterCompose: router.afterCompose,
             transition: 'entrance'} -->
         <!--/ko-->
     </section>
-    <footer>
-        <!--ko compose: {view: 'footer'} --><!--/ko-->
-    </footer>
 </div>

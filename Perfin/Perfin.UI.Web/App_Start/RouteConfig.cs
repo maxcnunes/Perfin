@@ -9,6 +9,10 @@ namespace Perfin.UI.Web
 {
     public class RouteConfig
     {
+        public static string ControllerOnly = "ApiControllerOnly";
+        public static string ControllerAndId = "ApiControllerAndIntegerId";
+        public static string ControllerAction = "ApiControllerAction";
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

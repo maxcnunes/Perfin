@@ -130,6 +130,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\HotTowelConfig.cs" />
+    <Compile Include="App_Start\HotTowelRouteConfig.cs" />
+    <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,6 +144,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App\config.js" />
     <Content Include="App\durandal\amd\almond-custom.js" />
     <Content Include="App\durandal\amd\optimizer.exe" />
     <Content Include="App\durandal\amd\r.js" />
@@ -159,34 +165,117 @@
     <Content Include="App\durandal\viewModel.js" />
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
+    <Content Include="App\main.js" />
+    <Content Include="App\models\category.js" />
+    <Content Include="App\services\breeze.partial-entities.js" />
+    <Content Include="App\services\datacontext.js" />
+    <Content Include="App\services\category.js" />
+    <Content Include="App\services\dataprimer.js" />
+    <Content Include="App\services\dataservice.js" />
+    <Content Include="App\services\logger.js" />
+    <Content Include="App\services\model.js" />
+    <Content Include="App\viewmodels\categoryadd.js" />
+    <Content Include="App\viewmodels\details.js" />
+    <Content Include="App\viewmodels\home.js" />
+    <Content Include="App\viewmodels\sessionadd.js" />
+    <Content Include="App\viewmodels\sessiondetail.js" />
+    <Content Include="App\viewmodels\sessions.js" />
+    <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\viewmodels\speakers.js" />
+    <Content Include="App\views\categoryadd.html" />
+    <Content Include="App\views\details.html" />
+    <Content Include="App\views\footer.html" />
+    <Content Include="App\views\home.html" />
+    <Content Include="App\views\nav.html" />
+    <Content Include="App\views\sessionadd.html" />
+    <Content Include="App\views\sessiondetail.html" />
+    <Content Include="App\views\sessions.html" />
+    <Content Include="App\views\shell.html" />
+    <Content Include="App\views\speakers.html" />
+    <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\durandal.css" />
+    <Content Include="Content\font-awesome-ie7.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\icon-blue.png" />
+    <Content Include="Content\images\icon-light-blue-small.png" />
+    <Content Include="Content\images\icon-light-blue.png" />
+    <Content Include="Content\images\icon.png" />
+    <Content Include="Content\images\photos\aaron_skonnard.jpg" />
+    <Content Include="Content\images\photos\colleen_papa.jpg" />
+    <Content Include="Content\images\photos\dan_wahlin.jpg" />
+    <Content Include="Content\images\photos\dave_ward.jpg" />
+    <Content Include="Content\images\photos\elijah_manor.jpg" />
+    <Content Include="Content\images\photos\eric_barnard.jpg" />
+    <Content Include="Content\images\photos\esteban_garcia.jpg" />
+    <Content Include="Content\images\photos\felix_fanboi.jpg" />
+    <Content Include="Content\images\photos\fritz_onion.jpg" />
+    <Content Include="Content\images\photos\glenn_block.jpg" />
+    <Content Include="Content\images\photos\hans_fjallemark.jpg" />
+    <Content Include="Content\images\photos\howard_dierking.jpg" />
+    <Content Include="Content\images\photos\jesse_liberty.jpg" />
+    <Content Include="Content\images\photos\jim_cowart.jpg" />
+    <Content Include="Content\images\photos\john_papa.jpg" />
+    <Content Include="Content\images\photos\john_smith.jpg" />
+    <Content Include="Content\images\photos\julie_lerman.jpg" />
+    <Content Include="Content\images\photos\mads_kristensen.jpg" />
+    <Content Include="Content\images\photos\mike_callaghan.jpg" />
+    <Content Include="Content\images\photos\pete_brown.jpg" />
+    <Content Include="Content\images\photos\rey_bango.jpg" />
+    <Content Include="Content\images\photos\rob_eisenberg.jpg" />
+    <Content Include="Content\images\photos\ryan_niemeyer.jpg" />
+    <Content Include="Content\images\photos\scott_guthrie.jpg" />
+    <Content Include="Content\images\photos\scott_hanselman.jpg" />
+    <Content Include="Content\images\photos\scott_hunter.jpg" />
+    <Content Include="Content\images\photos\shawn_wildermuth.jpg" />
+    <Content Include="Content\images\photos\steve_sanderson.jpg" />
+    <Content Include="Content\images\photos\sue_menot.jpg" />
+    <Content Include="Content\images\photos\tim_heuer.jpg" />
+    <Content Include="Content\images\photos\unknown_person.jpg" />
+    <Content Include="Content\images\photos\ward_bell.jpg" />
+    <Content Include="Content\styles.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="index.cshtml" />
+    <Content Include="Content\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font\FontAwesome.otf" />
     <None Include="Scripts\breeze.intellisense.js" />
+    <None Include="Scripts\amplify-vsdoc.js" />
+    <Content Include="Scripts\amplify.js" />
+    <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\breeze.debug.js" />
     <Content Include="Scripts\breeze.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\GPL-LICENSE.txt" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\MIT-LICENSE.txt" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\q.js" />
     <Content Include="Scripts\q.min.js" />
+    <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -194,16 +283,41 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="_splash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
+      <Project>{3301ba3c-44df-463b-be43-c3d38b55d38e}</Project>
+      <Name>Perfin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data.Contract\Perfin.Data.Contract.csproj">
+      <Project>{eb9da9fc-19e0-4ae1-b905-cc4477bffeb6}</Project>
+      <Name>Perfin.Data.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Data\Perfin.Data.csproj">
+      <Project>{9ca32c62-0e5c-4a3e-9446-e7e0445897a4}</Project>
+      <Name>Perfin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Model\Perfin.Model.csproj">
+      <Project>{6deb23e3-31a3-463f-af28-aeab391281b6}</Project>
+      <Name>Perfin.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service.Contract\Perfin.Service.Contract.csproj">
+      <Project>{f56901e7-288c-4951-beb2-6131ad60e4eb}</Project>
+      <Name>Perfin.Service.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Perfin.Service\Perfin.Service.csproj">
+      <Project>{59a6321b-bf10-488d-add8-6ff94c62024d}</Project>
+      <Name>Perfin.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -221,9 +335,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>51945</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53961/</IISUrl>
+          <IISUrl>http://localhost:53962/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

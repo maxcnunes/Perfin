@@ -1,0 +1,27 @@
+﻿<section class="view">
+    <h3 class="page-title" data-bind="text: title"></h3>
+    <div class="button-bar">
+        <button class="btn btn-info"
+            data-bind="click: cancel, enable: canSave">
+            <i class="icon-undo"></i>Cancel</button>
+        <button class="btn btn-info"
+            data-bind="click: save, enable: canSave">
+            <i class="icon-save"></i>Save</button>
+        <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+    </div>
+    <div class="fields" data-bind="with: category">
+        <label for="name">Category Name</label>
+        <input type="text" id="name" class="span5" data-bind="value: name" placeholder="Transport...">
+        <span class="help-block">Category is a group to organize your finances.</span>
+
+        <label>Parent Category</label>
+        <select class="span5">
+            <option>None</option>
+            <option>Study</option>
+            <option>Travel</option>
+            <option>Feed</option>
+        </select>
+        <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
+    </div>
+</section>
+

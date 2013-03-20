@@ -1,4 +1,4 @@
-define(['durandal/system'],
+﻿define(['durandal/system'],
     function (system) {
         var logger = {
             log: log,

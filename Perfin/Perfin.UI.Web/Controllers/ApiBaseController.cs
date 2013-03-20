@@ -1,0 +1,20 @@
+﻿using Perfin.Data.Contract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace Perfin.UI.Web.Controllers
+{
+    public class ApiBaseController : ApiController
+    {
+        // NOT NECESSARY TO DISPOSE THE UOW IN OUR CONTROLLERS
+        // We let IoC inject the Uow into our controllers
+        // We can depend upon on IoC to dispose the UoW for us
+        // when Web API disposes the IoC container
+
+        protected IUnitOfWork Uow { get; set; }
+    }
+}
