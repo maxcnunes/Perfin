@@ -28,13 +28,13 @@
     </head>
     <body>
         <div id="applicationHost">
-            @Html.Partial("_splash")
+            @RenderPage("_splash.cshtml")
         </div>
         
         @Scripts.Render("~/scripts/vendor")
         
         @if(HttpContext.Current.IsDebuggingEnabled) {
-            <script type="text/javascript" src="~/App/durandal/amd/require.js" data-main="@Url.Content("~/App/main")"></script>
+            <script type="text/javascript" src="~/App/durandal/amd/require.js" data-main="/App/main"></script>
         } else {
             <script type="text/javascript" src="~/App/main-built.js"></script>
         }
