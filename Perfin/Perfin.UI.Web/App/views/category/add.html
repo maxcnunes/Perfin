@@ -1,0 +1,21 @@
+﻿<form data-bind="submit:addCategory">
+<fieldset>
+    <legend>Add Category</legend>
+    <div>   
+        <label>
+            Name:
+            <input data-bind="value:categoryToAdd.name" required />
+        </label>
+    </div>
+    <div>
+        <label>
+            Parent:
+            <input data-bind="value:categoryToAdd.parent" required />
+        </label>
+    </div>
+    <div>
+        <input type="submit" value="Add" />
+        <a href="#/category/show">Cancel</a>
+    </div>
+</fieldset>
+</form>
