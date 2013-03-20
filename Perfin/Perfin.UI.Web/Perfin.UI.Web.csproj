@@ -124,7 +124,6 @@
   <ItemGroup>
     <Compile Include="App_Start\DurandalBundleConfig.cs" />
     <Compile Include="App_Start\DurandalConfig.cs" />
-    <Compile Include="Controllers\DurandalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,6 +158,8 @@
     <Content Include="App\main.js" />
     <Content Include="App\repositories\category.js" />
     <Content Include="App\services\logger.js" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Tests\main.js" />
     <Content Include="Tests\repositories\category.spec.js" />
     <Content Include="App\viewmodels\category\add.js" />
@@ -197,7 +198,6 @@
     <Content Include="Content\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\FontAwesome.otf" />
-    <Content Include="readme.md" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
@@ -214,7 +214,6 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Tests\SpecRunner.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -222,14 +221,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
-    <Content Include="Views\Durandal\Index.cshtml" />
-    <Content Include="Views\Durandal\_splash.cshtml" />
-    <Content Include="SpecRunner.cshtml" />
+    <Content Include="Index.cshtml" />
+    <Content Include="_splash.cshtml" />
+    <Content Include="Tests\SpecRunner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
