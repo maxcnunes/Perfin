@@ -169,6 +169,8 @@
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
     <Content Include="App\repositories\category.js" />
+    <Content Include="App\services\dataservice.category.js" />
+    <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
@@ -226,6 +228,7 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Tests\services\dataservice.category.spec.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
