@@ -1,7 +1,6 @@
 ﻿define([
-    'services/dataservice.category',
-    'jquery'],
-    function (dataservice, $) {
+    'services/dataservice.category'],
+    function (dataservice) {
         describe('Services :: Category', function () {
             it('should get all categories', function () {
                 var _success, _error;

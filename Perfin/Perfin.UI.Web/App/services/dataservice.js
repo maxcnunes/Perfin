@@ -1,9 +1,7 @@
 ﻿// Aggregate all data services
 
-define('dataservice',
-    [
-        'dataservice.category'
-    ],
+define([
+        'services/dataservice.category'],
     function (category) {
         return {
             category: category
