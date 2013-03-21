@@ -145,6 +145,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\common\utils.js" />
     <Content Include="App\config.js" />
     <Content Include="App\durandal\amd\almond-custom.js" />
     <Content Include="App\durandal\amd\optimizer.exe" />
@@ -168,12 +169,19 @@
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\models\model.category.js" />
+    <Content Include="App\models\model.js" />
+    <Content Include="App\models\model.mapper.js" />
     <Content Include="App\repositories\category.js" />
     <Content Include="App\services\dataservice.category.js" />
     <Content Include="App\services\dataservice.js" />
+    <Content Include="App\services\datacontext.js" />
     <Content Include="App\services\logger.js" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
+    <Content Include="Scripts\knockout.dirtyFlag.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Tests\main.js" />
     <Content Include="Tests\repositories\category.spec.js" />
     <Content Include="App\viewmodels\category\add.js" />

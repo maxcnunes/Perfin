@@ -19,6 +19,8 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/bootstrap.min.js")
                 .Include("~/Scripts/toastr.min.js")
                 .Include("~/Scripts/amplify.js")
+                .Include("~/Scripts/underscore.js")
+                .Include("~/Scripts/knockout.dirtyFlag.js")                
               );
 
             bundles.Add(
