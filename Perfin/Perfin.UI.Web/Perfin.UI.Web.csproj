@@ -182,6 +182,7 @@
     <Content Include="Scripts\knockout.dirtyFlag.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="Tests\models\model.category.spec.js" />
     <Content Include="Tests\main.js" />
     <Content Include="Tests\repositories\category.spec.js" />
     <Content Include="App\viewmodels\category\add.js" />
