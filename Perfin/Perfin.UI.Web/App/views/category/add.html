@@ -1,21 +1,32 @@
-﻿<form data-bind="submit:addCategory">
-<fieldset>
+﻿<h3 class="page-title" data-bind="text: title"></h3>
+<div class="button-bar">
+    <button class="btn btn-info"
+        data-bind="click: cancel, enable: canSave">
+        <i class="icon-undo"></i>Cancel</button>
+    <button class="btn btn-info"
+        data-bind="click: save, enable: canSave">
+        <i class="icon-save"></i>Save</button>
+    <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+</div>
+
+
+<fieldset data-bind="with: category">
     <legend>Add Category</legend>
-    <div>   
+    <div>
         <label>
             Name:
-            <input data-bind="value:categoryToAdd.name" required />
+            <input data-bind="value: name" required />
         </label>
     </div>
     <div>
         <label>
             Parent:
-            <input data-bind="value:categoryToAdd.parent" required />
+            <input data-bind="value: parent" required />
         </label>
     </div>
-    <div>
-        <input type="submit" value="Add" />
-        <a href="#/category/show">Cancel</a>
-    </div>
+    <!--<div>
+            <input type="submit" value="Add" />
+            <a href="#/category/show">Cancel</a>
+        </div>-->
 </fieldset>
-</form>
+
