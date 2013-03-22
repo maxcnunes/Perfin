@@ -41,7 +41,8 @@
         // define all specs to test
         require([
             baseTestPath + 'repositories/category.spec',
-            baseTestPath + 'services/dataservice.category.spec'
+            baseTestPath + 'services/dataservice.category.spec',
+            baseTestPath + 'models/model.category.spec'
         ], StartJasmineTests);
     }
 

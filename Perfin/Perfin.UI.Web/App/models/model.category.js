@@ -8,7 +8,7 @@
             self.name = ko.observable();
             self.parent = ko.observable();
             self.isNullo = false;
-            self.dirtyFlag = new ko.DirtyFlag([self.name, self.parent]);
+            self.dirtyFlag = new ko.DirtyFlag([self.id, self.name, self.parent]);
 
             return self;
         };
