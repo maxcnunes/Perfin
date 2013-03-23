@@ -27,6 +27,10 @@
 
         return {
             categories: categories,
-            activate: activate
+            activate: activate,
+
+            // module page info
+            pageDisplayName: 'List Category',
+            pageDescription: 'All your categories'
         };
     });
