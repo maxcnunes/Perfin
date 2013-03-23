@@ -1,17 +1,46 @@
-﻿<table>
-    <thead>
-        <tr>
-            <th style="width:120px">Category</th>
-            <th>Parent Category</th>
-        </tr>
-    </thead>
-    <tbody data-bind="foreach:categories">
-        <tr>
-            <td data-bind="text:name"></td>
-            <td data-bind="text:parent"></td>
-            <td><a data-bind="attr:{href:'#/category/details/'+id}">Details</a></td>
-        </tr>        
-    </tbody>
-</table>
+﻿<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Category</a>
+</nav>
 
-<a href="#/category/add">Add Category</a>
+
+
+<form>
+    <fieldset>
+        <legend class="title-description">List Category <span>All your categories</span></legend>
+        <div class="form-actions">
+
+            <a href="#/category/add" class="btn btn-primary">
+                <i class="icon-plus"></i> 
+                Add Category
+            </a>
+
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                    <th>Parent Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach:categories">
+                <tr>
+                    <td data-bind="text:id"></td>
+                    <td data-bind="text:name"></td>
+                    <td data-bind="text:parent"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-info" data-bind="attr:{href:'#/category/details/'+id}"><i class="icon-pencil"></i></a>
+                            <a class="btn btn-danger" data-bind="attr:{href:'#/category/delete/'+id}"><i class="icon-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>
