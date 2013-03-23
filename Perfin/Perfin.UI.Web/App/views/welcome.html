@@ -1,13 +1,60 @@
-﻿<section>
-    <h2 data-bind="html:displayName"></h2>
-    <blockquote data-bind="html:description"></blockquote>
-    <h3>Features</h3>
-    <ul data-bind="foreach: features">
-        <li data-bind="html: $data"></li>
-    </ul>
-    <div class="alert alert-success">
-      <h4>Read Me Please</h4>
-        For information about this template and for general documenation please visit <a href="http://www.durandaljs.com">the official site</a> and if you can't find 
-        answers to your questions there, we hope you will join our <a href="https://groups.google.com/forum/?fromgroups#!forum/durandaljs">google group</a>.
-    </div>
-</section>
+﻿
+<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Dashboard</a>
+</nav>
+
+<!-- Title -->
+<h2 class="title-description">
+    <span data-bind="html: pageDisplayName"></span>
+    <span class="title-description-info" data-bind="html: pageDescription"></span>
+</h2>
+
+<!-- Status -->
+<ul id="status-container">
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Week Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Month Debts</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <span class="status-top">
+                <i class="icon-money icon-4x pull-left green"></i>
+                <span class="status-title">Year Balance</span>
+            </span>
+            <span class="status-value">R$ 2.000,00</span>
+        </a>
+    </li>
+</ul>
+<br />
+<br />
+<br />
+<div>
+    <h4 style="font-size: 30px; text-align: center;">[ INSERT HERE: TABS WITH CHARTS AND OTHER INFORMATIONS ]</h4>
+</div>

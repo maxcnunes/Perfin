@@ -11,6 +11,10 @@ namespace Perfin.UI.Web
             bundles.IgnoreList.Clear();
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
+            // Modernizr goes separate since it loads first
+            bundles.Add(new ScriptBundle("~/bundles/modernizr")
+                .Include("~/Scripts/modernizr-{version}.js"));
+
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/Scripts/jquery-{version}.js")
@@ -23,15 +27,29 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/knockout.dirtyFlag.js")                
               );
 
+
+            // CSS Files
             bundles.Add(
               new StyleBundle("~/Content/css")
-                .Include("~/Content/ie10mobile.css")
-                .Include("~/Content/bootstrap.min.css")
-                .Include("~/Content/bootstrap-responsive.min.css")
-                .Include("~/Content/font-awesome.min.css")
-                .Include("~/Content/toastr.css")
+                // Normalize CSS
+                .Include("~/Content/boilerplate-normalize.css")
+
+                // Twitter Bootstrap
+                .Include("~/Content/bootstrap/ie10mobile.css")
+                .Include("~/Content/bootstrap/bootstrap.css")
+                .Include("~/Content/bootstrap/bootstrap-responsive.css")
+
+                // Toastr Notifications
+                .Include("~/Content/toastr/toastr.css")
+                .Include("~/Content/toastr/toastr-responsive.css")
+
+                // Font Awesome Stylesheet
+                .Include("~/Content/font-awesome/font-awesome.css")
+
+                // Main css
                 .Include("~/Content/durandal.css")
                 .Include("~/Content/app.css")
+                .Include("~/Content/main.css")
               );
         }
 
