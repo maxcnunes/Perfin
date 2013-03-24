@@ -176,7 +176,7 @@
     <Content Include="App\services\dataservice.category.js" />
     <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\datacontext.js" />
-    <Content Include="App\services\logger.js" />
+    <Content Include="App\common\logger.js" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
     <Content Include="Content\boilerplate-normalize.css" />

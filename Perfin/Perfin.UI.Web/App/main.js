@@ -9,7 +9,7 @@ define([
     'durandal/viewLocator',
     'durandal/system',
     'durandal/plugins/router',
-    'services/logger'],
+    'common/logger'],
     function (app, viewLocator, system, router, logger) {
 
         var

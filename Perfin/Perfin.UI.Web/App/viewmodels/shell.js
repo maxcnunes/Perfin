@@ -2,7 +2,7 @@
     'durandal/plugins/router',
     'durandal/app',
     'config',
-    'services/logger',
+    'common/logger',
     'durandal/system'],
     function (router, app, config, logger, system) {
         var

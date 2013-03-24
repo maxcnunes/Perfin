@@ -1,6 +1,6 @@
 ﻿define([
     'services/datacontext',
-    'services/logger',
+    'common/logger',
     'durandal/system',
     'durandal/plugins/router',
     'jquery'],
