@@ -53,6 +53,30 @@
                     expect(_error).toBe(undefined);
                 });
             });
+
+            it('should delete category', function () {
+                var _success, _error;
+
+                var callback = {
+                    success: function () { _success = true; },
+                    error: function () { _error = true; }
+                };
+
+                var category = new model();
+                category.id(11);
+
+                datacontext.category.deleteData(category, callback);
+
+                waitsFor(function () {
+                    return _success || _error;
+                }, 5000);
+
+
+                runs(function () {
+                    expect(_success).not.toBe(undefined);
+                    expect(_error).toBe(undefined);
+                });
+            });
         });
     });
 

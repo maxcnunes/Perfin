@@ -263,6 +263,28 @@ define([
             }).promise();
         };
 
+        categoryRepository.deleteData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
+
+            return $.Deferred(function (def) {
+                dataservice.category.deleteCategory({
+                    success: function (response) {
+                        categoryRepository.removeById(categoryModel.id());
+                        logger.success(config.messages.saveData);
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject(response);
+                    }
+                }, categoryModel.id());
+            }).promise();
+        };
+
         var datacontext = {
             category: categoryRepository
         };

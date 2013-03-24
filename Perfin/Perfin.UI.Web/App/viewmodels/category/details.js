@@ -1,7 +1,8 @@
 ﻿define([
     'durandal/plugins/router',
-    'services/datacontext'],
-    function (router, datacontext) {
+    'services/datacontext',
+    'durandal/app'],
+    function (router, datacontext, app) {
 
         var
             category = ko.observable(),
@@ -94,7 +95,37 @@
                 router.navigateBack();
             },
             deleteCategory = function () {
-                // Not Implemented Yet
+                var msg = 'Delete category "' + category().name() + '" ?';
+                var title = 'Confirm Delete';
+                isDeleting(true);
+                return app.showMessage(msg, title, ['Yes', 'No'])
+                        .then(confirmDelete);
+            
+                function confirmDelete(selectedOption) {
+                    if (selectedOption === 'Yes') {
+
+                        $.when(datacontext.category.deleteData(category()))
+                            .then(success)
+                            .fail(failed)
+                            .done(finish);//.fin(finish);
+
+                        function success() {
+                            router.navigateTo('#/category/show');
+                        }
+
+                        function failed(error) {
+                            cancel();
+                            var errorMsg = 'Error: ' + error.message;
+                            logger.logError(
+                                true, errorMsg, error, system.getModuleId(vm));
+                        }
+
+                        function finish() {
+                            return selectedOption;
+                        }
+                    }
+                    isDeleting(false);
+                }
             };
 
         var vm = {
