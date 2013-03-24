@@ -36,6 +36,7 @@
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving();
             }),
+
             save = function () {
 
                 // OLD
