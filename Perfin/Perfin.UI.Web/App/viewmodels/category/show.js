@@ -15,8 +15,8 @@
                     $.when(datacontext.category.getData({ results: categories }))
 
                         .pipe(function () {
-                            logger.log('Fetched data for: ' + categories().length + ' categories ',
-                                null, system.getModuleId(show), true);
+                            logger.info('Fetched data for: ' + categories().length + ' categories ',
+                                true, null, system.getModuleId(show));
                         })
 
                         .fail(function () { def.reject(); })

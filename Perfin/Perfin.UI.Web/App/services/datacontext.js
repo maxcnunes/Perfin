@@ -7,6 +7,7 @@ define([
     'models/model.mapper',
     'services/dataservice',
     'config',
+    'services/logger',
     'common/utils'],
     function (
         $,
@@ -16,10 +17,10 @@ define([
         modelmapper,
         dataservice,
         config,
+        logger,
         utils) {
 
         var
-            logger = config.logger,
             getCurrentUserId = function () {
                 return config.currentUser().id();
             },
@@ -101,7 +102,7 @@ define([
                                         def.resolve(results);
                                     },
                                     error: function (response) {
-                                        logger.error(config.toasts.errorGettingData);
+                                        logger.error(config.messages.errorGettingData, true);
                                         def.reject();
                                     }
                                 }, param);
@@ -117,7 +118,7 @@ define([
 
                         return $.Deferred(function (def) {
                             if (!updateFunction) {
-                                logger.error('updateData method not implemented');
+                                logger.error('updateData method not implemented', true);
                                 if (callbacks && callbacks.error) { callbacks.error(); }
                                 def.reject();
                                 return;
@@ -125,13 +126,13 @@ define([
 
                             updateFunction({
                                 success: function (response) {
-                                    logger.success(config.toasts.savedData);
+                                    logger.success(config.messages.savedData, true);
                                     entity.dirtyFlag().reset();
                                     if (callbacks && callbacks.success) { callbacks.success(); }
                                     def.resolve(response);
                                 },
                                 error: function (response) {
-                                    logger.error(config.toasts.errorSavingData);
+                                    logger.error(config.messages.errorSavingData, true);
                                     if (callbacks && callbacks.error) { callbacks.error(); }
                                     def.reject(response);
                                     return;
@@ -183,7 +184,7 @@ define([
                 dataservice.category.addCategory({
                     success: function (dto) {
                         if (!dto) {
-                            //logger.error(config.toasts.errorSavingData);
+                            logger.error(config.messages.errorSavingData, true);
 
                             if (callbacks && callbacks.error)
                                 callbacks.error();
@@ -195,7 +196,7 @@ define([
                         var newCategory = modelmapper.category.fromDto(dto); // Map DTO to Model
                         categoryRepository.add(newCategory); // Add to datacontext
 
-                        //logger.success(config.toasts.savedData);
+                        logger.success(config.messages.savedData, true);
 
                         if (callbacks && callbacks.success)
                             callbacks.success(newCategory);
@@ -203,7 +204,7 @@ define([
                         def.resolve(dto); // resolve: Resolve a Deferred object and call any doneCallbacks with the given args.
                     },
                     error: function (response) {
-                        logger.error(config.toasts.errorSavingData);
+                        logger.error(config.messages.errorSavingData);
                         if (callbacks && callbacks.error)
                             callbacks.error();
                         def.reject();
@@ -227,7 +228,7 @@ define([
                             def.resolve(dto);
                         },
                         error: function (response) {
-                            logger.error('oops! could not retrieve category ' + id);
+                            logger.error('oops! could not retrieve category ' + id, true);
                             if (callbacks && callbacks.error) { callbacks.error(response); }
                             def.reject(response);
                         }
@@ -246,14 +247,14 @@ define([
             return $.Deferred(function (def) {
                 dataservice.category.updateCategory({
                     success: function (response) {
-                        //logger.success(config.toasts.savedData);
+                        logger.success(config.messages.savedData, true);
                         categoryModel.dirtyFlag().reset();
                         if (callbacks && callbacks.success)
                             callbacks.success();
                         def.resolve(response);
                     },
                     error: function (response) {
-                        //logger.error(config.toasts.errorSavingData);
+                        logger.error(config.messages.errorSavingData, true);
                         if (callbacks && callbacks.error) { callbacks.error(); }
                         def.reject(response);
                         return;

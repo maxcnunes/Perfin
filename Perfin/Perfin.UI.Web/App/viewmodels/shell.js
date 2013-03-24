@@ -21,13 +21,13 @@
                 return boot();
             },
             boot = function () {
-                logger.log('App Loaded!', null, system.getModuleId(shell), true);
+                logger.info('App Loaded!', true, null, system.getModuleId(shell));
                 router.map(config.routes);
                 return router.activate(config.startModule);
             },
             failedInitialization = function (error) {
                 var msg = 'App initialization failed: ' + error.message;
-                logger.logError(msg, error, system.getModuleId(shell), true);
+                logger.error(msg, true, error, system.getModuleId(shell));
             };
 
         return {

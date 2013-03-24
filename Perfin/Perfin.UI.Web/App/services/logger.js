@@ -1,35 +1,44 @@
 ﻿define(['durandal/system'],
     function (system) {
         var logger = {
-            log: log,
-            logError: logError
+            info: info,
+            error: error,
+            warning: warning,
+            success: success
         };
 
         return logger;
 
-        function log(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'info');
+        function info(message, showToast, data, source) {
+            logIt(message, data, source, showToast, toastr.info);
         }
 
-        function logError(message, data, source, showToast) {
-            logIt(message, data, source, showToast, 'error');
+        function error(message, showToast, data, source) {
+            logIt(message, data, source, showToast, toastr.error);
         }
 
-        function logIt(message, data, source, showToast, toastType) {
+        function warning(message, showToast, data, source) {
+            logIt(message, data, source, showToast, toastr.warning);
+        }
+
+        function success(message, showToast, data, source) {
+            logIt(message, data, source, showToast, toastr.success);
+        }
+
+        function logIt(message, data, source, showToast, toastSender) {
             source = source ? '[' + source + '] ' : '';
             if (data) {
                 system.log(source, message, data);
             } else {
                 system.log(source, message);
             }
-            if (showToast) {
-                if (toastType === 'error') {
-                    toastr.error(message);
-                } else {
-                    toastr.info(message);
-                }
 
+            if (showToast && toastSender) {
+                toastSender(message);
             }
+        }
 
+        function cleanLogs(message, data, source, showToast) {
+            toastr.clear();
         }
     });
