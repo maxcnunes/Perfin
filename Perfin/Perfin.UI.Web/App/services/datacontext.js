@@ -149,7 +149,7 @@ define([
                     removeById: removeById,
                     updateData: updateData
                 };
-            };
+            },
 
 
             //--------------------------------------
@@ -159,12 +159,12 @@ define([
             // dataservice's 'get' method
             // model mapper
             //--------------------------------------
-            categories = new EntitySet(dataservice.category.getCatetories, modelmapper.cateogry, model.Category.Nullo);
+            categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
 
 
         // Extend Categories entitySet
         //----------------------------
-        categories.getAll = function (callback) {
+        categoryRepository.getAll = function (callback) {
             return $.Deferred(function (def) {
                 _.extend(options, {
                     // dataservice getCatetories function
@@ -176,10 +176,47 @@ define([
             }).promise();
         };
 
+        categoryRepository.addData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
+
+            return $.Deferred(function (def) {
+                dataservice.category.addCategory({
+                    success: function (dto) {
+                        if (!dto) {
+                            //logger.error(config.toasts.errorSavingData);
+
+                            if (callbacks && callbacks.error)
+                                callbacks.error();
+
+                            def.reject(); // reject: Reject a Deferred object and call any failCallbacks with the given args.
+                            return;
+                        }
+
+                        var newCategory = modelmapper.category.fromDto(dto); // Map DTO to Model
+                        categoryRepository.add(newCategory); // Add to datacontext
+
+                        //logger.success(config.toasts.savedData);
+
+                        if (callbacks && callbacks.success)
+                            callbacks.success(newCategory);
+
+                        def.resolve(dto); // resolve: Resolve a Deferred object and call any doneCallbacks with the given args.
+                    },
+                    error: function (response) {
+                        logger.error(config.toasts.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject();
+                        return;
+                    }
+                }, categoryModelJson);
+            }).promise(); // promise: Return a Deferred’s Promise object.
+        };
+
 
 
         var datacontext = {
-            category: categories
+            category: categoryRepository
         };
 
         // We did this so we can access the datacontext during its construction

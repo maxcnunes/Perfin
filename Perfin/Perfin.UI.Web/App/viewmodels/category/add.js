@@ -39,31 +39,29 @@
 
             save = function () {
 
-                // OLD
-                //----------------------------
-                //// Add item to db
-                //repository.addCategory(ko.toJS(this.categoryToAdd));
+                isSaving(true);
+                if (canEditCategory()) {
+                    $.when(datacontext.category.addData(category(), callback))
+                        .then(goToEditView)
+                        .done(complete);
+                        //.fin(complete);
+                }
 
-                //// flag new item
-                //this._categoryAdded = true;
+                function goToEditView(result) {
+                    // redirect to index page while the edit page is not finished
+                    router.replaceLocation('#/category/show');
 
-                //// return to list of items
-                //router.navigateTo("#/category/show");
+                    //router.replaceLocation('#/category/details/' + category().id());
+                }
 
+                function complete() {
+                    isSaving(false);
+                }
 
-                // NEW EXAMPLE
-                //----------------------------
-                //isSaving(true);
-                //datacontext.saveChanges()
-                //    .then(goToEditView).fin(complete);
-
-                //function goToEditView(result) {
-                //    router.replaceLocation('#/sessiondetail/' + session().id());
-                //}
-
-                //function complete() {
-                //    isSaving(false);
-                //}
+                var callback = {
+                    success: function (response) { },
+                    error: function (response) { }
+                };
             },
             canDeactivate = function () {
                 return true;
