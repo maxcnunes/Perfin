@@ -41,10 +41,9 @@
 
                 isSaving(true);
                 if (canEditCategory()) {
-                    $.when(datacontext.category.addData(category(), callback))
+                    $.when(datacontext.category.addData(category()))
                         .then(goToEditView)
-                        .done(complete);
-                        //.fin(complete);
+                        .done(complete); //.fin(complete);
                 }
 
                 function goToEditView(result) {
@@ -57,11 +56,6 @@
                 function complete() {
                     isSaving(false);
                 }
-
-                var callback = {
-                    success: function (response) { },
-                    error: function (response) { }
-                };
             },
             canDeactivate = function () {
                 return true;

@@ -1,22 +1,118 @@
 ﻿define([
     'durandal/plugins/router',
-    'repositories/category'],
-    function (router, repository) {
+    'services/datacontext'],
+    function (router, datacontext) {
 
-    return {
-        categoryToShow: {
-            name: ko.observable(),
-            parent: ko.observable()
-        },
+        var
+            category = ko.observable(),
+            parentCategories = ko.observableArray(),
+            isSaving = ko.observable(false),
+            isDeleting = ko.observable(false),
 
-        activate: function (context) {
-            // Grab item from repository
-            var category = repository.getCategory(context.id);
+            activate = function (routeData) {
+                var id = parseInt(routeData.id);
+                initLookups();
+                return getCategory(id);
+            },
+            initLookups = function () {
 
-            // Add to view model
-            this.categoryToShow.name(category.name);
-            this.categoryToShow.parent(category.parent);
-        }
-    };
+            },
+            getCategory = function (currentCategoryId, completeCallback, forceRefresh) {
+                var callback = function () {
+                    if (completeCallback)
+                        completeCallback();
 
-});
+                    //validationErrors = ko.validation.group(category());
+                };
+
+                datacontext.category.getCategoryById(
+					currentCategoryId, {
+					    success: function (modelResult) {
+					        category(modelResult);
+					        callback();
+					    },
+					    error: callback
+					},
+					forceRefresh
+				);
+            },
+            cancel = function (complete) {
+                router.navigateBack();
+            },
+            canEditCategory = ko.computed(function () {
+                return category();
+            }),
+            hasChanges = ko.computed(function () {
+                if (canEditCategory()) {
+                    return category().dirtyFlag().isDirty();
+                }
+                return false;
+            }),
+            canSave = ko.computed(function () {
+                return hasChanges() && !isSaving();
+            }),
+
+            save = function () {
+
+                isSaving(true);
+                if (canEditCategory()) {
+                    $.when(datacontext.category.updateData(category()))
+                        .done(complete);//.fin(complete);
+                }
+
+                function complete() {
+                    isSaving(false);
+                }
+            },
+            canDeactivate = function () {
+                return true;
+
+                // OLD
+                //----------------------------
+                //if (this._categoryAdded == false) {
+                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
+                //} else {
+                //    return true;
+                //}
+
+
+                // NEW EXAMPLE
+                //----------------------------
+                //if (hasChanges()) {
+                //    var msg = 'Do you want to leave and cancel?';
+                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                //        .then(function (selectedOption) {
+                //            if (selectedOption === 'Yes') {
+                //                datacontext.cancelChanges();
+                //            }
+                //            return selectedOption;
+                //        });
+                //}
+                //return true;
+            },
+            goBack = function () {
+                router.navigateBack();
+            },
+            deleteCategory = function () {
+                // Not Implemented Yet
+            };
+
+        var vm = {
+            category: category,
+            parentCategories: parentCategories,
+            activate: activate,
+
+            canSave: canSave,
+            cancel: cancel,
+            hasChanges: hasChanges,
+            save: save,
+            goBack: goBack,
+            deleteCategory: deleteCategory,
+
+            // module page info
+            pageDisplayName: 'Edit Category',
+            pageDescription: 'Edit a category and let more organized your finances'
+        };
+
+        return vm;
+    });

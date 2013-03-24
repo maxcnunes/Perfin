@@ -213,7 +213,54 @@ define([
             }).promise(); // promise: Return a Deferred’s Promise object.
         };
 
+        categoryRepository.getCategoryById = function (id, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var category = categoryRepository.getLocalById(id);
+                if (id !== undefined && (category.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.category.getCategory({
+                        success: function (dto) {
+                            // updates the category returned from getLocalById() above
+                            category = categoryRepository.mapDtoToContext(dto);
+                            //category.isBrief(false); // now a full item
+                            callbacks.success(category);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve category ' + id);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+                            def.reject(response);
+                        }
+                    },
+                    id);
+                } else {
+                    callbacks.success(category);
+                    def.resolve(category);
+                }
+            }).promise();
+        };
 
+        categoryRepository.updateData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
+
+            return $.Deferred(function (def) {
+                dataservice.category.updateCategory({
+                    success: function (response) {
+                        //logger.success(config.toasts.savedData);
+                        categoryModel.dirtyFlag().reset();
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        //logger.error(config.toasts.errorSavingData);
+                        if (callbacks && callbacks.error) { callbacks.error(); }
+                        def.reject(response);
+                        return;
+                    }
+                }, categoryModelJson);
+            }).promise();
+        };
 
         var datacontext = {
             category: categoryRepository
