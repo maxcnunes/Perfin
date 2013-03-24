@@ -22,6 +22,7 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/sammy-{version}.js")
                 .Include("~/Scripts/bootstrap.min.js")
                 .Include("~/Scripts/toastr.min.js")
+                .Include("~/Scripts/q.min.js")
                 .Include("~/Scripts/amplify.js")
                 .Include("~/Scripts/underscore.js")
                 .Include("~/Scripts/knockout.dirtyFlag.js")                
