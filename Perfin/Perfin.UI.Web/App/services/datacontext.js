@@ -6,7 +6,7 @@ define([
     'models/model',
     'models/model.mapper',
     'services/dataservice',
-    'config',
+    'common/config',
     'common/logger',
     'common/utils'],
     function (

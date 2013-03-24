@@ -1,7 +1,7 @@
 ﻿define([
     'durandal/plugins/router',
     'durandal/app',
-    'config',
+    'common/config',
     'common/logger',
     'durandal/system'],
     function (router, app, config, logger, system) {

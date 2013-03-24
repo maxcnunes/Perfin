@@ -19619,9 +19619,9 @@ define('parse', ['./esprima'], function (esprima) {
                     c.object.type === 'Identifier' &&
                     (c.object.name === 'require' ||
                         c.object.name === 'requirejs') &&
-                    c.property && c.property.name === 'config') {
+                    c.property && c.property.name === 'common/config') {
                 // require/requirejs.config({}) call
-                callName = c.object.name + 'Config';
+                callName = c.object.name + 'common/config';
             }
         }
 
