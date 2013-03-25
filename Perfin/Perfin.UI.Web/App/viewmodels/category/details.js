@@ -12,11 +12,23 @@
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
+                getCategory(id);
                 initLookups();
-                return getCategory(id);
             },
             initLookups = function () {
+                getAllParentCategories();
 
+                function getAllParentCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: parentCategories }))
+                            .fail(function () { def.reject(); })
+                            .done(function () {
+                                // remove current category
+                                parentCategories.remove(category());
+                                def.resolve();
+                            });
+                    }).promise();
+                }
             },
             getCategory = function (currentCategoryId, completeCallback, forceRefresh) {
                 var callback = function () {

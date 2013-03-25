@@ -8,16 +8,23 @@
 
         var
             isSaving = ko.observable(false),
-            parentCategories = ko.observableArray(),
             category = ko.observable(),
+            parentCategories = ko.observableArray(),
 
             activate = function () {
                 initLookups();
-                category(new model());
-                //category(datacontext.createSession());
+                category(new model());//category(datacontext.createSession());
             },
             initLookups = function () {
-                //parentCategories(datacontext.lookups.rooms);
+                getAllParentCategories();
+
+                function getAllParentCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: parentCategories }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
             },
             cancel = function (complete) {
                 router.navigateBack();
@@ -90,9 +97,9 @@
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
-            parentCategories: parentCategories,
-            save: save,
             category: category,
+            parentCategories: parentCategories,
+            save: save,           
 
             // module page info
             pageDisplayName: 'Create Category',
