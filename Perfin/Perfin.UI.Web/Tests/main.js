@@ -34,7 +34,7 @@
         //define('moment', [], function () { return root.moment; });
         define('sammy', [], function () { return root.Sammy; });
         define('toastr', [], function () { return root.toastr; });
-        //define('underscore', [], function () { return root._; });
+        define('underscore', [], function () { return root._; });
     }
 
     function loadSpecsAndBoot() {
@@ -42,6 +42,7 @@
         require([
             baseTestPath + 'repositories/category.spec',
             baseTestPath + 'services/dataservice.category.spec',
+            baseTestPath + 'services/datacontext.spec',
             baseTestPath + 'models/model.category.spec'
         ], StartJasmineTests);
     }

@@ -8,9 +8,9 @@ define([
     'durandal/app',
     'durandal/viewLocator',
     'durandal/system',
-    'durandal/plugins/router'],
-    function (app, viewLocator, system, router) {
-
+    'durandal/plugins/router',
+    'common/logger'],
+    function (app, viewLocator, system, router, logger) {
         var
             // Establish the root object, 'window' in the browser, or 'global' on the server.
             root = this,
@@ -53,7 +53,7 @@ define([
                     // override bad route behavior to write to 
                     // console log and show error toast
                     router.handleInvalidRoute = function (route, params) {
-                        logger.logError('No route found', route, 'main', true);
+                        logger.error('No route found', true, route, 'main');
                     };
                 });
             },

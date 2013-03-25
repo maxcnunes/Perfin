@@ -37,7 +37,10 @@ namespace Perfin.Data
 
         public void Delete(int id)
         {
-            _dbSession.Delete(id);
+            // Get item by id
+            var item = _dbSession.Get<T>(id);
+            // Delete
+            _dbSession.Delete(item);
         }
 
         public void Delete(T entity)

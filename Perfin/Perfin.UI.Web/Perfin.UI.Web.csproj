@@ -146,7 +146,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="App\common\utils.js" />
-    <Content Include="App\config.js" />
+    <Content Include="App\common\config.js" />
     <Content Include="App\durandal\amd\almond-custom.js" />
     <Content Include="App\durandal\amd\optimizer.exe" />
     <Content Include="App\durandal\amd\r.js" />
@@ -176,7 +176,7 @@
     <Content Include="App\services\dataservice.category.js" />
     <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\datacontext.js" />
-    <Content Include="App\services\logger.js" />
+    <Content Include="App\common\logger.js" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
     <Content Include="Content\boilerplate-normalize.css" />
@@ -191,6 +191,8 @@
     <Content Include="Content\main.css" />
     <Content Include="Scripts\knockout.dirtyFlag.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\q.js" />
+    <Content Include="Scripts\q.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Tests\models\model.category.spec.js" />
@@ -248,6 +250,7 @@
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Tests\services\datacontext.spec.js" />
     <Content Include="Tests\services\dataservice.category.spec.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -386,7 +386,7 @@ ul#status-container {
     line-height: 40px;
     border-bottom: solid 1px #dcdfe0;
     box-shadow: inset 0px 1px 0px #ffffff;
-    background:#fff;
+    background: #fff;
 }
 
     .title-description span.title-description-info {
@@ -402,17 +402,19 @@ fieldset {
     margin: 10px 0;
     background: url(images/background.jpg);
 }
+
     fieldset .fields {
-        margin:0px 20px;
-        
+        margin: 0px 20px;
     }
 
-
-
-.form-actions {
-   /* margin: 20px -20px;*/
+.form-actions .btn i {
+    margin-right: 5px;
 }
 
+
+.icon-asterisk {
+    color: #f58a00;
+}
 
 .box {
     width: 70%;
@@ -423,7 +425,7 @@ fieldset {
 
 /*=== Views ===*/
 .view {
-    display:none;
+    display: none;
 }
 
 /*--------------

@@ -19,7 +19,7 @@
 
 		// Public Members
 	    return {
-			cateogry: category
+	        category: category
 		};
 	}
 );

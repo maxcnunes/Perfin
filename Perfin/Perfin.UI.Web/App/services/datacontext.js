@@ -6,7 +6,8 @@ define([
     'models/model',
     'models/model.mapper',
     'services/dataservice',
-    'config',
+    'common/config',
+    'common/logger',
     'common/utils'],
     function (
         $,
@@ -16,10 +17,10 @@ define([
         modelmapper,
         dataservice,
         config,
+        logger,
         utils) {
 
         var
-            logger = config.logger,
             getCurrentUserId = function () {
                 return config.currentUser().id();
             },
@@ -101,7 +102,7 @@ define([
                                         def.resolve(results);
                                     },
                                     error: function (response) {
-                                        logger.error(config.toasts.errorGettingData);
+                                        logger.error(config.messages.errorGettingData, true);
                                         def.reject();
                                     }
                                 }, param);
@@ -117,7 +118,7 @@ define([
 
                         return $.Deferred(function (def) {
                             if (!updateFunction) {
-                                logger.error('updateData method not implemented');
+                                logger.error('updateData method not implemented', true);
                                 if (callbacks && callbacks.error) { callbacks.error(); }
                                 def.reject();
                                 return;
@@ -125,13 +126,13 @@ define([
 
                             updateFunction({
                                 success: function (response) {
-                                    logger.success(config.toasts.savedData);
+                                    logger.success(config.messages.savedData, true);
                                     entity.dirtyFlag().reset();
                                     if (callbacks && callbacks.success) { callbacks.success(); }
                                     def.resolve(response);
                                 },
                                 error: function (response) {
-                                    logger.error(config.toasts.errorSavingData);
+                                    logger.error(config.messages.errorSavingData, true);
                                     if (callbacks && callbacks.error) { callbacks.error(); }
                                     def.reject(response);
                                     return;
@@ -159,12 +160,12 @@ define([
             // dataservice's 'get' method
             // model mapper
             //--------------------------------------
-            categories = new EntitySet(dataservice.category.getCatetories, modelmapper.cateogry, model.Category.Nullo);
+            categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
 
 
         // Extend Categories entitySet
         //----------------------------
-        categories.getAll = function (callback) {
+        categoryRepository.getAll = function (callback) {
             return $.Deferred(function (def) {
                 _.extend(options, {
                     // dataservice getCatetories function
@@ -176,10 +177,116 @@ define([
             }).promise();
         };
 
+        categoryRepository.addData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
 
+            return $.Deferred(function (def) {
+                dataservice.category.addCategory({
+                    success: function (dto) {
+                        if (!dto) {
+                            logger.error(config.messages.errorSavingData, true);
+
+                            if (callbacks && callbacks.error)
+                                callbacks.error();
+
+                            def.reject(); // reject: Reject a Deferred object and call any failCallbacks with the given args.
+                            return;
+                        }
+
+                        var newCategory = modelmapper.category.fromDto(dto); // Map DTO to Model
+                        categoryRepository.add(newCategory); // Add to datacontext
+
+                        logger.success(config.messages.savedData, true);
+
+                        if (callbacks && callbacks.success)
+                            callbacks.success(newCategory);
+
+                        def.resolve(dto); // resolve: Resolve a Deferred object and call any doneCallbacks with the given args.
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject();
+                        return;
+                    }
+                }, categoryModelJson);
+            }).promise(); // promise: Return a Deferred’s Promise object.
+        };
+
+        categoryRepository.getCategoryById = function (id, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var category = categoryRepository.getLocalById(id);
+                if (id !== undefined && (category.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.category.getCategory({
+                        success: function (dto) {
+                            // updates the category returned from getLocalById() above
+                            category = categoryRepository.mapDtoToContext(dto);
+                            //category.isBrief(false); // now a full item
+                            callbacks.success(category);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve category ' + id, true);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+                            def.reject(response);
+                        }
+                    },
+                    id);
+                } else {
+                    callbacks.success(category);
+                    def.resolve(category);
+                }
+            }).promise();
+        };
+
+        categoryRepository.updateData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
+
+            return $.Deferred(function (def) {
+                dataservice.category.updateCategory({
+                    success: function (response) {
+                        logger.success(config.messages.savedData, true);
+                        categoryModel.dirtyFlag().reset();
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData, true);
+                        if (callbacks && callbacks.error) { callbacks.error(); }
+                        def.reject(response);
+                        return;
+                    }
+                }, categoryModelJson);
+            }).promise();
+        };
+
+        categoryRepository.deleteData = function (categoryModel, callbacks) {
+            var categoryModelJson = ko.toJSON(categoryModel);
+
+            return $.Deferred(function (def) {
+                dataservice.category.deleteCategory({
+                    success: function (response) {
+                        categoryRepository.removeById(categoryModel.id());
+                        logger.success(config.messages.saveData);
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject(response);
+                    }
+                }, categoryModel.id());
+            }).promise();
+        };
 
         var datacontext = {
-            category: categories
+            category: categoryRepository
         };
 
         // We did this so we can access the datacontext during its construction
