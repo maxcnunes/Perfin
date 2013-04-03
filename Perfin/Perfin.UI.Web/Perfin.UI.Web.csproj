@@ -137,6 +137,7 @@
     <Compile Include="App_Start\ValidationActionFilter.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,16 +170,24 @@
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\models\model.user.js" />
     <Content Include="App\models\model.category.js" />
     <Content Include="App\models\model.js" />
     <Content Include="App\models\model.mapper.js" />
     <Content Include="App\repositories\category.js" />
+    <Content Include="App\repositories\user.js" />
     <Content Include="App\services\dataservice.category.js" />
     <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\datacontext.js" />
     <Content Include="App\common\logger.js" />
+    <Content Include="App\viewmodels\user\add.js" />
+    <Content Include="App\viewmodels\user\details.js" />
+    <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
+    <Content Include="App\views\user\add.html" />
+    <Content Include="App\views\user\details.html" />
+    <Content Include="App\views\user\show.html" />
     <Content Include="Content\boilerplate-normalize.css" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\bg.jpg" />
