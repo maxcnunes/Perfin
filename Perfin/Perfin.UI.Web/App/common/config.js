@@ -11,7 +11,9 @@
                 classColor: 'green',
                 classIcon : 'icon-home'
             }
-        }, {
+        },
+        //category
+        {
             url: 'category/show',
             moduleId: 'viewmodels/category/show',
             name: 'Categories',
@@ -33,7 +35,33 @@
             name: 'Edit Category',
             visible: false,
             caption: '<i class="icon-book"></i> Sessions'
-        },{
+        },
+        //user
+        {
+            url: 'user/show',
+            moduleId: 'viewmodels/user/show',
+            name: 'Users',
+            visible: false,
+            caption: '<i class="icon-book"></i> Users',
+            settings: {
+                classColor: 'blue',
+                classIcon: 'icon-tag'
+            }
+        }, {
+            url: 'user/add',
+            moduleId: 'viewmodels/user/add',
+            name: 'Add User',
+            visible: false,
+            caption: '<i class="icon-plus"></i> Add User'
+        }, {
+            url: 'user/details/:id',
+            moduleId: 'viewmodels/user/details',
+            name: 'Edit User',
+            visible: false,
+            caption: '<i class="icon-book"></i> Sessions'
+        },
+        //
+        {
             url: 'map/show',
             moduleId: 'viewmodels/map/show',
             name: 'Maps',

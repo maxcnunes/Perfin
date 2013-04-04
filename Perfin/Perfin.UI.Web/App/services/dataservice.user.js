@@ -29,7 +29,7 @@
                 amplify.request.define('userUpdate', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
-                    type: 'PUT',
+                    type: 'POST',
                     contentType: 'application/json; charset=utf-8'
                 }),
 

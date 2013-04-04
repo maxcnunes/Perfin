@@ -3,33 +3,40 @@
     <i class="icon-home icon-large"></i>
     <a href="#" class="home">Perfin</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Category</a>
+    <a href="#" class="current">User Account</a>
 </nav>
 
 
 <form>
     <fieldset>
-        <!-- Title -->
-        <legend class="title-description">
+       <!-- Title -->
+        <legend class="title-description" >
             <span data-bind="html: pageDisplayName"></span>
             <span class="title-description-info" data-bind="html: pageDescription"></span>
         </legend>
 
         <!-- Fields -->
-        <section class="fields" data-bind="with: category">
+        <section class="fields" data-bind="with: user">
+            <label>User Login</label>
+            <input type="text" class="span5" placeholder="login..." data-bind="value: login">
+            <span class="help-block">Login is necessary to access the web site.</span>
+            
+            <label>User Password</label>
+            <input type="text" class="span5" placeholder="Password..." data-bind="value: password">
+            <span class="help-block">.</span>
 
-            <label>Category Name</label>
-            <input type="text" class="span5" placeholder="Transport..." data-bind="value: name">
-            <span class="help-block">Category is a group to organize your finances.</span>
+            <label>Confirm Password</label>
+            <input type="text" class="span5" placeholder="Confirm Password..." >
+            <span class="help-block">Please rewrite your password.</span>
+            
+            <label>Email </label>
+            <input type="text" class="span5" placeholder="Email..." data-bind="value: email">
+            <span class="help-block">Your Email to full access and features.</span>
 
-            <label>Parent Category</label>
-            <select class="span5">
-                <option>None</option>
-                <option>Study</option>
-                <option>Travel</option>
-                <option>Feed</option>
-            </select>
-            <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
+            <label>User Name</label>
+            <input type="text" class="span5" placeholder="Your Name..." data-bind="value: name">
+            <span class="help-block">Your Name to show in web site.</span>
+            
         </section>
 
         <!-- Buttons -->
@@ -46,7 +53,7 @@
             </button>
 
             <button class="btn btn-danger"
-                data-bind="click: deleteCategory, disable: hasChanges">
+                data-bind="click: deleteData, disable: hasChanges">
                 <i class="icon-trash"></i>Delete
             </button>
 

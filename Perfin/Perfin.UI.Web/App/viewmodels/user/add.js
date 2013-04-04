@@ -2,32 +2,30 @@
     'durandal/app',
     'services/datacontext',
     'durandal/plugins/router',
-    'models/model.category'],
+    'models/model.user'],
     function (app, datacontext, router, model) {
 
 
         var
             isSaving = ko.observable(false),
-            parentCategories = ko.observableArray(),
-            category = ko.observable(),
+            user = ko.observable(),
 
             activate = function () {
-                initLookups();
-                category(new model());
-                //category(datacontext.createSession());
+                initLookups(); //start 
+                user(new model());
             },
             initLookups = function () {
-                //parentCategories(datacontext.lookups.rooms);
+                //
             },
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditCategory = ko.computed(function () {
-                return category();// && config.currentUser() && config.currentUser().id() === session().speakerId();
+            canEditUser = ko.computed(function () {
+                return user();// && config.currentUser() && config.currentUser().id() === session().speakerId();
             }),
             hasChanges = ko.computed(function () {
-                if (canEditCategory()) {
-                    return category().dirtyFlag().isDirty();
+                if (canEditUser()) {
+                    return user().dirtyFlag().isDirty();
                 }
 
                 return false;
@@ -39,15 +37,15 @@
             save = function () {
 
                 isSaving(true);
-                if (canEditCategory()) {
-                    $.when(datacontext.category.addData(category()))
+                if (canEditUser()) {
+                    $.when(datacontext.user.addData(user()))
                         .then(goToEditView)
                         .done(complete); //.fin(complete);
                 }
 
                 function goToEditView(result) {
                     // redirect to index page while the edit page is not finished
-                    router.replaceLocation('#/category/show');
+                    router.replaceLocation('#/user/show');
 
                     //router.replaceLocation('#/category/details/' + category().id());
                 }
@@ -70,17 +68,17 @@
 
                 // NEW EXAMPLE
                 //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //datacontext.cancelChanges();  ToDo: verify return 
+                            }
+                            return selectedOption;
+                        });
+                }
+                return true;
             };
 
         var vm = {
@@ -89,13 +87,12 @@
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
-            parentCategories: parentCategories,
             save: save,
-            category: category,
+            user: user,
 
             // module page info
-            pageDisplayName: 'Create Category',
-            pageDescription: 'Create a category and let more organized your finances'
+            pageDisplayName: 'Create New User',
+            pageDescription: 'Create a new user'
         };
 
         return vm;

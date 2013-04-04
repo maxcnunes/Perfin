@@ -289,17 +289,17 @@ define([
 
         // Extend Users entitySet
         //----------------------------
-        //userRepository.getAll = function (callback) {
-        //    return $.Deferred(function (def) {
-        //        _.extend(options, {
-        //            // dataservice getCatetories function
-        //            getFunctionOverride: dataservice.category.getCatetories
-        //        });
-        //        $.when(persons.getData(options))
-        //            .done(function () { def.resolve(); })
-        //            .fail(function () { def.reject(); });
-        //    }).promise();
-        //};
+        userRepository.getAll = function (options) {
+            return $.Deferred(function (def) {
+                _.extend(options, {
+                    // dataservice getUsers function
+                    getFunctionOverride: dataservice.user.getUsers
+                });
+                $.when(userRepository.getData(options))
+                    .done(function () { def.resolve(); })
+                    .fail(function () { def.reject(); });
+            }).promise();
+        };
 
         userRepository.addData = function (userModel, callbacks) {
             var userModelJson = ko.toJSON(userModel);
@@ -338,76 +338,76 @@ define([
             }).promise(); // promise: Return a Deferred’s Promise object.
         };
 
-        //userRepository.getCategoryById = function (id, callbacks, forceRefresh) {
-        //    return $.Deferred(function (def) {
-        //        var category = categoryRepository.getLocalById(id);
-        //        if (id !== undefined && (category.isNullo || forceRefresh)) {
-        //            // if nullo or brief, get fresh from database
-        //            dataservice.category.getCategory({
-        //                success: function (dto) {
-        //                    // updates the category returned from getLocalById() above
-        //                    category = categoryRepository.mapDtoToContext(dto);
-        //                    //category.isBrief(false); // now a full item
-        //                    callbacks.success(category);
-        //                    def.resolve(dto);
-        //                },
-        //                error: function (response) {
-        //                    logger.error('oops! could not retrieve category ' + id, true);
-        //                    if (callbacks && callbacks.error) { callbacks.error(response); }
-        //                    def.reject(response);
-        //                }
-        //            },
-        //            id);
-        //        } else {
-        //            callbacks.success(category);
-        //            def.resolve(category);
-        //        }
-        //    }).promise();
-        //};
+        userRepository.getUserById = function (id, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var user = userRepository.getLocalById(id);
+                if (id !== undefined && (user.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.user.getUser({
+                        success: function (dto) {
+                            // updates the user returned from getLocalById() above
+                            user = userRepository.mapDtoToContext(dto);
+                            //user.isBrief(false); // now a full item
+                            callbacks.success(user);
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve user ' + id, true);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+                            def.reject(response);
+                        }
+                    },
+                    id);
+                } else {
+                    callbacks.success(user);
+                    def.resolve(user);
+                }
+            }).promise();
+        };
 
-        //userRepository.updateData = function (categoryModel, callbacks) {
-        //    var categoryModelJson = ko.toJSON(categoryModel);
+        userRepository.updateData = function (userModel, callbacks) {
+            var userModelJson = ko.toJSON(userModel);
 
-        //    return $.Deferred(function (def) {
-        //        dataservice.category.updateCategory({
-        //            success: function (response) {
-        //                logger.success(config.messages.savedData, true);
-        //                categoryModel.dirtyFlag().reset();
-        //                if (callbacks && callbacks.success)
-        //                    callbacks.success();
-        //                def.resolve(response);
-        //            },
-        //            error: function (response) {
-        //                logger.error(config.messages.errorSavingData, true);
-        //                if (callbacks && callbacks.error) { callbacks.error(); }
-        //                def.reject(response);
-        //                return;
-        //            }
-        //        }, categoryModelJson);
-        //    }).promise();
-        //};
+            return $.Deferred(function (def) {
+                dataservice.user.updateUser({
+                    success: function (response) {
+                        logger.success(config.messages.savedData, true);
+                        userModel.dirtyFlag().reset();
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData, true);
+                        if (callbacks && callbacks.error) { callbacks.error(); }
+                        def.reject(response);
+                        return;
+                    }
+                }, userModelJson);
+            }).promise();
+        };
 
-        //userRepository.deleteData = function (categoryModel, callbacks) {
-        //    var categoryModelJson = ko.toJSON(categoryModel);
+        userRepository.deleteData = function (userModel, callbacks) {
+            var userModelJson = ko.toJSON(userModel);
 
-        //    return $.Deferred(function (def) {
-        //        dataservice.category.deleteCategory({
-        //            success: function (response) {
-        //                categoryRepository.removeById(categoryModel.id());
-        //                logger.success(config.messages.saveData);
-        //                if (callbacks && callbacks.success)
-        //                    callbacks.success();
-        //                def.resolve(response);
-        //            },
-        //            error: function (response) {
-        //                logger.error(config.messages.errorSavingData);
-        //                if (callbacks && callbacks.error)
-        //                    callbacks.error();
-        //                def.reject(response);
-        //            }
-        //        }, categoryModel.id());
-        //    }).promise();
-        //};
+            return $.Deferred(function (def) {
+                dataservice.user.deleteUser({
+                    success: function (response) {
+                        userRepository.removeById(userModel.id());
+                        logger.success(config.messages.saveData);
+                        if (callbacks && callbacks.success)
+                            callbacks.success();
+                        def.resolve(response);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject(response);
+                    }
+                }, userModel.id());
+            }).promise();
+        };
 
 
 

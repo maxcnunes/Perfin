@@ -5,31 +5,30 @@
     function (router, datacontext, app) {
 
         var
-            category = ko.observable(),
-            parentCategories = ko.observableArray(),
+            user = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
                 initLookups();
-                return getCategory(id);
+                return getUser(id);
             },
             initLookups = function () {
 
             },
-            getCategory = function (currentCategoryId, completeCallback, forceRefresh) {
+            getUser = function (currentUserId, completeCallback, forceRefresh) {
                 var callback = function () {
                     if (completeCallback)
                         completeCallback();
 
-                    //validationErrors = ko.validation.group(category());
+                    //validationErrors = ko.validation.group(user());
                 };
 
-                datacontext.category.getCategoryById(
-					currentCategoryId, {
+                datacontext.user.getUserById(
+					currentUserId, {
 					    success: function (modelResult) {
-					        category(modelResult);
+					        user(modelResult);
 					        callback();
 					    },
 					    error: callback
@@ -40,12 +39,12 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditCategory = ko.computed(function () {
-                return category();
+            canEditUser = ko.computed(function () {
+                return user();
             }),
             hasChanges = ko.computed(function () {
-                if (canEditCategory()) {
-                    return category().dirtyFlag().isDirty();
+                if (canEditUser()) {
+                    return user().dirtyFlag().isDirty();
                 }
                 return false;
             }),
@@ -56,8 +55,8 @@
             save = function () {
 
                 isSaving(true);
-                if (canEditCategory()) {
-                    $.when(datacontext.category.updateData(category()))
+                if (canEditUser()) {
+                    $.when(datacontext.user.updateData(user()))
                         .done(complete);//.fin(complete);
                 }
 
@@ -70,7 +69,7 @@
 
                 // OLD
                 //----------------------------
-                //if (this._categoryAdded == false) {
+                //if (this._userAdded == false) {
                 //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
                 //} else {
                 //    return true;
@@ -94,8 +93,8 @@
             goBack = function () {
                 router.navigateBack();
             },
-            deleteCategory = function () {
-                var msg = 'Delete category "' + category().name() + '" ?';
+            deleteUser = function () {
+                var msg = 'Delete user "' + user().login() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -104,13 +103,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.category.deleteData(category()))
+                        $.when(datacontext.user.deleteData(user()))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            router.navigateTo('#/category/show');
+                            router.navigateTo('#/user/show');
                         }
 
                         function failed(error) {
@@ -129,8 +128,7 @@
             };
 
         var vm = {
-            category: category,
-            parentCategories: parentCategories,
+            user: user,
             activate: activate,
 
             canSave: canSave,
@@ -138,11 +136,11 @@
             hasChanges: hasChanges,
             save: save,
             goBack: goBack,
-            deleteCategory: deleteCategory,
+            deleteUser: deleteUser,
 
             // module page info
-            pageDisplayName: 'Edit Category',
-            pageDescription: 'Edit a category and let more organized your finances'
+            pageDisplayName: 'Edit User',
+            pageDescription: 'Edit a user for more personal info'
         };
 
         return vm;

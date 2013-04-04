@@ -8,17 +8,17 @@
     function (datacontext, logger, system, router, $, app) {
         var
             show = this,
-            categories = ko.observableArray(),
+            users = ko.observableArray(),
             isDeleting = ko.observable(false),
 
             activate = function () {
 
                 return $.Deferred(function (def) {
-                    $.when(datacontext.category.getData({ results: categories }))
+                    $.when(datacontext.user.getData({ results: users }))
 
                         .pipe(function () {
 
-                            logger.info('Fetched data for: ' + categories().length + ' categories ',
+                            logger.info('Fetched data for: ' + users().length + ' users ',
                                 true, null, system.getModuleId(show));
                         })
 
@@ -31,7 +31,7 @@
 
             gotoDetails = function (selectedItem) {
                 if (selectedItem && selectedItem.id()) {
-                    var url = '#/category/details/' + selectedItem.id();
+                    var url = '#/user/details/' + selectedItem.id();
                     router.navigateTo(url);
                 }
             },
@@ -44,8 +44,8 @@
             bindEventToList = function (rootSelector, selector, callback, eventName) {
                 var eName = eventName || 'click';
                 $(rootSelector).on(eName, selector, function () {
-                    var category = ko.dataFor(this);
-                    callback(category);
+                    var user = ko.dataFor(this);
+                    callback(user);
                     return false;
                 });
             },
@@ -55,7 +55,7 @@
                     return;
                 }
 
-                var msg = 'Delete category "' + selectedItem.name() + '" ?';
+                var msg = 'Delete user "' + selectedItem.name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -64,13 +64,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.category.deleteData(selectedItem))
+                        $.when(datacontext.user.deleteData(selectedItem))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            categories.remove(selectedItem);
+                            users.remove(selectedItem);
                         }
 
                         function failed(error) {
@@ -90,12 +90,12 @@
 
 
         return {
-            categories: categories,
+            users: users,
             activate: activate,
             viewAttached: viewAttached,
 
             // module page info
-            pageDisplayName: 'List Category',
-            pageDescription: 'All your categories'
+            pageDisplayName: 'List User',
+            pageDescription: 'All your users'
         };
     });

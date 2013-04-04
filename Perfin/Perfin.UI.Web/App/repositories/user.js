@@ -4,24 +4,22 @@
         return {
             _lastId: 1,
             _users: [
-                { id: 1, name: "admin", parent: "" },
-                { id: 2, name: "Transport", parent: "" },
-                { id: 3, name: "Study", parent: "" },
+                { id: 1, login: "admin", password: "admin", name:"adminname", email:"admin@email.com", salt:"salt" }
             ],
 
             getAll: function () {
-                return this._categories;
+                return this._users;
             },
 
-            addCategory: function (categoryToAdd) {
-                categoryToAdd.id = ++this._lastId;
-                this._categories.push(categoryToAdd);
+            addUser: function (userToAdd) {
+                userToAdd.id = ++this._lastId;
+                this._users.push(userToAdd);
             },
 
-            getCategory: function (id) {
-                for (var i = 0; i < this._categories.length; i++) {
-                    if (this._categories[i].id == id) {
-                        return this._categories[i];
+            getUser: function (id) {
+                for (var i = 0; i < this._users.length; i++) {
+                    if (this._users[i].id == id) {
+                        return this._users[i];
                         break;
                     }
                 }

@@ -3,7 +3,7 @@
     <i class="icon-home icon-large"></i>
     <a href="#" class="home">Perfin</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Category</a>
+    <a href="#" class="current">User</a>
 </nav>
 
 
@@ -18,9 +18,9 @@
 
         <div class="form-actions">
 
-            <a href="#/category/add" class="btn btn-primary">
+            <a href="#/user/add" class="btn btn-primary">
                 <i class="icon-plus"></i> 
-                Add Category
+                Add User
             </a>
 
         </div>
@@ -28,16 +28,20 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Category Name</th>
-                    <th>Parent Category</th>
+                    <th>User Login</th>
+                    <th>User Password</th>
+                    <th>User Name</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach:categories">
+            <tbody data-bind="foreach:users">
                 <tr>
                     <td data-bind="text:id"></td>
+                    <td data-bind="text:login"></td>
+                    <td data-bind="text:password"></td>
                     <td data-bind="text:name"></td>
-                    <td data-bind="text:parent"></td>
+                    <td data-bind="text:email"></td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
