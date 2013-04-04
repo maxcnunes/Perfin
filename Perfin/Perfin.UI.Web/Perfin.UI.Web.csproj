@@ -176,6 +176,7 @@
     <Content Include="App\models\model.mapper.js" />
     <Content Include="App\repositories\category.js" />
     <Content Include="App\repositories\user.js" />
+    <Content Include="App\services\dataservice.user.js" />
     <Content Include="App\services\dataservice.category.js" />
     <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\datacontext.js" />

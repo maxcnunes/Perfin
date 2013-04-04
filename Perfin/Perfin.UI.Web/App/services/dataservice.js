@@ -1,10 +1,12 @@
 ﻿// Aggregate all data services
 
 define([
-        'services/dataservice.category'],
-    function (category) {
+        'services/dataservice.category',
+        'services/dataservice.user'],
+    function (category, user) {
         return {
-            category: category
+            category: category,
+            user: user
         };
 
     });

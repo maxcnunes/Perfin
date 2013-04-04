@@ -161,7 +161,8 @@ define([
             // model mapper
             //--------------------------------------
             categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
-
+            userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
+    
 
         // Extend Categories entitySet
         //----------------------------
@@ -285,8 +286,134 @@ define([
             }).promise();
         };
 
+
+        // Extend Users entitySet
+        //----------------------------
+        //userRepository.getAll = function (callback) {
+        //    return $.Deferred(function (def) {
+        //        _.extend(options, {
+        //            // dataservice getCatetories function
+        //            getFunctionOverride: dataservice.category.getCatetories
+        //        });
+        //        $.when(persons.getData(options))
+        //            .done(function () { def.resolve(); })
+        //            .fail(function () { def.reject(); });
+        //    }).promise();
+        //};
+
+        userRepository.addData = function (userModel, callbacks) {
+            var userModelJson = ko.toJSON(userModel);
+
+            return $.Deferred(function (def) {
+                dataservice.user.addUser({
+                    success: function (dto) {
+                        if (!dto) {
+                            logger.error(config.messages.errorSavingData, true);
+
+                            if (callbacks && callbacks.error)
+                                callbacks.error();
+
+                            def.reject(); // reject: Reject a Deferred object and call any failCallbacks with the given args.
+                            return;
+                        }
+
+                        var newUser = modelmapper.user.fromDto(dto); // Map DTO to Model
+                        userRepository.add(newUser); // Add to datacontext
+
+                        logger.success(config.messages.savedData, true);
+
+                        if (callbacks && callbacks.success)
+                            callbacks.success(newUser);
+
+                        def.resolve(dto); // resolve: Resolve a Deferred object and call any doneCallbacks with the given args.
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorSavingData);
+                        if (callbacks && callbacks.error)
+                            callbacks.error();
+                        def.reject();
+                        return;
+                    }
+                }, userModelJson);
+            }).promise(); // promise: Return a Deferred’s Promise object.
+        };
+
+        //userRepository.getCategoryById = function (id, callbacks, forceRefresh) {
+        //    return $.Deferred(function (def) {
+        //        var category = categoryRepository.getLocalById(id);
+        //        if (id !== undefined && (category.isNullo || forceRefresh)) {
+        //            // if nullo or brief, get fresh from database
+        //            dataservice.category.getCategory({
+        //                success: function (dto) {
+        //                    // updates the category returned from getLocalById() above
+        //                    category = categoryRepository.mapDtoToContext(dto);
+        //                    //category.isBrief(false); // now a full item
+        //                    callbacks.success(category);
+        //                    def.resolve(dto);
+        //                },
+        //                error: function (response) {
+        //                    logger.error('oops! could not retrieve category ' + id, true);
+        //                    if (callbacks && callbacks.error) { callbacks.error(response); }
+        //                    def.reject(response);
+        //                }
+        //            },
+        //            id);
+        //        } else {
+        //            callbacks.success(category);
+        //            def.resolve(category);
+        //        }
+        //    }).promise();
+        //};
+
+        //userRepository.updateData = function (categoryModel, callbacks) {
+        //    var categoryModelJson = ko.toJSON(categoryModel);
+
+        //    return $.Deferred(function (def) {
+        //        dataservice.category.updateCategory({
+        //            success: function (response) {
+        //                logger.success(config.messages.savedData, true);
+        //                categoryModel.dirtyFlag().reset();
+        //                if (callbacks && callbacks.success)
+        //                    callbacks.success();
+        //                def.resolve(response);
+        //            },
+        //            error: function (response) {
+        //                logger.error(config.messages.errorSavingData, true);
+        //                if (callbacks && callbacks.error) { callbacks.error(); }
+        //                def.reject(response);
+        //                return;
+        //            }
+        //        }, categoryModelJson);
+        //    }).promise();
+        //};
+
+        //userRepository.deleteData = function (categoryModel, callbacks) {
+        //    var categoryModelJson = ko.toJSON(categoryModel);
+
+        //    return $.Deferred(function (def) {
+        //        dataservice.category.deleteCategory({
+        //            success: function (response) {
+        //                categoryRepository.removeById(categoryModel.id());
+        //                logger.success(config.messages.saveData);
+        //                if (callbacks && callbacks.success)
+        //                    callbacks.success();
+        //                def.resolve(response);
+        //            },
+        //            error: function (response) {
+        //                logger.error(config.messages.errorSavingData);
+        //                if (callbacks && callbacks.error)
+        //                    callbacks.error();
+        //                def.reject(response);
+        //            }
+        //        }, categoryModel.id());
+        //    }).promise();
+        //};
+
+
+
         var datacontext = {
-            category: categoryRepository
+            category: categoryRepository,
+            user: userRepository
         };
 
         // We did this so we can access the datacontext during its construction
