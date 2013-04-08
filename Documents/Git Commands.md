@@ -60,3 +60,7 @@ Create a new Branch
 ====================================================================
 - `git branch BRANCH_NAME`
 
+
+Show Network Status
+====================================================================
+- `git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"`
