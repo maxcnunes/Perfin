@@ -6,7 +6,9 @@ define([
     function (category, user) {
         return {
             category: category,
-            user: user
+            user: user,
+            accounttype: accounttype,
+            account: account
         };
 
     });

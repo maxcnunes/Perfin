@@ -17,5 +17,7 @@ namespace Perfin.Data.Contract
         ICategoryRepository Categories { get; }
 
         IAccountRepository Accounts { get; }
+
+        IAccountTypeRepository AccountTypes { get; }
 	}
 }

@@ -2,38 +2,38 @@
     'amplify'],
     function (amplify) {
         var
-            serviceUrl = '/api/account',
+            serviceUrl = '/api/accounttype',
             init = function () {
 
-                amplify.request.define('accounts', 'ajax', {
+                amplify.request.define('accounttypes', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'GET'
                     //cache:true
                 }),
 
-                amplify.request.define('account', 'ajax', {
+                amplify.request.define('accounttype', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
                     type: 'GET'
                     //cache:true
                 }),
 
-                amplify.request.define('accountAdd', 'ajax', {
+                amplify.request.define('accounttypeAdd', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8'
                 }),
 
-                amplify.request.define('accountUpdate', 'ajax', {
+                amplify.request.define('accounttypeUpdate', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 }),
 
-                amplify.request.define('accountDelete', 'ajax', {
+                amplify.request.define('accounttypeDelete', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
                     type: 'DELETE',
@@ -41,44 +41,44 @@
                 });
             },
 
-            getCatetories = function (callbacks) {
+            getAccountTypes = function (callbacks) {
                 return amplify.request({
-                    resourceId: 'accounts',
+                    resourceId: 'accounttypes',
                     success: callbacks.success,
                     error: callbacks.error
                 });
             },
 
-            getCategory = function (callbacks, id) {
+            getAccountType = function (callbacks, id) {
                 return amplify.request({
-                    resourceId: 'account',
+                    resourceId: 'accounttype',
                     data: { id: id },
                     success: callbacks.success,
                     error: callbacks.error
                 });
             },
 
-            addCategory = function (callbacks, data) {
+            addAccountType = function (callbacks, data) {
                 return amplify.request({
-                    resourceId: 'accountAdd',
+                    resourceId: 'accounttypeAdd',
                     data: data,
                     success: callbacks.success,
                     error: callbacks.error
                 });
             },
 
-            updateCategory = function (callbacks, data) {
+            updateAccountType = function (callbacks, data) {
                 return amplify.request({
-                    resourceId: 'accountUpdate',
+                    resourceId: 'accounttypeUpdate',
                     data: data,
                     success: callbacks.success,
                     error: callbacks.error
                 });
             },
 
-            deleteCategory = function (callbacks, id) {
+            deleteAccountType = function (callbacks, id) {
                 return amplify.request({
-                    resourceId: 'accountDelete',
+                    resourceId: 'accounttypeDelete',
                     data: { id: id },
                     success: callbacks.success,
                     error: callbacks.error
@@ -89,11 +89,11 @@
 
 
         return {
-            getAccounts: getAccounts,
-            getAccount: getAccount,
-            addAccount: addAccount,
-            updateAccount: updateAccount,
-            deleteAccount: deleteAccount
+            getAccountTypes: getAccountTypes,
+            getAccountType: getAccountType,
+            addAccountType: addAccountType,
+            updateAccountType: updateAccountType,
+            deleteAccountType: deleteAccountType
         };
 
 

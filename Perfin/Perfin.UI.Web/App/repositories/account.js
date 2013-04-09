@@ -3,25 +3,25 @@
     function () {
         return {
             _lastId: 3,
-            _categories: [
-                { id: 1, name: "Feed", parent: "" },
-                { id: 2, name: "Transport", parent: "" },
-                { id: 3, name: "Study", parent: "" },
+            _accounts: [
+                { id: 1, name: "Luz", Category : new Category(), AccountType : new AccountType()},
+                { id: 2, name: "Gas", Category: new Category(), AccountType: new AccountType() },
+                { id: 3, name: "Comida", Category: new Category(), AccountType: new AccountType() },
             ],
 
             getAll: function () {
-                return this._categories;
+                return this._accounts;
             },
 
-            addCategory: function (categoryToAdd) {
+            addAccount: function (categoryToAdd) {
                 categoryToAdd.id = ++this._lastId;
-                this._categories.push(categoryToAdd);
+                this._accounts.push(categoryToAdd);
             },
 
-            getCategory: function (id) {
-                for (var i = 0; i < this._categories.length; i++) {
-                    if (this._categories[i].id == id) {
-                        return this._categories[i];
+            getAccount: function (id) {
+                for (var i = 0; i < this._accounts.length; i++) {
+                    if (this._accounts[i].id == id) {
+                        return this._accounts[i];
                         break;
                     }
                 }

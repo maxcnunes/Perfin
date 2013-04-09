@@ -4,9 +4,12 @@
 define([
     'models/model.category',
     'models/model.user',
+    'models/model.accounttype',
+    'models/model.account',
     'services/datacontext'],
-    function (categoryModel,userModel, datacontext) {
+    function (categoryModel,userModel,accounttypeModel,accountModel, datacontext) {
         describe('Services :: Datacontext', function () {
+            
             it('should add category', function () {
                 var _success, _error;
 
@@ -172,6 +175,59 @@ define([
 
                 runs(function () {
                     expect(_success).not.toBe(undefined);
+                    expect(_error).toBe(undefined);
+                });
+            });
+
+
+
+
+            it('should add accounttype', function () {
+                var _success, _error;
+
+                var callback = {
+                    success: function (response) { _success = response; },
+                    error: function (response) { _error = response; }
+                };
+
+                var accounttype = new AccountTypeModel();
+                accounttype.name('accountNAme');
+
+                datacontext.user.addData(accounttype, callback);
+
+                waitsFor(function () {
+                    return _success || _error;
+                }, 5000);
+
+
+                runs(function () {
+                    expect(_success).toBeDefined();
+                    expect(_error).toBe(undefined);
+                });
+            });
+
+            it('should add account', function () {
+                var _success, _error;
+
+                var callback = {
+                    success: function (response) { _success = response; },
+                    error: function (response) { _error = response; }
+                };
+
+                var acccount = new AccountModel();
+                acccount.name('accountNAme');
+                account.description('account Description');
+                //account.categoryModel.id(1);
+
+                datacontext.user.addData(acccount, callback);
+
+                waitsFor(function () {
+                    return _success || _error;
+                }, 5000);
+
+
+                runs(function () {
+                    expect(_success).toBeDefined();
                     expect(_error).toBe(undefined);
                 });
             });

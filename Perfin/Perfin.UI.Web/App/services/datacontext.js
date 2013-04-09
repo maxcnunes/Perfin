@@ -162,7 +162,8 @@ define([
             //--------------------------------------
             categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
             userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
-    
+            accountRepository = new EntitySet(dataservice.account.getUsers, modelmapper.account, model.AccountType.Nullo);
+            accounttypeRepository = new EntitySet(dataservice.accounttype.getUsers, modelmapper.accounttype, model.AccountType.Nullo);
 
         // Extend Categories entitySet
         //----------------------------
@@ -413,7 +414,9 @@ define([
 
         var datacontext = {
             category: categoryRepository,
-            user: userRepository
+            user: userRepository,
+            accounttype: accounttypeRepository,
+            account: accountRepository
         };
 
         // We did this so we can access the datacontext during its construction
