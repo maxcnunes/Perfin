@@ -14,8 +14,8 @@ namespace Perfin.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Type { get; set; }
-        public int Category { get; set; }
+        public AccountType Type { get; set; }
+        public Category Category { get; set; }
         
     }
 }

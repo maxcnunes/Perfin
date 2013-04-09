@@ -23,8 +23,8 @@ namespace Perfin.Test.Model
             var id = 1;
             var name = "Account Name";
             var description = "This account refers to the simple test";
-            var type = 1;
-            var category = 2;
+            var type = new AccountType() { Id = 1, Name = "Income" }; ;
+            var category = new Category() { Id = 1, Name = "Transport" , Parent = 0};
             
             account.Id = id;
             account.Name = name;
