@@ -166,17 +166,28 @@ define([
 
         // Extend Categories entitySet
         //----------------------------
-        categoryRepository.getAll = function (callback) {
+        categoryRepository.getAllLeastCurrent = function (id, options) {
+            var allCategories = ko.observable();
+            
+            // extend the options
+            options = options || {};
+            _.extend(options, {
+                results: allCategories
+            });
+
             return $.Deferred(function (def) {
-                _.extend(options, {
-                    // dataservice getCatetories function
-                    getFunctionOverride: dataservice.category.getCatetories
-                });
-                $.when(persons.getData(options))
-                    .done(function () { def.resolve(); })
-                    .fail(function () { def.reject(); });
+                $.when(datacontext.category.getData({ results: allCategories }))
+                    .fail(function () { def.reject(); })
+                    .done(function () {
+                        // get just the other categories 
+                        var allParent = _.reject(allCategories(), function (item) {
+                            return item.id() == id;
+                        });
+
+                        def.resolve(allParent);
+                    });
             }).promise();
-        };
+        }
 
         categoryRepository.addData = function (categoryModel, callbacks) {
             var categoryModelJson = ko.toJSON(categoryModel);

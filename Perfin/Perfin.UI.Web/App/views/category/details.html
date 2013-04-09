@@ -23,11 +23,12 @@
             <span class="help-block">Category is a group to organize your finances.</span>
 
             <label>Parent Category</label>
-            <select class="span5">
-                <option>None</option>
-                <option>Study</option>
-                <option>Travel</option>
-                <option>Feed</option>
+            <select class="span5"
+                data-bind="options: $parent.parentCategories,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: parent,
+                           optionsCaption: 'None'">
             </select>
             <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
         </section>
