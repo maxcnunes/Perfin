@@ -3,13 +3,15 @@
 define([
     'models/model.category',
     'models/model.user',
+    'models/model.accounttype',
     'models/model.account'],
-    function (category, user, account) {
+    function (category, user, accounttype, account) {
         var
             model = {
                 // Category Model
                 Category: category,
                 User: user,
+                AccountType: accounttype,
                 Account: account
             };
 
@@ -18,6 +20,7 @@ define([
             // need a reference to the datacontext
             model.Category.datacontext(dc);
             model.User.datacontext(dc);
+            model.AccountType.datacontext(dc);
             model.Account.datacontext(dc);
         };
 

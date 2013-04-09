@@ -13,8 +13,8 @@
             },
 
             addAccountType: function (accounttypeToAdd) {
-                categoryToAdd.id = ++this._lastId;
-                this._accounttypes.push(categoryToAdd);
+                accounttypeToAdd.id = ++this._lastId;
+                this._accounttypes.push(accounttypeToAdd);
             },
 
             getAccountType: function (id) {

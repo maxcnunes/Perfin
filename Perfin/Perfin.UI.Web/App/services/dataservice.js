@@ -2,6 +2,8 @@
 
 define([
         'services/dataservice.category',
+        'services/dataservice.accounttyype',
+        'services/dataservice.account',
         'services/dataservice.user'],
     function (category, user) {
         return {

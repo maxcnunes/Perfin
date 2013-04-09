@@ -47,20 +47,51 @@
                 classColor: 'blue',
                 classIcon: 'icon-tag'
             }
-        }, {
+        },
+        {
             url: 'user/add',
             moduleId: 'viewmodels/user/add',
             name: 'Add User',
             visible: false,
             caption: '<i class="icon-plus"></i> Add User'
-        }, {
+        },
+        {
             url: 'user/details/:id',
             moduleId: 'viewmodels/user/details',
             name: 'Edit User',
             visible: false,
             caption: '<i class="icon-book"></i> Sessions'
         },
-        //
+
+         //accountType
+        {
+            url: 'accounttype/show',
+            moduleId: 'viewmodels/accounttype/show',
+            name: 'Account Types',
+            visible: true,
+            caption: '<i class="icon-book"></i> Account Type',
+            settings: {
+                classColor: 'red',
+                classIcon: 'icon-tag'
+            }
+        },
+        {
+            url: 'accounttype/add',
+            moduleId: 'viewmodels/accounttype/add',
+            name: 'Add Account Type',
+            visible: false,
+            caption: '<i class="icon-plus"></i> Add Account Type'
+        },
+        {
+            url: 'accounttype/details/:id',
+            moduleId: 'viewmodels/accounttype/details',
+            name: 'Edit Account Type',
+            visible: false,
+            caption: '<i class="icon-book"></i> Sessions'
+        },
+
+
+        //Map
         {
             url: 'map/show',
             moduleId: 'viewmodels/map/show',
