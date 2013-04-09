@@ -3,9 +3,9 @@ using Perfin.Model;
 
 namespace Perfin.Data.Map
 {
-    public class AccountMap : ClassMap<Account>
+    public class AccountTypeMap : ClassMap<Account>
     {
-        public AccountMap()
+        public AccountTypeMap()
         {
             Table("AccountType");
             Id(x => x.Id).GeneratedBy.Increment();
