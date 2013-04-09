@@ -9,11 +9,11 @@
         var
             isSaving = ko.observable(false),
             category = ko.observable(),
-            parentCategories = ko.observableArray(),
+            parentCategories = ko.observable(),
 
             activate = function () {
                 initLookups();
-                category(new model());//category(datacontext.createSession());
+                category(new model());
             },
             initLookups = function () {
                 getAllParentCategories();
@@ -99,7 +99,7 @@
             hasChanges: hasChanges,
             category: category,
             parentCategories: parentCategories,
-            save: save,           
+            save: save,
 
             // module page info
             pageDisplayName: 'Create Category',

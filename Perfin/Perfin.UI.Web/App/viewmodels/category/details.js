@@ -6,28 +6,23 @@
 
         var
             category = ko.observable(),
-            parentCategories = ko.observableArray(),
+            parentCategories = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
                 getCategory(id);
-                initLookups();
+                initLookups(id);
             },
-            initLookups = function () {
+            initLookups = function (currentId) {
                 getAllParentCategories();
 
                 function getAllParentCategories() {
-                    return $.Deferred(function (def) {
-                        $.when(datacontext.category.getData({ results: parentCategories }))
-                            .fail(function () { def.reject(); })
-                            .done(function () {
-                                // remove current category
-                                parentCategories.remove(category());
-                                def.resolve();
-                            });
-                    }).promise();
+                    $.when(datacontext.category.getAllLeastCurrent(currentId))
+                     .done(function (items) {
+                         parentCategories(items);
+                     });
                 }
             },
             getCategory = function (currentCategoryId, completeCallback, forceRefresh) {
@@ -112,7 +107,7 @@
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
                         .then(confirmDelete);
-            
+
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
