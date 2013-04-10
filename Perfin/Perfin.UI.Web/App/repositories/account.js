@@ -4,18 +4,18 @@
         return {
             _lastId: 3,
             _accounts: [
-                { id: 1, name: "Luz", Category : new Category(), AccountType : new AccountType()},
-                { id: 2, name: "Gas", Category: new Category(), AccountType: new AccountType() },
-                { id: 3, name: "Comida", Category: new Category(), AccountType: new AccountType() },
+                { id: 1, name: "Luz", accounttypeId: 1, categoryId: 1},
+                { id: 2, name: "Gas", accounttypeId: 1, categoryId: 1 },
+                { id: 3, name: "Comida", accounttypeId: 1, categoryId: 1 }
             ],
 
             getAll: function () {
                 return this._accounts;
             },
 
-            addAccount: function (categoryToAdd) {
-                categoryToAdd.id = ++this._lastId;
-                this._accounts.push(categoryToAdd);
+            addAccount: function (accountToAdd) {
+                accountToAdd.id = ++this._lastId;
+                this._accounts.push(accountToAdd);
             },
 
             getAccount: function (id) {

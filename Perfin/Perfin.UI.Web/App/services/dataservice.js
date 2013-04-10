@@ -2,15 +2,15 @@
 
 define([
         'services/dataservice.category',
-        'services/dataservice.accounttyype',
+        'services/dataservice.accounttype',
         'services/dataservice.account',
         'services/dataservice.user'],
-    function (category, user) {
+    function (category, accounttype, account, user) {
         return {
             category: category,
-            user: user,
             accounttype: accounttype,
-            account: account
+            account: account,
+            user: user
         };
 
     });

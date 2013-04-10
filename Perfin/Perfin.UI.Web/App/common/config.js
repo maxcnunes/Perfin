@@ -90,6 +90,32 @@
             caption: '<i class="icon-book"></i> Sessions'
         },
 
+        //Account
+        {
+            url: 'account/show',
+            moduleId: 'viewmodels/account/show',
+            name: 'Account',
+            visible: true,
+            caption: '<i class="icon-book"></i> Account',
+            settings: {
+                classColor: 'blue',
+                classIcon: 'icon-tag'
+            }
+        },
+        {
+            url: 'account/add',
+            moduleId: 'viewmodels/account/add',
+            name: 'Add Account',
+            visible: false,
+            caption: '<i class="icon-plus"></i> Add Account'
+        },
+        {
+            url: 'account/details/:id',
+            moduleId: 'viewmodels/account/details',
+            name: 'Edit Account',
+            visible: false,
+            caption: '<i class="icon-book"></i> Edit Account'
+        },
 
         //Map
         {

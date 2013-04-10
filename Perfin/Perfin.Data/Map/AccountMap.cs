@@ -13,7 +13,11 @@ namespace Perfin.Data.Map
             Map(x => x.Description).Nullable();
             Map(x => x.Type).Not.Nullable();
             Map(x => x.Category).Not.Nullable();
-            //Map(x => x.Parent).Nullable();
         }
     }
 }
+//{"Could not determine type for: 
+//Perfin.Model.AccountType, 
+//Perfin.Model, Version=1.0.0.0, 
+//Culture=neutral, PublicKeyToken=null, 
+//for columns: NHibernate.Mapping.Column(Type)"}

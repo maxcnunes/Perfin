@@ -41,7 +41,7 @@
                 });
             },
 
-            getCatetories = function (callbacks) {
+            getAccounts = function (callbacks) {
                 return amplify.request({
                     resourceId: 'accounts',
                     success: callbacks.success,
@@ -49,7 +49,7 @@
                 });
             },
 
-            getCategory = function (callbacks, id) {
+            getAccount = function (callbacks, id) {
                 return amplify.request({
                     resourceId: 'account',
                     data: { id: id },
@@ -58,7 +58,7 @@
                 });
             },
 
-            addCategory = function (callbacks, data) {
+            addAccount = function (callbacks, data) {
                 return amplify.request({
                     resourceId: 'accountAdd',
                     data: data,
@@ -67,7 +67,7 @@
                 });
             },
 
-            updateCategory = function (callbacks, data) {
+            updateAccount = function (callbacks, data) {
                 return amplify.request({
                     resourceId: 'accountUpdate',
                     data: data,
@@ -76,7 +76,7 @@
                 });
             },
 
-            deleteCategory = function (callbacks, id) {
+            deleteAccount = function (callbacks, id) {
                 return amplify.request({
                     resourceId: 'accountDelete',
                     data: { id: id },

@@ -25,7 +25,7 @@
             return _dc;
         }
 
-    // Prototype is available to all instances.
+        // Prototype is available to all instances.
         // It has access to the properties of the instance of Session.
         Account.prototype = function () {
             var

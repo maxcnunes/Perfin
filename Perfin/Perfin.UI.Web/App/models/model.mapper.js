@@ -51,9 +51,9 @@
 	                item = item || new model.Account().id(dto.id);
 	                item.name(dto.name);
 	                item.description(dto.description);
-	                item.accounttypeId(dto.accounttypeId)
-	                item.categoryId(dto.categoryId)
-
+	                item.accounttypeId(dto.AccountType.id)
+	                item.categoryId(dto.Category.id)
+                    
 	                item.dirtyFlag().reset();
 	                return item;
 	            }

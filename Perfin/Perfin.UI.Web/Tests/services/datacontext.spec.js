@@ -10,30 +10,30 @@ define([
     function (categoryModel,userModel,accounttypeModel,accountModel, datacontext) {
         describe('Services :: Datacontext', function () {
             
-            it('should add category', function () {
-                var _success, _error;
+            //it('should add category', function () {
+            //    var _success, _error;
 
-                var callback = {
-                    success: function (response) { _success = response; },
-                    error: function (response) { _error = response; }
-                };
+            //    var callback = {
+            //        success: function (response) { _success = response; },
+            //        error: function (response) { _error = response; }
+            //    };
 
-                var category = new categoryModel();
-                category.name('Name test');
-                category.parent(0);
+            //    var category = new categoryModel();
+            //    category.name('Name test');
+            //    category.parent(0);
 
-                datacontext.category.addData(category, callback);
+            //    datacontext.category.addData(category, callback);
 
-                waitsFor(function () {
-                    return _success || _error;
-                }, 5000);
+            //    waitsFor(function () {
+            //        return _success || _error;
+            //    }, 5000);
 
 
-                runs(function () {
-                    expect(_success).not.toBe(undefined);
-                    expect(_error).toBe(undefined);
-                });
-            });
+            //    runs(function () {
+            //        expect(_success).not.toBe(undefined);
+            //        expect(_error).toBe(undefined);
+            //    });
+            //});
 
             //it('should update category', function () {
             //    var _success, _error;
