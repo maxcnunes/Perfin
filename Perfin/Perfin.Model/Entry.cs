@@ -8,19 +8,19 @@ namespace Perfin.Model
 {
     public class Entry
     {
-        public int Id { get; set; }
-        public Decimal Price { get; set; }
-        public Account Account { get; set; }
-        public string Description { get; set; }
+        public virtual  int Id { get; set; }
+        public virtual decimal Price { get; set; }
+        public virtual Account Account { get; set; }
+        public virtual string Description { get; set; }
         
 
         //data da compra/receita
-        public DateTime RegistryDate { get; set; } 
+        public virtual DateTime RegistryDate { get; set; } 
         
         //data, geralmente mes, para pagamento/recebimento (geralmente em caso de cartao 
         //de credito ou movimentaçoes para pagamento/recebimento com mais de 30 dias)
-        public DateTime PaymentDate { get; set; } 
+        public virtual DateTime PaymentDate { get; set; } 
 
-
+        //parcelamento ??? todo
     }
 }

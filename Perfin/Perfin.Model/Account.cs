@@ -11,11 +11,11 @@ namespace Perfin.Model
     /// </summary>
     public class Account
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public AccountType Type { get; set; }
-        public Category Category { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Description { get; set; }
+        public virtual AccountType Type { get; set; }
+        public virtual Category Category { get; set; }
         
     }
 }

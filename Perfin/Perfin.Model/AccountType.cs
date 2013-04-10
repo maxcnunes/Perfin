@@ -11,9 +11,11 @@ namespace Perfin.Model
     /// -> Income
     /// -> Expense
     /// </summary>
-    public class AccountType
+    public class AccountType 
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+
+        public AccountType() { }
     }
 }

@@ -3,7 +3,7 @@ using Perfin.Model;
 
 namespace Perfin.Data.Map
 {
-    public class AccountTypeMap : ClassMap<Account>
+    public class AccountTypeMap : ClassMap<AccountType>
     {
         public AccountTypeMap()
         {
