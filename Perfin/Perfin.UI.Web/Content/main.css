@@ -428,6 +428,104 @@ fieldset {
     display: none;
 }
 
+
+/*==== Validation ====*/
+input:invalid,
+textarea:invalid {
+    border-width: 1px;
+}
+
+input:required {
+    background: white url(images/val_asterisk.png) no-repeat 98% center;
+}
+
+textarea:required,
+textarea:required:focus {
+    background: white url(images/val_asterisk.png) no-repeat 94% center;
+}
+
+input:focus:invalid {
+    background: white url(images/invalid.png) no-repeat 98% center;
+}
+
+textarea:focus:invalid {
+    background: white url(images/invalid.png) no-repeat 94% center;
+}
+
+textarea:focus {
+    -moz-outline: none;
+    outline: none;
+}
+
+textarea {
+    padding: 5px;
+    width: 300px;
+}
+
+input,
+textarea {
+    border: 1px solid #aaaaaa;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-transition: padding 0.25s;
+    -o-transition: padding 0.25s;
+    -webkit-transition: padding 0.25s;
+    transition: padding 0.25s;
+}
+
+    input:focus,
+    textarea:focus {
+        padding-right: 20px;
+    }
+
+    textarea:required {
+        background: white url(images/val_asterisk.png) no-repeat 94% center;
+    }
+
+        input:required:valid,
+        textarea:required:valid {
+            background: white url(images/valid.png) no-repeat 98% center;
+        }
+
+        textarea:required:valid {
+            background: white url(images/valid.png) no-repeat 94% center;
+        }
+
+    input:focus:invalid,
+    textarea:focus:invalid {
+        background: white url(images/invalid.png) no-repeat 98% center;
+    }
+
+.validationMessage {
+    background: #d45252;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    margin-left: 8px;
+    padding: 0 6px;
+    z-index: 999;
+    /* hints stay above all other elements */
+    position: absolute;
+    /* allows proper formatting if hint is two lines */
+}
+
+.validationElement {
+    border: solid 1px #b03535;
+}
+
+input:focus + .validationMessage,
+textarea:focus + .validationMessage {
+    display: inline;
+}
+
+input:valid + .validationMessage,
+textarea:valid + .validationMessage {
+    display: none;
+}
+
+
 /*--------------
   RESPONSIVE
 --------------*/
@@ -684,7 +782,6 @@ fieldset {
                     font-weight: normal!important;
                 }
 }
-
 
 
 
