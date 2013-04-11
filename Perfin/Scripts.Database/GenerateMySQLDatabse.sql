@@ -44,33 +44,16 @@ CREATE TABLE `AccountType`(
 --
 -- ACCOUNT
 --
-CREATE TABLE `Account`(
 
-	`Id` int(11) NOT NULL,
-
-	`Name` varchar(45) NOT NULL,
-
-	`Description` varchar(300)NOT NULL,
-
-	`Type` int(11) NOT NULL,
-
-	`Category` int(11) NOT NULL,
-
-
-
-	CONSTRAINT `PK_Id` PRIMARY KEY CLUSTERED 
-(
-`Id` ASC),
-
-	CONSTRAINT FK_TYPE
-  FOREIGN KEY (`Type`)
- 
-		REFERENCES AccountType(`ID`),
-
-
-	CONSTRAINT FK_CATEGORY
- FOREIGN KEY (`Category`)
-		REFERENCES Category(`ID`)
-
-
-); 
+CREATE TABLE `account` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(45) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `Category` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `FK_TYPE` (`Type`),
+  KEY `FK_CATEGORY` (`Category`),
+  CONSTRAINT `FK_CATEGORY` FOREIGN KEY (`Category`) REFERENCES `category` (`Id`),
+  CONSTRAINT `FK_TYPE` FOREIGN KEY (`Type`) REFERENCES `accounttype` (`Id`)
+) 
