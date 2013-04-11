@@ -11,8 +11,8 @@ namespace Perfin.Data.Map
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Unique();
             Map(x => x.Description).Nullable();
-            References(x => x.Type, "Id");
-            References(x => x.Category, "Id");
+            References(x => x.Type, "AccountTypeId");
+            References(x => x.Category, "CategoryId");
         }
     }
 }

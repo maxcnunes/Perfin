@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace Perfin.UI.Web.Controllers
 {
     public class AccountController : ApiBaseController
-   {
+    {
         public AccountController(IUnitOfWork uow)
         {
             Uow = uow;
@@ -19,7 +19,7 @@ namespace Perfin.UI.Web.Controllers
         // GET /api/account
         public IEnumerable<Account> Get()
         {
-            var teste =  Uow.Accounts.GetAll()
+            var teste = Uow.Accounts.GetAll()
                 .OrderBy(c => c.Name);
 
             return teste;
@@ -28,7 +28,7 @@ namespace Perfin.UI.Web.Controllers
         // GET /api/account/3
         public Account Get(int id)
         {
-            var account = Uow.Accounts.GetById(id);    
+            var account = Uow.Accounts.GetById(id);
 
             if (account != null)
                 return account;
@@ -40,6 +40,9 @@ namespace Perfin.UI.Web.Controllers
         // POST /api/account
         public HttpResponseMessage Post(Account account)
         {
+            account.Category = new Category { Id = 1 };
+            account.Type = new AccountType { Id = 1 };
+
             Uow.Accounts.Add(account);
             Uow.Commit();
 
@@ -73,6 +76,6 @@ namespace Perfin.UI.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
 
-        
-   }
+
+    }
 }
