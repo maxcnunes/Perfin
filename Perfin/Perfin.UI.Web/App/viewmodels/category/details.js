@@ -6,24 +6,32 @@
 
         var
             category = ko.observable(),
-            parentCategories = ko.observableArray(),
+            parentCategories = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
+            validationErrors = ko.observableArray([]),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
-                initLookups();
-                return getCategory(id);
+                getCategory(id);
+                initLookups(id);
             },
-            initLookups = function () {
+            initLookups = function (currentId) {
+                getAllParentCategories();
 
+                function getAllParentCategories() {
+                    $.when(datacontext.category.getAllLeastCurrent(currentId))
+                     .done(function (items) {
+                         parentCategories(items);
+                     });
+                }
             },
             getCategory = function (currentCategoryId, completeCallback, forceRefresh) {
                 var callback = function () {
                     if (completeCallback)
                         completeCallback();
 
-                    //validationErrors = ko.validation.group(category());
+                    validationErrors = ko.validation.group(category());
                 };
 
                 datacontext.category.getCategoryById(
@@ -41,7 +49,7 @@
                 router.navigateBack();
             },
             canEditCategory = ko.computed(function () {
-                return category();
+                return category() !== undefined;
             }),
             hasChanges = ko.computed(function () {
                 if (canEditCategory()) {
@@ -49,8 +57,11 @@
                 }
                 return false;
             }),
+            isValid = function () {
+                return canEditCategory() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
 
             save = function () {
@@ -66,30 +77,17 @@
                 }
             },
             canDeactivate = function () {
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //datacontext.cancelChanges();
+                            }
+                            return selectedOption;
+                        });
+                }
                 return true;
-
-                // OLD
-                //----------------------------
-                //if (this._categoryAdded == false) {
-                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-                //} else {
-                //    return true;
-                //}
-
-
-                // NEW EXAMPLE
-                //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
             },
             goBack = function () {
                 router.navigateBack();
@@ -100,7 +98,7 @@
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
                         .then(confirmDelete);
-            
+
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 

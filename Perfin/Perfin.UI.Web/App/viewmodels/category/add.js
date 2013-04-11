@@ -8,16 +8,25 @@
 
         var
             isSaving = ko.observable(false),
-            parentCategories = ko.observableArray(),
             category = ko.observable(),
+            parentCategories = ko.observable(),
+            validationErrors = ko.observableArray([]),
 
             activate = function () {
                 initLookups();
                 category(new model());
-                //category(datacontext.createSession());
+                validationErrors = ko.validation.group(category());//apply validation
             },
             initLookups = function () {
-                //parentCategories(datacontext.lookups.rooms);
+                getAllParentCategories();
+
+                function getAllParentCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: parentCategories }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
             },
             cancel = function (complete) {
                 router.navigateBack();
@@ -33,6 +42,9 @@
                 return false;
                 //return datacontext.hasChanges();
             }),
+            isValid = function () {
+                return canEditCategory() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving();
             }),
@@ -81,17 +93,21 @@
                 //        });
                 //}
                 //return true;
+            },
+            goBack = function () {
+                router.navigateBack();
             };
 
         var vm = {
             activate: activate,
             canDeactivate: canDeactivate,
+            goBack:goBack,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
+            category: category,
             parentCategories: parentCategories,
             save: save,
-            category: category,
 
             // module page info
             pageDisplayName: 'Create Category',
