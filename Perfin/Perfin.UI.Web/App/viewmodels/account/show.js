@@ -8,17 +8,17 @@
     function (datacontext, logger, system, router, $, app) {
         var
             show = this,
-            accounttypes = ko.observableArray(),
+            accounts = ko.observableArray(),
             isDeleting = ko.observable(false),
 
             activate = function () {
 
                 return $.Deferred(function (def) {
-                    $.when(datacontext.accounttype.getData({ results: accounttypes }))
+                    $.when(datacontext.account.getData({ results: accounts }))
 
                         .pipe(function () {
 
-                            logger.info('Fetched data for: ' + accounttypes().length + ' accounttypes ',
+                            logger.info('Fetched data for: ' + accounts().length + ' accounts ',
                                 true, null, system.getModuleId(show));
                         })
 
@@ -31,7 +31,7 @@
 
             gotoDetails = function (selectedItem) {
                 if (selectedItem && selectedItem.id()) {
-                    var url = '#/accounttype/details/' + selectedItem.id();
+                    var url = '#/account/details/' + selectedItem.id();
                     router.navigateTo(url);
                 }
             },
@@ -44,8 +44,8 @@
             bindEventToList = function (rootSelector, selector, callback, eventName) {
                 var eName = eventName || 'click';
                 $(rootSelector).on(eName, selector, function () {
-                    var accounttype = ko.dataFor(this);
-                    callback(accounttype);
+                    var account = ko.dataFor(this);
+                    callback(account);
                     return false;
                 });
             },
@@ -64,13 +64,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.accounttype.deleteData(selectedItem))
+                        $.when(datacontext.account.deleteData(selectedItem))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            accounttypes.remove(selectedItem);
+                            accounts.remove(selectedItem);
                         }
 
                         function failed(error) {
@@ -90,7 +90,7 @@
 
 
         return {
-            accounttypes: accounttypes,
+            accounts: accounts,
             activate: activate,
             viewAttached: viewAttached,
 

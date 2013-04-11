@@ -8,7 +8,6 @@
 
         var
             isSaving = ko.observable(false),
-            name = ko.observable(false),
             accounttype = ko.observable(),
             validationErrors = ko.observableArray([]),
 

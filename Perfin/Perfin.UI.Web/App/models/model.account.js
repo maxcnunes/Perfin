@@ -5,10 +5,10 @@
 
             var self = this;
             self.id = ko.observable();
-            self.name = ko.observable();
+            self.name = ko.observable().extend({ required: true });
             self.description = ko.observable();
-            self.accounttypeId = ko.observable();
-            self.categoryId = ko.observable();
+            self.accounttypeId = ko.observable().extend({ required: true });
+            self.categoryId = ko.observable().extend({ required: true });
 
             self.isNullo = false;
             self.dirtyFlag = new ko.DirtyFlag([self.id, self.name, self.description]);
@@ -20,6 +20,8 @@
         Account.Nullo.isNullo = true;
         Account.Nullo.dirtyFlag().reset();
 
+
+        var _dc = null;
         Account.datacontext = function (dc) {
             if (dc) { _dc = dc; }
             return _dc;

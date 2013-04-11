@@ -9,23 +9,35 @@
 
         var
             isSaving = ko.observable(false),
-            name = ko.observable(false),
-            description = ko.observable(false),
-            accounttypeId = ko.observable(false),
-            categoryId = ko.observable(false),
-            accounttype = ko.observable(),
-            category = ko.observable(),
             account = ko.observable(),
+            accounttypes = ko.observable(),
+            categories = ko.observable(),
+            
 
             activate = function () {
+                //debugger;
                 initLookups();
                 account(new model());
-                accounttype(new accounttypeModel());
-                category(new categoryModel());
-                //accounttype(datacontext.createSession());
+                validationErrors = ko.validation.group(account());//apply validation
             },
             initLookups = function () {
-                //parentCategories(datacontext.lookups.rooms);
+                $.when(getAllCategories(), getAllAccountTypes());
+
+                function getAllCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: categories}))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
+
+                function getAllAccountTypes() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.accounttype.getData({ results: accounttypes }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
             },
             cancel = function (complete) {
                 router.navigateBack();
@@ -103,6 +115,8 @@
             save: save,
             account: account,
             goBack: goBack,
+            accounttypes :accounttypes,
+            categories : categories,
 
             // module page info
             pageDisplayName: 'Create AccountType',

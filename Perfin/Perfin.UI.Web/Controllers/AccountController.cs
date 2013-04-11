@@ -19,8 +19,10 @@ namespace Perfin.UI.Web.Controllers
         // GET /api/account
         public IEnumerable<Account> Get()
         {
-            return Uow.Accounts.GetAll()
+            var teste =  Uow.Accounts.GetAll()
                 .OrderBy(c => c.Name);
+
+            return teste;
         }
 
         // GET /api/account/3

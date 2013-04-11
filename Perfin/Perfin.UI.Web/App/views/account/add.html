@@ -29,18 +29,21 @@
             <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
             <span class="help-block">Description of account.</span>
 
-            <label>Account Type</label> * load data not implemented yet
-            <select class="span5" >
-                <option>Expense</option>
-                <option>Income</option>
+            <label>Account Type</label> 
+             <select class="span5" 
+                data-bind="options: $parent.accounttypes,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: accounttypeId">
             </select>
             <span class="help-block">A group for Account Types.</span>
 
-            <label>Category</label> * load data not implemented yet
-            <select class="span5" >
-                <option>Transport</option>
-                <option>Food</option>
-                <option>Others</option>
+            <label>Category</label> 
+             <select class="span5" 
+                data-bind="options: $parent.categories,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: categoryId">
             </select>
             <span class="help-block">Category Account is the account which group belongs.</span>
 
