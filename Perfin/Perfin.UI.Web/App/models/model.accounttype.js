@@ -5,7 +5,7 @@
 
             var self = this;
             self.id = ko.observable();
-            self.name = ko.observable();
+            self.name = ko.observable().extend({ required: true });
             
             self.isNullo = false;
             self.dirtyFlag = new ko.DirtyFlag([self.id, self.name]);

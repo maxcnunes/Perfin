@@ -79,7 +79,10 @@
                         });
                 }
                 return true;
-            };
+            },
+             goBack = function () {
+                 router.navigateBack();
+             };
 
         var vm = {
             activate: activate,
@@ -89,6 +92,7 @@
             hasChanges: hasChanges,
             save: save,
             user: user,
+            goBack: goBack,
 
             // module page info
             pageDisplayName: 'Create New User',

@@ -89,7 +89,10 @@
                 //        });
                 //}
                 //return true;
-            };
+            },
+             goBack = function () {
+                 router.navigateBack();
+             };
 
         var vm = {
             activate: activate,
@@ -99,7 +102,7 @@
             hasChanges: hasChanges,
             save: save,
             account: account,
-
+            goBack: goBack,
 
             // module page info
             pageDisplayName: 'Create AccountType',

@@ -10,6 +10,7 @@
             isSaving = ko.observable(false),
             name = ko.observable(false),
             accounttype = ko.observable(),
+            validationErrors = ko.observableArray([]),
 
             activate = function () {
                 initLookups();
@@ -33,8 +34,11 @@
                 return false;
                 //return datacontext.hasChanges();
             }),
+            isValid = function () {
+                return canEditAccountType() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
 
@@ -81,7 +85,10 @@
                 //        });
                 //}
                 //return true;
-            };
+            },
+             goBack = function () {
+                 router.navigateBack();
+             };
 
         var vm = {
             activate: activate,
@@ -91,6 +98,7 @@
             hasChanges: hasChanges,
             save: save,
             accounttype: accounttype,
+            goBack: goBack,
 
             // module page info
             pageDisplayName: 'Create AccountType',

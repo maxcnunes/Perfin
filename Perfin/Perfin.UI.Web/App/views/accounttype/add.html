@@ -24,12 +24,6 @@
             <input type="text" class="span5" placeholder="Future Entry..." data-bind="value: name">
             <span class="help-block">Account Type is a type of your account. Usually is just Expense or Income, but is specialy ocasions may other type.</span>
 
-            <label></label>
-            <select class="span5" >
-                <option>Expense</option>
-                <option>Income</option>
-            </select>
-            <span class="help-block">A group for Account Types just did.</span>
         </section>
 
         <!-- Buttons -->
@@ -42,6 +36,11 @@
             <button type="reset" class="btn"
                     data-bind="click: cancel, enable: canSave">
                 <i class="icon-undo"></i>Cancel</button>
+
+            
+            <button class="btn btn-info" data-bind="click: goBack">
+                <i class="icon-hand-left"></i>Back
+            </button>
 
             <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
         </div>
