@@ -89,7 +89,6 @@
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
-            parentCategories: parentCategories,
             save: save,
             accounttype: accounttype,
 

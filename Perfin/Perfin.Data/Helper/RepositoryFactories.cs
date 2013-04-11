@@ -34,7 +34,10 @@ namespace Perfin.Data
             return new Dictionary<Type, Func<ISession, object>>
                 {
                    { typeof(IUserRepository), dbSession => new UserRepository(dbSession) },
-                   { typeof(ICategoryRepository), dbSession => new CategoryRepository(dbSession) }
+                   { typeof(ICategoryRepository), dbSession => new CategoryRepository(dbSession) },
+                   { typeof(IAccountTypeRepository), dbSession => new AcccountTypeRepository(dbSession) },
+                   { typeof(IAccountRepository), dbSession => new AcccountRepository(dbSession) }
+                   
                 };
         }
 

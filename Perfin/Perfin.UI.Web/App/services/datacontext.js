@@ -162,8 +162,8 @@ define([
             //--------------------------------------
             categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
             userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
-            accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountType, modelmapper.accounttype, model.AccountType.Nullo);
-            accountRepository = new EntitySet(dataservice.account.getUsers, modelmapper.account, model.AccountType.Nullo);
+            accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
+            accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
        
         // Extend Categories entitySet
         //----------------------------

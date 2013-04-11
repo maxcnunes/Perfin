@@ -142,7 +142,7 @@ define([
                 user.login('login');
                 user.password('teste');
 
-                datacontext.user.updateUser(user, callback);
+                datacontext.user.updateData(user, callback);
 
                 waitsFor(function () {
                     return _success || _error;
@@ -164,9 +164,9 @@ define([
                 };
 
                 var user = new userModel();
-                user.id(11);
+                user.id(15); // always have to alter id to some valid user if you want to pass in test
 
-                datacontext.user.deleteUser(user, callback);
+                datacontext.user.deleteData(user, callback);
 
                 waitsFor(function () {
                     return _success || _error;
@@ -190,10 +190,11 @@ define([
                     error: function (response) { _error = response; }
                 };
 
-                var accounttype = new AccountTypeModel();
-                accounttype.name('accountNAme');
+                var accounttype = new accounttypeModel();
+                accounttype.name('accountName');
 
-                datacontext.user.addData(accounttype, callback);
+
+                datacontext.accounttype.addData(accounttype, callback);
 
                 waitsFor(function () {
                     return _success || _error;
@@ -214,12 +215,13 @@ define([
                     error: function (response) { _error = response; }
                 };
 
-                var acccount = new AccountModel();
+                var acccount = new accountModel();
                 acccount.name('accountNAme');
                 account.description('account Description');
+                //acccount.accounttypeModel.id(1);
                 //account.categoryModel.id(1);
 
-                datacontext.user.addData(acccount, callback);
+                datacontext.acccount.addData(acccount, callback);
 
                 waitsFor(function () {
                     return _success || _error;

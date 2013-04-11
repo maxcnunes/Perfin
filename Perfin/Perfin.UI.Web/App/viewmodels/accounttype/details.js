@@ -94,7 +94,7 @@
             goBack = function () {
                 router.navigateBack();
             },
-            deleteAccountType = function () {
+            deleteItem = function () {
                 var msg = 'Delete accounttype "' + accounttype().name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
@@ -104,7 +104,7 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.accounttype.deleteData(accounttype()))
+                        $.when(datacontext.accounttype.deleteItem(accounttype()))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
@@ -138,7 +138,7 @@
             hasChanges: hasChanges,
             save: save,
             goBack: goBack,
-            deleteAccountType: deleteAccountType,
+            deleteItem: deleteItem,
 
             // module page info
             pageDisplayName: 'Edit AccountType',
