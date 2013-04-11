@@ -11,13 +11,8 @@ namespace Perfin.Data.Map
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name).Unique();
             Map(x => x.Description).Nullable();
-            References(x => x.Type);
-            References(x => x.Category);
+            References(x => x.Type, "Id");
+            References(x => x.Category, "Id");
         }
     }
 }
-//{"Could not determine type for: 
-//Perfin.Model.AccountType, 
-//Perfin.Model, Version=1.0.0.0, 
-//Culture=neutral, PublicKeyToken=null, 
-//for columns: NHibernate.Mapping.Column(Type)"}
