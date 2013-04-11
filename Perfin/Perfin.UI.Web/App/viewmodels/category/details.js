@@ -9,6 +9,7 @@
             parentCategories = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
+            validationErrors = ko.observableArray([]),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
@@ -30,7 +31,7 @@
                     if (completeCallback)
                         completeCallback();
 
-                    //validationErrors = ko.validation.group(category());
+                    validationErrors = ko.validation.group(category());
                 };
 
                 datacontext.category.getCategoryById(
@@ -48,7 +49,7 @@
                 router.navigateBack();
             },
             canEditCategory = ko.computed(function () {
-                return category();
+                return category() !== undefined;
             }),
             hasChanges = ko.computed(function () {
                 if (canEditCategory()) {
@@ -56,8 +57,11 @@
                 }
                 return false;
             }),
+            isValid = function () {
+                return canEditCategory() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
 
             save = function () {
@@ -73,30 +77,17 @@
                 }
             },
             canDeactivate = function () {
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //datacontext.cancelChanges();
+                            }
+                            return selectedOption;
+                        });
+                }
                 return true;
-
-                // OLD
-                //----------------------------
-                //if (this._categoryAdded == false) {
-                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-                //} else {
-                //    return true;
-                //}
-
-
-                // NEW EXAMPLE
-                //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
             },
             goBack = function () {
                 router.navigateBack();

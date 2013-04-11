@@ -25,7 +25,8 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/amplify.js")
                 .Include("~/Scripts/underscore.js")
-                .Include("~/Scripts/knockout.dirtyFlag.js")                
+                .Include("~/Scripts/knockout.dirtyFlag.js")
+                .Include("~/Scripts/knockout.validation.js")                
               );
 
 

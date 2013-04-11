@@ -10,10 +10,12 @@
             isSaving = ko.observable(false),
             category = ko.observable(),
             parentCategories = ko.observable(),
+            validationErrors = ko.observableArray([]),
 
             activate = function () {
                 initLookups();
                 category(new model());
+                validationErrors = ko.validation.group(category());//apply validation
             },
             initLookups = function () {
                 getAllParentCategories();
@@ -40,6 +42,9 @@
                 return false;
                 //return datacontext.hasChanges();
             }),
+            isValid = function () {
+                return canEditCategory() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving();
             }),
@@ -88,11 +93,15 @@
                 //        });
                 //}
                 //return true;
+            },
+            goBack = function () {
+                router.navigateBack();
             };
 
         var vm = {
             activate: activate,
             canDeactivate: canDeactivate,
+            goBack:goBack,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,

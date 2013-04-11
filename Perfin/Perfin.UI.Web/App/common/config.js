@@ -1,6 +1,6 @@
 ﻿define(
-    [],
-    function () {
+    ['ko'],
+    function (ko) {
         var routes = [{
             url: 'welcome',
             moduleId: 'viewmodels/welcome',
@@ -123,6 +123,31 @@
             retreivedData: 'Data retrieved successfully',
             savedData: 'Data saved successfully'
         };
+
+        var validationInit = function () {
+            ko.validation.configure({
+                registerExtenders: true,    //default is true
+                messagesOnModified: true,   //default is true
+                insertMessages: true,       //default is true
+                parseInputAttributes: true, //default is false
+                writeInputAttributes: true, //default is false
+                messageTemplate: null,      //default is null
+                decorateElement: true       //default is false. Applies the .validationElement CSS class
+            });
+        };
+
+        var init = function () {
+            //if (_useMocks) {
+            //    dataserviceInit = mock.dataserviceInit;
+            //}
+            //dataserviceInit();
+
+            //toastr.options.timeOut = toastrTimeout;
+            //configureExternalTemplates();
+            validationInit();
+        };
+
+        init();
 
         return {
             routes: routes,
