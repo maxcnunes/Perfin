@@ -22,7 +22,6 @@ namespace Perfin.Test.Data.Repository
         {
             // Initialize Db
             DatabaseConfig.InitializeDbTests();
-            
         }
 
         [TestInitialize]

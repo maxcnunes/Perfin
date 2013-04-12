@@ -81,6 +81,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Config\TestConfiguration.cs" />
     <Compile Include="Config\DatabaseConfig.cs" />
     <Compile Include="Config\SqlScripts.cs" />
     <Compile Include="Data\Repository\CategoryRepositoryTest.cs" />
@@ -146,6 +147,10 @@
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT EXIST "$(TargetDir)ScriptsDatabaseTests" MKDIR "$(TargetDir)ScriptsDatabaseTests"
+XCOPY /E /Y "$(ProjectDir)..\Scripts.Database\Tests" "$(TargetDir)ScriptsDatabaseTests"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
