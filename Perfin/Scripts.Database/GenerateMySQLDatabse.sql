@@ -30,11 +30,14 @@ CREATE TABLE `account` (
   `Description` varchar(300) NOT NULL,
   `AccountTypeId` int(11) NOT NULL,
   `CategoryId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+
   PRIMARY KEY (`Id`),
   KEY `FK_TYPE` (`AccountTypeId`),
   KEY `FK_CATEGORY` (`CategoryId`),
   CONSTRAINT `FK_CATEGORY` FOREIGN KEY (`CategoryId`) REFERENCES `category` (`Id`),
-  CONSTRAINT `FK_TYPE` FOREIGN KEY (`AccountTypeId`) REFERENCES `accounttype` (`Id`)
+  CONSTRAINT `FK_TYPE` FOREIGN KEY (`AccountTypeId`) REFERENCES `accounttype` (`Id`),
+  CONSTRAINT `FK_USER` FOREIGN KEY (`UserId`) REFERENCES `user` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -46,7 +49,7 @@ DROP TABLE IF EXISTS `accounttype`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `accounttype` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,7 +63,7 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
   `Parent` int(11) DEFAULT '0',
   PRIMARY KEY (`Id`)
@@ -75,8 +78,12 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `Id` int(11) NOT NULL,
-  `Login` varchar(45) DEFAULT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Login` varchar(45) NOT NULL,
+  `Password` VARCHAR(3000) NOT NULL ,
+  `Email` VARCHAR(400) DEFAULT NULL  ,
+  `Name` VARCHAR(45) DEFAULT NULL,
+  `Salt` VARCHAR(45)DEFAULT NULL, 
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
