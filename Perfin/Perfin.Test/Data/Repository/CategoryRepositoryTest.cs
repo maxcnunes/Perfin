@@ -8,24 +8,26 @@ using System.Collections.Generic;
 using System.Linq;
 using Perfin.Data.Helper;
 using Perfin.Common.Helper;
+using Perfin.Test.Config;
 namespace Perfin.Test.Data.Repository
 {
-    [TestClass, Ignore]
+    [TestClass]
     public class CategoryRepositoryTest
     {
         IUnitOfWork unitOfWork;
+        int CategoryIdCreateByScript = 1;
 
-        /*
-         * Initialize
-         */
-        [TestInitialize]
-        public void Initialize()
+        [ClassInitialize]
+        public static void Initilize(TestContext ctx)
         {
             // Initialize Db
-            string sqlFullPath = ConfigurationManagerHelper.GetAppSetting("PathGenerateMySQLDatabseDump");
-            MySqlDataHelper.ExecuteDbScriptFromFile(sqlFullPath, ConfigurationManagerHelper.GetConnectionString("Perfin"));
+            DatabaseConfig.InitializeDbTests();
+            
+        }
 
-
+        [TestInitialize]
+        public void TestInitialize()
+        {
             var kernel = new StandardKernel(); // Ninject IoC
 
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
@@ -35,7 +37,16 @@ namespace Perfin.Test.Data.Repository
             unitOfWork = kernel.Get<IUnitOfWork>();
 
             // Prepare item db
-            CreateNewCategoryToTest("Test");
+            DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestInitialize);
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            // Dispose UOW to allow execute the command to clean the changes
+            unitOfWork.Dispose();
+            // Clean changes before the next test
+            DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestCleanup);
         }
 
 
@@ -43,72 +54,46 @@ namespace Perfin.Test.Data.Repository
         [TestMethod]
         public void Should_Create_Category()
         {
-            var category = CreateNewCategoryToTest("Casa");
+            var category = new Category("Other Test", 0);
+
+            unitOfWork.Categories.Add(category);
+            unitOfWork.Commit();
+
+            Assert.IsNotNull(category);
             Assert.IsTrue(category.Id > 0);
         }
 
         [TestMethod]
-        public void Should_Get_First_Category_On_Database()
+        public void Should_Get_Category_By_Id_On_Database()
         {
-            var category = GetCategoryOnDatabase();
+            var category = unitOfWork.Categories.GetById(CategoryIdCreateByScript);
             Assert.IsNotNull(category);
         }
 
-
-
         [TestMethod]
-        public void Should_Update_First_Category_On_Database()
+        public void Should_Update_Category_On_Database()
         {
-            var category = GetCategoryOnDatabase();
+            var category = unitOfWork.Categories.GetById(CategoryIdCreateByScript);
 
-            category.Name = "Name updated";
+            string newName = "Name updated";
+
+            category.Name = newName;
             unitOfWork.Categories.Update(category);
 
             unitOfWork.Commit();
 
-            Assert.IsTrue(category.Name == "Name updated");
+            Assert.IsTrue(category.Name == newName);
         }
 
         [TestMethod]
-        public void Should_Delete_First_Category_On_Database()
+        public void Should_Delete_Category_On_Database()
         {
-            var category = GetCategoryOnDatabase();
+            var category = unitOfWork.Categories.GetById(CategoryIdCreateByScript);
 
             unitOfWork.Categories.Delete(category);
             unitOfWork.Commit();
 
             Assert.IsNull(unitOfWork.Categories.GetById(category.Id));
-        }
-
-
-
-
-        public  Category CreateNewCategoryToTest(string categoryName = null, bool commitInTheEnd = true)
-        {
-            //Get category available
-            var random = new Random();
-            categoryName = "My Category";
-
-            while (unitOfWork.Categories.GetByName(categoryName) != null)
-            {
-                categoryName = string.Format("My Category{0}", random.Next());
-            }
-
-            //Create new Category to Test
-            var category = new Category(categoryName, 0);
-            unitOfWork.Categories.Add(category);
-
-            if (commitInTheEnd)
-                unitOfWork.Commit();
-            return category;
-        }
-
-        public  Category GetCategoryOnDatabase()
-        {
-            var all = unitOfWork.Categories.GetAll();
-            if (all != null && all.Count() > 0)
-                return all.First();
-            return null;
         }
     }
 }
