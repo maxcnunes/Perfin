@@ -122,6 +122,18 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Content Include="JsTests\jasmine\jasmine-html.js" />
+    <Content Include="JsTests\jasmine\jasmine.css" />
+    <Content Include="JsTests\jasmine\jasmine.js" />
+    <Content Include="JsTests\SpecRunner.html" />
+    <Content Include="JsTests\SpecRunner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JsTests\main.js" />
+    <Content Include="JsTests\models\model.category.spec.js" />
+    <Content Include="JsTests\repositories\category.spec.js" />
+    <Content Include="JsTests\services\datacontext.spec.js" />
+    <Content Include="JsTests\services\dataservice.category.spec.js" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
