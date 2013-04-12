@@ -53,6 +53,7 @@
 	                item.description(dto.description);
 	                item.accounttypeId(dto.AccountType.id)
 	                item.categoryId(dto.Category.id)
+	                item.userId(dto.User.id)
                     
 	                item.dirtyFlag().reset();
 	                return item;

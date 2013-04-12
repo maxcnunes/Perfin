@@ -9,14 +9,15 @@
             self.description = ko.observable();
             self.accounttypeId = ko.observable().extend({ required: true });
             self.categoryId = ko.observable().extend({ required: true });
+            self.userId = ko.observable().extend({ required: true });
 
             self.isNullo = false;
-            self.dirtyFlag = new ko.DirtyFlag([self.id, self.name, self.description]);
+            self.dirtyFlag = new ko.DirtyFlag([self.id, self.name, self.description, self.accounttypeId, self.categoryId, self.userId]);
 
             return self;
         };
 
-        Account.Nullo = new Account().id(0).name('Not a Account');// .AccountType(null).Category(null);
+        Account.Nullo = new Account().id(0).name('Not a Account');// .AccountType(null).Category(null);  todo  object = null or id = 0?
         Account.Nullo.isNullo = true;
         Account.Nullo.dirtyFlag().reset();
 
@@ -41,6 +42,9 @@
                     return dc().category.getLocalById(this.categoryId());
                 };
 
+                user = function () {
+                    return dc().user.getLocalById(this.userId());
+                };
             return {
                 isNullo: false,
                 accounttype: accounttype,

@@ -16,6 +16,7 @@ namespace Perfin.Model
         public virtual string Description { get; set; }
         public virtual AccountType Type { get; set; }
         public virtual Category Category { get; set; }
+        public virtual User User { get; set; }
         
     }
 }

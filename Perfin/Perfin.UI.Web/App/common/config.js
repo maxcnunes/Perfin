@@ -68,7 +68,7 @@
             url: 'accounttype/show',
             moduleId: 'viewmodels/accounttype/show',
             name: 'Account Types',
-            visible: true,
+            visible: false,
             caption: '<i class="icon-book"></i> Account Type',
             settings: {
                 classColor: 'red',
