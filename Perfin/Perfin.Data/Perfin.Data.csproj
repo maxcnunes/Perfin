@@ -38,6 +38,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.6.4\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
@@ -59,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\IRepositoryProvider.cs" />
+    <Compile Include="Helper\MySqlDataHelper.cs" />
     <Compile Include="Helper\PredicateBuilder.cs" />
     <Compile Include="Helper\RepositoryFactories.cs" />
     <Compile Include="Helper\RepositoryProvider.cs" />
