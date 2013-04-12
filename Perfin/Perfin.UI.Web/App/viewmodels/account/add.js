@@ -53,6 +53,9 @@
                 return false;
                 //return datacontext.hasChanges();
             }),
+           isValid = function () {
+               return canEditAccount() ? validationErrors().length === 0 : true;
+           },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving();
             }),
