@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Perfin.Test.Data.Repository
 {
-    [TestClass]
+    [TestClass, Ignore]
     public class UserRepositoryTest
     {
         IUnitOfWork unitOfWork;

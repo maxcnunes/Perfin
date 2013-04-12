@@ -6,9 +6,11 @@ using Perfin.Data;
 using Perfin.Model;
 using System.Collections.Generic;
 using System.Linq;
+using Perfin.Data.Helper;
+using Perfin.Common.Helper;
 namespace Perfin.Test.Data.Repository
 {
-    [TestClass]
+    [TestClass, Ignore]
     public class CategoryRepositoryTest
     {
         IUnitOfWork unitOfWork;
@@ -19,6 +21,11 @@ namespace Perfin.Test.Data.Repository
         [TestInitialize]
         public void Initialize()
         {
+            // Initialize Db
+            string sqlFullPath = ConfigurationManagerHelper.GetAppSetting("PathGenerateMySQLDatabseDump");
+            MySqlDataHelper.ExecuteDbScriptFromFile(sqlFullPath, ConfigurationManagerHelper.GetConnectionString("Perfin"));
+
+
             var kernel = new StandardKernel(); // Ninject IoC
 
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
@@ -26,14 +33,13 @@ namespace Perfin.Test.Data.Repository
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             unitOfWork = kernel.Get<IUnitOfWork>();
+
+            // Prepare item db
+            CreateNewCategoryToTest("Test");
         }
 
 
 
-
-        /*
-         * Tests
-         */
         [TestMethod]
         public void Should_Create_Category()
         {
@@ -48,12 +54,14 @@ namespace Perfin.Test.Data.Repository
             Assert.IsNotNull(category);
         }
 
+
+
         [TestMethod]
         public void Should_Update_First_Category_On_Database()
         {
             var category = GetCategoryOnDatabase();
 
-            category.Name= "Name updated";
+            category.Name = "Name updated";
             unitOfWork.Categories.Update(category);
 
             unitOfWork.Commit();
@@ -75,40 +83,32 @@ namespace Perfin.Test.Data.Repository
 
 
 
-        private Category CreateNewCategoryToTest(string categoryName = null, bool commitInTheEnd = true)
+        public  Category CreateNewCategoryToTest(string categoryName = null, bool commitInTheEnd = true)
         {
             //Get category available
             var random = new Random();
             categoryName = "My Category";
-            try
+
+            while (unitOfWork.Categories.GetByName(categoryName) != null)
             {
-
-                while (unitOfWork.Categories.GetByName(categoryName) != null)
-                {
-                    categoryName = string.Format("My Category{0}", random.Next());
-                }
-
-                //Create new Category to Test
-                var category = new Category(categoryName, 0);
-                unitOfWork.Categories.Add(category);
-
-                if (commitInTheEnd)
-                    unitOfWork.Commit();
-                return category;
-
+                categoryName = string.Format("My Category{0}", random.Next());
             }
-            catch (Exception)
-            {
-                    
-                throw;
-            }
+
+            //Create new Category to Test
+            var category = new Category(categoryName, 0);
+            unitOfWork.Categories.Add(category);
+
+            if (commitInTheEnd)
+                unitOfWork.Commit();
+            return category;
         }
 
-        public Category GetCategoryOnDatabase()
+        public  Category GetCategoryOnDatabase()
         {
-            return unitOfWork.Categories.GetAll().First();
+            var all = unitOfWork.Categories.GetAll();
+            if (all != null && all.Count() > 0)
+                return all.First();
+            return null;
         }
-        
-
     }
 }
