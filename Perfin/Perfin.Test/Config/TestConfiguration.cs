@@ -12,7 +12,6 @@ namespace Perfin.Test.Config
         /// <summary>
         /// Temp folder created on post build event
         /// </summary>
-        public static string pathDirectoryTest = Directory.GetCurrentDirectory();
-        public static string pathScriptsDatabaseTests = Path.Combine(pathDirectoryTest, "ScriptsDatabaseTests");
+        public static string pathScriptsDatabaseTests = "ScriptsDatabaseTests";
     }
 }
