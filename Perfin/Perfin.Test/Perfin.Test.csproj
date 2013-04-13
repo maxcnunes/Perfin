@@ -127,6 +127,17 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptsDatabaseTests\01.GenerateMySQLDatabse.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScriptsDatabaseTests\CategoryRepositoryTest.TestCleanup.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScriptsDatabaseTests\CategoryRepositoryTest.TestInitialize.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
@@ -149,8 +160,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF NOT EXIST "$(TargetDir)ScriptsDatabaseTests" MKDIR "$(TargetDir)ScriptsDatabaseTests"
-XCOPY /E /Y "$(ProjectDir)..\Scripts.Database\Tests" "$(TargetDir)ScriptsDatabaseTests"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
