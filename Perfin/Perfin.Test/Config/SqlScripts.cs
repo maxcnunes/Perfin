@@ -11,8 +11,6 @@ namespace Perfin.Test.Config
     {
         public static readonly string DirectoryScripts = TestConfiguration.pathScriptsDatabaseTests;
 
-        //public static readonly string DirectoryScripts = ConfigurationManagerHelper.GetAppSetting("PathScriptsDatabase");
-
         public struct SqlScriptsFileName
         {
             public const string CreadWholeDatabase = "01.GenerateMySQLDatabse.sql";

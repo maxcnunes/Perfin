@@ -20,14 +20,21 @@ namespace Perfin.Data.Helper
 
         public NHibernateHelper()
         {
-            var defaultConnection = ConfigurationManagerHelper.GetConnectionString("Perfin");
-            _connectionString = defaultConnection;
+            _connectionString = GetDefaultConnectionString();
         }
 
         public NHibernateHelper(string connectionString)
         {
             Check.Argument.NotNullOrEmpty(connectionString, "connectionString");
             _connectionString = connectionString;
+        }
+
+        private string GetDefaultConnectionString()
+        {
+            if (ConfigurationManagerHelper.IsEnvironment(ConfigurationManagerHelper.Environment.Test))
+                return MySqlDataHelper.GetConnectionStringFromAppSettings();
+            else
+                return ConfigurationManagerHelper.GetConnectionString("Perfin");
         }
 
         private ISessionFactory CreateSessionFactory()

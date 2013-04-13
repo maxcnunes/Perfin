@@ -11,7 +11,7 @@ namespace Perfin.Test.Config
 {
     public static class DatabaseConfig
     {
-        public static readonly string ConnectionString = ConfigurationManagerHelper.GetConnectionString("Perfin");
+        public static readonly string ConnectionString = MySqlDataHelper.GetConnectionStringFromAppSettings();
 
         public static void InitializeDbTests()
         {

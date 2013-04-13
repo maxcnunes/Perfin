@@ -1,8 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `perfin_test` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `perfin_test`;
+--
+-- {DATABASE_NAME} Will be replaced with the database name defined on AppSettings
+--
+
+
+CREATE DATABASE  IF NOT EXISTS `{DATABASE_NAME}` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `{DATABASE_NAME}`;
 -- MySQL dump 10.13  Distrib 5.6.10, for Win64 (x86_64)
 --
--- Host: localhost    Database: perfin_test
+-- Host: localhost    Database: {DATABASE_NAME}
 -- ------------------------------------------------------
 -- Server version 5.6.10
 
