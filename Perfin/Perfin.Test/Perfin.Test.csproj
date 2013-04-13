@@ -82,15 +82,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Config\TestConfiguration.cs" />
+    <Compile Include="Config\TestConfig.cs" />
     <Compile Include="Config\DatabaseConfig.cs" />
     <Compile Include="Config\SqlScripts.cs" />
     <Compile Include="Data\Repository\CategoryRepositoryTest.cs" />
     <Compile Include="Data\Repository\UserRepositoryTest.cs" />
+    <Compile Include="Data\TestDBConnectionTests.cs" />
     <Compile Include="Model\AccountTest.cs" />
     <Compile Include="Model\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\UserServiceTest.cs" />
+    <Compile Include="AppHarborTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Perfin.Common\Perfin.Common.csproj">
@@ -128,13 +130,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ScriptsDatabaseTests\01.GenerateMySQLDatabse.sql">
+    <Content Include="Config\ScriptsDBTests\01.GenerateMySQLDatabse.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ScriptsDatabaseTests\CategoryRepositoryTest.TestCleanup.sql">
+    <Content Include="Config\ScriptsDBTests\CategoryRepositoryTest.TestCleanup.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ScriptsDatabaseTests\CategoryRepositoryTest.TestInitialize.sql">
+    <Content Include="Config\ScriptsDBTests\CategoryRepositoryTest.TestInitialize.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

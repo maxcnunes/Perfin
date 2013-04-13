@@ -1,14 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Perfin.Data.Contract;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using Perfin.Data;
+using Perfin.Data.Contract;
 using Perfin.Model;
-using System.Collections.Generic;
-using System.Linq;
-using Perfin.Data.Helper;
-using Perfin.Common.Helper;
 using Perfin.Test.Config;
+using System;
 namespace Perfin.Test.Data.Repository
 {
     [TestClass]

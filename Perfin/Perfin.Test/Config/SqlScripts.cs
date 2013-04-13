@@ -9,7 +9,7 @@ namespace Perfin.Test.Config
 {
     public static class SqlScripts
     {
-        public static readonly string DirectoryScripts = TestConfiguration.pathScriptsDatabaseTests;
+        public static readonly string DirectoryScripts = TestConfig.pathScriptsDatabaseTests;
 
         public struct SqlScriptsFileName
         {
