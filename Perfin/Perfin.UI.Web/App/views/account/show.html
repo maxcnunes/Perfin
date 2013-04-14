@@ -39,13 +39,13 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach:accounttypes">
+            <tbody data-bind="foreach: accounts">
                 <tr>
-                    <td data-bind="text:id"></td>
-                    <td data-bind="text:name"></td>
-                    <td data-bind="text:description"></td>
-                    <td data-bind="text:AccountType().name"></td>
-                    <td data-bind="text:Category().name"></td>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: description"></td>
+                    <td data-bind="text: accounttype().name"></td>
+                    <td data-bind="text: category().name"></td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>

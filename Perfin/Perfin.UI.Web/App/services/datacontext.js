@@ -671,11 +671,6 @@ define([
         };
 
 
-
-
-
-
-
         var datacontext = {
             category: categoryRepository,
             user: userRepository,
