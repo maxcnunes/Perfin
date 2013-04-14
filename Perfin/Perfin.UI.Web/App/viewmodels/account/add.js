@@ -12,7 +12,7 @@
             account = ko.observable(),
             accounttypes = ko.observable(),
             categories = ko.observable(),
-            
+
 
             activate = function () {
                 //debugger;
@@ -25,7 +25,7 @@
 
                 function getAllCategories() {
                     return $.Deferred(function (def) {
-                        $.when(datacontext.category.getData({ results: categories}))
+                        $.when(datacontext.category.getData({ results: categories }))
                             .fail(function () { def.reject(); })
                             .done(function () { def.resolve(); });
                     }).promise();
@@ -52,12 +52,12 @@
 
                 return false;
                 //return datacontext.hasChanges();
-            }),
+           }),
            isValid = function () {
                return canEditAccount() ? validationErrors().length === 0 : true;
            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
 
@@ -118,8 +118,8 @@
             save: save,
             account: account,
             goBack: goBack,
-            accounttypes :accounttypes,
-            categories : categories,
+            accounttypes: accounttypes,
+            categories: categories,
 
             // module page info
             pageDisplayName: 'Create AccountType',

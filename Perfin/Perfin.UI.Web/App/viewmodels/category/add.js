@@ -46,7 +46,7 @@
                 return canEditCategory() ? validationErrors().length === 0 : true;
             },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
 

@@ -83,7 +83,6 @@ define([
                     getData = function (options) {
 
                         return $.Deferred(function (def) {
-                            debugger;
                             var
                                 results = options && options.results,
                                 sortFunction = options && options.sortFunction,

@@ -5,7 +5,7 @@
     function (router, datacontext, app) {
 
         var
-            accounttype = ko.observable(),
+            account = ko.observable(),
             name = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
@@ -20,16 +20,14 @@
             },
             getAccountType = function (currentAccountTypeId, completeCallback, forceRefresh) {
                 var callback = function () {
-                    if (completeCallback)
-                        completeCallback();
-
-                    //validationErrors = ko.validation.group(accounttype());
+                    if (completeCallback) { completeCallback(); }
+                    validationErrors = ko.validation.group(account());
                 };
 
-                datacontext.accounttype.getAccountTypeById(
+                datacontext.account.getAccountTypeById(
 					currentAccountTypeId, {
 					    success: function (modelResult) {
-					        accounttype(modelResult);
+					        account(modelResult);
 					        callback();
 					    },
 					    error: callback
@@ -40,24 +38,27 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditAccountType = ko.computed(function () {
-                return accounttype();
+            canEditAccount = ko.computed(function () {
+                return account();
             }),
             hasChanges = ko.computed(function () {
-                if (canEditAccountType()) {
-                    return accounttype().dirtyFlag().isDirty();
+                if (canEditAccount()) {
+                    return account().dirtyFlag().isDirty();
                 }
                 return false;
             }),
+            isValid = function () {
+                return canEditAccount() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
 
             save = function () {
 
                 isSaving(true);
-                if (canEditAccountType()) {
-                    $.when(datacontext.accounttype.updateData(accounttype()))
+                if (canEditAccount()) {
+                    $.when(datacontext.account.updateData(account()))
                         .done(complete);//.fin(complete);
                 }
 
@@ -95,7 +96,7 @@
                 router.navigateBack();
             },
             deleteAccountType = function () {
-                var msg = 'Delete accounttype "' + accounttype().name() + '" ?';
+                var msg = 'Delete account "' + account().name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -104,13 +105,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.accounttype.deleteData(accounttype()))
+                        $.when(datacontext.account.deleteData(account()))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            router.navigateTo('#/accounttype/show');
+                            router.navigateTo('#/account/show');
                         }
 
                         function failed(error) {
@@ -129,7 +130,7 @@
             };
 
         var vm = {
-            accounttype: accounttype,
+            account: account,
             name: name,
             activate: activate,
 
@@ -142,7 +143,7 @@
 
             // module page info
             pageDisplayName: 'Edit AccountType',
-            pageDescription: 'Edit a accounttype and let more organized your finances'
+            pageDescription: 'Edit a account and let more organized your finances'
         };
 
         return vm;

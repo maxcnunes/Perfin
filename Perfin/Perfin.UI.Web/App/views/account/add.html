@@ -34,7 +34,8 @@
                 data-bind="options: $parent.accounttypes,
                            optionsText: 'name',
                            optionsValue : 'id',
-                           value: accounttypeId">
+                           value: accounttypeId,
+                           optionsCaption: 'Choose...'">
             </select>
             <span class="help-block">A group for Account Types.</span>
 
@@ -43,7 +44,8 @@
                 data-bind="options: $parent.categories,
                            optionsText: 'name',
                            optionsValue : 'id',
-                           value: categoryId">
+                           value: categoryId,
+                           optionsCaption: 'Choose...'">
             </select>
             <span class="help-block">Category Account is the account which group belongs.</span>
 
