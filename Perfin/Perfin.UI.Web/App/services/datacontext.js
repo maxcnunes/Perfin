@@ -563,7 +563,7 @@ define([
         };
 
         accountRepository.addData = function (accountModel, callbacks) {
-            var accountModelJson = ko.toJSON(accountModel);
+            var accountModelJson = modelmapper.account.toJSON(accountModel);
 
             return $.Deferred(function (def) {
                 dataservice.account.addAccount({

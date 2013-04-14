@@ -9,7 +9,8 @@
             self.description = ko.observable();
             self.accounttypeId = ko.observable().extend({ required: true });
             self.categoryId = ko.observable().extend({ required: true });
-            self.userId = ko.observable().extend({ required: true });
+            // User id fixed as 1 for while
+            self.userId = ko.observable(1).extend({ required: true });
 
             self.isNullo = false;
             self.dirtyFlag = new ko.DirtyFlag([self.id, self.name, self.description, self.accounttypeId, self.categoryId, self.userId]);

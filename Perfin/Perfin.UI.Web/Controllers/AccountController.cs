@@ -40,11 +40,6 @@ namespace Perfin.UI.Web.Controllers
         // POST /api/account
         public HttpResponseMessage Post(Account account)
         {
-            account.Category = new Category { Id = 2 };
-            account.Type = new AccountType { Id = 2 };
-            account.User = new User { Id = 1 };
-
-
             Uow.Accounts.Add(account);
             Uow.Commit();
 

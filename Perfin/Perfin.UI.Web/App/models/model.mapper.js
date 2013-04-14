@@ -1,6 +1,6 @@
 ﻿define(
-	['models/model'],
-	function (model) {
+	['ko', 'models/model'],
+	function (ko, model) {
 		
 		// Private Members
 	    var
@@ -57,6 +57,23 @@
                     
 	                item.dirtyFlag().reset();
 	                return item;
+	            },
+	            toJSON: function (item) {
+	                var modelToJSON = item;
+
+	                if (item.categoryId && item.categoryId() > 0) {
+	                    modelToJSON.category = new model.Category().id(item.categoryId());
+	                }
+	                if (item.accounttypeId && item.accounttypeId() > 0) {
+	                    modelToJSON.type = new model.AccountType().id(item.accounttypeId());
+	                }
+	                // User id fixed as 1 for while
+	                item.userId(1);
+	                if (item.userId && item.userId() > 0) {
+	                    modelToJSON.user = new model.User().id(item.userId());
+	                }
+
+	                return ko.toJSON(modelToJSON);
 	            }
 	        };
 

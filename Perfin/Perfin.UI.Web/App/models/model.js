@@ -8,7 +8,6 @@ define([
     function (category, user, accounttype, account) {
         var
             model = {
-                // Category Model
                 Category: category,
                 User: user,
                 AccountType: accounttype,
