@@ -4,9 +4,9 @@
         var routes = [{
             url: 'welcome',
             moduleId: 'viewmodels/welcome',
-            name: 'Welcome',
+            name: '<i class="icon-book"></i> Welcome',
             visible: true,
-            caption: '<i class="icon-book"></i> Welcome',
+            caption: 'Welcome',
             settings: {
                 classColor: 'green',
                 classIcon : 'icon-home'
@@ -16,9 +16,9 @@
         {
             url: 'category/show',
             moduleId: 'viewmodels/category/show',
-            name: 'Categories',
+            name: '<i class="icon-book"></i> Categories',
             visible: true,
-            caption: '<i class="icon-book"></i> Categories',
+            caption: 'Categories',
             settings: {
                 classColor: 'blue',
                 classIcon: 'icon-tag'
@@ -26,23 +26,23 @@
         }, {
             url: 'category/add',
             moduleId: 'viewmodels/category/add',
-            name: 'Add Category',
+            name: '<i class="icon-plus"></i> Add Category',
             visible: false,
-            caption: '<i class="icon-plus"></i> Add Category'
+            caption: 'Add Category'
         }, {
             url: 'category/details/:id',
             moduleId: 'viewmodels/category/details',
-            name: 'Edit Category',
+            name: '<i class="icon-book"></i> Edit Category',
             visible: false,
-            caption: '<i class="icon-book"></i> Sessions'
+            caption: 'Sessions'
         },
         //user
         {
             url: 'user/show',
             moduleId: 'viewmodels/user/show',
-            name: 'Users',
+            name: '<i class="icon-book"></i> Users',
             visible: false,
-            caption: '<i class="icon-book"></i> Users',
+            caption: 'Users',
             settings: {
                 classColor: 'blue',
                 classIcon: 'icon-tag'
@@ -51,25 +51,25 @@
         {
             url: 'user/add',
             moduleId: 'viewmodels/user/add',
-            name: 'Add User',
+            name: '<i class="icon-plus"></i> Add User',
             visible: false,
-            caption: '<i class="icon-plus"></i> Add User'
+            caption: 'Add User'
         },
         {
             url: 'user/details/:id',
             moduleId: 'viewmodels/user/details',
-            name: 'Edit User',
+            name: '<i class="icon-book"></i> Edit User',
             visible: false,
-            caption: '<i class="icon-book"></i> Sessions'
+            caption: 'Sessions'
         },
 
          //accountType
         {
             url: 'accounttype/show',
             moduleId: 'viewmodels/accounttype/show',
-            name: 'Account Types',
+            name: '<i class="icon-book"></i> Account Types',
             visible: false,
-            caption: '<i class="icon-book"></i> Account Type',
+            caption: 'Account Type',
             settings: {
                 classColor: 'red',
                 classIcon: 'icon-tag'
@@ -78,25 +78,25 @@
         {
             url: 'accounttype/add',
             moduleId: 'viewmodels/accounttype/add',
-            name: 'Add Account Type',
+            name: '<i class="icon-plus"></i> Add Account Type',
             visible: false,
-            caption: '<i class="icon-plus"></i> Add Account Type'
+            caption: 'Add Account Type'
         },
         {
             url: 'accounttype/details/:id',
             moduleId: 'viewmodels/accounttype/details',
-            name: 'Edit Account Type',
+            name: '<i class="icon-book"></i> Edit Account Type',
             visible: false,
-            caption: '<i class="icon-book"></i> Sessions'
+            caption: 'Sessions'
         },
 
         //Account
         {
             url: 'account/show',
             moduleId: 'viewmodels/account/show',
-            name: 'Account',
+            name: '<i class="icon-book"></i> Account',
             visible: true,
-            caption: '<i class="icon-book"></i> Account',
+            caption: 'Account',
             settings: {
                 classColor: 'blue',
                 classIcon: 'icon-tag'
@@ -105,25 +105,25 @@
         {
             url: 'account/add',
             moduleId: 'viewmodels/account/add',
-            name: 'Add Account',
+            name: '<i class="icon-plus"></i> Add Account',
             visible: false,
-            caption: '<i class="icon-plus"></i> Add Account'
+            caption: 'Add Account'
         },
         {
             url: 'account/details/:id',
             moduleId: 'viewmodels/account/details',
-            name: 'Edit Account',
+            name: '<i class="icon-book"></i> Edit Account',
             visible: false,
-            caption: '<i class="icon-book"></i> Edit Account'
+            caption: 'Edit Account'
         },
 
         //Map
         {
             url: 'map/show',
             moduleId: 'viewmodels/map/show',
-            name: 'Maps',
+            name: '<i class="icon-book"></i> Maps',
             visible: true,
-            caption: '<i class="icon-book"></i> Maps',
+            caption: ' Maps',
             settings: {
                 classColor: 'yellow',
                 classIcon: 'icon-map-marker'
@@ -131,9 +131,9 @@
         }, {
             url: 'calendar/show',
             moduleId: 'viewmodels/calendar/show',
-            name: 'Calendar',
+            name: '<i class="icon-book"></i> Calendar',
             visible: true,
-            caption: '<i class="icon-book"></i> Calendar',
+            caption: 'Calendar',
             settings: {
                 classColor: 'purple',
                 classIcon: 'icon-calendar'
@@ -141,9 +141,9 @@
         }, {
             url: 'chart/show',
             moduleId: 'viewmodels/chart/show',
-            name: 'Chart',
+            name: '<i class="icon-book"></i> Chart',
             visible: true,
-            caption: '<i class="icon-book"></i> Chart',
+            caption: 'Chart',
             settings: {
                 classColor: 'red',
                 classIcon: 'icon-bar-chart'
@@ -151,9 +151,9 @@
         }, {
             url: 'chart/show',
             moduleId: 'viewmodels/chart/show',
-            name: 'Chart',
+            name: '<i class="icon-book"></i> Chart',
             visible: true,
-            caption: '<i class="icon-book"></i> Chart',
+            caption: 'Chart',
             settings: {
                 classColor: 'dark-gray',
                 classIcon: 'icon-cogs'
@@ -161,9 +161,9 @@
         }, { // :: EXAMPLE ::
             url: 'flickr',
             moduleId: 'viewmodels/flickr',
-            name: 'Flickr',
+            name: '<i class="icon-book"></i> Flickr',
             visible: true,
-            caption: '<i class="icon-book"></i> Flickr',
+            caption: 'Flickr',
             settings: {
                 classColor: 'green',
                 classIcon : 'icon-home'
