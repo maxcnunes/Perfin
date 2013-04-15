@@ -11,24 +11,21 @@ namespace Perfin.Data
 		private ITransaction _transaction;
         public ISession DbSession { get; private set; }
 
-        public UnitOfWork(IRepositoryProvider repositoryProvider)
+        public UnitOfWork(IRepositoryProvider repositoryProvider, INHibernateSessionBuilder sessionBuilder)
 		{
-            CreateDbSession();
+            CreateDbSession(sessionBuilder);
 
             repositoryProvider.DbSession = DbSession;
-            RepositoryProvider = repositoryProvider;   
+            RepositoryProvider = repositoryProvider;
 		}
 
-        protected void CreateDbSession()
+        protected void CreateDbSession(INHibernateSessionBuilder sessionBuilder)
         {
-            NHibernateHelper helper = new NHibernateHelper();
-            var _sessionFactory = helper.SessionFactory;
+            var _sessionFactory = sessionBuilder.SessionFactory;
 
             DbSession = _sessionFactory.OpenSession();
             DbSession.FlushMode = FlushMode.Auto;
             _transaction = DbSession.BeginTransaction(IsolationLevel.ReadCommitted);
-
-            _sessionFactory = helper.SessionFactory;
         }
 
         /*

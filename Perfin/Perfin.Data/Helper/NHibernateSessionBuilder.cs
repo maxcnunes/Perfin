@@ -3,12 +3,11 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using Perfin.Common;
 using Perfin.Common.Helper;
-using System;
 using System.Reflection;
 
 namespace Perfin.Data.Helper
 {
-    public class NHibernateHelper
+    public class NHibernateSessionBuilder : INHibernateSessionBuilder
     {
         private readonly string _connectionString;
         private ISessionFactory _sessionFactory;
@@ -18,23 +17,9 @@ namespace Perfin.Data.Helper
             get { return _sessionFactory ?? (_sessionFactory = CreateSessionFactory()); }
         }
 
-        public NHibernateHelper()
+        public NHibernateSessionBuilder()
         {
-            _connectionString = GetDefaultConnectionString();
-        }
-
-        public NHibernateHelper(string connectionString)
-        {
-            Check.Argument.NotNullOrEmpty(connectionString, "connectionString");
-            _connectionString = connectionString;
-        }
-
-        private string GetDefaultConnectionString()
-        {
-            if (ConfigurationManagerHelper.IsEnvironment(ConfigurationManagerHelper.Environment.Test))
-                return MySqlDataHelper.GetConnectionStringFromAppSettings();
-            else
-                return ConfigurationManagerHelper.GetConnectionString("Perfin");
+            _connectionString = ConfigurationManagerHelper.GetConnectionString("Perfin");
         }
 
         private ISessionFactory CreateSessionFactory()
