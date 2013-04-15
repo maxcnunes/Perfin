@@ -6,26 +6,43 @@
 
         var
             account = ko.observable(),
-            name = ko.observable(),
+            accounttypes = ko.observable(),
+            categories = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
                 initLookups();
-                return getAccountType(id);
+                return getAccount(id);
             },
             initLookups = function () {
+                $.when(getAllCategories(), getAllAccountTypes());
 
+                function getAllCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: categories }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
+
+                function getAllAccountTypes() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.accounttype.getData({ results: accounttypes }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
             },
-            getAccountType = function (currentAccountTypeId, completeCallback, forceRefresh) {
+            getAccount = function (currentAccountId, completeCallback, forceRefresh) {
                 var callback = function () {
                     if (completeCallback) { completeCallback(); }
                     validationErrors = ko.validation.group(account());
                 };
 
-                datacontext.account.getAccountTypeById(
-					currentAccountTypeId, {
+                datacontext.account.getAccountById(
+					currentAccountId, {
 					    success: function (modelResult) {
 					        account(modelResult);
 					        callback();
@@ -95,7 +112,7 @@
             goBack = function () {
                 router.navigateBack();
             },
-            deleteAccountType = function () {
+            deleteItem = function () {
                 var msg = 'Delete account "' + account().name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
@@ -131,7 +148,8 @@
 
         var vm = {
             account: account,
-            name: name,
+            accounttypes: accounttypes,
+            categories: categories,
             activate: activate,
 
             canSave: canSave,
@@ -139,10 +157,10 @@
             hasChanges: hasChanges,
             save: save,
             goBack: goBack,
-            deleteAccountType: deleteAccountType,
+            deleteItem: deleteItem,
 
             // module page info
-            pageDisplayName: 'Edit AccountType',
+            pageDisplayName: 'Edit Account',
             pageDescription: 'Edit a account and let more organized your finances'
         };
 
