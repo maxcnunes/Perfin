@@ -21,6 +21,7 @@
                 validationErrors = ko.validation.group(account());//apply validation
             },
             initLookups = function () {
+                debugger;
                 $.when(getAllCategories(), getAllAccountTypes());
 
                 function getAllCategories() {
@@ -46,6 +47,7 @@
                 return account();// && config.currentUser() && config.currentUser().id() === session().speakerId();
             }),
             hasChanges = ko.computed(function () {
+                debugger;
                 if (canEditAccount()) {
                     return account().dirtyFlag().isDirty();
                 }
