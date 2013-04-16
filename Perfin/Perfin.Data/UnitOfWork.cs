@@ -11,7 +11,7 @@ namespace Perfin.Data
 		private ITransaction _transaction;
         public ISession DbSession { get; private set; }
 
-        public UnitOfWork(IRepositoryProvider repositoryProvider, INHibernateSessionBuilder sessionBuilder)
+        public UnitOfWork(IRepositoryProvider repositoryProvider, INHibernateSessionProvider sessionBuilder)
 		{
             CreateDbSession(sessionBuilder);
 
@@ -19,7 +19,7 @@ namespace Perfin.Data
             RepositoryProvider = repositoryProvider;
 		}
 
-        protected void CreateDbSession(INHibernateSessionBuilder sessionBuilder)
+        public void CreateDbSession(INHibernateSessionProvider sessionBuilder)
         {
             var _sessionFactory = sessionBuilder.SessionFactory;
 

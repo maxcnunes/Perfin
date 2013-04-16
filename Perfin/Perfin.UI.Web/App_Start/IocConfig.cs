@@ -19,7 +19,7 @@ namespace Perfin.UI.Web
             // These registrations are "per instance request"
             // See http://blog.bobcravens.com/2010/03/ninject-life-cycle-management-or-scoping/
 
-            kernel.Bind<INHibernateSessionBuilder>().To<NHibernateSessionBuilder>();
+            kernel.Bind<INHibernateSessionProvider>().To<NHibernateSessionProvider>();
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>()
                 .InSingletonScope();
 

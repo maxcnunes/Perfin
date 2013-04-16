@@ -12,10 +12,10 @@ namespace Perfin.Data.Helper
     /// Build NHibernate Sessions in Memory with SQLite database
     /// Only used for tests environments
     /// </summary>
-    public class InMemoryDatabase : INHibernateSessionBuilder, IDisposable
+    public class InMemoryDatabase : INHibernateSessionProvider, IDisposable
     {
-        private static Configuration _configuration;
-        private static ISessionFactory _sessionFactory;
+        private Configuration _configuration;
+        private ISessionFactory _sessionFactory;
         public ISessionFactory SessionFactory
         {
             get { return _sessionFactory ?? (_sessionFactory = CreateSessionFactory()); }
@@ -23,26 +23,39 @@ namespace Perfin.Data.Helper
 
         protected ISession Session { get; set; }
 
-        protected InMemoryDatabase()
+        public InMemoryDatabase()
         {
             _sessionFactory = CreateSessionFactory();
             Session = _sessionFactory.OpenSession();
-            BuildSchema(Session);
+            //BuildSchema(Session);
         }
 
-        private static ISessionFactory CreateSessionFactory()
+        private ISessionFactory CreateSessionFactory()
         {
+            //return Fluently.Configure()
+            //  .Database(SQLiteConfiguration.Standard.InMemory().ShowSql())
+            //    //.Mappings(m => m.FluentMappings.AddFromAssemblyOf<Perfin.Data.Map.CategoryMap>())
+            //  .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+            //  .ExposeConfiguration(cfg => _configuration = cfg)
+            //  .BuildSessionFactory();
+
             return Fluently.Configure()
-              .Database(SQLiteConfiguration.Standard.InMemory().ShowSql())
-              .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-              .ExposeConfiguration(cfg => _configuration = cfg)
-              .BuildSessionFactory();
+                .Database(SQLiteConfiguration.Standard.InMemory()
+                    .ConnectionString("Data Source=:memory:;Version=3;New=True;Pooling=True;Max Pool Size=1;"))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .ExposeConfiguration(config => new SchemaExport(config).Create(true, true))
+                .BuildSessionFactory();
         }
 
-        private static void BuildSchema(ISession Session)
+        private void BuildSchema(ISession Session)
         {
             var export = new SchemaExport(_configuration);
             export.Execute(true, true, false, Session.Connection, null);
+        }
+
+        public void SessionClear()
+        {
+            Session.Clear();
         }
 
         public void Dispose()

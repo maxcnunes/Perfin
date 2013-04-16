@@ -2,6 +2,7 @@
 using Ninject;
 using Perfin.Data;
 using Perfin.Data.Contract;
+using Perfin.Data.Helper;
 using Perfin.Model;
 using Perfin.Test.Config;
 using System;
@@ -12,12 +13,13 @@ namespace Perfin.Test.Data.Repository
     {
         IUnitOfWork unitOfWork;
         int CategoryIdCreateByScript = 1;
+        InMemoryDatabase inMemoryDb;
 
         [ClassInitialize]
         public static void Initilize(TestContext ctx)
         {
             // Initialize Db
-            DatabaseConfig.InitializeDbTests();
+            //DatabaseConfig.InitializeDbTests();
         }
 
         [TestInitialize]
@@ -25,14 +27,18 @@ namespace Perfin.Test.Data.Repository
         {
             var kernel = new StandardKernel(); // Ninject IoC
 
+
+            kernel.Bind<INHibernateSessionProvider>().To<InMemoryDatabase>();
             kernel.Bind<RepositoryFactories>().To<RepositoryFactories>().InSingletonScope();
             kernel.Bind<IRepositoryProvider>().To<RepositoryProvider>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             unitOfWork = kernel.Get<IUnitOfWork>();
 
+            inMemoryDb = ((InMemoryDatabase)kernel.Get<INHibernateSessionProvider>());
             // Prepare item db
-            DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestInitialize);
+            //DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestInitialize);
+            //CreateCategory();
         }
 
         [TestCleanup]
@@ -41,22 +47,21 @@ namespace Perfin.Test.Data.Repository
             // Dispose UOW to allow execute the command to clean the changes
             unitOfWork.Dispose();
             // Clean changes before the next test
-            DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestCleanup);
+            //DatabaseConfig.PrepareRegisterForTests(SqlScripts.SqlScriptsFileName.CategoryRepositoryTest.TestCleanup);
         }
 
-
-
-        [TestMethod]
-        public void Should_Create_Category()
+        private Category CreateCategory()
         {
-            var category = new Category("Other Test", 0);
+            var category = new Category("Other Test" + new Random().Next(), 0);
 
             unitOfWork.Categories.Add(category);
             unitOfWork.Commit();
+            ((UnitOfWork)unitOfWork).CreateDbSession(inMemoryDb);
 
-            Assert.IsNotNull(category);
-            Assert.IsTrue(category.Id > 0);
+            return category;
         }
+
+       
 
         [TestMethod]
         public void Should_Get_Category_By_Id_On_Database()

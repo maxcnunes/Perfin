@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace Perfin.Data.Helper
 {
-    public class NHibernateSessionBuilder : INHibernateSessionBuilder
+    public class NHibernateSessionProvider : INHibernateSessionProvider
     {
         private readonly string _connectionString;
         private ISessionFactory _sessionFactory;
@@ -17,7 +17,7 @@ namespace Perfin.Data.Helper
             get { return _sessionFactory ?? (_sessionFactory = CreateSessionFactory()); }
         }
 
-        public NHibernateSessionBuilder()
+        public NHibernateSessionProvider()
         {
             _connectionString = ConfigurationManagerHelper.GetConnectionString("Perfin");
         }

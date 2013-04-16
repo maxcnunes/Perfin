@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Perfin.Data.Helper
 {
-    public interface INHibernateSessionBuilder
+    public interface INHibernateSessionProvider
     {
         ISessionFactory SessionFactory { get; }
     }

@@ -8,7 +8,7 @@ namespace Perfin.Data.Map
         public CategoryMap()
         {
             Table("Category");
-            Id(x => x.Id).GeneratedBy.Increment();
+            Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Name).Unique();
             Map(x => x.Parent).Nullable();
         }
