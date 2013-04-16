@@ -55,7 +55,7 @@
                     return;
                 }
 
-                var msg = 'Delete account type "' + selectedItem.name() + '" ?';
+                var msg = 'Delete account "' + selectedItem.name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -95,7 +95,7 @@
             viewAttached: viewAttached,
 
             // module page info
-            pageDisplayName: 'List Account Type',
-            pageDescription: 'All your account types'
+            pageDisplayName: 'List Account',
+            pageDescription: 'All your accounts'
         };
     });

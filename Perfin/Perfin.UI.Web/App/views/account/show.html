@@ -5,7 +5,7 @@
     <i class="icon-double-angle-right icon-large"></i>
     <a href="#" class="current">Management Items</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account Type</a>
+    <a href="#" class="current">Account</a>
 </nav>
 
 
@@ -24,7 +24,7 @@
 
             <a href="#/account/add" class="btn btn-primary">
                 <i class="icon-plus"></i> 
-                Add Account Type
+                Add Account
             </a>
 
         </div>
@@ -32,14 +32,20 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Account Name</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach:accounttypes">
+            <tbody data-bind="foreach: accounts">
                 <tr>
-                    <td data-bind="text:id"></td>
-                    <td data-bind="text:name"></td>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: description"></td>
+                    <td data-bind="text: accounttype().name"></td>
+                    <td data-bind="text: category().name"></td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>

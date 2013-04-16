@@ -19,10 +19,19 @@ namespace Perfin.UI.Web.Controllers
         // GET /api/account
         public IEnumerable<Account> Get()
         {
-            var teste = Uow.Accounts.GetAll()
+            var query = Uow.Accounts.GetAll()
+                .Select(acc => new Account
+                    {
+                        Id = acc.Id,
+                        Name = acc.Name,
+                        Description = acc.Description,
+                        Type = new AccountType { Id = acc.Type.Id },
+                        Category = new Category { Id = acc.Category.Id },
+                        User = new User { Id = acc.User.Id }
+                    })
                 .OrderBy(c => c.Name);
 
-            return teste;
+            return query;
         }
 
         // GET /api/account/3
@@ -40,9 +49,6 @@ namespace Perfin.UI.Web.Controllers
         // POST /api/account
         public HttpResponseMessage Post(Account account)
         {
-            account.Category = new Category { Id = 1 };
-            account.Type = new AccountType { Id = 1 };
-
             Uow.Accounts.Add(account);
             Uow.Commit();
 

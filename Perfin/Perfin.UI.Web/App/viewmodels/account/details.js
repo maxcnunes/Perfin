@@ -5,31 +5,46 @@
     function (router, datacontext, app) {
 
         var
-            accounttype = ko.observable(),
-            name = ko.observable(),
+            account = ko.observable(),
+            accounttypes = ko.observable(),
+            categories = ko.observable(),
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
                 var id = parseInt(routeData.id);
                 initLookups();
-                return getAccountType(id);
+                return getAccount(id);
             },
             initLookups = function () {
+                $.when(getAllCategories(), getAllAccountTypes());
 
+                function getAllCategories() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.category.getData({ results: categories }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
+
+                function getAllAccountTypes() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.accounttype.getData({ results: accounttypes }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
             },
-            getAccountType = function (currentAccountTypeId, completeCallback, forceRefresh) {
+            getAccount = function (currentAccountId, completeCallback, forceRefresh) {
                 var callback = function () {
-                    if (completeCallback)
-                        completeCallback();
-
-                    //validationErrors = ko.validation.group(accounttype());
+                    if (completeCallback) { completeCallback(); }
+                    validationErrors = ko.validation.group(account());
                 };
 
-                datacontext.accounttype.getAccountTypeById(
-					currentAccountTypeId, {
+                datacontext.account.getAccountById(
+					currentAccountId, {
 					    success: function (modelResult) {
-					        accounttype(modelResult);
+					        account(modelResult);
 					        callback();
 					    },
 					    error: callback
@@ -40,24 +55,27 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditAccountType = ko.computed(function () {
-                return accounttype();
+            canEditAccount = ko.computed(function () {
+                return account();
             }),
             hasChanges = ko.computed(function () {
-                if (canEditAccountType()) {
-                    return accounttype().dirtyFlag().isDirty();
+                if (canEditAccount()) {
+                    return account().dirtyFlag().isDirty();
                 }
                 return false;
             }),
+            isValid = function () {
+                return canEditAccount() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
-                return hasChanges() && !isSaving();
+                return hasChanges() && !isSaving() && isValid();
             }),
 
             save = function () {
 
                 isSaving(true);
-                if (canEditAccountType()) {
-                    $.when(datacontext.accounttype.updateData(accounttype()))
+                if (canEditAccount()) {
+                    $.when(datacontext.account.updateData(account()))
                         .done(complete);//.fin(complete);
                 }
 
@@ -94,8 +112,8 @@
             goBack = function () {
                 router.navigateBack();
             },
-            deleteAccountType = function () {
-                var msg = 'Delete accounttype "' + accounttype().name() + '" ?';
+            deleteItem = function () {
+                var msg = 'Delete account "' + account().name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -104,13 +122,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.accounttype.deleteData(accounttype()))
+                        $.when(datacontext.account.deleteData(account()))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            router.navigateTo('#/accounttype/show');
+                            router.navigateTo('#/account/show');
                         }
 
                         function failed(error) {
@@ -129,8 +147,9 @@
             };
 
         var vm = {
-            accounttype: accounttype,
-            name: name,
+            account: account,
+            accounttypes: accounttypes,
+            categories: categories,
             activate: activate,
 
             canSave: canSave,
@@ -138,11 +157,11 @@
             hasChanges: hasChanges,
             save: save,
             goBack: goBack,
-            deleteAccountType: deleteAccountType,
+            deleteItem: deleteItem,
 
             // module page info
-            pageDisplayName: 'Edit AccountType',
-            pageDescription: 'Edit a accounttype and let more organized your finances'
+            pageDisplayName: 'Edit Account',
+            pageDescription: 'Edit a account and let more organized your finances'
         };
 
         return vm;

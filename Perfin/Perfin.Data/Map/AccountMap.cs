@@ -13,6 +13,7 @@ namespace Perfin.Data.Map
             Map(x => x.Description).Nullable();
             References(x => x.Type, "AccountTypeId");
             References(x => x.Category, "CategoryId");
+            References(x => x.User, "UserId");
         }
     }
 }

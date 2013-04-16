@@ -431,12 +431,18 @@ fieldset {
 
 /*==== Validation ====*/
 input:invalid,
-textarea:invalid {
+textarea:invalid,
+select:invalid {
     border-width: 1px;
 }
 
 input:required {
     background: white url(images/val_asterisk.png) no-repeat 98% center;
+}
+
+select:invalid,
+select:focus:invalid {
+    color:#d45252;
 }
 
 textarea:required,
@@ -452,18 +458,19 @@ textarea:focus:invalid {
     background: white url(images/invalid.png) no-repeat 94% center;
 }
 
-textarea:focus {
-    -moz-outline: none;
-    outline: none;
-}
-
 textarea {
     padding: 5px;
     width: 300px;
 }
 
+    textarea:focus {
+        -moz-outline: none;
+        outline: none;
+    }
+
 input,
-textarea {
+textarea,
+select {
     border: 1px solid #aaaaaa;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;

@@ -3,8 +3,9 @@
     'durandal/app',
     'common/config',
     'common/logger',
-    'durandal/system'],
-    function (router, app, config, logger, system) {
+    'durandal/system',
+    'services/dataprimer'],
+    function (router, app, config, logger, system, dataprimer) {
         var
             shell = this,
             router = router,
@@ -14,11 +15,9 @@
                 app.showMessage('Search not yet implemented...');
             },
             activate = function () {
-                //return datacontext.primeData()
-                //    .then(boot)
+                return dataprimer.fetch()
+                    .then(boot);
                 //    .fail(failedInitialization);
-
-                return boot();
             },
             boot = function () {
                 logger.info('App Loaded!', true, null, system.getModuleId(shell));

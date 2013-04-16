@@ -1,6 +1,6 @@
 ﻿define(
-	['models/model'],
-	function (model) {
+	['ko', 'models/model'],
+	function (ko, model) {
 		
 		// Private Members
 	    var
@@ -51,11 +51,29 @@
 	                item = item || new model.Account().id(dto.id);
 	                item.name(dto.name);
 	                item.description(dto.description);
-	                item.accounttypeId(dto.AccountType.id)
-	                item.categoryId(dto.Category.id)
+	                item.accounttypeId(dto.type.id)
+	                item.categoryId(dto.category.id)
+	                item.userId(dto.user.id)
                     
 	                item.dirtyFlag().reset();
 	                return item;
+	            },
+	            toJSON: function (item) {
+	                var modelToJSON = item;
+
+	                if (item.categoryId && item.categoryId() > 0) {
+	                    modelToJSON.category = new model.Category().id(item.categoryId());
+	                }
+	                if (item.accounttypeId && item.accounttypeId() > 0) {
+	                    modelToJSON.type = new model.AccountType().id(item.accounttypeId());
+	                }
+	                // User id fixed as 1 for while
+	                item.userId(1);
+	                if (item.userId && item.userId() > 0) {
+	                    modelToJSON.user = new model.User().id(item.userId());
+	                }
+
+	                return ko.toJSON(modelToJSON);
 	            }
 	        };
 

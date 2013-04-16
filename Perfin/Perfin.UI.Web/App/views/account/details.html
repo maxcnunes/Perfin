@@ -5,7 +5,7 @@
     <i class="icon-double-angle-right icon-large"></i>
     <a href="#" class="current">Management Items</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account Type</a>
+    <a href="#" class="current">Account</a>
 </nav>
 
 
@@ -19,17 +19,36 @@
         </legend>
 
         <!-- Fields -->
-        <section class="fields" data-bind="with: accounttype">
-            <label>Account Type Name</label>
-            <input type="text" class="span5" placeholder="Future Entry..." data-bind="value: name">
-            <span class="help-block">Account Type is a type of your account. Usually is just Expense or Income, but is specialy ocasions may other type.</span>
+        <section class="fields" data-bind="with: account">
+            <label>Account Name</label>
+            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: name">
+            <span class="help-block">Account is all of expensives or Incomes that you have.</span>
 
-            <label></label>
-            <select class="span5" disabled="disabled">
-                <option>Expense</option>
-                <option>Income</option>
+            
+            <label>Account Description</label>
+            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
+            <span class="help-block">Description of account.</span>
+
+            <label>Account Type</label> 
+             <select class="span5" 
+                data-bind="options: $parent.accounttypes,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: accounttypeId,
+                           optionsCaption: 'Choose...'">
             </select>
-            <span class="help-block">A group for Account Types just did.</span>
+            <span class="help-block">A group for Account Types.</span>
+
+            <label>Category</label> 
+             <select class="span5" 
+                data-bind="options: $parent.categories,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: categoryId,
+                           optionsCaption: 'Choose...'">
+            </select>
+            <span class="help-block">Category Account is the account which group belongs.</span>
+
         </section>
 
         <!-- Buttons -->
@@ -46,7 +65,7 @@
             </button>
 
             <button class="btn btn-danger"
-                data-bind="click: deleteCategory, disable: hasChanges">
+                data-bind="click: deleteItem, disable: hasChanges">
                 <i class="icon-trash"></i>Delete
             </button>
 

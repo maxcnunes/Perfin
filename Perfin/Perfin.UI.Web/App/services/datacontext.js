@@ -83,7 +83,6 @@ define([
                     getData = function (options) {
 
                         return $.Deferred(function (def) {
-                            debugger;
                             var
                                 results = options && options.results,
                                 sortFunction = options && options.sortFunction,
@@ -563,7 +562,7 @@ define([
         };
 
         accountRepository.addData = function (accountModel, callbacks) {
-            var accountModelJson = ko.toJSON(accountModel);
+            var accountModelJson = modelmapper.account.toJSON(accountModel);
 
             return $.Deferred(function (def) {
                 dataservice.account.addAccount({
@@ -627,7 +626,7 @@ define([
         };
 
         accountRepository.updateData = function (accountModel, callbacks) {
-            var accountModelJson = ko.toJSON(accountModel);
+            var accountModelJson = modelmapper.account.toJSON(accountModel);
 
             return $.Deferred(function (def) {
                 dataservice.account.updateAccount({
@@ -669,11 +668,6 @@ define([
                 }, accountModel.id());
             }).promise();
         };
-
-
-
-
-
 
 
         var datacontext = {
