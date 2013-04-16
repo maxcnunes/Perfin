@@ -15,5 +15,20 @@ namespace Perfin.Common.Helper
         {
             return ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
         }
+
+        public static string GetAppSetting(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+
+        public static bool IsEnvironment(Environment env)
+        {
+            return ConfigurationManager.AppSettings["Environment"] == env.ToString();
+        }
+
+        public enum Environment
+        {
+            Dev, Test
+        }
     }
 }
