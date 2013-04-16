@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\IRepositoryProvider.cs" />
-    <Compile Include="Helper\MySqlDataHelper.cs" />
     <Compile Include="Helper\PredicateBuilder.cs" />
     <Compile Include="Helper\RepositoryFactories.cs" />
     <Compile Include="Helper\RepositoryProvider.cs" />

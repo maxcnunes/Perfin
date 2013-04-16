@@ -9,6 +9,5 @@ namespace Perfin.Test.Config
         /// Temp folder created on post build event
         /// </summary>
         public static string pathProjectTests = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        public static string pathScriptsDatabaseTests = Path.Combine(pathProjectTests, "Config", "ScriptsDBTests");
     }
 }
