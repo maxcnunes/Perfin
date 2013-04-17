@@ -58,6 +58,7 @@
 	                item.dirtyFlag().reset();
 	                return item;
 	            },
+	           
 	            toJSON: function (item) {
 	                var modelToJSON = item;
 
@@ -75,14 +76,47 @@
 
 	                return ko.toJSON(modelToJSON);
 	            }
-	        };
+	        },
+	         entry = {
+	             getDtoId: function (dto) {
+	                 return dto.id;
+	             },
+	             fromDto: function (dto, item) {
+	                 item = item || new model.Entry().id(dto.id);
+	                 item.price(dto.price);
+	                 item.description(dto.description);
+	                 item.registrydate(dto.registrydate);
+	                 item.paymentdate(dto.paymentdate);
+	                 item.accountId(dto.account.id)
+	                 item.userId(dto.user.id)
+
+	                 item.dirtyFlag().reset();
+	                 return item;
+	             },
+
+	             toJSON: function (item) {
+	                 var modelToJSON = item;
+
+	                 if (item.accountId && item.accountId() > 0) {
+	                     modelToJSON.type = new model.Account().id(item.accountId());
+	                 }
+	                 // User id fixed as 1 for while
+	                 item.userId(1);
+	                 if (item.userId && item.userId() > 0) {
+	                     modelToJSON.user = new model.User().id(item.userId());
+	                 }
+
+	                 return ko.toJSON(modelToJSON);
+	             }
+	         };
 
 		// Public Members
 	    return {
 	        category: category,
 	        user: user,
             accounttype:accounttype,
-            account:account
+            account: account,
+            entry: entry
 		};
 	}
 );

@@ -49,7 +49,8 @@
             return {
                 isNullo: false,
                 accounttype: accounttype,
-                category: category
+                category: category,
+                user:user
             };
         }();
 
