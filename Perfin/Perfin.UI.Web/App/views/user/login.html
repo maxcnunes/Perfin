@@ -1,0 +1,37 @@
+﻿<div>
+    <form id="box-login" class="box-center">
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
+
+            <!-- Fields -->
+            <section class="fields" data-bind="with: user">
+                <label for="login">User Login</label>
+                <input id="login" type="text" class="span3" placeholder="My login..." data-bind="value: login">
+
+                <label for="password">User Password</label>
+                <input id="password" type="password" class="span3" placeholder="My password..." data-bind="value: password">
+                <span class="help-block"><a href="#">Forget your password?</a></span>
+
+            </section>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <label style="float: left;">
+                    <input type="checkbox" tabindex="3">Keep me logged in</label>
+
+                <button style="float: right; margin-left: 5px;" type="button" class="btn btn-info"
+                    data-bind="click: goRegister">
+                    <i class="icon-star"></i>Register</button>
+
+                <button style="float: right;" type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                    <i class="icon-lock"></i>Login</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

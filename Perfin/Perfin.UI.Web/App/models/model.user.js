@@ -5,8 +5,8 @@
 
             var self = this;
             self.id = ko.observable();
-            self.login = ko.observable();
-            self.password = ko.observable();
+            self.login = ko.observable().extend({ required: true });
+            self.password = ko.observable().extend({ required: true });
             self.email = ko.observable();
             self.name = ko.observable();
             self.salt= ko.observable();

@@ -11,7 +11,7 @@ namespace Perfin.UI.Web.Controllers
 {
     public class AccountController : ApiBaseController
     {
-        public AccountController( uow)
+        public AccountController(IUnitOfWork uow)
         {
             Uow = uow;
         }

@@ -170,6 +170,20 @@
             }
         }];
 
+        var publicRoutes = [{
+            url: 'user/login',
+            moduleId: 'viewmodels/user/login',
+            name: '<i class="icon-book"></i> Login',
+            visible: true,
+            caption: 'Login'
+        }, {
+            url: 'user/register',
+            moduleId: 'viewmodels/user/register',
+            name: '<i class="icon-book"></i> Register',
+            visible: true,
+            caption: 'Register'
+        }];
+
         var startModule = 'welcome';
 
         var messages = {
@@ -208,6 +222,7 @@
 
         return {
             routes: routes,
+            publicRoutes: publicRoutes,
             startModule: startModule,
             messages: messages
         };
