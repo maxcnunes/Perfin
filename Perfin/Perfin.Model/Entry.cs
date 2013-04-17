@@ -14,9 +14,13 @@ namespace Perfin.Model
         public virtual Account Account { get; set; }
         public virtual User User { get; set; }
 
-        //data da compra/receita
-        public virtual DateTime RegistryDate { get; set; } 
+        //data da compra/receita null = minDate?null
+        public virtual DateTime RegistryDate { get; set; }
+
+        ////
+        //public virtual DateTime CurrentMonth { get; set; } 
         
+
         //data, geralmente mes, para pagamento/recebimento (geralmente em caso de cartao 
         //de credito ou movimentaçoes para pagamento/recebimento com mais de 30 dias)
         public virtual DateTime PaymentDate { get; set; } 
