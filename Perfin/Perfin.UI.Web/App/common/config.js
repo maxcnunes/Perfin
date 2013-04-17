@@ -95,7 +95,7 @@
             url: 'account/show',
             moduleId: 'viewmodels/account/show',
             name: '<i class="icon-book"></i> Account',
-            visible: true,
+            visible: false,
             caption: 'Account',
             settings: {
                 classColor: 'blue',

@@ -76,13 +76,20 @@
                 isSaving(true);
                 if (canEditAccount()) {
                     $.when(datacontext.account.updateData(account()))
-                        .done(complete);//.fin(complete);
+                        .then(goToEditView)
+                        .done(complete); //.fin(complete);
+                }
+
+                function goToEditView(result) {
+                    // redirect to index page while the edit page is not finished
+                    router.replaceLocation('#/account/show');
                 }
 
                 function complete() {
                     isSaving(false);
                 }
             },
+
             canDeactivate = function () {
                 return true;
 
