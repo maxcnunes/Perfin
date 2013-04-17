@@ -4,6 +4,6 @@ namespace Perfin.Data.Contract
 {
     public interface IEntryRepository : IRepository<Entry>
     {
-        Entry GetByName(string name);
+        Entry GetByDate(string date);
     }
 }
