@@ -124,8 +124,8 @@
             categories: categories,
 
             // module page info
-            pageDisplayName: 'Create AccountType',
-            pageDescription: 'Create a accounttype and let more organized your finances'
+            pageDisplayName: 'Create Account',
+            pageDescription: 'Create a account and let more organized your finances'
         };
 
         return vm;
