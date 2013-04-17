@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEntryRepository.cs" />
     <Compile Include="IAccountTypeRepository.cs" />
     <Compile Include="IAccountRepository.cs" />
     <Compile Include="ICategoryRepository.cs" />
