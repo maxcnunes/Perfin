@@ -10,9 +10,9 @@ namespace Perfin.Model
     {
         public virtual  int Id { get; set; }
         public virtual decimal Price { get; set; }
-        public virtual Account Account { get; set; }
         public virtual string Description { get; set; }
-        public User User { get; set; }
+        public virtual Account Account { get; set; }
+        public virtual User User { get; set; }
 
         //data da compra/receita
         public virtual DateTime RegistryDate { get; set; } 

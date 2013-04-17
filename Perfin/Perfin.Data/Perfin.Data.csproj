@@ -66,10 +66,10 @@
     <Compile Include="Helper\PredicateBuilder.cs" />
     <Compile Include="Helper\RepositoryFactories.cs" />
     <Compile Include="Helper\RepositoryProvider.cs" />
-    <Compile Include="IUserRepository.cs" />
     <Compile Include="Map\CategoryMap.cs" />
     <Compile Include="Map\AccountMap.cs" />
     <Compile Include="Map\AccountTypeMap.cs" />
+    <Compile Include="Map\EntryMap.cs" />
     <Compile Include="Map\UserMap.cs" />
     <Compile Include="Helper\NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
