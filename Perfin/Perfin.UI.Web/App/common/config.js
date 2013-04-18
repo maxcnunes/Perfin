@@ -116,6 +116,32 @@
             visible: false,
             caption: 'Edit Account'
         },
+ //Account
+        {
+            url: 'entry/show',
+            moduleId: 'viewmodels/entry/show',
+            name: '<i class="icon-book"></i> Entry',
+            visible: true,
+            caption: 'Entry',
+            settings: {
+                classColor: 'gray',
+                classIcon: 'icon-tag'
+            }
+        },
+        {
+            url: 'entry/add',
+            moduleId: 'viewmodels/entry/add',
+            name: '<i class="icon-plus"></i> Add Entry',
+            visible: false,
+            caption: 'Add Entry'
+        },
+        {
+            url: 'entry/details/:id',
+            moduleId: 'viewmodels/entry/details',
+            name: '<i class="icon-book"></i> Edit Entry',
+            visible: false,
+            caption: 'Edit Entry'
+        },
 
         //Map
         {

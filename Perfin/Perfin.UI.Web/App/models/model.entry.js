@@ -7,8 +7,8 @@
             self.id = ko.observable();
             self.price = ko.observable().extend({ required: true });
             self.description = ko.observable();
-            self.registrydate = ko.observable().extend({ required: true });
-            self.paymentdate = ko.observable().extend({ required: true });
+            self.registrydate = ko.observable(); //.extend({ required: true });
+            self.paymentdate = ko.observable(); //.extend({ required: true });
             self.accountId = ko.observable().extend({ required: true });
 
             // User id fixed as 1 for while

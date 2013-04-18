@@ -200,6 +200,9 @@
     <Content Include="App\viewmodels\account\add.js" />
     <Content Include="App\viewmodels\account\details.js" />
     <Content Include="App\viewmodels\account\show.js" />
+    <Content Include="App\viewmodels\Entry\add.js" />
+    <Content Include="App\viewmodels\Entry\details.js" />
+    <Content Include="App\viewmodels\Entry\show.js" />
     <Content Include="App\viewmodels\user\add.js" />
     <Content Include="App\viewmodels\user\details.js" />
     <Content Include="App\viewmodels\user\show.js" />
@@ -209,6 +212,9 @@
     <Content Include="App\views\account\add.html" />
     <Content Include="App\views\account\details.html" />
     <Content Include="App\views\account\show.html" />
+    <Content Include="App\views\Entry\add.html" />
+    <Content Include="App\views\Entry\details.html" />
+    <Content Include="App\views\Entry\show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
     <Content Include="App\views\user\add.html" />

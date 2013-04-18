@@ -98,7 +98,7 @@
 	                 var modelToJSON = item;
 
 	                 if (item.accountId && item.accountId() > 0) {
-	                     modelToJSON.type = new model.Account().id(item.accountId());
+	                     modelToJSON.account = new model.Account().id(item.accountId());
 	                 }
 	                 // User id fixed as 1 for while
 	                 item.userId(1);

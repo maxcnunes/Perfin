@@ -1,0 +1,84 @@
+﻿<!-- Breadcrumb -->
+<nav id="breadcrumb">
+    <i class="icon-home icon-large"></i>
+    <a href="#" class="home">Perfin</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Entry</a>
+    <i class="icon-double-angle-right icon-large"></i>
+    <a href="#" class="current">Add new entry</a>
+</nav>
+
+
+
+<form>
+    <fieldset>
+        <!-- Title -->
+        <legend class="title-description" >
+            <span data-bind="html: pageDisplayName"></span>
+            <span class="title-description-info" data-bind="html: pageDescription"></span>
+        </legend>
+
+        <!-- Fields -->
+        <section class="fields" data-bind="with: entry">
+            <label>Account Name</label>
+            <input type="text" class="span5" placeholder="autocomplete dropdown" data-bind="value: accountId ">
+            <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
+
+            <label>Price</label>
+            <input type="text" class="span5" placeholder="000,000.000" data-bind="value: price">
+            <span class="help-block">The cost or amount of your entry.</span>
+
+            <label>Details</label>
+            <input type="text" class="span5" placeholder="gift for my wife" data-bind="value: description">
+            <span class="help-block">Details of your entry.</span>
+
+            <label>Payment Date</label>
+            <input type="text" class="span5" placeholder="gift for my wife" data-bind="value: description">
+            <span class="help-block">Date of your account (can be any date or if you don't specify a date this account will be set in an undefined date of the current month).</span>
+
+
+
+            <!--<label>Account </label> 
+             <select class="span5" 
+                data-bind="options: $parent.accounts,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: accountId,
+                           optionsCaption: 'autocomplete dropdown...'">
+            </select>
+            <span class="help-block">A group for Account Types.</span>-->
+
+           
+                <!--data-bind="options: $parent.categories,
+                           optionsText: 'name',
+                           optionsValue : 'id',
+                           value: categoryId,
+                           disabled: disabled,
+                           optionsCaption: 'Choose...'"-->
+            
+
+            <label>Category</label>
+            <input type="text" class="span5" disabled="disabled" placeholder="autocomplete disabled" data-bind="value: account().categoryId ">
+            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+
+        </section>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+
+            <button type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                <i class="icon-save"></i>Save</button>
+             
+            <button type="reset" class="btn"
+                    data-bind="click: cancel, enable: canSave">
+                <i class="icon-undo"></i>Cancel</button>
+            
+            <button class="btn btn-info" data-bind="click: goBack">
+                <i class="icon-hand-left"></i>Back
+            </button>
+            <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+        </div>
+
+    </fieldset>
+</form>
