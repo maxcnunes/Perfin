@@ -27,24 +27,24 @@
             },
             initLookups = function () {
                 //debugger;
-                //$.when(getAllAccounts());
+                $.when(getAllAccounts());
 
-                //function getAllAccounts() {
-                //    return $.Deferred(function (def) {
-                //        $.when(datacontext.account.getData({ results: accounts }))
-                //            .fail(function () { def.reject(); })
-                //            .done(function () { def.resolve(); });
-                //    }).promise();
-                //}
+                function getAllAccounts() {
+                    return $.Deferred(function (def) {
+                        $.when(datacontext.account.getData({ results: accounts }))
+                            .fail(function () { def.reject(); })
+                            .done(function () { def.resolve(); });
+                    }).promise();
+                }
 
-                accounts([
-                    { value: "1", text: "a" },
-                    { value: "2", text: "s" },
-                    { value: "3", text: "d" },
-                    { value: "4", text: "f" },
-                    { value: "5", text: "h" }
+                //accounts([
+                //    { value: "1", text: "a" },
+                //    { value: "2", text: "s" },
+                //    { value: "3", text: "d" },
+                //    { value: "4", text: "f" },
+                //    { value: "5", text: "h" }
 
-                ]);
+                //]);
             },
             cancel = function (complete) {
                 router.navigateBack();

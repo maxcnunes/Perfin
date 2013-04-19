@@ -21,17 +21,29 @@
         <!-- Fields -->
         <section class="fields" data-bind="with: entry">
             <label>Account Name</label>
-            <select data-placeholder="Your Favorite Football Team" 
+
+            <select data-placeholder="Your Favorite Football Team"
+                style="width: 350px;" class="chzn-select"
+                data-bind="options: $parent.accounts,
+                        optionsText: 'name',
+                        optionsValue: 'id',
+                        value: accountId,
+                        optionsCaption: 'Choose...'"
+                tabindex="5">
+            </select>
+
+            <!--value: accountId,-->
+
+            <!--<select data-placeholder="Your Favorite Football Team" 
                 style="width: 350px;" class="chzn-select" 
                  data-bind="options: $parent.accounts,
                     optionsText: 'text',
                     optionsValue: 'value',
                     optionsCaption: 'None'"
                 tabindex="5">
-               
-            </select>
-           
-     <!--       <select data-placeholder="Your Favorite Football Teams" style="width: 350px;" class="chzn-select" multiple tabindex="6">
+            </select>-->
+
+            <!--       <select data-placeholder="Your Favorite Football Teams" style="width: 350px;" class="chzn-select" multiple tabindex="6">
 
 
                 <option>New York Giants</option>
@@ -41,7 +53,7 @@
             </select>-->
 
 
-            <input type="text" class="span5" placeholder="autocomplete dropdown" data-bind="value: accountId ">
+            <!-- <input type="text" class="span5" placeholder="autocomplete dropdown" data-bind="value: accountId ">-->
             <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
 
             <label>Price</label>
