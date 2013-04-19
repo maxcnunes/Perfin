@@ -221,6 +221,9 @@
     <Content Include="App\views\user\details.html" />
     <Content Include="App\views\user\show.html" />
     <Content Include="Content\boilerplate-normalize.css" />
+    <Content Include="Content\chosen\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen\chosen-sprite.png" />
+    <Content Include="Content\chosen\chosen.css" />
     <Content Include="Content\images\back.png" />
     <Content Include="Content\images\background.jpg" />
     <Content Include="Content\images\bg.jpg" />
@@ -240,6 +243,10 @@
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\main.css" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\chosen.proto.js" />
+    <Content Include="Scripts\chosen.proto.min.js" />
     <Content Include="Scripts\knockout.dirtyFlag.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

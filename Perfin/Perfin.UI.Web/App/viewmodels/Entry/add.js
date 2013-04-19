@@ -1,34 +1,50 @@
 ﻿define([
     'durandal/app',
+    'jquery',
     'services/datacontext',
     'durandal/plugins/router',
     'models/model.entry',
     'models/model.account',
     'models/model.user'],
-    function (app, datacontext, router, model, accountModel, userModel) {
+    function (app, $,datacontext, router, model, accountModel, userModel) {
 
         var
             isSaving = ko.observable(false),
             entry = ko.observable(),
             accounts = ko.observable(),
 
+
+
             activate = function () {
-                //debugger;
+                debugger;
                 initLookups();
                 entry(new model());
                 validationErrors = ko.validation.group(entry());//apply validation
+
+                setTimeout(function () {
+                    $(".chzn-select").chosen({ no_results_text: "No results matched" });
+                }, 1000);
             },
             initLookups = function () {
-                debugger;
-                $.when(getAllAccounts());
+                //debugger;
+                //$.when(getAllAccounts());
 
-                function getAllAccounts() {
-                    return $.Deferred(function (def) {
-                        $.when(datacontext.account.getData({ results: accounts }))
-                            .fail(function () { def.reject(); })
-                            .done(function () { def.resolve(); });
-                    }).promise();
-                }
+                //function getAllAccounts() {
+                //    return $.Deferred(function (def) {
+                //        $.when(datacontext.account.getData({ results: accounts }))
+                //            .fail(function () { def.reject(); })
+                //            .done(function () { def.resolve(); });
+                //    }).promise();
+                //}
+
+                accounts([
+                    { value: "1", text: "a" },
+                    { value: "2", text: "s" },
+                    { value: "3", text: "d" },
+                    { value: "4", text: "f" },
+                    { value: "5", text: "h" }
+
+                ]);
             },
             cancel = function (complete) {
                 router.navigateBack();

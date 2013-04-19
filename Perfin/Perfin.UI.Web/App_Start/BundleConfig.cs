@@ -26,7 +26,8 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/amplify.js")
                 .Include("~/Scripts/underscore.js")
                 .Include("~/Scripts/knockout.dirtyFlag.js")
-                .Include("~/Scripts/knockout.validation.js")                
+                .Include("~/Scripts/knockout.validation.js")
+                .Include("~/Scripts/chosen.jquery.js") 
               );
 
 
@@ -47,6 +48,9 @@ namespace Perfin.UI.Web
 
                 // Font Awesome Stylesheet
                 .Include("~/Content/font-awesome/font-awesome.css")
+
+                // Chosen
+                .Include("~/Content/chosen/chosen.css")
 
                 // Main css
                 .Include("~/Content/durandal.css")
