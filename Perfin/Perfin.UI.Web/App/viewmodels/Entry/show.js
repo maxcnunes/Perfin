@@ -8,17 +8,17 @@
     function (datacontext, logger, system, router, $, app) {
         var
             show = this,
-            accounts = ko.observableArray(),
+            entries = ko.observableArray(),
             isDeleting = ko.observable(false),
 
             activate = function () {
 
                 return $.Deferred(function (def) {
-                    $.when(datacontext.account.getData({ results: accounts }))
+                    $.when(datacontext.entry.getData({ results: entries }))
 
                         .pipe(function () {
 
-                            logger.info('Fetched data for: ' + accounts().length + ' accounts ',
+                            logger.info('Fetched data for: ' + entries().length + ' entries ',
                                 true, null, system.getModuleId(show));
                         })
 
@@ -31,31 +31,31 @@
 
             gotoDetails = function (selectedItem) {
                 if (selectedItem && selectedItem.id()) {
-                    var url = '#/account/details/' + selectedItem.id();
+                    var url = '#/entry/details/' + selectedItem.id();
                     router.navigateTo(url);
                 }
             },
 
             viewAttached = function (view) {
                 bindEventToList(view, '.btnEdit', gotoDetails);
-                bindEventToList(view, '.btnDelete', deleteAccountType);
+                bindEventToList(view, '.btnDelete', deleteEntryType);
             },
 
             bindEventToList = function (rootSelector, selector, callback, eventName) {
                 var eName = eventName || 'click';
                 $(rootSelector).on(eName, selector, function () {
-                    var account = ko.dataFor(this);
-                    callback(account);
+                    var entry = ko.dataFor(this);
+                    callback(entry);
                     return false;
                 });
             },
 
-            deleteAccountType = function (selectedItem) {
+            deleteEntryType = function (selectedItem) {
                 if (!selectedItem || !selectedItem.id()) {
                     return;
                 }
 
-                var msg = 'Delete account "' + selectedItem.name() + '" ?';
+                var msg = 'Delete entry "' + selectedItem.account.name() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -64,13 +64,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.account.deleteData(selectedItem))
+                        $.when(datacontext.entry.deleteData(selectedItem))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            accounts.remove(selectedItem);
+                            entries.remove(selectedItem);
                         }
 
                         function failed(error) {
@@ -90,12 +90,12 @@
 
 
         return {
-            accounts: accounts,
+            entries: entries,
             activate: activate,
             viewAttached: viewAttached,
 
             // module page info
-            pageDisplayName: 'List Account',
-            pageDescription: 'All your accounts'
+            pageDisplayName: 'List Entry',
+            pageDescription: 'All your entries'
         };
     });

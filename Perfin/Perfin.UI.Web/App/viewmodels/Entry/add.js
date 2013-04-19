@@ -7,12 +7,14 @@
     'models/model.account',
     'models/model.user'],
     function (app, $,datacontext, router, model, accountModel, userModel) {
-
+        debugger;
         var
             isSaving = ko.observable(false),
             entry = ko.observable(),
             accounts = ko.observable(),
-
+            category = ko.computed(function () { return (accounts.selected) ?  accounts.selected.category.name : ""}),
+            //category = ko.observable();
+            validationErrors = ko.observableArray([]),
 
 
             activate = function () {
@@ -55,6 +57,9 @@
             hasChanges = ko.computed(function () {
                 debugger;
                 if (canEditEntry()) {
+
+                    //alert(category);
+
                     return entry().dirtyFlag().isDirty();
                 }
 

@@ -22,9 +22,9 @@
         <!-- Fields/Tables -->
         <div class="form-actions">
 
-            <a href="#/account/add" class="btn btn-primary">
+            <a href="#/entry/add" class="btn btn-primary">
                 <i class="icon-plus"></i> 
-                Add Account
+                Add an Entry
             </a>
 
         </div>
@@ -32,9 +32,10 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Type</th>
+                    <th>Account Name</th>
+                    <th>Price</th>
+                    <th>Details</th>
+                    <th>Payment Date</th>
                     <th>Category</th>
                     <th>Actions</th>
                 </tr>
@@ -42,9 +43,10 @@
             <tbody data-bind="foreach: accounts">
                 <tr>
                     <td data-bind="text: id"></td>
-                    <td data-bind="text: name"></td>
-                    <td data-bind="text: description"></td>
-                    <td data-bind="text: accounttype().name"></td>
+                    <td data-bind="text: account().name"></td>
+                    <td data-bind="text: price"></td>
+                    <td data-bind="text: details"></td>
+                    <td data-bind="text: paymentdate"></td>
                     <td data-bind="text: category().name"></td>
                     <td>
                         <div class="btn-group">
