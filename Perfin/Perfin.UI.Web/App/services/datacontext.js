@@ -154,23 +154,25 @@ define([
             };
 
 
-            //--------------------------------------
-            // Repositories
-            //
-            // Pass:
-            // dataservice's 'get' method
-            // model mapper
-            //--------------------------------------
-            categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
-            userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
-            accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
-            accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
-       
+        //--------------------------------------
+        // Repositories
+        //
+        // Pass:
+        // dataservice's 'get' method
+        // model mapper
+        //--------------------------------------
+        categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
+        userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
+        accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
+        accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
+        assetsRepository = {}; // Don't need all EntitySet's functions 
+        
+
         // Extend Categories entitySet
         //----------------------------
         categoryRepository.getAllLeastCurrent = function (id, options) {
             var allCategories = ko.observable();
-            
+
             // extend the options
             options = options || {};
             _.extend(options, {
@@ -670,11 +672,31 @@ define([
         };
 
 
+        
+
+        // Assets Repository
+        //----------------------------
+        assetsRepository.getData = function () {
+            return $.Deferred(function (def) {
+                $.when(dataservice.assets.getAssets({
+                    success: function (dtoList) {
+                        def.resolve(dtoList);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorGettingData, true);
+                        def.reject();
+                    }
+                }));
+            }).promise();
+        };
+
+
         var datacontext = {
             category: categoryRepository,
             user: userRepository,
             accounttype: accounttypeRepository,
-            account: accountRepository
+            account: accountRepository,
+            assets: assetsRepository
         };
 
         // We did this so we can access the datacontext during its construction

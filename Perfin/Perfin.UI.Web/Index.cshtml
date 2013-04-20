@@ -48,4 +48,48 @@
         <script type="text/javascript" src="~/App/main-built.js"></script>
     }
 </body>
+    <script type="text/javascript">
+        $(function () {
+            var access_token = /access_token=([^&]*)/g.exec(window.location.hash);
+            if (access_token) {
+                $.ajax({
+                    url: 'https://api.auth0.com/userinfo?access_token=' + access_token[1],
+                    dataType: 'json',
+                    success: function (data, status, jqHXR) {
+                        $('#userinfo').text(JSON.stringify(data, 0, 2));
+                    },
+                    error: function (resp) {
+                        if (resp.status == 401) {
+                            $('#userinfo').text('Unauthorized');
+                        } else {
+                            $('#userinfo').text('Error');
+                        }
+
+                    }
+                });
+            }
+
+            var id_token = /id_token=([^&]*)/g.exec(window.location.hash);
+            $(document).on('click', '#get-customers', function () {
+                $.ajax({
+                    url: '/api/user',
+                    dataType: 'json',
+                    beforeSend: function (request) {
+                        //if (id_token) request.setRequestHeader("Authorization", "Bearer " + id_token[1]);
+                    },
+                    success: function (data, status, jqHXR) {
+                        $('#customers').text(JSON.stringify(data));
+                    },
+                    error: function (resp) {
+                        if (resp.status == 401) {
+                            $('#customers').text('Unauthorized');
+                        } else {
+                            $('#customers').text('Error');
+                        }
+
+                    }
+                });
+            });
+        });
+</script>
 </html>

@@ -4,7 +4,6 @@
     'common/config',
     'common/logger',
     'durandal/system',
-
     'services/datacontext',
     'durandal/plugins/router',
     'models/model.user'],
@@ -13,8 +12,11 @@
         var
             loginModule = this,
             activate = function () {
-                //return boot();
+                loadAuth0Script();
                 user(new model());
+            },
+            loadAuth0Script = function () {
+                require([config.auth0.getSrcScript()]);
             },
             boot = function () {
                 logger.info('App Loaded! Login', true, null, system.getModuleId(loginModule));

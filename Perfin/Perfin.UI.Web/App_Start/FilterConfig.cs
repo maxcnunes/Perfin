@@ -1,14 +1,13 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Http;
+using System.Web.Http.Filters;
 
 namespace Perfin.UI.Web
 {
     public class FilterConfig
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters(HttpConfiguration config)
         {
-            filters.Add(new HandleErrorAttribute());
-            filters.Add(new AuthorizeAttribute());
+            config.Filters.Add(new AuthorizeAttribute());
         }
     }
 }

@@ -1,5 +1,23 @@
 ﻿<div>
-    <form id="box-login" class="box-center">
+    
+    <h2>My single page app</h2>
+
+
+<button onclick="window.Auth0.signIn({onestep: true})">Login</button>
+
+<br />
+<button id="get-customers">Get Customers</button>
+
+<h3>Customers</h3>
+<pre><code id="customers">Not logged in yet</code></pre>
+
+<h3>User Info</h3>
+<pre><code id="userinfo">Not logged in yet</code></pre>
+
+<script src="~/Scripts/jquery-1.9.1.js" type="text/javascript"></script>
+
+
+    <form id="box-login" class="box-center" style="display:none">
         <fieldset>
             <!-- Title -->
             <legend class="title-description">

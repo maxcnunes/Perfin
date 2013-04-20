@@ -28,12 +28,18 @@ define([
                 define('underscore', [], function () { return root._; });
             },
 
+            fetchAssets = function () {
+                require(['common/assets'], function (assets) {
+                    assets.fetchAll();
+                });
+            },
+
             bootApp = function () {
                 //>>excludeStart("build", true);
                 system.debug(true);
                 //>>excludeEnd("build");
 
-                app.title = ':: Perfin ::';
+                app.title = 'Perfin';
                 app.start().then(function () {
                     // route will use conventions for modules
                     // assuming viewmodels/views folder structure
@@ -62,6 +68,9 @@ define([
             init = function () {
                 // Load the 3rd party libraries
                 define3rdPartyModules();
+                
+                // Load configurations
+                fetchAssets();
 
                 // Boot App
                 bootApp();

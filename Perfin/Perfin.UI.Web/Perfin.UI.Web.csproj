@@ -144,6 +144,7 @@
     <Compile Include="Controllers\AccountTypeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Content Include="App\repositories\account.js" />
     <Content Include="App\repositories\accounttype.js" />
     <Content Include="App\repositories\user.js" />
+    <Content Include="App\services\dataservice.assets.js" />
     <Content Include="App\services\dataservice.accounttype.js" />
     <Content Include="App\services\dataservice.account.js" />
     <Content Include="App\services\dataservice.user.js" />
@@ -201,6 +203,7 @@
     <Content Include="App\viewmodels\account\add.js" />
     <Content Include="App\viewmodels\account\details.js" />
     <Content Include="App\viewmodels\account\show.js" />
+    <Content Include="App\common\assets.js" />
     <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\user\add.js" />
     <Content Include="App\viewmodels\user\register.js" />

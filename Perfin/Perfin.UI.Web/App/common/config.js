@@ -9,7 +9,7 @@
             caption: 'Welcome',
             settings: {
                 classColor: 'green',
-                classIcon : 'icon-home'
+                classIcon: 'icon-home'
             }
         },
         //category
@@ -166,7 +166,7 @@
             caption: 'Flickr',
             settings: {
                 classColor: 'green',
-                classIcon : 'icon-home'
+                classIcon: 'icon-home'
             }
         }];
 
@@ -207,6 +207,13 @@
             });
         };
 
+        var auth0 = {
+            clientId: '',
+            getSrcScript: function () {
+                return 'https://sdk.auth0.com/auth0.js#client=' + this.clientId + '&amp;scope=openid&amp;response_type=token';
+            }
+        };
+
         var init = function () {
             //if (_useMocks) {
             //    dataserviceInit = mock.dataserviceInit;
@@ -224,6 +231,7 @@
             routes: routes,
             publicRoutes: publicRoutes,
             startModule: startModule,
-            messages: messages
+            messages: messages,
+            auth0: auth0
         };
     });
