@@ -1,5 +1,6 @@
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
+using Perfin.Common.Helper;
 
 namespace Perfin.UI.Web
 {
@@ -21,6 +22,13 @@ namespace Perfin.UI.Web
 
             // Add model validation, globally
             config.Filters.Add(new ValidationActionFilter());
+
+            // Add Authentication Handler
+            config.MessageHandlers.Add(new JsonWebTokenValidationHandler()
+            {
+                Audience = ConfigurationManagerHelper.GetAppSetting("AUTH0_CLIENT_ID"),
+                SymmetricKey = ConfigurationManagerHelper.GetAppSetting("AUTH0_CLIENT_SECRET")
+            }); 
         }
     }
 }
