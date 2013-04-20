@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.ServiceModel.Security.Tokens;
     using System.Threading;
     using System.Threading.Tasks;
@@ -34,8 +35,16 @@
             return true;
         }
 
+        private static bool HasAuthorizationHeaderValue(AuthenticationHeaderValue authorizationHeader)
+        {
+            return authorizationHeader != null && !String.IsNullOrWhiteSpace(authorizationHeader.Parameter);
+        }
+
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            if (!HasAuthorizationHeaderValue(request.Headers.Authorization))
+                return base.SendAsync(request, cancellationToken);
+
             HttpStatusCode statusCode;
             string token;
 
