@@ -201,8 +201,11 @@
     <Content Include="App\viewmodels\account\add.js" />
     <Content Include="App\viewmodels\account\details.js" />
     <Content Include="App\viewmodels\account\show.js" />
+    <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\user\add.js" />
+    <Content Include="App\viewmodels\user\register.js" />
     <Content Include="App\viewmodels\user\details.js" />
+    <Content Include="App\viewmodels\user\login.js" />
     <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\accounttype\add.html" />
     <Content Include="App\views\accounttype\details.html" />
@@ -212,8 +215,11 @@
     <Content Include="App\views\account\show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
+    <Content Include="App\views\public.html" />
     <Content Include="App\views\user\add.html" />
+    <Content Include="App\views\user\register.html" />
     <Content Include="App\views\user\details.html" />
+    <Content Include="App\views\user\login.html" />
     <Content Include="App\views\user\show.html" />
     <Content Include="Content\boilerplate-normalize.css" />
     <Content Include="Content\images\back.png" />

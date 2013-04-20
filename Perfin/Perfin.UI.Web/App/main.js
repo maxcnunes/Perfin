@@ -29,8 +29,6 @@ define([
             },
 
             bootApp = function () {
-                // Start-up the Jasmine tests, now that all prerequisites are in place.
-
                 //>>excludeStart("build", true);
                 system.debug(true);
                 //>>excludeEnd("build");
@@ -48,7 +46,10 @@ define([
                     // Defaults to viewmodels/views/views. 
                     viewLocator.useConvention();
 
-                    app.setRoot('viewmodels/shell', 'entrance');
+                    // LOGGED
+                    // app.setRoot('viewmodels/shell', 'entrance');
+                    // NOT LOGGED
+                    app.setRoot('viewmodels/public', 'entrance');
 
                     // override bad route behavior to write to 
                     // console log and show error toast
