@@ -22,15 +22,31 @@
         <section class="fields" data-bind="with: entry">
             <label>Account Name</label>
 
-            <select data-placeholder="Your Favorite Football Team"
+            <select data-placeholder="Accounts"
                 style="width: 350px;" class="chzn-select"
                 data-bind="options: $parent.accounts,
-                        optionsText: 'name',
-                        optionsValue: 'id',
-                        value: accountId,
-                        optionsCaption: 'Choose...'"
+                    optionsText: 'name',
+                    optionsValue: 'id',
+                    value: accountId,
+                    optionsCaption: 'Choose...'"
                 tabindex="5">
             </select>
+            <a href="#/account/add" class="btn btn-primary">
+                <i class="icon-plus"></i>
+                New Account
+            </a>
+            <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
+
+            <div><br /></div>
+
+
+            <label>Account Type</label>
+            <input type="text" class="span5"  disabled="disabled" placeholder="choose an account to load the account type corresponding" data-bind="value: accounttype.name">
+            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+
+            <label>Category</label>
+            <input type="text" class="span5" disabled="disabled" placeholder="choose an account to load the category corresponding" data-bind="value: category.name">
+            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
 
             <!--value: accountId,-->
 
@@ -54,8 +70,7 @@
 
 
             <!-- <input type="text" class="span5" placeholder="autocomplete dropdown" data-bind="value: accountId ">-->
-            <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
-
+           
             <label>Price</label>
             <input type="text" class="span5" placeholder="000,000.000" data-bind="value: price">
             <span class="help-block">The cost or amount of your entry.</span>
@@ -89,9 +104,15 @@
                            optionsCaption: 'Choose...'"-->
 
 
-            <label>Category</label>
-            <input type="text" class="span5" disabled="disabled" placeholder="choose an account to load the category corresponding" data-bind="value: category.name">
-            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+            
+
+            <label>Frequency</label>
+            <input type="text" class="span5" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+            <span class="help-block">The frequency that you pay/recieve this account.</span>
+
+            <label>Location</label>
+            <input type="text" class="span5" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+            <span class="help-block">The location that  occurred.</span>
 
         </section>
 
