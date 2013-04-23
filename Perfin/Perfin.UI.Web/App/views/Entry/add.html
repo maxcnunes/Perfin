@@ -22,14 +22,18 @@
         <section class="fields" data-bind="with: entry">
             <label>Account Name</label>
 
-            <select data-placeholder="Accounts"
+            <select 
+                id="ddl_accounts"
+                data-placeholder="Accounts"
                 style="width: 350px;" class="chzn-select"
                 data-bind="options: $parent.accounts,
                     optionsText: 'name',
                     optionsValue: 'id',
-                    value: accountId,
+                    value: $root.account,
                     optionsCaption: 'Choose...'"
                 tabindex="5">
+                <!--value: $root.selectedAccount, se utilizado seta o id do account selecionado para este observable e nao o objeto completo -->
+
             </select>
             <a href="#/account/add" class="btn btn-primary">
                 <i class="icon-plus"></i>
@@ -38,14 +42,19 @@
             <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
 
             <div><br /></div>
-
-
+            
             <label>Account Type</label>
-            <input type="text" class="span5"  disabled="disabled" placeholder="choose an account to load the account type corresponding" data-bind="value: accounttype.name">
+            <input type="text" class="span5"  disabled="disabled" placeholder="choose an account to load the account type corresponding" 
+                data-bind="value: $parent.selectedAccount().accounttype().name()">
             <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
 
             <label>Category</label>
-            <input type="text" class="span5" disabled="disabled" placeholder="choose an account to load the category corresponding" data-bind="value: category.name">
+            <input type="text" class="span5" disabled="disabled" placeholder="choose an account to load the category corresponding" 
+                data-bind="value: $$parent.selectedAccount().category().name()">
+            
+            <input type="text" class="span5" disabled="disabled" placeholder="test " 
+                data-bind="value: $parent.account().category().name()">
+
             <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
 
             <!--value: accountId,-->
@@ -73,7 +82,7 @@
            
             <label>Price</label>
             <input type="text" class="span5" placeholder="000,000.000" data-bind="value: price">
-            <span class="help-block">The cost or amount of your entry.</span>
+            <span class="help-block">The cost or receipt of your entry.</span>
 
             <label>Details</label>
             <input type="text" class="span5" placeholder="gift for my wife" data-bind="value: description">

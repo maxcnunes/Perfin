@@ -6,20 +6,24 @@
     'models/model.entry',
     'models/model.account',
     'models/model.user'],
-    function (app, $,datacontext, router, model, accountModel, userModel) {
+    function (app, $, datacontext, router, model, accountModel, userModel) {
         debugger;
         var
+            self = this,
             isSaving = ko.observable(false),
             entry = ko.observable(),
             accounts = ko.observable(),
-            category = ko.computed(function () { return (accounts.selected) ?  accounts.selected.category.name : ""}),
-            //category = ko.observable();
+            account = ko.observable(),
+            selectedAccount = ko.observable(),
             validationErrors = ko.observableArray([]),
 
 
             activate = function () {
                 debugger;
                 initLookups();
+                account(new accountModel());
+                bindChangeEvent("#ddl_accounts");
+
                 entry(new model());
                 validationErrors = ko.validation.group(entry());//apply validation
 
@@ -39,6 +43,13 @@
                     }).promise();
                 }
             },
+            bindChangeEvent = function (selector) {
+                $(document).on("change", selector, function () {
+                    debugger;
+                    var acc = datacontext.account.getLocalById($('#ddl_accounts option:selected').val());
+                    selectedAccount(acc);
+                });
+            },
             cancel = function (complete) {
                 router.navigateBack();
             },
@@ -48,10 +59,7 @@
             hasChanges = ko.computed(function () {
                 debugger;
                 if (canEditEntry()) {
-
-                    //alert(category);
-
-                    return entry().dirtyFlag().isDirty();
+                     return entry().dirtyFlag().isDirty();
                 }
 
                 return false;
@@ -122,7 +130,10 @@
             save: save,
             goBack: goBack,
             entry: entry,
-            accounts : accounts,
+            account: account,
+            accounts: accounts,
+            selectedAccount: selectedAccount,
+
 
             // module page info
             pageDisplayName: 'Create an Entry',
