@@ -36,6 +36,7 @@
 	                item.name(dto.name);
 	                item.email(dto.email);
 	                item.dirtyFlag().reset();
+	                item.picture(dto.picture);
 	                return item;
 	            }
 	        },

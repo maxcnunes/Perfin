@@ -17,9 +17,10 @@
                 <!--UserInfo-->
                 <dl class="user_info">
                     <dt><a href="#">
-                        <img src="/content/images/user.png" alt=""></a></dt>
+                        <img  data-bind="attr: { src: currentUser().picture() }" /></a></dt>
+                    <!--"/content/images/user.png"-->
                     <dd>
-                        <a class="welcome_user" href="#/user/details/2">Welcome,<strong>User Name</strong></a>
+                        <a class="welcome_user" href="#/user/details/2">Welcome,<strong data-bind="text: currentUser().name()"></strong></a>
                         <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
                         <a class="logout" href="login.html"><i class="icon-signout"></i>Logout</a>
                         <!--@*

@@ -4,10 +4,12 @@
     'common/config',
     'common/logger',
     'durandal/system',
-    'services/dataprimer'],
-    function (router, app, config, logger, system, dataprimer) {
+    'services/dataprimer',
+    'security/authentication'],
+    function (router, app, config, logger, system, dataprimer, authentication) {
         var
             shell = this,
+            currentUser = authentication.currentUser,
             router = router,
             search = function () {
                 //It's really easy to show a message box.
@@ -31,6 +33,7 @@
             };
 
         return {
+            currentUser: currentUser,
             router: router,
             search: search,
             activate: activate

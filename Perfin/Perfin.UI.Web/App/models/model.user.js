@@ -26,5 +26,7 @@
             return _dc;
         }
 
+        User.prototype.picture =  ko.observable();
+
         return User;
     });
