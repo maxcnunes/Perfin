@@ -55,7 +55,7 @@
                         dataType: 'json',
                         success: function (dto) {
                             var user = modelmapper.user.fromAuth0Dto(dto); // Map DTO to Model
-                            def.resolve(dto);
+                            def.resolve(user);
                         },
                         error: function (resp) {
                             if (resp.status == 401) {
