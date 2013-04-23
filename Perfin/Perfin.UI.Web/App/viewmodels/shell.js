@@ -30,12 +30,26 @@
             failedInitialization = function (error) {
                 var msg = 'App initialization failed: ' + error.message;
                 logger.error(msg, true, error, system.getModuleId(shell));
+            },
+            logOut = function () {
+                var msg = 'Logout ' + currentUser().name() + ' ?';
+                var title = 'Confirm Logout';
+
+                return app.showMessage(msg, title, ['Yes', 'No'])
+                        .then(confirmLogout);
+
+                function confirmLogout(selectedOption) {
+                    if (selectedOption === 'Yes') {
+                        authentication.logOutCurrentUser();
+                    }
+                }
             };
 
         return {
             currentUser: currentUser,
             router: router,
             search: search,
-            activate: activate
+            activate: activate,
+            logOut: logOut
         };
     });

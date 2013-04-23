@@ -27,20 +27,34 @@
             onAuthFail = function (resp) {
                 //Unauthorized
                 if (resp.status === 401) {
-                    authProvider.cleanAuth();
-                    currentUser = ko.observable();
-
-                    // reset the routes
-                    router.map(config.publicRoutes);
-
-                    if (window.location.href.indexOf('#/user/login') < 0) {
-                        router.replaceLocation('#/user/login');
-                    }
+                    logOutCurrentUser();
                     return true;
                 }
                 // Another error type
                 return false;
+            },
+            logOutCurrentUser = function () {
+                authProvider.cleanAuth();
+                currentUser = ko.observable();
+
+                // reset the routes
+                router.map(config.publicRoutes);
+
+                if (window.location.href.indexOf('#/user/login') < 0) {
+                    router.replaceLocation('#/user/login');
+                    // force reload the our spa 
+                    document.location.reload(true);
+                }                
             };
+
+        function sleep(milliseconds) {
+            var start = new Date().getTime();
+            for (var i = 0; i < 1e7; i++) {
+                if ((new Date().getTime() - start) > milliseconds) {
+                    break;
+                }
+            }
+        }
 
         /* Extended provider: 
          * Using a extended provider we keep the Open Closed Principle
@@ -89,6 +103,7 @@
             authorizationHeader: authProvider.authorizationHeader,
             getUserInfo: authProvider.getUserInfo,
             fetchQueryStringData: authProvider.fetchQueryStringData,
-            onAuthFail: onAuthFail
+            onAuthFail: onAuthFail,
+            logOutCurrentUser: logOutCurrentUser
         };
     });
