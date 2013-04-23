@@ -2,7 +2,6 @@
     function (authentication) {
     	var
 			beforeExecCallback = function (data, status, xhr, success, error) {
-				debugger;
 				if (status === "success") {
 					success(data);
 				} else {

@@ -66,12 +66,8 @@ define([
                     // Defaults to viewmodels/views/views. 
                     viewLocator.useConvention();
 
-                    // LOGGED
-                    debugger;
-                    if (privateModels)
-                        app.setRoot('viewmodels/shell', 'entrance');
-                    else
-                        app.setRoot('viewmodels/public', 'entrance');
+                    var rootApp = privateModels ? 'viewmodels/shell' : 'viewmodels/public';
+                    app.setRoot(rootApp, 'entrance');
 
                     // override bad route behavior to write to 
                     // console log and show error toast

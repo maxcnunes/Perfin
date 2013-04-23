@@ -53,6 +53,8 @@
             authorizationHeader: auth0.authorizationHeader,
             getUserInfo: function () {
                 return $.Deferred(function (def) {
+                    if (rejectUserWithEmptyTokenId()) return;
+
                     $.when(auth0.getUserInfoAuth0())
                      .done(function (dto) {
                          def.resolve(dto);
@@ -61,6 +63,16 @@
                          onAuthFail(resp);
                          def.reject(resp);
                      });
+
+                    function rejectUserWithEmptyTokenId() {
+                        if (!auth0.getTokenId()) {
+                            var respUnauthorized = { status: 401 };
+                            onAuthFail(respUnauthorized);
+                            def.reject(respUnauthorized);
+                            return true;
+                        }
+                        return false;
+                    }
                 }).promise();
             },
             fetchQueryStringData: auth0.fetchQueryStringData,

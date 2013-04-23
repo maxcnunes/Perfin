@@ -6,7 +6,6 @@
     'durandal/system',
     'services/dataprimer'],
     function (router, app, config, logger, system, dataprimer) {
-        debugger;
         var
             shell = this,
             router = router,
