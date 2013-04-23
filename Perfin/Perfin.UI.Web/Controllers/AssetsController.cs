@@ -11,6 +11,7 @@ namespace Perfin.UI.Web.Controllers
     {
         //
         // GET: /Assets/
+        // Only load public values!
         [AllowAnonymous]
         public HttpResponseMessage Get()
         {
@@ -20,6 +21,5 @@ namespace Perfin.UI.Web.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, config);
         }
-
     }
 }

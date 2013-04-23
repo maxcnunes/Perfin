@@ -1,12 +1,19 @@
 ﻿define(['services/datacontext', 'common/config'],
     function (datacontext, config) {
         var
-            fetchAll = function () {
+            fetchAllJsonData = function () {
                 datacontext.assets.getData().
                 done(function (dto) {
                     if (!dto) return;
-                    config.auth0.clientId = dto.auth0ClientId;
+                    config.authentication.auth0ClientId = dto.auth0ClientId;
                 });
+            },
+
+            fetchAllQueryStringData = function () { },
+
+            fetchAll = function () {
+                fetchAllJsonData();
+                fetchAllQueryStringData();
             };
 
         return {

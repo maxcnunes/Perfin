@@ -424,6 +424,35 @@ define([
             }).promise();
         };
 
+        userRepository.getUserInfoAuth0 = function (accessToken, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var user = userRepository.getLocalById(id);
+                if (accessToken !== undefined && (user.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.user.getUserInfoAuth0({
+                        success: function (dto) {
+                            var user = modelmapper.user.fromAuth0Dto(dto); // Map DTO to Model
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve user ', true);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+
+                            //if (response.status == 401) {
+                            //    //Unauthorized
+                            //}
+
+                            def.reject(response);
+                        }
+                    },
+                    accessToken);
+                } else {
+                    callbacks.success(user);
+                    def.resolve(user);
+                }
+            }).promise();
+        };
+
 
         // Extend AccountType entitySet
         //----------------------------

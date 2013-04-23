@@ -1,6 +1,5 @@
-﻿define([
-    'amplify'],
-    function (amplify) {
+﻿define(['amplify', 'security/authentication', 'services/callback.dataservice'],
+    function (amplify, authentication, callbackDataservice) {
         var
             serviceUrl = '/api/category',
             init = function () {
@@ -8,14 +7,18 @@
                 amplify.request.define('categories', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
-                    type: 'GET'
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                     //cache:true
                 }),
 
                 amplify.request.define('category', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
-                    type: 'GET'
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                     //cache:true
                 }),
 
@@ -23,21 +26,27 @@
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'POST',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 }),
 
                 amplify.request.define('categoryUpdate', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'PUT',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 }),
 
                 amplify.request.define('categoryDelete', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
                     type: 'DELETE',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 });
             },
 
@@ -81,7 +90,9 @@
                     resourceId: 'categoryDelete',
                     data: { id: id },
                     success: callbacks.success,
-                    error: callbacks.error
+                    error: function (resp) {
+                        if (!authentication.onAuthFail(resp)) callbacks.error(resp);
+                    } 
                 });
             };
 

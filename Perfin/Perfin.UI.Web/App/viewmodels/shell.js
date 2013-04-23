@@ -6,6 +6,7 @@
     'durandal/system',
     'services/dataprimer'],
     function (router, app, config, logger, system, dataprimer) {
+        debugger;
         var
             shell = this,
             router = router,
@@ -22,6 +23,7 @@
             boot = function () {
                 logger.info('App Loaded!', true, null, system.getModuleId(shell));
                 router.map(config.routes);
+                router.replaceLocation('#/welcome');
                 return router.activate(config.startModule);
             },
             failedInitialization = function (error) {

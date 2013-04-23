@@ -207,11 +207,11 @@
             });
         };
 
-        var auth0 = {
-            clientId: '',
-            getSrcScript: function () {
-                return 'https://sdk.auth0.com/auth0.js#client=' + this.clientId + '&amp;scope=openid&amp;response_type=token';
-            }
+        // Authentication 
+        var authentication = {
+            localTokenId: 'auth0TokenId',
+            localAccessToken: 'auth0AccessToken',
+            providerClientId: ''
         };
 
         var init = function () {
@@ -232,6 +232,6 @@
             publicRoutes: publicRoutes,
             startModule: startModule,
             messages: messages,
-            auth0: auth0
+            authentication: authentication
         };
     });

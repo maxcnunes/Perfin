@@ -3,9 +3,9 @@
     'durandal/app',
     'common/config',
     'common/logger',
-    'durandal/system',
-    'services/dataprimer'],
-    function (router, app, config, logger, system, dataprimer) {
+    'durandal/system'],
+    function (router, app, config, logger, system, authentication) {
+        debugger;
         var
             publicModule = this,
             router = router,
@@ -15,14 +15,20 @@
                 app.showMessage('Search not yet implemented...');
             },
             activate = function () {
+                //fetchCurrentUser();
                 return boot();
                 //return dataprimer.fetch()
                 //    .then(boot);
                 //    .fail(failedInitialization);
             },
+            fetchCurrentUser = function () {
+                authentication.fetchQueryStringData();
+                authentication.fetchCurrentUser();
+            },
             boot = function () {
                 logger.info('App Loaded! Public Modules', true, null, system.getModuleId(publicModule));
                 router.map(config.publicRoutes);
+                router.replaceLocation('#/user/login');
                 return router.activate('user/login');
             },
             failedInitialization = function (error) {

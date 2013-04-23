@@ -29,6 +29,14 @@
 	                item.salt(dto.salt);
 	                item.dirtyFlag().reset();
 	                return item;
+	            },
+	            fromAuth0Dto: function (dto, item) {
+	                item = item || new model.User();//.id(dto.id);
+	                item.login(dto.nickname);
+	                item.name(dto.name);
+	                item.email(dto.email);
+	                item.dirtyFlag().reset();
+	                return item;
 	            }
 	        },
             accounttype = {

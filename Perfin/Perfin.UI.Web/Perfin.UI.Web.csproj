@@ -150,11 +150,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\security\authentication.js" />
     <Content Include="App\common\utils.js" />
     <Content Include="App\common\config.js" />
     <Content Include="App\durandal\amd\almond-custom.js" />
@@ -290,6 +292,8 @@
     <Content Include="Content\font-awesome\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\font\FontAwesome.otf" />
+    <Content Include="App\security\authentication.provider.auth0.js" />
+    <Content Include="App\services\callback.dataservice.js" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

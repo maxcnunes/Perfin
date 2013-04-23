@@ -26,6 +26,7 @@ define([
                 define('sammy', [], function () { return root.Sammy; });
                 define('toastr', [], function () { return root.toastr; });
                 define('underscore', [], function () { return root._; });
+                define('auth0SDK', [], function () { return root.Auth0; });
             },
 
             fetchAssets = function () {
@@ -34,7 +35,20 @@ define([
                 });
             },
 
-            bootApp = function () {
+            fetchCurrentUser = function () {
+                require(['security/authentication', 'jquery'], function (authentication, $) {
+                    authentication.fetchQueryStringData();
+
+                    $.when(authentication.fetchCurrentUser())
+                     .done(bootAppPrivate)
+                     .fail(bootAppPublic);
+
+                    function bootAppPrivate() { bootApp(true); }
+                    function bootAppPublic() { bootApp(false); }
+                });
+            },
+
+            bootApp = function (privateModels) {
                 //>>excludeStart("build", true);
                 system.debug(true);
                 //>>excludeEnd("build");
@@ -53,9 +67,11 @@ define([
                     viewLocator.useConvention();
 
                     // LOGGED
-                    // app.setRoot('viewmodels/shell', 'entrance');
-                    // NOT LOGGED
-                    app.setRoot('viewmodels/public', 'entrance');
+                    debugger;
+                    if (privateModels)
+                        app.setRoot('viewmodels/shell', 'entrance');
+                    else
+                        app.setRoot('viewmodels/public', 'entrance');
 
                     // override bad route behavior to write to 
                     // console log and show error toast
@@ -69,13 +85,15 @@ define([
                 // Load the 3rd party libraries
                 define3rdPartyModules();
                 
-                // Load configurations
-                fetchAssets();
+                /* Not using now. But is already implemented.*/
+                //// Load configurations values
+                //fetchAssets(); 
+
+                fetchCurrentUser();
 
                 // Boot App
-                bootApp();
+                //bootApp();
             };
-
 
         init();
     });

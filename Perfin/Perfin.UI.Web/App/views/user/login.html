@@ -1,23 +1,5 @@
 ﻿<div>
-    
-    <h2>My single page app</h2>
-
-
-<button onclick="window.Auth0.signIn({onestep: true})">Login</button>
-
-<br />
-<button id="get-customers">Get Customers</button>
-
-<h3>Customers</h3>
-<pre><code id="customers">Not logged in yet</code></pre>
-
-<h3>User Info</h3>
-<pre><code id="userinfo">Not logged in yet</code></pre>
-
-<script src="~/Scripts/jquery-1.9.1.js" type="text/javascript"></script>
-
-
-    <form id="box-login" class="box-center" style="display:none">
+    <form id="box-login" class="box-center">
         <fieldset>
             <!-- Title -->
             <legend class="title-description">
@@ -26,27 +8,24 @@
             </legend>
 
             <!-- Fields -->
-            <section class="fields" data-bind="with: user">
-                <label for="login">User Login</label>
-                <input id="login" type="text" class="span3" placeholder="My login..." data-bind="value: login">
-
-                <label for="password">User Password</label>
-                <input id="password" type="password" class="span3" placeholder="My password..." data-bind="value: password">
-                <span class="help-block"><a href="#">Forget your password?</a></span>
-
+            <section class="fields">
+                <p>
+                    You don't need create a new user just to use the Perfinster.
+                    Instead enjoy with your existing account of:
+                </p>
+                <ul>
+                    <li><b>Google</></b> </li>
+                    <li><b>Facebook</b></li>
+                </ul>
+                <p>
+                    <em>For others authentications <a href="#">contact us</a>.</em>
+                </p>
             </section>
 
             <!-- Buttons -->
             <div class="form-actions">
-                <label style="float: left;">
-                    <input type="checkbox" tabindex="3">Keep me logged in</label>
-
-                <button style="float: right; margin-left: 5px;" type="button" class="btn btn-info"
-                    data-bind="click: goRegister">
-                    <i class="icon-star"></i>Register</button>
-
                 <button style="float: right;" type="submit" class="btn btn-primary"
-                    data-bind="click: save, enable: canSave">
+                    data-bind="click: login, enable: canLogin">
                     <i class="icon-lock"></i>Login</button>
             </div>
 

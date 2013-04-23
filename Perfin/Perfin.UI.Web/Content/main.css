@@ -557,7 +557,7 @@ textarea:valid + .validationMessage {
 #box-login {
     width: 400px;
     margin: 130px auto;
-    height: 300px;
+    height: 290px;
 }
 
 #box-register {
