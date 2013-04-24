@@ -25,6 +25,7 @@ p {
     line-height: 25px;
 }
 
+
 /*===== Layout =====*/
 #wrapper {
     margin: 10px;
@@ -442,7 +443,7 @@ input:required {
 
 select:invalid,
 select:focus:invalid {
-    color:#d45252;
+    color: #d45252;
 }
 
 textarea:required,
@@ -533,6 +534,37 @@ textarea:valid + .validationMessage {
 }
 
 
+/*==== Box Screen ====*/
+.box-center {
+    background: #fefefe;
+    border: 1px solid #CDCDC1;
+    border-top: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    -webkit-box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    overflow: hidden;
+}
+
+    .box-center input[type=checkbox] {
+        vertical-align: sub;
+        *vertical-align: middle;
+        margin-right: 10px;
+    }
+
+#box-login {
+    width: 400px;
+    margin: 130px auto;
+    height: 290px;
+}
+
+#box-register {
+    width: 450px;
+    margin: 30px auto;
+    height:570px;
+}
 /*--------------
   RESPONSIVE
 --------------*/

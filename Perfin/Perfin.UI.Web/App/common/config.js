@@ -9,7 +9,7 @@
             caption: 'Welcome',
             settings: {
                 classColor: 'green',
-                classIcon : 'icon-home'
+                classIcon: 'icon-home'
             }
         },
         //category
@@ -166,8 +166,22 @@
             caption: 'Flickr',
             settings: {
                 classColor: 'green',
-                classIcon : 'icon-home'
+                classIcon: 'icon-home'
             }
+        }];
+
+        var publicRoutes = [{
+            url: 'user/login',
+            moduleId: 'viewmodels/user/login',
+            name: '<i class="icon-book"></i> Login',
+            visible: true,
+            caption: 'Login'
+        }, {
+            url: 'user/register',
+            moduleId: 'viewmodels/user/register',
+            name: '<i class="icon-book"></i> Register',
+            visible: true,
+            caption: 'Register'
         }];
 
         var startModule = 'welcome';
@@ -193,6 +207,13 @@
             });
         };
 
+        // Authentication 
+        var authentication = {
+            localTokenId: 'auth0TokenId',
+            localAccessToken: 'auth0AccessToken',
+            providerClientId: ''
+        };
+
         var init = function () {
             //if (_useMocks) {
             //    dataserviceInit = mock.dataserviceInit;
@@ -208,7 +229,9 @@
 
         return {
             routes: routes,
+            publicRoutes: publicRoutes,
             startModule: startModule,
-            messages: messages
+            messages: messages,
+            authentication: authentication
         };
     });

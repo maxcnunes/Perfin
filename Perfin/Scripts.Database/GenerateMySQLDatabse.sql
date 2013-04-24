@@ -80,11 +80,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(45) NOT NULL,
-  `Password` VARCHAR(3000) NOT NULL ,
-  `Email` VARCHAR(400) DEFAULT NULL  ,
-  `Name` VARCHAR(45) DEFAULT NULL,
-  `Salt` VARCHAR(45)DEFAULT NULL, 
-  PRIMARY KEY (`Id`)
+  `Password` varchar(30) DEFAULT NULL,
+  `Email` varchar(400) DEFAULT NULL,
+  `Name` varchar(45) DEFAULT NULL,
+  `Salt` varchar(45) DEFAULT NULL,
+  `OAuthId` varchar(200) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `OAuthId_UNIQUE` (`OAuthId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

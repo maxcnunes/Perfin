@@ -154,23 +154,25 @@ define([
             };
 
 
-            //--------------------------------------
-            // Repositories
-            //
-            // Pass:
-            // dataservice's 'get' method
-            // model mapper
-            //--------------------------------------
-            categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
-            userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
-            accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
-            accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
-       
+        //--------------------------------------
+        // Repositories
+        //
+        // Pass:
+        // dataservice's 'get' method
+        // model mapper
+        //--------------------------------------
+        categoryRepository = new EntitySet(dataservice.category.getCatetories, modelmapper.category, model.Category.Nullo);
+        userRepository = new EntitySet(dataservice.user.getUsers, modelmapper.user, model.User.Nullo);
+        accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
+        accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
+        assetsRepository = {}; // Don't need all EntitySet's functions 
+
+
         // Extend Categories entitySet
         //----------------------------
         categoryRepository.getAllLeastCurrent = function (id, options) {
             var allCategories = ko.observable();
-            
+
             // extend the options
             options = options || {};
             _.extend(options, {
@@ -422,6 +424,66 @@ define([
             }).promise();
         };
 
+        userRepository.getUserInfoAuth0 = function (accessToken, callbacks, forceRefresh) {
+            return $.Deferred(function (def) {
+                var user = userRepository.getLocalById(id);
+                if (accessToken !== undefined && (user.isNullo || forceRefresh)) {
+                    // if nullo or brief, get fresh from database
+                    dataservice.user.getUserInfoAuth0({
+                        success: function (dto) {
+                            var user = modelmapper.user.fromAuth0Dto(dto); // Map DTO to Model
+                            def.resolve(dto);
+                        },
+                        error: function (response) {
+                            logger.error('oops! could not retrieve user ', true);
+                            if (callbacks && callbacks.error) { callbacks.error(response); }
+
+                            //if (response.status == 401) {
+                            //    //Unauthorized
+                            //}
+
+                            def.reject(response);
+                        }
+                    },
+                    accessToken);
+                } else {
+                    callbacks.success(user);
+                    def.resolve(user);
+                }
+            }).promise();
+        };
+
+        userRepository.importData = function (userModel, callbacks) {
+            var userModelJson = ko.toJSON(userModel);
+
+            return $.Deferred(function (def) {
+                dataservice.user.importUser({
+                    success: function (dto) {
+                        if (!dto) {
+                            onError();
+                            return;
+                        }
+
+                        var user = modelmapper.user.fromDto(dto); // Map DTO to Model
+                        if (userRepository.getLocalById(user.id()).isNullo) {
+                            userRepository.add(user); // Add to datacontext
+                        }
+
+                        logger.success(config.messages.savedData, true);
+                        if (callbacks && callbacks.success) { callbacks.success(user); }
+                        def.resolve(dto);
+                    },
+                    error: onError
+                }, userModelJson);
+
+                function onError(response) {
+                    logger.error(config.messages.errorSavingData);
+                    if (callbacks && callbacks.error) { callbacks.error(); }
+                    def.reject();
+                }
+            }).promise();
+        };
+
 
         // Extend AccountType entitySet
         //----------------------------
@@ -670,11 +732,31 @@ define([
         };
 
 
+
+
+        // Assets Repository
+        //----------------------------
+        assetsRepository.getData = function () {
+            return $.Deferred(function (def) {
+                $.when(dataservice.assets.getAssets({
+                    success: function (dtoList) {
+                        def.resolve(dtoList);
+                    },
+                    error: function (response) {
+                        logger.error(config.messages.errorGettingData, true);
+                        def.reject();
+                    }
+                }));
+            }).promise();
+        };
+
+
         var datacontext = {
             category: categoryRepository,
             user: userRepository,
             accounttype: accounttypeRepository,
-            account: accountRepository
+            account: accountRepository,
+            assets: assetsRepository
         };
 
         // We did this so we can access the datacontext during its construction

@@ -1,0 +1,34 @@
+﻿<div>
+    <form id="box-login" class="box-center">
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
+
+            <!-- Fields -->
+            <section class="fields">
+                <p>
+                    You don't need create a new user just to use the Perfinster.
+                    Instead enjoy with your existing account of:
+                </p>
+                <ul>
+                    <li><b>Google</></b> </li>
+                    <li><b>Facebook</b></li>
+                </ul>
+                <p>
+                    <em>For others authentications <a href="#">contact us</a>.</em>
+                </p>
+            </section>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <button style="float: right;" type="submit" class="btn btn-primary"
+                    data-bind="click: login, enable: canLogin">
+                    <i class="icon-lock"></i>Login</button>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

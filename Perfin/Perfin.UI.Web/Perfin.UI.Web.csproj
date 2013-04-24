@@ -47,6 +47,9 @@
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Tokens.JWT">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.JWT.0.1.0\lib\net45\Microsoft.IdentityModel.Tokens.JWT.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.6.4\lib\net40\MySql.Data.dll</HintPath>
@@ -57,6 +60,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -133,22 +137,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\GlobalConfig.cs" />
     <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="App_Start\JsonWebTokenValidationHandler.cs" />
     <Compile Include="App_Start\NinjectDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectDependencyScope.cs" />
     <Compile Include="App_Start\ValidationActionFilter.cs" />
     <Compile Include="Controllers\AccountTypeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiBaseController.cs" />
+    <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\security\authentication.js" />
     <Content Include="App\common\utils.js" />
     <Content Include="App\common\config.js" />
     <Content Include="App\durandal\amd\almond-custom.js" />
@@ -183,6 +191,7 @@
     <Content Include="App\repositories\account.js" />
     <Content Include="App\repositories\accounttype.js" />
     <Content Include="App\repositories\user.js" />
+    <Content Include="App\services\dataservice.assets.js" />
     <Content Include="App\services\dataservice.accounttype.js" />
     <Content Include="App\services\dataservice.account.js" />
     <Content Include="App\services\dataservice.user.js" />
@@ -196,8 +205,12 @@
     <Content Include="App\viewmodels\account\add.js" />
     <Content Include="App\viewmodels\account\details.js" />
     <Content Include="App\viewmodels\account\show.js" />
+    <Content Include="App\common\assets.js" />
+    <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\user\add.js" />
+    <Content Include="App\viewmodels\user\register.js" />
     <Content Include="App\viewmodels\user\details.js" />
+    <Content Include="App\viewmodels\user\login.js" />
     <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\accounttype\add.html" />
     <Content Include="App\views\accounttype\details.html" />
@@ -207,8 +220,11 @@
     <Content Include="App\views\account\show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
+    <Content Include="App\views\public.html" />
     <Content Include="App\views\user\add.html" />
+    <Content Include="App\views\user\register.html" />
     <Content Include="App\views\user\details.html" />
+    <Content Include="App\views\user\login.html" />
     <Content Include="App\views\user\show.html" />
     <Content Include="Content\boilerplate-normalize.css" />
     <Content Include="Content\images\back.png" />
@@ -276,6 +292,8 @@
     <Content Include="Content\font-awesome\font\fontawesome-webfont.ttf" />
     <Content Include="Content\font-awesome\font\fontawesome-webfont.eot" />
     <Content Include="Content\font-awesome\font\FontAwesome.otf" />
+    <Content Include="App\security\authentication.provider.auth0.js" />
+    <Content Include="App\services\callback.dataservice.js" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

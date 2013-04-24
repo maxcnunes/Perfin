@@ -70,5 +70,40 @@ namespace Perfin.UI.Web.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
+
+
+        // Create a new User
+        // POST /api/user
+        [HttpPost]
+        public HttpResponseMessage Import(User user)
+        {
+            var dbUser = Uow.Users.GetByOAuthId(user.OAuthId);
+            if (dbUser == null)
+            {
+                Uow.Users.Add(user);
+                Uow.Commit();
+
+                var response = Request.CreateResponse(HttpStatusCode.Created, user);
+
+                // Compose location header that tells how to get this session
+                // e.g. ~/api/user/3
+                response.Headers.Location =
+                    new Uri(Url.Link(RouteConfig.ControllerAndId, new { id = user.Id }));
+
+                return response;
+            }
+            else
+            {
+                // transfer values to update user
+                dbUser.Login = user.Login;
+                dbUser.Email = user.Email;
+                dbUser.Name = user.Name;
+
+                Uow.Users.Update(dbUser);
+                Uow.Commit();
+
+                return Request.CreateResponse(HttpStatusCode.OK, user);
+            }
+        }
     }
 }

@@ -11,10 +11,12 @@ namespace Perfin.UI.Web
             bundles.IgnoreList.Clear();
             AddDefaultIgnorePatterns(bundles.IgnoreList);
 
+            bundles.UseCdn = true;
+
             // Modernizr goes separate since it loads first
             bundles.Add(new ScriptBundle("~/bundles/modernizr")
                 .Include("~/Scripts/modernizr-{version}.js"));
-
+            
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/Scripts/jquery-{version}.js")
@@ -26,9 +28,8 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/amplify.js")
                 .Include("~/Scripts/underscore.js")
                 .Include("~/Scripts/knockout.dirtyFlag.js")
-                .Include("~/Scripts/knockout.validation.js")                
+                .Include("~/Scripts/knockout.validation.js")
               );
-
 
             // CSS Files
             bundles.Add(
