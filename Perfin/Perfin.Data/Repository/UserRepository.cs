@@ -18,5 +18,15 @@ namespace Perfin.Data.Repository
 
             return user;
         }
+
+        public User GetByOAuthId(string oAuthId)
+        {
+            var user = _dbSession
+                        .CreateCriteria(typeof(User))
+                        .Add(Restrictions.Eq("OAuthId", oAuthId))
+                        .UniqueResult<User>();
+
+            return user;
+        }
     }
 }

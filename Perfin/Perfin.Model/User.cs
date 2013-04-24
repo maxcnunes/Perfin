@@ -11,6 +11,7 @@ namespace Perfin.Model
         public virtual string Email { get; set; }
         public virtual string Name { get; set; }
         public virtual string Salt { get; set; }
+        public virtual string OAuthId { get; set; }
 
         public User() { }
         public User(string login, string password)

@@ -31,11 +31,12 @@
 	                return item;
 	            },
 	            fromAuth0Dto: function (dto, item) {
-	                item = item || new model.User();//.id(dto.id);
+	                item = item || new model.User().id(dto.id);
 	                item.login(dto.nickname);
 	                item.name(dto.name);
 	                item.email(dto.email);
 	                item.dirtyFlag().reset();
+	                item.oAuthId(dto.user_id);
 	                item.picture(dto.picture);
 	                return item;
 	            }

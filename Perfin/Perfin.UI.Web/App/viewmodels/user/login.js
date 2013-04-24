@@ -7,7 +7,8 @@
     'services/datacontext',
     'durandal/plugins/router',
     'models/model.user',
-    'auth0SDK', 'security/authentication'],
+    'auth0SDK',
+    'security/authentication'],
     function (router, app, config, logger, system, datacontext, router, model, auth0SDK, authentication) {
         var
             user = authentication.currentUser,

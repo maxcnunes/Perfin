@@ -9,10 +9,11 @@
             self.password = ko.observable().extend({ required: true });
             self.email = ko.observable();
             self.name = ko.observable();
-            self.salt= ko.observable();
+            self.salt = ko.observable();
+            self.oAuthId = ko.observable();
             
             self.isNullo = false;
-            self.dirtyFlag = new ko.DirtyFlag([self.id, self.login, self.password, self.email, self.name, self.salt]);
+            self.dirtyFlag = new ko.DirtyFlag([self.id, self.login, self.password, self.email, self.name, self.salt, self.oAuthId]);
 
             return self;
         };

@@ -10,10 +10,11 @@ namespace Perfin.Data.Map
             Table("User");
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Login).Unique();
-            Map(x => x.Password).Not.Nullable();
+            Map(x => x.Password).Nullable();
             Map(x => x.Email).Nullable();
             Map(x => x.Name).Nullable();
             Map(x => x.Salt).Nullable();
+            Map(x => x.OAuthId).Not.Nullable().Unique();
         }
     }
 }

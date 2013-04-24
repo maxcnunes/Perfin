@@ -36,16 +36,18 @@ define([
             },
 
             fetchCurrentUser = function () {
-                require(['security/authentication', 'jquery'], function (authentication, $) {
-                    authentication.fetchQueryStringData();
+                require(['security/authentication', 'services/datacontext', 'jquery'],
+                    function (authentication, datacontext, $) {
+                        authentication.datacontext(datacontext);
+                        authentication.fetchQueryStringData();
 
-                    $.when(authentication.fetchCurrentUser())
-                     .done(bootAppPrivate)
-                     .fail(bootAppPublic);
+                        $.when(authentication.fetchCurrentUser())
+                         .done(bootAppPrivate)
+                         .fail(bootAppPublic);
 
-                    function bootAppPrivate() { bootApp(true); }
-                    function bootAppPublic() { bootApp(false); }
-                });
+                        function bootAppPrivate() { bootApp(true); }
+                        function bootAppPublic() { bootApp(false); }
+                    });
             },
 
             bootApp = function (privateModels) {
@@ -80,7 +82,7 @@ define([
             init = function () {
                 // Load the 3rd party libraries
                 define3rdPartyModules();
-                
+
                 /* Not using now. But is already implemented.*/
                 //// Load configurations values
                 //fetchAssets(); 

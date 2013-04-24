@@ -15,8 +15,13 @@
                      .fail(unauthorized);
 
                     function fetched(modelResult) {
-                        currentUser(modelResult);
-                        def.resolve(modelResult);
+                        // Import user data to our db
+                        $.when(saveUserOnLogin(modelResult))
+                         .done(function () {
+                             currentUser(modelResult);
+                             def.resolve(modelResult);
+                         })
+                         .fail(unauthorized);
                     };
                     function unauthorized(resp) {
                         onAuthFail(resp);
@@ -42,19 +47,15 @@
 
                 if (window.location.href.indexOf('#/user/login') < 0) {
                     router.replaceLocation('#/user/login');
-                    // force reload the our spa 
+                    // force reload our SPA 
                     document.location.reload(true);
-                }                
+                }
+            },
+            saveUserOnLogin = function (user) {
+                debugger;
+                return _dc.user.importData(user);               
             };
 
-        function sleep(milliseconds) {
-            var start = new Date().getTime();
-            for (var i = 0; i < 1e7; i++) {
-                if ((new Date().getTime() - start) > milliseconds) {
-                    break;
-                }
-            }
-        }
 
         /* Extended provider: 
          * Using a extended provider we keep the Open Closed Principle
@@ -93,6 +94,15 @@
             cleanAuth: auth0.cleanAuth
         };
 
+        /* We can't depend of datacontext on constructor because of cycle reference
+         * Then we set it after instacialized
+         */
+        var _dc = null,
+            datacontext = function (dc) {
+                if (dc) { _dc = dc; }
+                return _dc;
+            };
+
         return {
             currentUser: currentUser,
             fetchCurrentUser: fetchCurrentUser,
@@ -104,6 +114,7 @@
             getUserInfo: authProvider.getUserInfo,
             fetchQueryStringData: authProvider.fetchQueryStringData,
             onAuthFail: onAuthFail,
-            logOutCurrentUser: logOutCurrentUser
+            logOutCurrentUser: logOutCurrentUser,
+            datacontext: datacontext
         };
     });

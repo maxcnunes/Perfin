@@ -166,7 +166,7 @@ define([
         accounttypeRepository = new EntitySet(dataservice.accounttype.getAccountTypes, modelmapper.accounttype, model.AccountType.Nullo);
         accountRepository = new EntitySet(dataservice.account.getAccounts, modelmapper.account, model.AccountType.Nullo);
         assetsRepository = {}; // Don't need all EntitySet's functions 
-        
+
 
         // Extend Categories entitySet
         //----------------------------
@@ -453,6 +453,37 @@ define([
             }).promise();
         };
 
+        userRepository.importData = function (userModel, callbacks) {
+            var userModelJson = ko.toJSON(userModel);
+
+            return $.Deferred(function (def) {
+                dataservice.user.importUser({
+                    success: function (dto) {
+                        if (!dto) {
+                            onError();
+                            return;
+                        }
+
+                        var user = modelmapper.user.fromDto(dto); // Map DTO to Model
+                        if (userRepository.getLocalById(user.id()).isNullo) {
+                            userRepository.add(user); // Add to datacontext
+                        }
+
+                        logger.success(config.messages.savedData, true);
+                        if (callbacks && callbacks.success) { callbacks.success(user); }
+                        def.resolve(dto);
+                    },
+                    error: onError
+                }, userModelJson);
+
+                function onError(response) {
+                    logger.error(config.messages.errorSavingData);
+                    if (callbacks && callbacks.error) { callbacks.error(); }
+                    def.reject();
+                }
+            }).promise();
+        };
+
 
         // Extend AccountType entitySet
         //----------------------------
@@ -701,7 +732,7 @@ define([
         };
 
 
-        
+
 
         // Assets Repository
         //----------------------------

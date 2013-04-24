@@ -55,6 +55,15 @@
                     beforeSend: authentication.authorizationHeader,
                     decoder: callbackDataservice.beforeExecCallback
                     //cache:true
+                }),
+                
+                amplify.request.define('userImport', 'ajax', {
+                    url: serviceUrl + '/import',
+                    dataType: 'json',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 });
             },
 
@@ -109,6 +118,15 @@
                     success: callbacks.success,
                     error: callbacks.error
                 });
+            },
+            
+            importUser = function (callbacks, data) {
+                return amplify.request({
+                    resourceId: 'userImport',
+                    data: data,
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
             };
 
         init();
@@ -120,6 +138,7 @@
             addUser: addUser,
             updateUser: updateUser,
             deleteUser: deleteUser,
+            importUser: importUser,
             // Auth0
             getUserInfoAuth0: getUserInfoAuth0
         };
