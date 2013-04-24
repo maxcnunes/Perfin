@@ -29,99 +29,68 @@
                 data-bind="options: $parent.accounts,
                     optionsText: 'name',
                     optionsValue: 'id',
-                    value: $root.account,
                     optionsCaption: 'Choose...'"
-                tabindex="5">
-                <!--value: $root.selectedAccount, se utilizado seta o id do account selecionado para este observable e nao o objeto completo -->
-
-            </select>
-            <a href="#/account/add" class="btn btn-primary">
+                tabindex="5"></select>
+            <a href="#/account/add" class="btn btn-primary btn-small" style="margin-top:-5px;">
                 <i class="icon-plus"></i>
                 New Account
             </a>
             <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
 
-            <div><br /></div>
-            
-            <label>Account Type</label>
-            <input type="text" class="span5"  disabled="disabled" placeholder="choose an account to load the account type corresponding" 
-                data-bind="value: $parent.selectedAccount().accounttype().name()">
-            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+            <div class="row">
+                <div class="span4">
+                    <label>Account Type</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the account type corresponding"
+                        data-bind="value: $parent.selectedAccount().accounttype().name()">
+                    <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+                </div>
 
-            <label>Category</label>
-            <input type="text" class="span5" disabled="disabled" placeholder="choose an account to load the category corresponding" 
-                data-bind="value: $$parent.selectedAccount().category().name()">
-            
-            <input type="text" class="span5" disabled="disabled" placeholder="test " 
-                data-bind="value: $parent.account().category().name()">
-
-            <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
-
-            <!--value: accountId,-->
-
-            <!--<select data-placeholder="Your Favorite Football Team" 
-                style="width: 350px;" class="chzn-select" 
-                 data-bind="options: $parent.accounts,
-                    optionsText: 'text',
-                    optionsValue: 'value',
-                    optionsCaption: 'None'"
-                tabindex="5">
-            </select>-->
-
-            <!--       <select data-placeholder="Your Favorite Football Teams" style="width: 350px;" class="chzn-select" multiple tabindex="6">
+                <div class="span4">
+                    <label>Category</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the category corresponding"
+                        data-bind="value: $parent.selectedAccount().category().name()">
+                    <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+                </div>
+            </div>
 
 
-                <option>New York Giants</option>
-                <option>Philadelphia Eagles</option>
-                <option>Washington Redskins</option>
+            <div class="row">
+                <div class="span2">
+                    <label>Price</label>
+                    <input type="text" class="span2" placeholder="000,000.000" data-bind="value: price">
+                    <span class="help-block">The cost or receipt of your entry.</span>
+                </div>
 
-            </select>-->
+                <div class="span6">
+                    <label>Payment Date</label>
+                    <input type="text" class="span2" placeholder="23/01/2013" data-bind="value: paymentdate">
+                    <span class="help-block">Date of your account (can be any date or if you don't specify a date this account will be set in an undefined date of the current month).</span>
+
+                </div>
+            </div>
 
 
-            <!-- <input type="text" class="span5" placeholder="autocomplete dropdown" data-bind="value: accountId ">-->
-           
-            <label>Price</label>
-            <input type="text" class="span5" placeholder="000,000.000" data-bind="value: price">
-            <span class="help-block">The cost or receipt of your entry.</span>
+            <!-- 
+                //// NOT AVAILABLE YET ////
+            <div class="row">
+                <div class="span4">
+                    <label>Frequency</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+                    <span class="help-block">The frequency that you pay/recieve this account.</span>
+                </div>
+
+                <div class="span4">
+                    <label>Location</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+                    <span class="help-block">The location that  occurred.</span>
+                </div>
+            </div>
+            -->
+
 
             <label>Details</label>
-            <input type="text" class="span5" placeholder="gift for my wife" data-bind="value: description">
+            <textarea class="span5" rows='5' cols='60' placeholder="gift for my wife" data-bind="value: description"></textarea>
             <span class="help-block">Details of your entry.</span>
-
-            <label>Payment Date</label>
-            <input type="text" class="span5" placeholder="23/01/2013" data-bind="value: paymentdate">
-            <span class="help-block">Date of your account (can be any date or if you don't specify a date this account will be set in an undefined date of the current month).</span>
-
-
-
-            <!--<label>Account </label> 
-             <select class="span5" 
-                data-bind="options: $parent.accounts,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: accountId,
-                           optionsCaption: 'autocomplete dropdown...'">
-            </select>
-            <span class="help-block">A group for Account Types.</span>-->
-
-
-            <!--data-bind="options: $parent.categories,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: categoryId,
-                           disabled: disabled,
-                           optionsCaption: 'Choose...'"-->
-
-
-            
-
-            <label>Frequency</label>
-            <input type="text" class="span5" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
-            <span class="help-block">The frequency that you pay/recieve this account.</span>
-
-            <label>Location</label>
-            <input type="text" class="span5" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
-            <span class="help-block">The location that  occurred.</span>
 
         </section>
 

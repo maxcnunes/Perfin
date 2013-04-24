@@ -13,26 +13,19 @@
             isSaving = ko.observable(false),
             entry = ko.observable(),
             accounts = ko.observable(),
-            account = ko.observable(),
             selectedAccount = ko.observable(),
             validationErrors = ko.observableArray([]),
 
 
             activate = function () {
-                debugger;
                 initLookups();
-                account(new accountModel());
-                bindChangeEvent("#ddl_accounts");
+                initAccountsSelect();
+                
 
                 entry(new model());
                 validationErrors = ko.validation.group(entry());//apply validation
-
-                setTimeout(function () {
-                    $(".chzn-select").chosen({ no_results_text: "No results matched" });
-                }, 1000);
             },
             initLookups = function () {
-                //debugger;
                 $.when(getAllAccounts());
 
                 function getAllAccounts() {
@@ -43,11 +36,21 @@
                     }).promise();
                 }
             },
-            bindChangeEvent = function (selector) {
-                $(document).on("change", selector, function () {
-                    debugger;
-                    var acc = datacontext.account.getLocalById($('#ddl_accounts option:selected').val());
-                    selectedAccount(acc);
+            initAccountsSelect = function () {
+                selectedAccount(new accountModel());
+                setTimeout(function () {
+                    $('#ddl_accounts').chosen();
+                    bindAccountsChangeEvent();
+                }, 500);
+            },
+            bindAccountsChangeEvent = function () {
+                /*
+                 * This should be changed to Bind Handler later
+                 */
+                $(document).on("change", '#ddl_accounts', function () {
+                    var id = $(this).find(':selected').val();
+                    var _selectedAccount = datacontext.account.getLocalById(id);
+                    selectedAccount(_selectedAccount);
                 });
             },
             cancel = function (complete) {
@@ -65,7 +68,7 @@
                 return false;
                 //return datacontext.hasChanges();
             }),
-           isValid = function () {
+            isValid = function () {
                return canEditEntry() ? validationErrors().length === 0 : true;
            },
             canSave = ko.computed(function () {
@@ -117,9 +120,9 @@
                 //}
                 //return true;
             },
-             goBack = function () {
+            goBack = function () {
                  router.navigateBack();
-             };
+            };
 
         var vm = {
             activate: activate,
@@ -130,7 +133,6 @@
             save: save,
             goBack: goBack,
             entry: entry,
-            account: account,
             accounts: accounts,
             selectedAccount: selectedAccount,
 
