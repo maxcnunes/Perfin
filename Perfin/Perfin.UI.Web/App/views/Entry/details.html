@@ -3,9 +3,9 @@
     <i class="icon-home icon-large"></i>
     <a href="#" class="home">Perfin</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Management Items</a>
+    <a href="#" class="current">Entry</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account</a>
+    <a href="#" class="current">Add new entry</a>
 </nav>
 
 
@@ -19,35 +19,78 @@
         </legend>
 
         <!-- Fields -->
-        <section class="fields" data-bind="with: account">
+        <section class="fields" data-bind="with: entry">
             <label>Account Name</label>
-            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: name">
-            <span class="help-block">Account is all of expensives or Incomes that you have.</span>
 
-            
-            <label>Account Description</label>
-            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
-            <span class="help-block">Description of account.</span>
+            <select 
+                id="ddl_accounts"
+                data-placeholder="Accounts"
+                style="width: 350px;" class="chzn-select"
+                data-bind="options: $parent.accounts,
+                    optionsText: 'name',
+                    optionsValue: 'id',
+                    optionsCaption: 'Choose...'"
+                tabindex="5"></select>
+            <a href="#/account/add" class="btn btn-primary btn-small" style="margin-top:-5px;">
+                <i class="icon-plus"></i>
+                New Account
+            </a>
+            <span class="help-block">Account is all of expensives or Incomes that you have (Previously added) .</span>
 
-            <label>Account Type</label> 
-             <select class="span5" 
-                data-bind="options: $parent.accounttypes,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: accounttypeId,
-                           optionsCaption: 'Choose...'">
-            </select>
-            <span class="help-block">A group for Account Types.</span>
+            <div class="row">
+                <div class="span4">
+                    <label>Account Type</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the account type corresponding"
+                        data-bind="value: $parent.selectedAccount().accounttype().name()">
+                    <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+                </div>
 
-            <label>Category</label> 
-             <select class="span5" 
-                data-bind="options: $parent.categories,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: categoryId,
-                           optionsCaption: 'Choose...'">
-            </select>
-            <span class="help-block">Category Account is the account which group belongs.</span>
+                <div class="span4">
+                    <label>Category</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the category corresponding"
+                        data-bind="value: $parent.selectedAccount().category().name()">
+                    <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="span2">
+                    <label>Price</label>
+                    <input type="text" class="span2" placeholder="000,000.000" data-bind="value: price">
+                    <span class="help-block">The cost or receipt of your entry.</span>
+                </div>
+
+                <div class="span6">
+                    <label>Payment Date</label>
+                    <input type="text" class="span2" placeholder="23/01/2013" data-bind="value: paymentdate">
+                    <span class="help-block">Date of your account (can be any date or if you don't specify a date this account will be set in an undefined date of the current month).</span>
+
+                </div>
+            </div>
+
+
+            <!-- 
+                //// NOT AVAILABLE YET ////
+            <div class="row">
+                <div class="span4">
+                    <label>Frequency</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+                    <span class="help-block">The frequency that you pay/recieve this account.</span>
+                </div>
+
+                <div class="span4">
+                    <label>Location</label>
+                    <input type="text" class="span4" disabled="disabled" placeholder="Not Available Yet" data-bind="value: category.name">
+                    <span class="help-block">The location that  occurred.</span>
+                </div>
+            </div>
+            -->
+
+
+            <label>Details</label>
+            <textarea class="span5" rows='5' cols='60' placeholder="gift for my wife" data-bind="value: description"></textarea>
+            <span class="help-block">Details of your entry.</span>
 
         </section>
 
@@ -56,23 +99,15 @@
 
             <button type="submit" class="btn btn-primary"
                 data-bind="click: save, enable: canSave">
-                <i class="icon-save"></i>Save
-            </button>
+                <i class="icon-save"></i>Save</button>
 
             <button type="reset" class="btn"
                 data-bind="click: cancel, enable: canSave">
-                <i class="icon-undo"></i>Cancel
-            </button>
-
-            <button class="btn btn-danger"
-                data-bind="click: deleteItem, disable: hasChanges">
-                <i class="icon-trash"></i>Delete
-            </button>
+                <i class="icon-undo"></i>Cancel</button>
 
             <button class="btn btn-info" data-bind="click: goBack">
                 <i class="icon-hand-left"></i>Back
             </button>
-
             <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
         </div>
 

@@ -18,11 +18,12 @@
 
 
             activate = function () {
+                debugger;
                 initLookups();
                 initAccountsSelect();
                 
-
                 entry(new model());
+                entry().registrydate('01-01-2013'); //set manually for while TODO: get current date.
                 validationErrors = ko.validation.group(entry());//apply validation
             },
             initLookups = function () {
@@ -51,6 +52,10 @@
                     var id = $(this).find(':selected').val();
                     var _selectedAccount = datacontext.account.getLocalById(id);
                     selectedAccount(_selectedAccount);
+
+                    //set the accountId (model property)
+                    entry().accountId(id);
+
                 });
             },
             cancel = function (complete) {
@@ -72,6 +77,7 @@
                return canEditEntry() ? validationErrors().length === 0 : true;
            },
             canSave = ko.computed(function () {
+                debugger;
                 return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
@@ -96,29 +102,6 @@
             },
             canDeactivate = function () {
                 return true;
-
-                // OLD
-                //----------------------------
-                //if (this._accounttypeAdded == false) {
-                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-                //} else {
-                //    return true;
-                //}
-
-
-                // NEW EXAMPLE
-                //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
             },
             goBack = function () {
                  router.navigateBack();
