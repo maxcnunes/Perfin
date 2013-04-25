@@ -156,6 +156,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\common\breadcrumb.js" />
     <Content Include="App\security\authentication.js" />
     <Content Include="App\common\utils.js" />
     <Content Include="App\common\config.js" />
@@ -226,6 +227,7 @@
     <Content Include="App\views\user\details.html" />
     <Content Include="App\views\user\login.html" />
     <Content Include="App\views\user\show.html" />
+    <Content Include="App\views\_shared\breadcrumb.html" />
     <Content Include="Content\boilerplate-normalize.css" />
     <Content Include="Content\images\back.png" />
     <Content Include="Content\images\background.jpg" />
@@ -259,14 +261,12 @@
     <Content Include="App\viewmodels\category\add.js" />
     <Content Include="App\viewmodels\category\details.js" />
     <Content Include="App\viewmodels\category\show.js" />
-    <Content Include="App\viewmodels\flickr.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\welcome.js" />
     <Content Include="App\views\category\add.html" />
     <Content Include="App\views\category\details.html" />
     <Content Include="App\views\category\show.html" />
     <Content Include="App\views\detail.html" />
-    <Content Include="App\views\flickr.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="App\views\welcome.html" />
     <Content Include="Content\app.css" />

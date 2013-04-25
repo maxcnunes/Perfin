@@ -1,55 +1,50 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Category</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
 
+            <!-- Fields -->
+            <section class="fields" data-bind="with: category">
+                <label>Category Name</label>
+                <input type="text" class="span5" placeholder="Transport..." data-bind="value: name">
+                <span class="help-block">Category is a group to organize your finances.</span>
 
-
-<form>
-    <fieldset>
-        <!-- Title -->
-        <legend class="title-description" >
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
-
-        <!-- Fields -->
-        <section class="fields" data-bind="with: category">
-            <label>Category Name</label>
-            <input type="text" class="span5" placeholder="Transport..." data-bind="value: name">
-            <span class="help-block">Category is a group to organize your finances.</span>
-
-            <label>Parent Category</label>
-            <select class="span5" 
-                data-bind="options: $parent.parentCategories,
+                <label>Parent Category</label>
+                <select class="span5"
+                    data-bind="options: $parent.parentCategories,
                            optionsText: 'name',
                            optionsValue : 'id',
                            value: parent,
                            optionsCaption: 'None'">
-            </select>
-            <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
-        </section>
+                </select>
+                <span class="help-block">Parent Category is a group for this category and others similar Category.</span>
+            </section>
 
-        <!-- Buttons -->
-        <div class="form-actions">
+            <!-- Buttons -->
+            <div class="form-actions">
 
-            <button type="submit" class="btn btn-primary"
+                <button type="submit" class="btn btn-primary"
                     data-bind="click: save, enable: canSave">
-                <i class="icon-save"></i>Save</button>
+                    <i class="icon-save"></i>Save</button>
 
-            <button type="reset" class="btn"
+                <button type="reset" class="btn"
                     data-bind="click: cancel, enable: canSave">
-                <i class="icon-undo"></i>Cancel</button>
+                    <i class="icon-undo"></i>Cancel</button>
 
-            <button class="btn btn-info" data-bind="click: goBack">
-                <i class="icon-hand-left"></i>Back
-            </button>
+                <button class="btn btn-info" data-bind="click: goBack">
+                    <i class="icon-hand-left"></i>Back
+                </button>
 
-            <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
-        </div>
+                <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+            </div>
 
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
+</div>

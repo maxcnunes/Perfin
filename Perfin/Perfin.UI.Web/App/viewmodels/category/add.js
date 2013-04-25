@@ -2,11 +2,14 @@
     'durandal/app',
     'services/datacontext',
     'durandal/plugins/router',
-    'models/model.category'],
-    function (app, datacontext, router, model) {
+    'models/model.category',
+    'common/breadcrumb',
+    'common/config'],
+    function (app, datacontext, router, model, breadcrumb, config) {
 
 
         var
+            vm = this,
             isSaving = ko.observable(false),
             category = ko.observable(),
             parentCategories = ko.observable(),
@@ -111,7 +114,8 @@
 
             // module page info
             pageDisplayName: 'Create Category',
-            pageDescription: 'Create a category and let more organized your finances'
+            pageDescription: 'Create a category and let more organized your finances',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.category.add)
         };
 
         return vm;

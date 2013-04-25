@@ -4,8 +4,10 @@
     'durandal/system',
     'durandal/plugins/router',
     'jquery',
-    'durandal/app'],
-    function (datacontext, logger, system, router, $, app) {
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (datacontext, logger, system, router, $, app, breadcrumb, config) {
         var
             show = this,
             categories = ko.observableArray(),
@@ -96,6 +98,7 @@
 
             // module page info
             pageDisplayName: 'List Category',
-            pageDescription: 'All your categories'
+            pageDescription: 'All your categories',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.category.show)
         };
     });

@@ -1,80 +1,73 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Management Items</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
+
+            <!-- Fields -->
+            <section class="fields" data-bind="with: account">
+                <label>Account Name</label>
+                <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: name">
+                <span class="help-block">Account is all of expensives or Incomes that you have.</span>
 
 
+                <label>Account Description</label>
+                <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
+                <span class="help-block">Description of account.</span>
 
-<form>
-    <fieldset>
-        <!-- Title -->
-        <legend class="title-description">
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
-
-        <!-- Fields -->
-        <section class="fields" data-bind="with: account">
-            <label>Account Name</label>
-            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: name">
-            <span class="help-block">Account is all of expensives or Incomes that you have.</span>
-
-            
-            <label>Account Description</label>
-            <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
-            <span class="help-block">Description of account.</span>
-
-            <label>Account Type</label> 
-             <select class="span5" 
-                data-bind="options: $parent.accounttypes,
+                <label>Account Type</label>
+                <select class="span5"
+                    data-bind="options: $parent.accounttypes,
                            optionsText: 'name',
                            optionsValue : 'id',
                            value: accounttypeId,
                            optionsCaption: 'Choose...'">
-            </select>
-            <span class="help-block">A group for Account Types.</span>
+                </select>
+                <span class="help-block">A group for Account Types.</span>
 
-            <label>Category</label> 
-             <select class="span5" 
-                data-bind="options: $parent.categories,
+                <label>Category</label>
+                <select class="span5"
+                    data-bind="options: $parent.categories,
                            optionsText: 'name',
                            optionsValue : 'id',
                            value: categoryId,
                            optionsCaption: 'Choose...'">
-            </select>
-            <span class="help-block">Category Account is the account which group belongs.</span>
+                </select>
+                <span class="help-block">Category Account is the account which group belongs.</span>
 
-        </section>
+            </section>
 
-        <!-- Buttons -->
-        <div class="form-actions">
+            <!-- Buttons -->
+            <div class="form-actions">
 
-            <button type="submit" class="btn btn-primary"
-                data-bind="click: save, enable: canSave">
-                <i class="icon-save"></i>Save
-            </button>
+                <button type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                    <i class="icon-save"></i>Save
+                </button>
 
-            <button type="reset" class="btn"
-                data-bind="click: cancel, enable: canSave">
-                <i class="icon-undo"></i>Cancel
-            </button>
+                <button type="reset" class="btn"
+                    data-bind="click: cancel, enable: canSave">
+                    <i class="icon-undo"></i>Cancel
+                </button>
 
-            <button class="btn btn-danger"
-                data-bind="click: deleteItem, disable: hasChanges">
-                <i class="icon-trash"></i>Delete
-            </button>
+                <button class="btn btn-danger"
+                    data-bind="click: deleteItem, disable: hasChanges">
+                    <i class="icon-trash"></i>Delete
+                </button>
 
-            <button class="btn btn-info" data-bind="click: goBack">
-                <i class="icon-hand-left"></i>Back
-            </button>
+                <button class="btn btn-info" data-bind="click: goBack">
+                    <i class="icon-hand-left"></i>Back
+                </button>
 
-            <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
-        </div>
+                <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+            </div>
 
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
+</div>

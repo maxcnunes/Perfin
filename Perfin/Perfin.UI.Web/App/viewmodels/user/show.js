@@ -4,8 +4,10 @@
     'durandal/system',
     'durandal/plugins/router',
     'jquery',
-    'durandal/app'],
-    function (datacontext, logger, system, router, $, app) {
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (datacontext, logger, system, router, $, app, breadcrumb, config) {
         var
             show = this,
             users = ko.observableArray(),
@@ -96,6 +98,7 @@
 
             // module page info
             pageDisplayName: 'List User',
-            pageDescription: 'All your users'
+            pageDescription: 'All your users',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.user.show)
         };
     });

@@ -2,8 +2,10 @@
     'durandal/app',
     'services/datacontext',
     'durandal/plugins/router',
-    'models/model.user'],
-    function (app, datacontext, router, model) {
+    'models/model.user',
+    'common/breadcrumb',
+    'common/config'],
+    function (app, datacontext, router, model, breadcrumb, config) {
 
 
         var
@@ -96,7 +98,8 @@
 
             // module page info
             pageDisplayName: 'Create New User',
-            pageDescription: 'Create a new user'
+            pageDescription: 'Create a new user',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.user.add)
         };
 
         return vm;

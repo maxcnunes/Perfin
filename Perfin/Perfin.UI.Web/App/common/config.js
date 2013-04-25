@@ -1,7 +1,6 @@
 ﻿define(['ko', 'common/config.route'],
     function (ko, configRoute) {
 
-        var route = configRoute;
         var messages = {
             changesPending: 'Please save or cancel your changes before leaving the page.',
             errorSavingData: 'Data could not be saved. Please check the logs.',
@@ -44,7 +43,7 @@
         init();
 
         return {
-            route: route,
+            route : configRoute,
             messages: messages,
             authentication: authentication
         };

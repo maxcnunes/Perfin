@@ -1,8 +1,10 @@
 ﻿define([
     'durandal/plugins/router',
     'services/datacontext',
-    'durandal/app'],
-    function (router, datacontext, app) {
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (router, datacontext, app, breadcrumb, config) {
 
         var
             user = ko.observable(),
@@ -140,7 +142,8 @@
 
             // module page info
             pageDisplayName: 'Edit User',
-            pageDescription: 'Edit a user for more personal info'
+            pageDescription: 'Edit a user for more personal info',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.user.details)
         };
 
         return vm;

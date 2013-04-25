@@ -1,55 +1,50 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">User</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
 
+            <div class="form-actions">
 
+                <a href="#/user/add" class="btn btn-primary">
+                    <i class="icon-plus"></i>
+                    Add User
+                </a>
 
-<form>
-    <fieldset>
-        <!-- Title -->
-        <legend class="title-description" >
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
-
-        <div class="form-actions">
-
-            <a href="#/user/add" class="btn btn-primary">
-                <i class="icon-plus"></i> 
-                Add User
-            </a>
-
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>User Login</th>
-                    <th>User Password</th>
-                    <th>User Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach:users">
-                <tr>
-                    <td data-bind="text:id"></td>
-                    <td data-bind="text:login"></td>
-                    <td data-bind="text:password"></td>
-                    <td data-bind="text:name"></td>
-                    <td data-bind="text:email"></td>
-                    <td>
-                        <div class="btn-group">
-                            <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
-                            <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </fieldset>
-</form>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>User Login</th>
+                        <th>User Password</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach:users">
+                    <tr>
+                        <td data-bind="text:id"></td>
+                        <td data-bind="text:login"></td>
+                        <td data-bind="text:password"></td>
+                        <td data-bind="text:name"></td>
+                        <td data-bind="text:email"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>

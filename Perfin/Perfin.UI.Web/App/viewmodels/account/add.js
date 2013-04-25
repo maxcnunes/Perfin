@@ -4,8 +4,10 @@
     'durandal/plugins/router',
     'models/model.account',
     'models/model.accounttype',
-    'models/model.category'],
-    function (app, datacontext, router, model, accounttypeModel, categoryModel) {
+    'models/model.category',
+    'common/breadcrumb',
+    'common/config'],
+    function (app, datacontext, router, model, accounttypeModel, categoryModel, breadcrumb, config) {
 
         var
             isSaving = ko.observable(false),
@@ -125,7 +127,8 @@
 
             // module page info
             pageDisplayName: 'Create AccountType',
-            pageDescription: 'Create a accounttype and let more organized your finances'
+            pageDescription: 'Create a accounttype and let more organized your finances',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.account.add)
         };
 
         return vm;
