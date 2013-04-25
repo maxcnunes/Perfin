@@ -5,7 +5,7 @@
     <i class="icon-double-angle-right icon-large"></i>
     <a href="#" class="current">Management Items</a>
     <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account</a>
+    <a href="#" class="current">Entry</a>
 </nav>
 
 
@@ -36,18 +36,20 @@
                     <th>Price</th>
                     <th>Details</th>
                     <th>Payment Date</th>
+                    <th>Registry Date</th>
                     <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: accounts">
+            <tbody data-bind="foreach: entries">
                 <tr>
                     <td data-bind="text: id"></td>
                     <td data-bind="text: account().name"></td>
                     <td data-bind="text: price"></td>
-                    <td data-bind="text: details"></td>
-                    <td data-bind="text: paymentdate"></td>
-                    <td data-bind="text: category().name"></td>
+                    <td data-bind="text: description"></td>
+                    <td data-bind="text: paymentdate()"></td>
+                    <td data-bind="text: registrydate"></td>
+                    <td data-bind="text: account().category().name"></td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>

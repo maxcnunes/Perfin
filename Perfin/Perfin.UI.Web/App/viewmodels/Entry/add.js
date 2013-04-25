@@ -85,16 +85,14 @@
                 isSaving(true);
                 if (canEditEntry()) {
                     $.when(datacontext.entry.addData(entry()))
-                      //  .then(goToEditView)
+                        .then(goToEditView)
                         .done(complete); //.fin(complete);
                 }
 
-                //function goToEditView(result) {
-                //    // redirect to index page while the edit page is not finished
-                //    router.replaceLocation('#/entry/show');
-
-                //    //router.replaceLocation('#/accounttype/details/' + accounttype().id());
-                //}
+                function goToEditView(result) {
+                    // redirect to index page while the edit page is not finished
+                    router.replaceLocation('#/entry/show');
+                }
 
                 function complete() {
                     isSaving(false);
