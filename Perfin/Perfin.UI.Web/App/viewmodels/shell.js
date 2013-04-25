@@ -23,9 +23,9 @@
             },
             boot = function () {
                 logger.info('App Loaded!', true, null, system.getModuleId(shell));
-                router.map(config.routes);
+                router.map(config.route.routes.private);
                 router.replaceLocation('#/welcome');
-                return router.activate(config.startModule);
+                return router.activate(config.route.startModule.private);
             },
             failedInitialization = function (error) {
                 var msg = 'App initialization failed: ' + error.message;

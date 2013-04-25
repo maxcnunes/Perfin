@@ -43,7 +43,7 @@
                 currentUser = ko.observable();
 
                 // reset the routes
-                router.map(config.publicRoutes);
+                router.map(config.route.routes.public);
 
                 if (window.location.href.indexOf('#/user/login') < 0) {
                     router.replaceLocation('#/user/login');

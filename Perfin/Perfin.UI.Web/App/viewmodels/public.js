@@ -13,9 +13,9 @@
             },
             boot = function () {
                 logger.info('App Loaded! Public Modules', true, null, system.getModuleId(publicModule));
-                router.map(config.publicRoutes);
+                router.map(config.route.routes.public);
                 router.replaceLocation('#/user/login');
-                return router.activate('user/login');
+                return router.activate(config.route.startModule.public);
             },
             failedInitialization = function (error) {
                 var msg = 'App initialization failed: ' + error.message;

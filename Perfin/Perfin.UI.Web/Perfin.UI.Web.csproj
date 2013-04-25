@@ -294,6 +294,7 @@
     <Content Include="Content\font-awesome\font\FontAwesome.otf" />
     <Content Include="App\security\authentication.provider.auth0.js" />
     <Content Include="App\services\callback.dataservice.js" />
+    <Content Include="App\common\config.route.js" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

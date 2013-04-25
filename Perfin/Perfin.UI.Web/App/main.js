@@ -14,6 +14,10 @@ define([
         var
             // Establish the root object, 'window' in the browser, or 'global' on the server.
             root = this,
+            rootApp = {
+                public: 'viewmodels/public',
+                private: 'viewmodels/shell'
+            },
 
             define3rdPartyModules = function () {
                 // These are already loaded via bundles. 
@@ -68,8 +72,8 @@ define([
                     // Defaults to viewmodels/views/views. 
                     viewLocator.useConvention();
 
-                    var rootApp = privateModels ? 'viewmodels/shell' : 'viewmodels/public';
-                    app.setRoot(rootApp, 'entrance');
+                    var _rootApp = privateModels ? rootApp.private : rootApp.public;
+                    app.setRoot(_rootApp, 'entrance');
 
                     // override bad route behavior to write to 
                     // console log and show error toast
