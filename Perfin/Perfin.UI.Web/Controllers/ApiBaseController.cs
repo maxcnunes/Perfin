@@ -9,15 +9,14 @@ namespace Perfin.UI.Web.Controllers
     {
         protected IUnitOfWork Uow { get; set; }
 
-
-        protected string GetCurrentUserOAuthId()
+        protected string CurrentUserOAuthId
         {
-            return ClaimsPrincipal.Current.Claims.SingleOrDefault(c => c.Type == "sub").Value;
+            get { return ClaimsPrincipal.Current.Claims.SingleOrDefault(c => c.Type == "sub").Value; }
         }
 
-        protected int GetCurrentUserId()
+        protected int CurrentUserId
         {
-            return Uow.Users.GetIdByOAuthId(GetCurrentUserOAuthId());
+            get { return Uow.Users.GetIdByOAuthId(CurrentUserOAuthId); }
         }
     }
 }

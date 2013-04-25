@@ -1,8 +1,8 @@
 ﻿using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 using Perfin.Data.Contract;
 using Perfin.Model;
-using NHibernate.Linq;
 using System.Linq;
 
 namespace Perfin.Data.Repository

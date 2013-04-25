@@ -52,7 +52,6 @@
                 }
             },
             saveUserOnLogin = function (user) {
-                debugger;
                 return _dc.user.importData(user);               
             };
 
