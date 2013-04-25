@@ -66,7 +66,9 @@ CREATE TABLE `category` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL,
   `Parent` int(11) DEFAULT '0',
-  PRIMARY KEY (`Id`)
+  `UserId` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `FK_CATEGORY_USER` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

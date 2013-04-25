@@ -6,5 +6,6 @@ namespace Perfin.Data.Contract
     {
         User GetByLogin(string login);
         User GetByOAuthId(string oAuthId);
+        int GetIdByOAuthId(string oAuthId);
     }
 }

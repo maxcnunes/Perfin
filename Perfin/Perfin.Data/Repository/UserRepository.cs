@@ -2,6 +2,8 @@
 using NHibernate.Criterion;
 using Perfin.Data.Contract;
 using Perfin.Model;
+using NHibernate.Linq;
+using System.Linq;
 
 namespace Perfin.Data.Repository
 {
@@ -27,6 +29,18 @@ namespace Perfin.Data.Repository
                         .UniqueResult<User>();
 
             return user;
+        }
+
+        public int GetIdByOAuthId(string oAuthId)
+        {
+            if(!oAuthId.Contains("|"))
+                oAuthId = "|" + oAuthId;
+
+            var userId = _dbSession.Query<User>()
+                            .Where(u => u.OAuthId.Contains(oAuthId))
+                            .Select(u => u.Id).FirstOrDefault();
+
+            return userId;
         }
     }
 }
