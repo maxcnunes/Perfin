@@ -5,19 +5,22 @@
     function (router, datacontext, app) {
 
         var
-            account = ko.observable(),
-            accounttypes = ko.observable(),
-            categories = ko.observable(),
+            entry = ko.observable(),
+            categories = ko.observable(), //????????
+            accounts = ko.observable(),
+            selectedEntry = ko.observable(),
+
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
+                debugger;
                 var id = parseInt(routeData.id);
                 initLookups();
-                return getAccount(id);
+                return getEntry(id);
             },
             initLookups = function () {
-                $.when(getAllCategories(), getAllAccountTypes());
+                $.when(getAllCategories());
 
                 function getAllCategories() {
                     return $.Deferred(function (def) {
@@ -27,24 +30,17 @@
                     }).promise();
                 }
 
-                function getAllAccountTypes() {
-                    return $.Deferred(function (def) {
-                        $.when(datacontext.accounttype.getData({ results: accounttypes }))
-                            .fail(function () { def.reject(); })
-                            .done(function () { def.resolve(); });
-                    }).promise();
-                }
             },
-            getAccount = function (currentAccountId, completeCallback, forceRefresh) {
+            getEntry = function (currentEntryId, completeCallback, forceRefresh) {
                 var callback = function () {
                     if (completeCallback) { completeCallback(); }
-                    validationErrors = ko.validation.group(account());
+                    validationErrors = ko.validation.group(entry());
                 };
 
-                datacontext.account.getAccountById(
-					currentAccountId, {
+                datacontext.entry.getEntryById(
+					currentEntryId, {
 					    success: function (modelResult) {
-					        account(modelResult);
+					        entry(modelResult);
 					        callback();
 					    },
 					    error: callback
@@ -55,17 +51,17 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditAccount = ko.computed(function () {
-                return account();
+            canEditEntry = ko.computed(function () {
+                return entry();
             }),
             hasChanges = ko.computed(function () {
-                if (canEditAccount()) {
-                    return account().dirtyFlag().isDirty();
+                if (canEditEntry()) {
+                    return entry().dirtyFlag().isDirty();
                 }
                 return false;
             }),
             isValid = function () {
-                return canEditAccount() ? validationErrors().length === 0 : true;
+                return canEditEntry() ? validationErrors().length === 0 : true;
             },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving() && isValid();
@@ -74,15 +70,15 @@
             save = function () {
 
                 isSaving(true);
-                if (canEditAccount()) {
-                    $.when(datacontext.account.updateData(account()))
+                if (canEditEntry()) {
+                    $.when(datacontext.entry.updateData(entry()))
                         .then(goToEditView)
                         .done(complete); //.fin(complete);
                 }
 
                 function goToEditView(result) {
                     // redirect to index page while the edit page is not finished
-                    router.replaceLocation('#/account/show');
+                    router.replaceLocation('#/entry/show');
                 }
 
                 function complete() {
@@ -93,34 +89,12 @@
             canDeactivate = function () {
                 return true;
 
-                // OLD
-                //----------------------------
-                //if (this._accounttypeAdded == false) {
-                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-                //} else {
-                //    return true;
-                //}
-
-
-                // NEW EXAMPLE
-                //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
             },
             goBack = function () {
                 router.navigateBack();
             },
             deleteItem = function () {
-                var msg = 'Delete account "' + account().name() + '" ?';
+                var msg = 'Delete entry "' + entry().paymentdate() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -129,13 +103,13 @@
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
-                        $.when(datacontext.account.deleteData(account()))
+                        $.when(datacontext.entry.deleteData(entry()))
                             .then(success)
                             .fail(failed)
                             .done(finish);//.fin(finish);
 
                         function success() {
-                            router.navigateTo('#/account/show');
+                            router.navigateTo('#/entry/show');
                         }
 
                         function failed(error) {
@@ -154,11 +128,11 @@
             };
 
         var vm = {
-            account: account,
-            accounttypes: accounttypes,
-            categories: categories,
             activate: activate,
-
+            entry: entry,
+            categories: categories,
+            accounts: accounts,
+            selectedEntry :selectedEntry ,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
@@ -167,8 +141,8 @@
             deleteItem: deleteItem,
 
             // module page info
-            pageDisplayName: 'Edit Account',
-            pageDescription: 'Edit a account and let more organized your finances'
+            pageDisplayName: 'Edit Entry',
+            pageDescription: 'Edit a entry and let more organized your finances'
         };
 
         return vm;
