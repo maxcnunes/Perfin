@@ -36,7 +36,8 @@ namespace Perfin.Data
                    { typeof(IUserRepository), dbSession => new UserRepository(dbSession) },
                    { typeof(ICategoryRepository), dbSession => new CategoryRepository(dbSession) },
                    { typeof(IAccountTypeRepository), dbSession => new AcccountTypeRepository(dbSession) },
-                   { typeof(IAccountRepository), dbSession => new AcccountRepository(dbSession) }
+                   { typeof(IAccountRepository), dbSession => new AcccountRepository(dbSession) },
+                   { typeof(IEntryRepository), dbSession => new EntryRepository(dbSession) }
                    
                 };
         }
