@@ -23,7 +23,7 @@
             return [{
                 url: 'welcome',
                 moduleId: modulesId.welcome,
-                name: '<i class="icon-book"></i> Welcome',
+                name: '<i class="icon-home"></i> Welcome',
                 visible: true,
                 caption: 'Home',
                 settings: {
@@ -37,7 +37,7 @@
             return [{
                 url: 'category/show',
                 moduleId: modulesId.category.show,
-                name: '<i class="icon-book"></i> Categories',
+                name: '<i class="icon-tag"></i> Categories',
                 visible: true,
                 caption: 'Categories',
                 settings: {
@@ -66,12 +66,12 @@
             return [{
                 url: 'user/show',
                 moduleId: modulesId.user.show,
-                name: '<i class="icon-book"></i> Users',
+                name: '<i class="icon-user"></i> Users',
                 visible: false,
                 caption: 'Users',
                 settings: {
                     classColor: 'blue',
-                    classIcon: 'icon-tag',
+                    classIcon: 'icon-user',
                     parentModule: modulesId.welcome
                 }
             }, {
@@ -95,8 +95,8 @@
             return [{
                 url: 'accounttype/show',
                 moduleId: modulesId.accountType.show,
-                name: '<i class="icon-book"></i> Account Types',
-                visible: false,
+                name: '<i class="icon-tag"></i> Account Types',
+                visible: true,
                 caption: 'Account Type',
                 settings: {
                     classColor: 'red',
@@ -124,8 +124,8 @@
             return [{
                 url: 'account/show',
                 moduleId: modulesId.account.show,
-                name: '<i class="icon-book"></i> Account',
-                visible: false,
+                name: '<i class="icon-tag"></i> Account',
+                visible: true,
                 caption: 'Account',
                 settings: {
                     classColor: 'blue',
@@ -153,7 +153,7 @@
             return [{
                 url: 'map/show',
                 moduleId: modulesId.map.show,
-                name: '<i class="icon-book"></i> Maps',
+                name: '<i class="icon-map-marker"></i> Maps',
                 visible: true,
                 caption: ' Maps',
                 settings: {
@@ -168,7 +168,7 @@
             return [{
                 url: 'calendar/show',
                 moduleId: modulesId.calendar.show,
-                name: '<i class="icon-book"></i> Calendar',
+                name: '<i class="icon-calendar"></i> Calendar',
                 visible: true,
                 caption: 'Calendar',
                 settings: {
@@ -183,7 +183,7 @@
             return [{
                 url: 'chart/show',
                 moduleId: modulesId.chart.show,
-                name: '<i class="icon-book"></i> Chart',
+                name: '<i class="icon-bar-chart"></i> Chart',
                 visible: true,
                 caption: 'Chart',
                 settings: {
@@ -198,13 +198,13 @@
             return [{
                 url: 'user/login',
                 moduleId: 'viewmodels/user/login',
-                name: '<i class="icon-book"></i> Login',
+                name: '<i class="icon-lock"></i> Login',
                 visible: true,
                 caption: 'Login'
             }, {
                 url: 'user/register',
                 moduleId: 'viewmodels/user/register',
-                name: '<i class="icon-book"></i> Register',
+                name: '<i class="icon-lock"></i> Register',
                 visible: true,
                 caption: 'Register'
             }];
