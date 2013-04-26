@@ -2,9 +2,10 @@
 // # Custom Bind Handlers #
 // ########################
 
-// Datepicker JQuery UI
-//-------------------------
+
 (function () {
+    // Datepicker JQuery UI
+    //-------------------------
     ko.bindingHandlers.datepicker = {
         init: function (element, valueAccessor, allBindingsAccessor) {
             //initialize datepicker with some optional options
@@ -29,6 +30,37 @@
         update: function (element, valueAccessor) {
             var value = ko.utils.unwrapObservable(valueAccessor());
             $(element).datepicker("setDate", value);
+        }
+    };
+
+    // Datepicker Meio Mask
+    //-------------------------
+    ko.bindingHandlers.meiomask = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            debugger;
+
+            $(element)
+                .attr('data-mask', valueAccessor())
+                .css('padding-right', '20px')
+                .setMask();
+
+            //handle the field changing
+            ko.utils.registerEventHandler(element, "change", function () {
+                //var observable = valueAccessor();
+                //observable($(element).datepicker("getDate"));
+            });
+
+            //handle disposal (if KO removes by the template binding)
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                //$(element).datepicker("destroy");
+            });
+
+        },
+        //update the control when the view model changes
+        update: function (element, valueAccessor) {
+            debugger;
+            var value = ko.utils.unwrapObservable(valueAccessor());
+            //$(element).datepicker("setDate", value);
         }
     };
 })();

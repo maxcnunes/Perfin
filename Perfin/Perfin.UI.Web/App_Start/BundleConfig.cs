@@ -30,6 +30,7 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/knockout.dirtyFlag.js")
                 .Include("~/Scripts/knockout.validation.js")
                 .Include("~/Scripts/chosen.jquery.js")
+                .Include("~/Scripts/jquery.meio.mask.js")
                 .Include("~/Scripts/knockout.custom.binding.handlers.js")
               );
 
