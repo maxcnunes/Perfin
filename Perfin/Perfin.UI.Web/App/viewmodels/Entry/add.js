@@ -1,6 +1,7 @@
 ﻿define([
     'durandal/app',
     'jquery',
+    'moment',
     'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.entry',
@@ -8,8 +9,8 @@
     'models/model.user',
     'common/breadcrumb',
     'common/config'],
-    function (app, $, datacontext, router, model, accountModel, userModel, breadcrumb, config) {
-        debugger;
+    function (app, $, moment, datacontext, router, model, accountModel, userModel, breadcrumb, config) {
+        //debugger;
         var
             self = this,
             isSaving = ko.observable(false),
@@ -20,12 +21,12 @@
 
 
             activate = function () {
-                debugger;
+                //debugger;
                 initLookups();
                 initAccountsSelect();
                 
                 entry(new model());
-                entry().registrydate('01-01-2013'); //set manually for while TODO: get current date.
+                entry().registrydate(moment("DD-MM-YYYY"));
                 validationErrors = ko.validation.group(entry());//apply validation
             },
             initLookups = function () {
@@ -67,7 +68,7 @@
                 return entry();// && config.currentUser() && config.currentUser().id() === session().speakerId();
             }),
             hasChanges = ko.computed(function () {
-                debugger;
+                //debugger;
                 if (canEditEntry()) {
                      return entry().dirtyFlag().isDirty();
                 }
@@ -79,7 +80,7 @@
                return canEditEntry() ? validationErrors().length === 0 : true;
            },
             canSave = ko.computed(function () {
-                debugger;
+                //debugger;
                 return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {

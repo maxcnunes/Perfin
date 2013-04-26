@@ -18,6 +18,7 @@ namespace Perfin.UI.Web
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/jquery-ui-{version}.js")
                 .Include("~/Scripts/knockout-{version}.js")
                 .Include("~/Scripts/sammy-{version}.js")
                 .Include("~/Scripts/bootstrap.min.js")
@@ -25,10 +26,11 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/q.js")
                 .Include("~/Scripts/amplify.js")
                 .Include("~/Scripts/underscore.js")
+                .Include("~/Scripts/moment.js")
                 .Include("~/Scripts/knockout.dirtyFlag.js")
                 .Include("~/Scripts/knockout.validation.js")
                 .Include("~/Scripts/chosen.jquery.js")
-                .Include("~/Scripts/knockout.chosen.js")
+                .Include("~/Scripts/knockout.custom.binding.handlers.js")
               );
 
             // CSS Files
@@ -51,6 +53,10 @@ namespace Perfin.UI.Web
 
                 // Chosen
                 .Include("~/Content/chosen/chosen.css")
+
+                // Jquery UI
+                .Include("~/Content/jquery-ui/jquery-ui-1.10.0.custom.css")
+                //.Include("~/Content/jquery-ui/jquery.ui.1.10.0.ie.css")
 
                 // Main css
                 .Include("~/Content/durandal.css")

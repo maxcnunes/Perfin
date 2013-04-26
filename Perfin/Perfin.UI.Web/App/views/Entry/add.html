@@ -56,11 +56,14 @@
 
                     <div class="span6">
                         <label>Payment Date</label>
-                        <input type="text" class="span2" placeholder="01/23/2013" data-bind="value: paymentdate">
+                        <div class="input-append date" id="dpMonths" data-date="102/2012" data-datepicker-format="MM/YYYY" data-datepicker-viewmode="years" data-datepicker-minviewmode="months">
+                            <input class="span2" size="16" placeholder="01/23/2013" type="text" data-bind="datepicker: paymentdate, datepickerOptions: { minDate: new Date() }">
+                            <span class="add-on"><i class="icon-calendar"></i></span>
+                        </div>
                         <span class="help-block">Date of your account (can be any date or if you don't specify a date this account will be set in an undefined date of the current month).</span>
-
                     </div>
                 </div>
+
 
 
                 <!-- 
