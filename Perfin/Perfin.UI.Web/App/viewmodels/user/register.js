@@ -5,7 +5,7 @@
     'common/logger',
     'durandal/system',
 
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.user'],
     function (router, app, config, logger, system, datacontext, router, model) {
@@ -101,7 +101,7 @@
 
 define([
     'durandal/app',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.user'],
     function (app, datacontext, router, model) {

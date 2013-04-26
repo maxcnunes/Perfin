@@ -1,4 +1,4 @@
-﻿define(['services/datacontext', 'common/config'],
+﻿define(['repositories/datacontext', 'common/config'],
     function (datacontext, config) {
         var
             fetchAllJsonData = function () {

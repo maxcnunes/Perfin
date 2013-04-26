@@ -1,10 +1,9 @@
-﻿define(
-    ['ko', 'services/datacontext', 'common/logger'],
+﻿define(['ko', 'repositories/datacontext', 'common/logger'],
     function (ko, datacontext, logger) {
 
-        var 
+        var
             fetch = function () {
-                
+
                 return $.Deferred(function (def) {
 
                     var data = {

@@ -4,7 +4,7 @@
     'common/config',
     'common/logger',
     'durandal/system',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.user',
     'auth0SDK',

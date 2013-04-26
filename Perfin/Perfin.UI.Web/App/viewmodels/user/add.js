@@ -1,6 +1,6 @@
 ﻿define([
     'durandal/app',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.user',
     'common/breadcrumb',

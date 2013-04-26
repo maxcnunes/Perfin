@@ -1,6 +1,6 @@
 ﻿define([
     'durandal/plugins/router',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/app',
     'common/breadcrumb',
     'common/config'],

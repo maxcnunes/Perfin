@@ -4,7 +4,7 @@
     'common/config',
     'common/logger',
     'durandal/system',
-    'services/dataprimer',
+    'repositories/dataprimer',
     'security/authentication'],
     function (router, app, config, logger, system, dataprimer, authentication) {
         var

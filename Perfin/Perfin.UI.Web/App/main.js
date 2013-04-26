@@ -40,7 +40,7 @@ define([
             },
 
             fetchCurrentUser = function () {
-                require(['security/authentication', 'services/datacontext', 'jquery'],
+                require(['security/authentication', 'repositories/datacontext', 'jquery'],
                     function (authentication, datacontext, $) {
                         authentication.datacontext(datacontext);
                         authentication.fetchQueryStringData();

@@ -6,7 +6,7 @@ define([
     'models/model.user',
     'models/model.accounttype',
     'models/model.account',
-    'services/datacontext'],
+    'repositories/datacontext'],
     function (categoryModel,userModel,accounttypeModel,accountModel, datacontext) {
         describe('Services :: Datacontext', function () {
             

@@ -1,5 +1,5 @@
 ﻿define([
-    'services/datacontext',
+    'repositories/datacontext',
     'common/logger',
     'durandal/system',
     'durandal/plugins/router',
