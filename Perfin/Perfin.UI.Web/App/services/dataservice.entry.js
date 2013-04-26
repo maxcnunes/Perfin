@@ -1,6 +1,5 @@
-﻿define([
-    'amplify'],
-    function (amplify) {
+﻿define(['amplify', 'security/authentication', 'services/callback.dataservice'],
+    function (amplify, authentication, callbackDataservice) {
         var
             serviceUrl = '/api/entry',
             init = function () {
@@ -8,14 +7,18 @@
                 amplify.request.define('entries', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
-                    type: 'GET'
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                     //cache:true
                 }),
 
                 amplify.request.define('entry', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
-                    type: 'GET'
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                     //cache:true
                 }),
 
@@ -23,21 +26,27 @@
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'POST',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 }),
 
                 amplify.request.define('entryUpdate', 'ajax', {
                     url: serviceUrl,
                     dataType: 'json',
                     type: 'PUT',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 }),
 
                 amplify.request.define('entryDelete', 'ajax', {
                     url: serviceUrl + '/{id}',
                     dataType: 'json',
                     type: 'DELETE',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
                 });
             },
 

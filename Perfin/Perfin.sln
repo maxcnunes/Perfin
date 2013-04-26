@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Model", "Perfin.Model\Perfin.Model.csproj", "{6DEB23E3-31A3-463F-AF28-AEAB391281B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.Test", "Perfin.Test\Perfin.Test.csproj", "{BDB0256C-A824-4E3D-9DC1-E00F322B2434}"
@@ -23,6 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3C2254
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.UI.Web", "Perfin.UI.Web\Perfin.UI.Web.csproj", "{86D7315F-E0BF-4806-B934-EB440C4FEF18}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts.Database", "Scripts.Database", "{715FB676-3DC2-4D7E-8948-1C2CF5B2DC89}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts.Database\GenerateMySQLDatabse.sql = Scripts.Database\GenerateMySQLDatabse.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -14,6 +14,10 @@ define([
         var
             // Establish the root object, 'window' in the browser, or 'global' on the server.
             root = this,
+            rootApp = {
+                public: 'viewmodels/public',
+                private: 'viewmodels/shell'
+            },
 
             define3rdPartyModules = function () {
                 // These are already loaded via bundles. 
@@ -26,16 +30,36 @@ define([
                 define('sammy', [], function () { return root.Sammy; });
                 define('toastr', [], function () { return root.toastr; });
                 define('underscore', [], function () { return root._; });
+                define('auth0SDK', [], function () { return root.Auth0; });
             },
 
-            bootApp = function () {
-                // Start-up the Jasmine tests, now that all prerequisites are in place.
+            fetchAssets = function () {
+                require(['common/assets'], function (assets) {
+                    assets.fetchAll();
+                });
+            },
 
+            fetchCurrentUser = function () {
+                require(['security/authentication', 'repositories/datacontext', 'jquery'],
+                    function (authentication, datacontext, $) {
+                        authentication.datacontext(datacontext);
+                        authentication.fetchQueryStringData();
+
+                        $.when(authentication.fetchCurrentUser())
+                         .done(bootAppPrivate)
+                         .fail(bootAppPublic);
+
+                        function bootAppPrivate() { bootApp(true); }
+                        function bootAppPublic() { bootApp(false); }
+                    });
+            },
+
+            bootApp = function (privateModels) {
                 //>>excludeStart("build", true);
                 system.debug(true);
                 //>>excludeEnd("build");
 
-                app.title = ':: Perfin ::';
+                app.title = 'Perfin';
                 app.start().then(function () {
                     // route will use conventions for modules
                     // assuming viewmodels/views folder structure
@@ -48,7 +72,8 @@ define([
                     // Defaults to viewmodels/views/views. 
                     viewLocator.useConvention();
 
-                    app.setRoot('viewmodels/shell', 'entrance');
+                    var _rootApp = privateModels ? rootApp.private : rootApp.public;
+                    app.setRoot(_rootApp, 'entrance');
 
                     // override bad route behavior to write to 
                     // console log and show error toast
@@ -62,10 +87,15 @@ define([
                 // Load the 3rd party libraries
                 define3rdPartyModules();
 
-                // Boot App
-                bootApp();
-            };
+                /* Not using now. But is already implemented.*/
+                //// Load configurations values
+                //fetchAssets(); 
 
+                fetchCurrentUser();
+
+                // Boot App
+                //bootApp();
+            };
 
         init();
     });

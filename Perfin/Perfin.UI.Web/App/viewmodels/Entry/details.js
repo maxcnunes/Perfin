@@ -1,8 +1,10 @@
 ﻿define([
     'durandal/plugins/router',
-    'services/datacontext',
-    'durandal/app'],
-    function (router, datacontext, app) {
+    'repositories/datacontext',
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (router, datacontext, app, breadcrumb, config) {
 
         var
             entry = ko.observable(),
@@ -142,7 +144,8 @@
 
             // module page info
             pageDisplayName: 'Edit Entry',
-            pageDescription: 'Edit a entry and let more organized your finances'
+            pageDescription: 'Edit a entry and let more organized your finances',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.entry.details)
         };
 
         return vm;

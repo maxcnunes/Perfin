@@ -1,11 +1,13 @@
 ﻿define([
-    'services/datacontext',
+    'repositories/datacontext',
     'common/logger',
     'durandal/system',
     'durandal/plugins/router',
     'jquery',
-    'durandal/app'],
-    function (datacontext, logger, system, router, $, app) {
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (datacontext, logger, system, router, $, app, breadcrumb, config) {
         var
             show = this,
             entries = ko.observableArray(),
@@ -96,6 +98,7 @@
 
             // module page info
             pageDisplayName: 'List Entry',
-            pageDescription: 'All your entries'
+            pageDescription: 'All your entries',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.entry.show)
         };
     });

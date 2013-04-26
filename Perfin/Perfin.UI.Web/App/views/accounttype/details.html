@@ -1,55 +1,48 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Management Items</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account Type</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
 
+            <!-- Fields -->
+            <section class="fields" data-bind="with: accounttype">
+                <label>Account Type Name</label>
+                <input type="text" class="span5" placeholder="Future Entry..." data-bind="value: name">
+                <span class="help-block">Account Type is a type of your account. Usually is just Expense or Income, but is specialy ocasions may other type.</span>
 
+            </section>
 
-<form>
-    <fieldset>
-        <!-- Title -->
-        <legend class="title-description">
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
+            <!-- Buttons -->
+            <div class="form-actions">
 
-        <!-- Fields -->
-        <section class="fields" data-bind="with: accounttype">
-            <label>Account Type Name</label>
-            <input type="text" class="span5" placeholder="Future Entry..." data-bind="value: name">
-            <span class="help-block">Account Type is a type of your account. Usually is just Expense or Income, but is specialy ocasions may other type.</span>
+                <button type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                    <i class="icon-save"></i>Save
+                </button>
 
-        </section>
+                <button type="reset" class="btn"
+                    data-bind="click: cancel, enable: canSave">
+                    <i class="icon-undo"></i>Cancel
+                </button>
 
-        <!-- Buttons -->
-        <div class="form-actions">
+                <button class="btn btn-danger"
+                    data-bind="click: deleteItem, disable: hasChanges">
+                    <i class="icon-trash"></i>Delete
+                </button>
 
-            <button type="submit" class="btn btn-primary"
-                data-bind="click: save, enable: canSave">
-                <i class="icon-save"></i>Save
-            </button>
+                <button class="btn btn-info" data-bind="click: goBack">
+                    <i class="icon-hand-left"></i>Back
+                </button>
 
-            <button type="reset" class="btn"
-                data-bind="click: cancel, enable: canSave">
-                <i class="icon-undo"></i>Cancel
-            </button>
+                <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+            </div>
 
-            <button class="btn btn-danger"
-                data-bind="click: deleteItem, disable: hasChanges">
-                <i class="icon-trash"></i>Delete
-            </button>
-
-            <button class="btn btn-info" data-bind="click: goBack">
-                <i class="icon-hand-left"></i>Back
-            </button>
-
-            <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
-        </div>
-
-    </fieldset>
-</form>
+        </fieldset>
+    </form>
+</div>

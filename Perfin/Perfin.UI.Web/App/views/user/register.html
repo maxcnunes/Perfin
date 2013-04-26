@@ -1,0 +1,62 @@
+﻿<div>
+    <form id="box-register" class="box-center">
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
+
+            <!-- Fields -->
+            <section class="fields" data-bind="with: user">
+
+                <label>User Name</label>
+                <input type="text" class="span4" placeholder="Your Name..." data-bind="value: name">
+                <span class="help-block">Your Name to show in web site.</span>
+
+                <label>Email </label>
+                <input type="text" class="span4" placeholder="Email..." data-bind="value: email">
+                <span class="help-block">Your Email to full access and features.</span>
+
+                <hr />
+
+                <label>User Login</label>
+                <input type="text" class="span4" placeholder="login..." data-bind="value: login">
+                <span class="help-block">Login is necessary to access the web site.</span>
+
+                <div class="row">
+                    <div class="span2">
+                        <label>User Password</label>
+                        <input type="text" class="span2" placeholder="Password..." data-bind="value: password">
+                        <span class="help-block">A good password.</span>
+                    </div>
+
+                    <div class="span2">
+                        <label>Confirm Password</label>
+                        <input type="text" class="span2" placeholder="Confirm Password...">
+                        <span class="help-block">Please rewrite your password.</span>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+
+                <button type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                    <i class="icon-save"></i>Save</button>
+
+                <button type="reset" class="btn"
+                    data-bind="click: cancel, enable: canSave">
+                    <i class="icon-undo"></i>Cancel</button>
+
+                <button class="btn btn-info" data-bind="click: goBack">
+                    <i class="icon-hand-left"></i>Back
+                </button>
+                <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

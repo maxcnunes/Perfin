@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Perfin.UI.Web.Controllers
 {
-    public class CategoryController  : ApiBaseController
+    public class CategoryController : ApiBaseController
     {
         public CategoryController(IUnitOfWork uow)
         {
@@ -19,8 +19,8 @@ namespace Perfin.UI.Web.Controllers
         // GET /api/category
         public IEnumerable<Category> Get()
         {
-            return Uow.Categories.GetAll()
-                .OrderBy(c => c.Name);
+            return Uow.Categories.GetAllByUserId(CurrentUserId)
+                    .OrderBy(c => c.Name);
         }
 
         // GET /api/category/3
@@ -38,6 +38,7 @@ namespace Perfin.UI.Web.Controllers
         // POST /api/category
         public HttpResponseMessage Post(Category category)
         {
+            category.User = new User { Id = CurrentUserId };
             Uow.Categories.Add(category);
             Uow.Commit();
 

@@ -7,6 +7,7 @@ namespace Perfin.Model
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
+        public virtual User User { get; set; }
 
         // allow null column in mysql?? 
         // how we going to define the root Category? 

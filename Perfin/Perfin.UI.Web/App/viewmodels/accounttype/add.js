@@ -1,9 +1,11 @@
 ﻿define([
     'durandal/app',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
-    'models/model.accounttype'],
-    function (app, datacontext, router, model) {
+    'models/model.accounttype',
+    'common/breadcrumb',
+    'common/config'],
+    function (app, datacontext, router, model, breadcrumb, config) {
 
 
         var
@@ -101,7 +103,8 @@
 
             // module page info
             pageDisplayName: 'Create AccountType',
-            pageDescription: 'Create a accounttype and let more organized your finances'
+            pageDescription: 'Create a accounttype and let more organized your finances',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accounttype.add)
         };
 
         return vm;

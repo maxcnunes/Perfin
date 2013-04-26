@@ -1,59 +1,52 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Management Items</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Account</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
 
 
+            <!-- Fields/Tables -->
+            <div class="form-actions">
 
-<form>
-    <fieldset>
-        <!-- Title -->
-        <legend class="title-description" >
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
+                <a href="#/account/add" class="btn btn-primary">
+                    <i class="icon-plus"></i>
+                    Add Account
+                </a>
 
-        
-        <!-- Fields/Tables -->
-        <div class="form-actions">
-
-            <a href="#/account/add" class="btn btn-primary">
-                <i class="icon-plus"></i> 
-                Add Account
-            </a>
-
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: accounts">
-                <tr>
-                    <td data-bind="text: id"></td>
-                    <td data-bind="text: name"></td>
-                    <td data-bind="text: description"></td>
-                    <td data-bind="text: accounttype().name"></td>
-                    <td data-bind="text: category().name"></td>
-                    <td>
-                        <div class="btn-group">
-                            <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
-                            <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </fieldset>
-</form>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: accounts">
+                    <tr>
+                        <td data-bind="text: id"></td>
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: description"></td>
+                        <td data-bind="text: accounttype().name"></td>
+                        <td data-bind="text: category().name"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+</div>

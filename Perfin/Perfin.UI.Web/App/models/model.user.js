@@ -5,14 +5,15 @@
 
             var self = this;
             self.id = ko.observable();
-            self.login = ko.observable();
-            self.password = ko.observable();
+            self.login = ko.observable().extend({ required: true });
+            self.password = ko.observable().extend({ required: true });
             self.email = ko.observable();
             self.name = ko.observable();
-            self.salt= ko.observable();
+            self.salt = ko.observable();
+            self.oAuthId = ko.observable();
             
             self.isNullo = false;
-            self.dirtyFlag = new ko.DirtyFlag([self.id, self.login, self.password, self.email, self.name, self.salt]);
+            self.dirtyFlag = new ko.DirtyFlag([self.id, self.login, self.password, self.email, self.name, self.salt, self.oAuthId]);
 
             return self;
         };
@@ -25,6 +26,8 @@
             if (dc) { _dc = dc; }
             return _dc;
         }
+
+        User.prototype.picture =  ko.observable();
 
         return User;
     });

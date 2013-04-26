@@ -1,12 +1,14 @@
 ﻿define([
     'durandal/app',
     'jquery',
-    'services/datacontext',
+    'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.entry',
     'models/model.account',
-    'models/model.user'],
-    function (app, $, datacontext, router, model, accountModel, userModel) {
+    'models/model.user',
+    'common/breadcrumb',
+    'common/config'],
+    function (app, $, datacontext, router, model, accountModel, userModel, breadcrumb, config) {
         debugger;
         var
             self = this,
@@ -120,7 +122,8 @@
 
             // module page info
             pageDisplayName: 'Create an Entry',
-            pageDescription: 'Create an entry and let more organized your finances'
+            pageDescription: 'Create an entry and let more organized your finances',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.entry.add)
         };
 
         return vm;

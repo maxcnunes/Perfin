@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Web;
 using System.Web.Optimization;
 
@@ -14,7 +14,7 @@ namespace Perfin.UI.Web
             // Modernizr goes separate since it loads first
             bundles.Add(new ScriptBundle("~/bundles/modernizr")
                 .Include("~/Scripts/modernizr-{version}.js"));
-
+            
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/Scripts/jquery-{version}.js")
@@ -30,7 +30,6 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/chosen.jquery.js")
                 .Include("~/Scripts/knockout.chosen.js")
               );
-
 
             // CSS Files
             bundles.Add(

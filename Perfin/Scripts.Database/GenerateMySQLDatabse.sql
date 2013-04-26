@@ -20,8 +20,6 @@ USE `perfin`;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
-
 --
 -- Table structure for table `ENTRY`
 --
@@ -72,9 +70,6 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
-
-
 --
 -- Table structure for table `category`
 --
@@ -94,9 +89,6 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
-
-
 --
 -- Table structure for table `accounttype`
 --
@@ -107,7 +99,9 @@ DROP TABLE IF EXISTS `accounttype`;
 CREATE TABLE `accounttype` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) NOT NULL UNIQUE,
-  PRIMARY KEY (`Id`)
+  `UserId` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `FK_CATEGORY_USER` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -132,11 +126,13 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(45) NOT NULL,
-  `Password` VARCHAR(3000) NOT NULL ,
-  `Email` VARCHAR(400) DEFAULT NULL  ,
-  `Name` VARCHAR(45) DEFAULT NULL,
-  `Salt` VARCHAR(45)DEFAULT NULL, 
-  PRIMARY KEY (`Id`)
+  `Password` varchar(30) DEFAULT NULL,
+  `Email` varchar(400) DEFAULT NULL,
+  `Name` varchar(45) DEFAULT NULL,
+  `Salt` varchar(45) DEFAULT NULL,
+  `OAuthId` varchar(200) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `OAuthId_UNIQUE` (`OAuthId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

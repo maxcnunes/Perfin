@@ -1,7 +1,9 @@
 ﻿using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Linq;
 using Perfin.Data.Contract;
 using Perfin.Model;
+using System.Linq;
 
 namespace Perfin.Data.Repository
 {
@@ -17,6 +19,20 @@ namespace Perfin.Data.Repository
                 .UniqueResult<Category>();
 
             return category;
-        }  
+        }
+
+        public IQueryable<Category> GetAllByUserId(int userId)
+        {
+            var categories = _dbSession.Query<Category>()
+                                .Where(c => c.User.Id == userId)
+                                .Select(c => new Category
+                                {
+                                    Id = c.Id,
+                                    Name = c.Name,
+                                    Parent = c.Parent
+                                });
+
+            return categories;
+        } 
     }
 }

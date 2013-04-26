@@ -1,11 +1,13 @@
 ﻿define([
-    'services/datacontext',
+    'repositories/datacontext',
     'common/logger',
     'durandal/system',
     'durandal/plugins/router',
     'jquery',
-    'durandal/app'],
-    function (datacontext, logger, system, router, $, app) {
+    'durandal/app',
+    'common/breadcrumb',
+    'common/config'],
+    function (datacontext, logger, system, router, $, app, breadcrumb, config) {
         var
             show = this,
             accounttypes = ko.observableArray(),
@@ -96,6 +98,7 @@
 
             // module page info
             pageDisplayName: 'List Account Type',
-            pageDescription: 'All your account types'
+            pageDescription: 'All your account types',
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accounttype.show)
         };
     });

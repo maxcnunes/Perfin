@@ -1,68 +1,64 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">User Account</a>
-</nav>
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
 
+            <!-- Fields -->
+            <section class="fields" data-bind="with: user">
+                <label>User Login</label>
+                <input type="text" class="span5" placeholder="login..." data-bind="value: login">
+                <span class="help-block">Login is necessary to access the web site.</span>
 
-<form>
-    <fieldset>
-       <!-- Title -->
-        <legend class="title-description" >
-            <span data-bind="html: pageDisplayName"></span>
-            <span class="title-description-info" data-bind="html: pageDescription"></span>
-        </legend>
+                <label>User Password</label>
+                <input type="text" class="span5" placeholder="Password..." data-bind="value: password">
+                <span class="help-block">.</span>
 
-        <!-- Fields -->
-        <section class="fields" data-bind="with: user">
-            <label>User Login</label>
-            <input type="text" class="span5" placeholder="login..." data-bind="value: login">
-            <span class="help-block">Login is necessary to access the web site.</span>
-            
-            <label>User Password</label>
-            <input type="text" class="span5" placeholder="Password..." data-bind="value: password">
-            <span class="help-block">.</span>
+                <label>Confirm Password</label>
+                <input type="text" class="span5" placeholder="Confirm Password...">
+                <span class="help-block">Please rewrite your password.</span>
 
-            <label>Confirm Password</label>
-            <input type="text" class="span5" placeholder="Confirm Password..." >
-            <span class="help-block">Please rewrite your password.</span>
-            
-            <label>Email </label>
-            <input type="text" class="span5" placeholder="Email..." data-bind="value: email">
-            <span class="help-block">Your Email to full access and features.</span>
+                <label>Email </label>
+                <input type="text" class="span5" placeholder="Email..." data-bind="value: email">
+                <span class="help-block">Your Email to full access and features.</span>
 
-            <label>User Name</label>
-            <input type="text" class="span5" placeholder="Your Name..." data-bind="value: name">
-            <span class="help-block">Your Name to show in web site.</span>
-            
-        </section>
+                <label>User Name</label>
+                <input type="text" class="span5" placeholder="Your Name..." data-bind="value: name">
+                <span class="help-block">Your Name to show in web site.</span>
 
-        <!-- Buttons -->
-        <div class="form-actions">
+            </section>
 
-            <button type="submit" class="btn btn-primary"
-                data-bind="click: save, enable: canSave">
-                <i class="icon-save"></i>Save
-            </button>
+            <!-- Buttons -->
+            <div class="form-actions">
 
-            <button type="reset" class="btn"
-                data-bind="click: cancel, enable: canSave">
-                <i class="icon-undo"></i>Cancel
-            </button>
+                <button type="submit" class="btn btn-primary"
+                    data-bind="click: save, enable: canSave">
+                    <i class="icon-save"></i>Save
+                </button>
 
-            <button class="btn btn-danger"
-                data-bind="click: deleteData, disable: hasChanges">
-                <i class="icon-trash"></i>Delete
-            </button>
+                <button type="reset" class="btn"
+                    data-bind="click: cancel, enable: canSave">
+                    <i class="icon-undo"></i>Cancel
+                </button>
 
-            <button class="btn btn-info" data-bind="click: goBack">
-                <i class="icon-hand-left"></i>Back
-            </button>
+                <button class="btn btn-danger"
+                    data-bind="click: deleteData, disable: hasChanges">
+                    <i class="icon-trash"></i>Delete
+                </button>
 
-            <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
-        </div>
+                <button class="btn btn-info" data-bind="click: goBack">
+                    <i class="icon-hand-left"></i>Back
+                </button>
 
-    </fieldset>
-</form>
+                <i class="icon-asterisk" data-bind="visible: hasChanges"></i>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
