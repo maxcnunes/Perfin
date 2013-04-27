@@ -26,7 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Perfin.UI.Web", "Perfin.UI.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts.Database", "Scripts.Database", "{715FB676-3DC2-4D7E-8948-1C2CF5B2DC89}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts.Database\GenerateMySQLDatabse.sql = Scripts.Database\GenerateMySQLDatabse.sql
+		Scripts.Database\Create-DB-MySql.sql = Scripts.Database\Create-DB-MySql.sql
+		Feed-DB-MySql.sql = Feed-DB-MySql.sql
 	EndProjectSection
 EndProject
 Global
