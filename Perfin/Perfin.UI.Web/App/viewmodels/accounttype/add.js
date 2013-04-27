@@ -104,7 +104,7 @@
             // module page info
             pageDisplayName: 'Create AccountType',
             pageDescription: 'Create a accounttype and let more organized your finances',
-            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accounttype.add)
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accountType.add)
         };
 
         return vm;

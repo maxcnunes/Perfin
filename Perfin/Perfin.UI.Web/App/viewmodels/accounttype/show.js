@@ -99,6 +99,6 @@
             // module page info
             pageDisplayName: 'List Account Type',
             pageDescription: 'All your account types',
-            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accounttype.show)
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accountType.show)
         };
     });

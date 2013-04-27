@@ -145,7 +145,7 @@
             // module page info
             pageDisplayName: 'Edit AccountType',
             pageDescription: 'Edit a accounttype and let more organized your finances',
-            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accounttype.details)
+            breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.accountType.details)
         };
 
         return vm;
