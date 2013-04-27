@@ -16,15 +16,18 @@
             isSaving = ko.observable(false),
             entry = ko.observable(),
             accounts = ko.observable(),
-            selectedAccount = ko.observable(),
+            selectedAccount = ko.computed(function () {
+                if (!entry() || !entry().accountId()) return null;
+                return datacontext.account.getLocalById(entry().accountId());
+            }),
             validationErrors = ko.observableArray([]),
 
 
             activate = function () {
                 //debugger;
                 initLookups();
-                initAccountsSelect();
-                
+                //initAccountsSelect();
+
                 entry(new model());
                 entry().registrydate(moment("DD-MM-YYYY"));
                 validationErrors = ko.validation.group(entry());//apply validation
@@ -40,27 +43,6 @@
                     }).promise();
                 }
             },
-            initAccountsSelect = function () {
-                selectedAccount(new accountModel());
-                setTimeout(function () {
-                    $('#ddl_accounts').chosen();
-                    bindAccountsChangeEvent();
-                }, 500);
-            },
-            bindAccountsChangeEvent = function () {
-                /*
-                 * This should be changed to Bind Handler later
-                 */
-                $(document).on("change", '#ddl_accounts', function () {
-                    var id = $(this).find(':selected').val();
-                    var _selectedAccount = datacontext.account.getLocalById(id);
-                    selectedAccount(_selectedAccount);
-
-                    //set the accountId (model property)
-                    entry().accountId(id);
-
-                });
-            },
             cancel = function (complete) {
                 router.navigateBack();
             },
@@ -70,15 +52,15 @@
             hasChanges = ko.computed(function () {
                 //debugger;
                 if (canEditEntry()) {
-                     return entry().dirtyFlag().isDirty();
+                    return entry().dirtyFlag().isDirty();
                 }
 
                 return false;
                 //return datacontext.hasChanges();
             }),
             isValid = function () {
-               return canEditEntry() ? validationErrors().length === 0 : true;
-           },
+                return canEditEntry() ? validationErrors().length === 0 : true;
+            },
             canSave = ko.computed(function () {
                 //debugger;
                 return hasChanges() && !isSaving() && isValid();
@@ -105,7 +87,7 @@
                 return true;
             },
             goBack = function () {
-                 router.navigateBack();
+                router.navigateBack();
             };
 
         var vm = {

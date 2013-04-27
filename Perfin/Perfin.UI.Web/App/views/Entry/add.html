@@ -13,16 +13,12 @@
             <!-- Fields -->
             <section class="fields" data-bind="with: entry">
                 <label>Account Name</label>
-
-                <select
-                    id="ddl_accounts"
-                    data-placeholder="Accounts"
-                    style="width: 350px;" class="chzn-select"
-                    data-bind="options: $parent.accounts,
-                    optionsText: 'name',
-                    optionsValue: 'id',
-                    optionsCaption: 'Choose...'"
-                    tabindex="5">
+                <select data-bind="options: $parent.accounts, 
+                                    optionsText: 'name', 
+                                    optionsValue: 'id', 
+                                    value: accountId, 
+                                    optionsCaption: 'Choose...', 
+                                    chosen: true" class="span4">
                 </select>
                 <a href="#/account/add" class="btn btn-primary btn-small" style="margin-top: -5px;">
                     <i class="icon-plus"></i>
@@ -34,14 +30,14 @@
                     <div class="span4">
                         <label>Account Type</label>
                         <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the account type corresponding"
-                            data-bind="value: $parent.selectedAccount().accounttype().name()">
+                            data-bind="value: $parent.selectedAccount() ? $parent.selectedAccount().accounttype().name() : ''">
                         <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
                     </div>
 
                     <div class="span4">
                         <label>Category</label>
                         <input type="text" class="span4" disabled="disabled" placeholder="choose an account to load the category corresponding"
-                            data-bind="value: $parent.selectedAccount().category().name()">
+                            data-bind="value: $parent.selectedAccount() ? $parent.selectedAccount().category().name()  : ''">
                         <span class="help-block">Auto-completed when account is selected AND it exists in database.</span>
                     </div>
                 </div>
@@ -56,7 +52,7 @@
 
                     <div class="span6">
                         <label>Payment Date</label>
-                        <div class="input-append date" id="dpMonths" data-date="102/2012" data-datepicker-format="MM/YYYY" data-datepicker-viewmode="years" data-datepicker-minviewmode="months">
+                        <div class="input-append date">
                             <input class="span2" size="16" placeholder="01/23/2013" type="text"
                                 data-bind="datepicker: paymentdate, 
                                            datepickerOptions: { minDate: new Date() }, 
