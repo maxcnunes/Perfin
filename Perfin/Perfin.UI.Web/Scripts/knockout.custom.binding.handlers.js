@@ -33,7 +33,7 @@
         }
     };
 
-    // Datepicker Meio Mask
+    // Meio Mask JS
     //-------------------------
     ko.bindingHandlers.meiomask = {
         init: function (element, valueAccessor, allBindingsAccessor) {
@@ -48,7 +48,7 @@
         }
     };
 
-    // Chosen Jquery
+    // Chosen JS
     //-------------------------
     ko.bindingHandlers.chosen = {
         init: function (elemenet, valueAccessor) {
@@ -66,4 +66,28 @@
             $(elemenet).trigger("liszt:updated");
         }
     };
+
+
+    // Moment JS
+    //------------------------
+    ko.bindingHandlers.moment = {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            var value = valueAccessor(),
+                allBindings = allBindingsAccessor();
+            var valueUnwrapped = ko.utils.unwrapObservable(value);
+            var pattern = allBindings.datePattern || 'DD/MM/YYYY';
+            $(element).text(moment(valueUnwrapped).format(pattern));
+        }
+    }
+
+
+    // Currency JS
+    //------------------------
+    ko.bindingHandlers.currency = {
+        update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
+            var value = valueAccessor();
+            var valueUnwrapped = ko.utils.unwrapObservable(value);
+            $(element).text(valueUnwrapped).currency();
+        }
+    }
 })();

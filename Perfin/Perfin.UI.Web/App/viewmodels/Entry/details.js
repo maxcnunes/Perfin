@@ -96,7 +96,7 @@
                 router.navigateBack();
             },
             deleteItem = function () {
-                var msg = 'Delete entry "' + entry().paymentdate() + '" ?';
+                var msg = 'Delete entry "' + entry().paymentDate() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])

@@ -49,6 +49,7 @@ namespace Perfin.UI.Web.Controllers
         //POST /api/entry
         public HttpResponseMessage Post(Entry entry)
         {
+            entry.User = new User { Id = CurrentUserId };
             Uow.Entries.Add(entry);
             Uow.Commit();
 

@@ -31,6 +31,8 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/knockout.validation.js")
                 .Include("~/Scripts/chosen.jquery.js")
                 .Include("~/Scripts/jquery.meio.mask.js")
+                .Include("~/Scripts/jquery.currency.js")
+                // Must be the last script to be loaded
                 .Include("~/Scripts/knockout.custom.binding.handlers.js")
               );
 

@@ -10,7 +10,6 @@
     'common/breadcrumb',
     'common/config'],
     function (app, $, moment, datacontext, router, model, accountModel, userModel, breadcrumb, config) {
-        //debugger;
         var
             self = this,
             isSaving = ko.observable(false),
@@ -24,12 +23,11 @@
 
 
             activate = function () {
-                //debugger;
                 initLookups();
-                //initAccountsSelect();
 
                 entry(new model());
-                entry().registrydate(moment("DD-MM-YYYY"));
+                entry().registryDate(moment());
+
                 validationErrors = ko.validation.group(entry());//apply validation
             },
             initLookups = function () {
@@ -46,33 +44,20 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditEntry = ko.computed(function () {
-                return entry();// && config.currentUser() && config.currentUser().id() === session().speakerId();
-            }),
             hasChanges = ko.computed(function () {
-                //debugger;
-                if (canEditEntry()) {
-                    return entry().dirtyFlag().isDirty();
-                }
-
-                return false;
-                //return datacontext.hasChanges();
+                return entry() ? entry().dirtyFlag().isDirty() : false;
             }),
             isValid = function () {
-                return canEditEntry() ? validationErrors().length === 0 : true;
+                return validationErrors().length === 0;
             },
             canSave = ko.computed(function () {
-                //debugger;
                 return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
-
                 isSaving(true);
-                if (canEditEntry()) {
-                    $.when(datacontext.entry.addData(entry()))
-                        .then(goToEditView)
-                        .done(complete); //.fin(complete);
-                }
+                $.when(datacontext.entry.addData(entry()))
+                    .then(goToEditView)
+                    .done(complete); //.fin(complete);
 
                 function goToEditView(result) {
                     // redirect to index page while the edit page is not finished
