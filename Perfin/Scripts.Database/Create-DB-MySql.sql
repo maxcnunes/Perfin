@@ -105,16 +105,6 @@ CREATE TABLE `accounttype` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table STATIC DATA for table `accounttype`
---
-INSERT INTO `perfin`.`accounttype` (`Name`) VALUES ('Income');
-INSERT INTO `perfin`.`accounttype` (`Name`) VALUES ('Expense');
-
-
-
-
-
 
 --
 -- Table structure for table `user`

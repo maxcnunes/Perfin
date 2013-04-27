@@ -17,7 +17,7 @@ This project have being developed for two reasons:
 ### Configurations
 
 1. Install [MySQL Community Server 5.5.29](http:// "http://www.mysql.com/downloads/mysql/")
-2. Execute the script `\Perfin\Perfin\Scripts.Database\GenerateMySQLDatabse.sql` into the database.
+2. Execute the script `\Perfin\Perfin\Scripts.Database\Create-DB-MySql.sql` into the database.
 3. Installing NuGet packages from packages.config executing `c:\path\to\nuget.exe install -o packages project-folder\packages.config` or just Turn on "Allow NuGet to download missing packages during build" on Visual Studio as you can see on [Scott Halseman Post](http://www.hanselman.com/blog/NuGet20NETPackageManagerReleasedGOUPGRADENOWAndHeresWhy.aspx)
 4. **Authentication** - The authentication is provided by Auth0 API.
  
