@@ -16,30 +16,38 @@
                 <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: name">
                 <span class="help-block">Account is all of expensives or Incomes that you have.</span>
 
+                <div class="row">
+                    <div class="span4">
+                        <label>Account Type</label>
+                        <select class="span4"
+                            data-bind="options: $parent.accounttypes, 
+                                    optionsText: 'name', 
+                                    optionsValue: 'id', 
+                                    value: accounttypeId, 
+                                    optionsCaption: 'Choose...', 
+                                    chosen: true">
+                        </select>
+                        <span class="help-block">A group for Account Types.</span>
+                    </div>
+
+                    <div class="span4">
+                        <label>Category</label>
+                        <select class="span4"
+                            data-bind="options: $parent.categories, 
+                                    optionsText: 'name', 
+                                    optionsValue: 'id', 
+                                    value: categoryId, 
+                                    optionsCaption: 'Choose...', 
+                                    chosen: true">
+                        </select>
+                        <span class="help-block">Category Account is the account which group belongs.</span>
+                    </div>
+                </div>
+
 
                 <label>Account Description</label>
-                <input type="text" class="span5" placeholder="electricity... school or others" data-bind="value: description">
+                 <textarea class="span5" rows='5' cols='60' placeholder="electricity... school or others" data-bind="value: description"></textarea>
                 <span class="help-block">Description of account.</span>
-
-                <label>Account Type</label>
-                <select class="span5"
-                    data-bind="options: $parent.accounttypes,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: accounttypeId,
-                           optionsCaption: 'Choose...'">
-                </select>
-                <span class="help-block">A group for Account Types.</span>
-
-                <label>Category</label>
-                <select class="span5"
-                    data-bind="options: $parent.categories,
-                           optionsText: 'name',
-                           optionsValue : 'id',
-                           value: categoryId,
-                           optionsCaption: 'Choose...'">
-                </select>
-                <span class="help-block">Category Account is the account which group belongs.</span>
 
             </section>
 

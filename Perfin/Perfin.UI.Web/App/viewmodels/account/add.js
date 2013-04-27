@@ -17,13 +17,11 @@
 
 
             activate = function () {
-                //debugger;
                 initLookups();
                 account(new model());
                 validationErrors = ko.validation.group(account());//apply validation
             },
             initLookups = function () {
-                debugger;
                 $.when(getAllCategories(), getAllAccountTypes());
 
                 function getAllCategories() {
