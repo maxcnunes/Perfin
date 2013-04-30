@@ -12,7 +12,7 @@ namespace Perfin.Data.Map
             Map(x => x.Price).Not.Nullable();
             Map(x => x.Description).Nullable();
             Map(x => x.RegistryDate).Not.Nullable();
-            Map(x => x.PaymentDate).Not.Nullable();
+            Map(x => x.PaymentDate).Nullable();
             References(x => x.Account, "AccountId");
             References(x => x.User, "UserId");
         }

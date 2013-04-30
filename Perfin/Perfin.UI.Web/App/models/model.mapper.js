@@ -116,6 +116,9 @@
 	                     modelToJSON.user = new model.User().id(item.userId());
 	                 }
 
+	                 var price = item.price().toString().split('.').join('').replace(',', '.');
+	                 modelToJSON.price = parseFloat(price);
+
 	                 return ko.toJSON(modelToJSON);
 	             }
 	         };

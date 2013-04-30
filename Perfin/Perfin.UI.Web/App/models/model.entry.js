@@ -7,11 +7,11 @@
             self.id = ko.observable();
             self.price = ko.observable().extend({ required: true });
             self.description = ko.observable();
-            self.registryDate = ko.observable(); //.extend({ required: true });
-            self.paymentDate = ko.observable(); //.extend({ required: true });
+            self.registryDate = ko.observable();
+            self.paymentDate = ko.observable(null); 
             self.accountId = ko.observable().extend({ required: true });
 
-            self.userId = ko.observable().extend({ required: true });
+            self.userId = ko.observable();
 
             self.isNullo = false;
             self.dirtyFlag = new ko.DirtyFlag([self.id, self.price, self.description, self.registryDate, self.paymentDate, self.accountId, self.userId]);      

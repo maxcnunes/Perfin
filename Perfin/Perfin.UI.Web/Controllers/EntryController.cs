@@ -50,13 +50,14 @@ namespace Perfin.UI.Web.Controllers
         public HttpResponseMessage Post(Entry entry)
         {
             entry.User = new User { Id = CurrentUserId };
+            entry.RegistryDate = DateTime.Now;
             Uow.Entries.Add(entry);
             Uow.Commit();
 
             var response = Request.CreateResponse(HttpStatusCode.Created, entry);
 
             //Compose location header that tells how to get this session
-            // e.g. ~api/etnry/1
+            // e.g. ~api/entry/1
             response.Headers.Location = 
                 new Uri(Url.Link(RouteConfig.ControllerAndId, new { id = entry.Id }));
 
