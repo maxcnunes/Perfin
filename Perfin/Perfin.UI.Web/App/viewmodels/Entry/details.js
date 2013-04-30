@@ -8,30 +8,31 @@
 
         var
             entry = ko.observable(),
-            categories = ko.observable(), //????????
             accounts = ko.observable(),
-            selectedEntry = ko.observable(),
+            selectedAccount = ko.computed(function () {
+                if (!entry() || !entry().accountId()) return null;
+                return datacontext.account.getLocalById(entry().accountId());
+            }),
+            validationErrors = ko.observableArray([]),
 
             isSaving = ko.observable(false),
             isDeleting = ko.observable(false),
 
             activate = function (routeData) {
-                debugger;
                 var id = parseInt(routeData.id);
                 initLookups();
                 return getEntry(id);
             },
             initLookups = function () {
-                $.when(getAllCategories());
+                $.when(getAllAccounts());
 
-                function getAllCategories() {
+                function getAllAccounts() {
                     return $.Deferred(function (def) {
-                        $.when(datacontext.category.getData({ results: categories }))
+                        $.when(datacontext.account.getData({ results: accounts }))
                             .fail(function () { def.reject(); })
                             .done(function () { def.resolve(); });
                     }).promise();
                 }
-
             },
             getEntry = function (currentEntryId, completeCallback, forceRefresh) {
                 var callback = function () {
@@ -53,30 +54,21 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditEntry = ko.computed(function () {
-                return entry();
-            }),
             hasChanges = ko.computed(function () {
-                if (canEditEntry()) {
-                    return entry().dirtyFlag().isDirty();
-                }
-                return false;
+                return entry() ? entry().dirtyFlag().isDirty() : false;
             }),
             isValid = function () {
-                return canEditEntry() ? validationErrors().length === 0 : true;
+                return validationErrors().length === 0;
             },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving() && isValid();
             }),
-
             save = function () {
-
                 isSaving(true);
-                if (canEditEntry()) {
-                    $.when(datacontext.entry.updateData(entry()))
-                        .then(goToEditView)
-                        .done(complete); //.fin(complete);
-                }
+                $.when(datacontext.entry.updateData(entry()))
+                    .then(goToEditView)
+                    .done(complete); //.fin(complete);
+
 
                 function goToEditView(result) {
                     // redirect to index page while the edit page is not finished
@@ -96,12 +88,12 @@
                 router.navigateBack();
             },
             deleteItem = function () {
-                var msg = 'Delete entry "' + entry().paymentdate() + '" ?';
+                var msg = 'Delete entry "' + entry().paymentDate() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
                         .then(confirmDelete);
-            
+
                 function confirmDelete(selectedOption) {
                     if (selectedOption === 'Yes') {
 
@@ -132,9 +124,8 @@
         var vm = {
             activate: activate,
             entry: entry,
-            categories: categories,
             accounts: accounts,
-            selectedEntry :selectedEntry ,
+            selectedAccount: selectedAccount,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,

@@ -30,7 +30,7 @@ CREATE TABLE `entry` (
   `Price` decimal(12,3) NOT NULL,
   `Description` varchar(300) NULL,
   `RegistryDate` Date NOT NULL,
-  `PaymentDate` Date NOT NULL,
+  `PaymentDate` Date NULL,
 
   `AccountId` int(11) NOT NULL, 
   `UserId` int(11) NOT NULL,

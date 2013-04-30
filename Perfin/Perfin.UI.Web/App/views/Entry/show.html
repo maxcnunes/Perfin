@@ -26,7 +26,6 @@
                         <th>#</th>
                         <th>Account Name</th>
                         <th>Price</th>
-                        <th>Details</th>
                         <th>Payment Date</th>
                         <th>Registry Date</th>
                         <th>Category</th>
@@ -37,10 +36,9 @@
                     <tr>
                         <td data-bind="text: id"></td>
                         <td data-bind="text: account().name"></td>
-                        <td data-bind="text: price"></td>
-                        <td data-bind="text: description"></td>
-                        <td data-bind="text: paymentdate()"></td>
-                        <td data-bind="text: registrydate"></td>
+                        <td data-bind="currency: price"></td>
+                        <td data-bind="moment: paymentDate"></td>
+                        <td data-bind="moment: registryDate"></td>
                         <td data-bind="text: account().category().name"></td>
                         <td>
                             <div class="btn-group">

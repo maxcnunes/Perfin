@@ -95,8 +95,8 @@
 	                 item = item || new model.Entry().id(dto.id);
 	                 item.price(dto.price);
 	                 item.description(dto.description);
-	                 item.registrydate(dto.registrydate);
-	                 item.paymentdate(dto.paymentdate);
+	                 item.registryDate(dto.registryDate);
+	                 item.paymentDate(dto.paymentDate);
 	                 item.accountId(dto.account.id)
 	                 item.userId(dto.user.id)
 
@@ -115,6 +115,9 @@
 	                 if (item.userId && item.userId() > 0) {
 	                     modelToJSON.user = new model.User().id(item.userId());
 	                 }
+
+	                 var price = item.price().toString().split('.').join('').replace(',', '.');
+	                 modelToJSON.price = parseFloat(price);
 
 	                 return ko.toJSON(modelToJSON);
 	             }

@@ -1,21 +1,20 @@
 ﻿define(
-    ['ko'],
-    function (ko) {
+    ['ko', 'moment'],
+    function (ko, moment) {
         var Entry = function () {
 
             var self = this;
             self.id = ko.observable();
             self.price = ko.observable().extend({ required: true });
             self.description = ko.observable();
-            self.registrydate = ko.observable(); //.extend({ required: true });
-            self.paymentdate = ko.observable(); //.extend({ required: true });
+            self.registryDate = ko.observable();
+            self.paymentDate = ko.observable(null); 
             self.accountId = ko.observable().extend({ required: true });
 
-            // User id fixed as 1 for while
-            self.userId = ko.observable(1).extend({ required: true });
+            self.userId = ko.observable();
 
             self.isNullo = false;
-            self.dirtyFlag = new ko.DirtyFlag([self.id, self.price, self.description, self.registrydate, self.paymentdate, self.accountId, self.userId]);
+            self.dirtyFlag = new ko.DirtyFlag([self.id, self.price, self.description, self.registryDate, self.paymentDate, self.accountId, self.userId]);      
 
             return self;
         };
