@@ -8,19 +8,15 @@ namespace Perfin.Model
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual User User { get; set; }
-
-        // allow null column in mysql?? 
-        // how we going to define the root Category? 
-        // Zero and null or only zero?
-        public virtual int Parent { get; set; } 
+        public virtual int? ParentCategoryId { get; set; } 
 
         public Category() { }
-        public Category(string name, int parent = 0)
+        public Category(string name, int? parent)
         {
             Check.Argument.NotNullOrEmpty(name, "name");
 
             Name = name;
-            Parent = parent;
+            ParentCategoryId = parent;
         }
         
         

@@ -9,8 +9,8 @@ namespace Perfin.Data.Map
         {
             Table("Category");
             Id(x => x.Id).GeneratedBy.Increment();
-            Map(x => x.Name).Unique();
-            Map(x => x.Parent).Nullable();
+            Map(x => x.Name).Not.Nullable().Unique();
+            Map(x => x.ParentCategoryId).Nullable();
             References(x => x.User, "UserId");
         }
     }

@@ -29,7 +29,7 @@ namespace Perfin.Data.Repository
                                 {
                                     Id = c.Id,
                                     Name = c.Name,
-                                    Parent = c.Parent
+                                    ParentCategoryId = c.ParentCategoryId
                                 });
 
             return categories;

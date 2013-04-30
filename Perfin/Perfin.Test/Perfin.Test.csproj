@@ -67,7 +67,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Config\TestConfig.cs" />
-    <Compile Include="Model\AccountTest.cs" />
     <Compile Include="Model\UserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\UserServiceTest.cs" />

@@ -9,11 +9,11 @@ namespace Perfin.Data.Map
         {
             Table("Entry");
             Id(x => x.Id).GeneratedBy.Increment();
-            Map(x => x.Price).Not.Nullable();
+            Map(x => x.Amount).Not.Nullable();
             Map(x => x.Description).Nullable();
-            Map(x => x.RegistryDate).Not.Nullable();
+            Map(x => x.CreateDate).Not.Nullable();
             Map(x => x.PaymentDate).Nullable();
-            References(x => x.Account, "AccountId");
+            References(x => x.Category, "CategoryId").Nullable();
             References(x => x.User, "UserId");
         }
     }

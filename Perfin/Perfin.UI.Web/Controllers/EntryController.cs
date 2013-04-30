@@ -23,13 +23,13 @@ namespace Perfin.UI.Web.Controllers
                 .Select(entry => new Entry
                 {
                     Id = entry.Id,
-                    Price = entry.Price,
+                    Amount = entry.Amount,
                     Description = entry.Description,
-                    RegistryDate = entry.RegistryDate,
+                    CreateDate = entry.CreateDate,
                     PaymentDate = entry.PaymentDate,
-                    Account = new Account { Id = entry.Account.Id },
+                    Category = new Category { Id = entry.Category.Id },
                     User = new User { Id = entry.User.Id }
-                }).OrderBy(e => e.RegistryDate);
+                }).OrderBy(e => e.CreateDate);
 
             return query;
         }
@@ -50,7 +50,7 @@ namespace Perfin.UI.Web.Controllers
         public HttpResponseMessage Post(Entry entry)
         {
             entry.User = new User { Id = CurrentUserId };
-            entry.RegistryDate = DateTime.Now;
+            entry.CreateDate = DateTime.Now;
             Uow.Entries.Add(entry);
             Uow.Commit();
 

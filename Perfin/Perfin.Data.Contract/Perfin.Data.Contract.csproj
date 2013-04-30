@@ -39,8 +39,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEntryRepository.cs" />
-    <Compile Include="IAccountTypeRepository.cs" />
-    <Compile Include="IAccountRepository.cs" />
     <Compile Include="ICategoryRepository.cs" />
     <Compile Include="IReadOnlyRepository.cs" />
     <Compile Include="IRepository.cs" />

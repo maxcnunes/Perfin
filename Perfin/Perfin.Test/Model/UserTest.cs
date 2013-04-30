@@ -9,36 +9,6 @@ namespace Perfin.Test.Model
     public class UserTest
     {
         [TestMethod]
-        public void Should_Create_A_Instance_Of_User()
-        {
-            var user = new User();
-            Assert.IsNotNull(user);
-            Assert.IsInstanceOfType(user, typeof(User));
-        }
-
-        [TestMethod]
-        public void Should_Set_Values_For_The_Properties()
-        {
-            var user = new User();
-
-            var login = "login";
-            var email = "email";
-            var password = "password";
-            var name = "name";
-
-            user.Login = login;
-            user.Email = email;
-            user.Password = password;
-            user.Name = name;
-
-            Assert.IsNotNull(user);
-            Assert.AreEqual(login, user.Login);
-            Assert.AreEqual(email, user.Email);
-            Assert.AreEqual(password, user.Password);
-            Assert.AreEqual(name, user.Name);
-        }
-
-        [TestMethod]
         public void Should_Cryptograph_Password_And_Generate_Salt()
         {
             var user = new User();
