@@ -78,7 +78,7 @@
             var pattern = allBindings.datePattern || 'DD/MM/YYYY';
             $(element).text(moment(valueUnwrapped).format(pattern));
         }
-    }
+    };
 
 
     // Currency JS
@@ -89,5 +89,20 @@
             var valueUnwrapped = ko.utils.unwrapObservable(value);
             $(element).text(valueUnwrapped).currency();
         }
-    }
+    };
+
+
+    // Highcharts JS
+    //-------------------------
+    ko.bindingHandlers.highcharts = {
+        init: function (elemenet, valueAccessor) {
+            var chosenOptions = ko.utils.unwrapObservable(valueAccessor());
+            debugger;
+
+            // use setTimeout if width of select item does not set using CSS
+            setTimeout(function () {
+                $(elemenet).highcharts(chosenOptions);
+            }, 300);
+        }
+    };
 })();
