@@ -144,6 +144,7 @@
     <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +214,7 @@
     <Content Include="App\views\entry\add.html" />
     <Content Include="App\views\entry\details.html" />
     <Content Include="App\views\entry\show.html" />
+    <Content Include="App\views\entry\[original]show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
     <Content Include="App\views\public.html" />

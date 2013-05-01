@@ -97,8 +97,8 @@
             viewAttached: viewAttached,
 
             // module page info
-            pageDisplayName: 'List Entry',
-            pageDescription: 'All your entries',
+            pageDisplayName: 'Daily List of entries',
+            pageDescription: 'All your entries in a month',
             breadcrumbNav: breadcrumb.buildBreadCrumb(config.route.modulesId.entry.show)
         };
     });

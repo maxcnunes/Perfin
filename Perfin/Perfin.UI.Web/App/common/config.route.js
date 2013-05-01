@@ -119,6 +119,23 @@
             }];
         },
 
+        dailyRoutes = function () {
+            return [{
+                url: 'daily/show',
+                moduleId: modulesId.daily.show,
+                name: '<i class="icon-money"></i> Daily Entries',
+                visible: true,
+                caption: 'Daily Entries',
+                settings: {
+                    classColor: 'yellow',
+                    classIcon: 'icon-money',
+                    parentModule: modulesId.welcome
+                }
+            }];
+        },
+
+
+
         mapRoute = function () {
             return [{
                 url: 'map/show',

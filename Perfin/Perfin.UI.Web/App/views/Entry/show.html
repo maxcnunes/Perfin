@@ -13,33 +13,81 @@
 
             <!-- Fields/Tables -->
             <div class="form-actions">
-
                 <a href="#/entry/add" class="btn btn-primary">
                     <i class="icon-plus"></i>
-                    Add an Entry
+                    Daily Entries
                 </a>
-
             </div>
+            <div>
+                <a class="btn btn-info "><i class="icon-arrow-left"> </i></a>
+                <strong>2013</strong>
+                <a class="btn btn-info "><i class="icon-arrow-right"> </i></a>
+            </div>
+            <div>
+                <a class="btn btn-info "><i class="icon-arrow-left"> </i></a>
+                <strong> Month </strong>
+                <a class="btn btn-info "><i class="icon-arrow-right"> </i></a>
+            </div>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                        <th>Entry Date</th>
-                        <th>Create Date</th>
                         <th>Category</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach: entries">
+            </table>
+
+            Day 01
+            <table class="table table-striped">
+                <!--<caption>01 </caption>-->
+                <tbody>
+                    <!--data-bind="foreach: entries">-->
                     <tr>
-                        <td data-bind="text: id"></td>
-                        <td data-bind="text: typeTransactionName"></td>
-                        <td data-bind="currency: amount"></td>
-                        <td data-bind="moment: entryDate"></td>
-                        <td data-bind="moment: createDate"></td>
+                        <!--<td data-bind="text: id"></td>
                         <td data-bind="text: category().name"></td>
+                        <td data-bind="currency: amount"></td>-->
+                        <td>2</td>
+                        <td>GVT</td>
+                        <td>59.00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            Day 02
+            <table class="table table-striped">
+                <!--<caption>02 </caption>-->
+                <tbody>
+                    <!--data-bind="foreach: entries">-->
+                    <tr>
+                        <!--<td data-bind="text: id"></td>
+                        <td data-bind="text: category().name"></td>
+                        <td data-bind="currency: amount"></td>-->
+                        <td>3</td>
+                        <td>TIM</td>
+                        <td>35.00</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!--<td data-bind="text: id"></td>
+                        <td data-bind="text: category().name"></td>
+                        <td data-bind="currency: amount"></td>-->
+                        <td>12</td>
+                        <td>Gasolina</td>
+                        <td>100.00</td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
