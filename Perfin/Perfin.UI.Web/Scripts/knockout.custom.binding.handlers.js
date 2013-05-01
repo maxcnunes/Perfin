@@ -74,6 +74,9 @@
         update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             var value = valueAccessor(),
                 allBindings = allBindingsAccessor();
+
+            if (!value()) return;
+
             var valueUnwrapped = ko.utils.unwrapObservable(value);
             var pattern = allBindings.datePattern || 'DD/MM/YYYY';
             $(element).text(moment(valueUnwrapped).format(pattern));

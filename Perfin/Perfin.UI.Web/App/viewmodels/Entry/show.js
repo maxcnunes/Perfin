@@ -14,7 +14,6 @@
             isDeleting = ko.observable(false),
 
             activate = function () {
-                debugger;
                 return $.Deferred(function (def) {
                     $.when(datacontext.entry.getData({ results: entries }))
 
