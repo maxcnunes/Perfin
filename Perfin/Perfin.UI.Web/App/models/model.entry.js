@@ -9,7 +9,7 @@
             self.createDate = ko.observable();
             self.entryDate = ko.observable(null);
             self.categoryId = ko.observable(null);
-            self.typeTransaction = ko.observable();
+            self.typeTransaction = ko.observable().extend({ required: true });
 
             self.userId = ko.observable();
 
@@ -17,7 +17,8 @@
             self.dirtyFlag = new ko.DirtyFlag([
                 self.id, self.amount, self.description,
                 self.createDate, self.entryDate,
-                self.categoryId, self.userId
+                self.categoryId, self.userId,
+                self.typeTransaction
             ]);
 
             self.typeTransactionName = ko.computed(function () {

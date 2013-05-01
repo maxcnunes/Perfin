@@ -6,21 +6,16 @@
     'durandal/plugins/router',
     'models/model.entry',
     'models/model.category',
-    'models/model.user',
     'models/model.typeTransaction',
     'common/breadcrumb',
     'common/config'],
-    function (app, $, moment, datacontext, router, model, categoryModel, userModel, typeTransaction, breadcrumb, config) {
+    function (app, $, moment, datacontext, router, model, categoryModel, typeTransaction, breadcrumb, config) {
         var
             self = this,
             isSaving = ko.observable(false),
             entry = ko.observable(),
             categories = ko.observable(),
             typeTransactions = ko.observable(),
-            selectedCategory = ko.computed(function () {
-                if (!entry() || !entry().categoryId()) return null;
-                return datacontext.category.getLocalById(entry().categoryId());
-            }),
             validationErrors = ko.observableArray([]),
 
 
@@ -49,6 +44,9 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
+            cleanChanges = function () {
+                return entry().dirtyFlag().reset();
+            },
             hasChanges = ko.computed(function () {
                 return entry() ? entry().dirtyFlag().isDirty() : false;
             }),
@@ -65,6 +63,7 @@
                     .done(complete); //.fin(complete);
 
                 function goToEditView(result) {
+                    cleanChanges();
                     // redirect to index page while the edit page is not finished
                     router.replaceLocation('#/entry/show');
                 }
@@ -74,6 +73,17 @@
                 }
             },
             canDeactivate = function () {
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //TODO:
+                                //datacontext.cancelChanges();
+                            }
+                            return selectedOption;
+                        });
+                }
                 return true;
             },
             goBack = function () {
@@ -91,8 +101,6 @@
             entry: entry,
             categories: categories,
             typeTransactions: typeTransactions,
-            selectedCategory: selectedCategory,
-
 
             // module page info
             pageDisplayName: 'Create an Entry',

@@ -2,17 +2,16 @@
     'durandal/plugins/router',
     'repositories/datacontext',
     'durandal/app',
+    'models/model.category',
+    'models/model.typeTransaction',
     'common/breadcrumb',
     'common/config'],
-    function (router, datacontext, app, breadcrumb, config) {
+    function (router, datacontext, app, categoryModel, typeTransaction, breadcrumb, config) {
 
         var
             entry = ko.observable(),
-            accounts = ko.observable(),
-            selectedAccount = ko.computed(function () {
-                if (!entry() || !entry().accountId()) return null;
-                return datacontext.account.getLocalById(entry().accountId());
-            }),
+            categories = ko.observable(),
+            typeTransactions = ko.observable(),
             validationErrors = ko.observableArray([]),
 
             isSaving = ko.observable(false),
@@ -24,14 +23,17 @@
                 return getEntry(id);
             },
             initLookups = function () {
-                $.when(getAllAccounts());
+                $.when(getAllCategories(), getAllTypeTransactions());
 
-                function getAllAccounts() {
+                function getAllCategories() {
                     return $.Deferred(function (def) {
-                        $.when(datacontext.account.getData({ results: accounts }))
+                        $.when(datacontext.category.getData({ results: categories }))
                             .fail(function () { def.reject(); })
                             .done(function () { def.resolve(); });
                     }).promise();
+                }
+                function getAllTypeTransactions() {
+                    typeTransactions(typeTransaction.getAll())
                 }
             },
             getEntry = function (currentEntryId, completeCallback, forceRefresh) {
@@ -54,6 +56,9 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
+            cleanChanges = function () {
+                return entry().dirtyFlag().reset();
+            },
             hasChanges = ko.computed(function () {
                 return entry() ? entry().dirtyFlag().isDirty() : false;
             }),
@@ -71,6 +76,7 @@
 
 
                 function goToEditView(result) {
+                    cleanChanges();
                     // redirect to index page while the edit page is not finished
                     router.replaceLocation('#/entry/show');
                 }
@@ -81,6 +87,17 @@
             },
 
             canDeactivate = function () {
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //TODO:
+                                //datacontext.cancelChanges();
+                            }
+                            return selectedOption;
+                        });
+                }
                 return true;
 
             },
@@ -124,8 +141,8 @@
         var vm = {
             activate: activate,
             entry: entry,
-            accounts: accounts,
-            selectedAccount: selectedAccount,
+            categories: categories,
+            typeTransactions: typeTransactions,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,
