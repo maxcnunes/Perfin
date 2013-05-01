@@ -12,7 +12,8 @@ namespace Perfin.Data.Map
             Map(x => x.Amount).Not.Nullable();
             Map(x => x.Description).Nullable();
             Map(x => x.CreateDate).Not.Nullable();
-            Map(x => x.PaymentDate).Nullable();
+            Map(x => x.EntryDate).Nullable();
+            Map(x => x.TypeTransaction).Not.Nullable();
             References(x => x.Category, "CategoryId").Nullable();
             References(x => x.User, "UserId");
         }

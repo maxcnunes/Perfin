@@ -2,17 +2,13 @@
     'models/model',
     'repositories/repository.category',
     'repositories/repository.user',
-    'repositories/repository.accounttype',
-    'repositories/repository.account',
     'repositories/repository.entry',
     'repositories/repository.assets'],
-    function (model, categoryRepository, userRepository, accounttypeRepository, accountRepository, entryRepository, assetsRepository) {
+    function (model, categoryRepository, userRepository, entryRepository, assetsRepository) {
 
         var datacontext = {
             category: categoryRepository,
             user: userRepository,
-            accounttype: accounttypeRepository,
-            account: accountRepository,
             entry: entryRepository,
             assets: assetsRepository
         };

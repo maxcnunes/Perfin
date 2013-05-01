@@ -5,19 +5,21 @@
     'repositories/datacontext',
     'durandal/plugins/router',
     'models/model.entry',
-    'models/model.account',
+    'models/model.category',
     'models/model.user',
+    'models/model.typeTransaction',
     'common/breadcrumb',
     'common/config'],
-    function (app, $, moment, datacontext, router, model, accountModel, userModel, breadcrumb, config) {
+    function (app, $, moment, datacontext, router, model, categoryModel, userModel, typeTransaction, breadcrumb, config) {
         var
             self = this,
             isSaving = ko.observable(false),
             entry = ko.observable(),
-            accounts = ko.observable(),
-            selectedAccount = ko.computed(function () {
-                if (!entry() || !entry().accountId()) return null;
-                return datacontext.account.getLocalById(entry().accountId());
+            categories = ko.observable(),
+            typeTransactions = ko.observable(),
+            selectedCategory = ko.computed(function () {
+                if (!entry() || !entry().categoryId()) return null;
+                return datacontext.category.getLocalById(entry().categoryId());
             }),
             validationErrors = ko.observableArray([]),
 
@@ -26,19 +28,22 @@
                 initLookups();
 
                 entry(new model());
-                entry().registryDate(moment());
+                //entry().entryDate(moment().toDate());
 
                 validationErrors = ko.validation.group(entry());//apply validation
             },
             initLookups = function () {
-                $.when(getAllAccounts());
+                $.when(getAllCategories(), getAllTypeTransactions());
 
-                function getAllAccounts() {
+                function getAllCategories() {
                     return $.Deferred(function (def) {
-                        $.when(datacontext.account.getData({ results: accounts }))
+                        $.when(datacontext.category.getData({ results: categories }))
                             .fail(function () { def.reject(); })
                             .done(function () { def.resolve(); });
                     }).promise();
+                }
+                function getAllTypeTransactions() {
+                    typeTransactions(typeTransaction.getAll())
                 }
             },
             cancel = function (complete) {
@@ -84,8 +89,9 @@
             save: save,
             goBack: goBack,
             entry: entry,
-            accounts: accounts,
-            selectedAccount: selectedAccount,
+            categories: categories,
+            typeTransactions: typeTransactions,
+            selectedCategory: selectedCategory,
 
 
             // module page info

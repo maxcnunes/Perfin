@@ -18,7 +18,5 @@ namespace Perfin.Model
             Name = name;
             ParentCategoryId = parent;
         }
-        
-        
     }
 }

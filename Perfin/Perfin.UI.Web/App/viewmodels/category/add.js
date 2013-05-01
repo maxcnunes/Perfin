@@ -7,7 +7,6 @@
     'common/config'],
     function (app, datacontext, router, model, breadcrumb, config) {
 
-
         var
             vm = this,
             isSaving = ko.observable(false),
@@ -34,68 +33,48 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditCategory = ko.computed(function () {
-                return category();// && config.currentUser() && config.currentUser().id() === session().speakerId();
-            }),
+            cleanChanges = function () {
+                return category().dirtyFlag().reset();
+            },
             hasChanges = ko.computed(function () {
-                if (canEditCategory()) {
-                    return category().dirtyFlag().isDirty();
-                }
-
-                return false;
-                //return datacontext.hasChanges();
+                return category() ? category().dirtyFlag().isDirty() : false;
             }),
             isValid = function () {
-                return canEditCategory() ? validationErrors().length === 0 : true;
+                return validationErrors().length === 0;
             },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving() && isValid();
             }),
             save = function () {
-
                 isSaving(true);
-                if (canEditCategory()) {
-                    $.when(datacontext.category.addData(category()))
-                        .then(goToEditView)
-                        .done(complete); //.fin(complete);
-                }
+                $.when(datacontext.category.addData(category()))
+                    .then(goToEditView)
+                    .done(complete); //.fin(complete);
 
                 function goToEditView(result) {
-                    // redirect to index page while the edit page is not finished
                     router.replaceLocation('#/category/show');
-
                     //router.replaceLocation('#/category/details/' + category().id());
                 }
 
                 function complete() {
+                    cleanChanges();
                     isSaving(false);
+                    goBack();
                 }
             },
             canDeactivate = function () {
+                if (hasChanges()) {
+                    var msg = 'Do you want to leave and cancel?';
+                    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
+                        .then(function (selectedOption) {
+                            if (selectedOption === 'Yes') {
+                                //TODO:
+                                //datacontext.cancelChanges();
+                            }
+                            return selectedOption;
+                        });
+                }
                 return true;
-
-                // OLD
-                //----------------------------
-                //if (this._categoryAdded == false) {
-                //    return app.showMessage('Are you sure you want to leave this page?', 'Navigate', ['Yes', 'No']);
-                //} else {
-                //    return true;
-                //}
-
-
-                // NEW EXAMPLE
-                //----------------------------
-                //if (hasChanges()) {
-                //    var msg = 'Do you want to leave and cancel?';
-                //    return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
-                //        .then(function (selectedOption) {
-                //            if (selectedOption === 'Yes') {
-                //                datacontext.cancelChanges();
-                //            }
-                //            return selectedOption;
-                //        });
-                //}
-                //return true;
             },
             goBack = function () {
                 router.navigateBack();
@@ -104,7 +83,7 @@
         var vm = {
             activate: activate,
             canDeactivate: canDeactivate,
-            goBack:goBack,
+            goBack: goBack,
             canSave: canSave,
             cancel: cancel,
             hasChanges: hasChanges,

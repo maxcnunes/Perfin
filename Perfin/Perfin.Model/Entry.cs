@@ -13,6 +13,7 @@ namespace Perfin.Model
         public virtual string Description { get; set; }
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }
+        public virtual int TypeTransaction { get; set; } 
         /// <summary>
         /// When this entry was created
         /// </summary>
@@ -20,6 +21,7 @@ namespace Perfin.Model
         /// <summary>
         /// When this entry was really paied/received
         /// </summary>
-        public virtual DateTime? PaymentDate { get; set; } 
+        public virtual DateTime? EntryDate { get; set; }
+
     }
 }

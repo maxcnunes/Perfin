@@ -12,8 +12,6 @@
             welcome: 'viewmodels/welcome',
             category: { show: 'viewmodels/category/show', add: 'viewmodels/category/add', details: 'viewmodels/category/details' },
             user: { show: 'viewmodels/user/show', add: 'viewmodels/user/add', details: 'viewmodels/user/details' },
-            accountType: { show: 'viewmodels/accounttype/show', add: 'viewmodels/accounttype/add', details: 'viewmodels/accounttype/details' },
-            account: { show: 'viewmodels/account/show', add: 'viewmodels/account/add', details: 'viewmodels/account/details' },
             entry: { show: 'viewmodels/entry/show', add: 'viewmodels/entry/add', details: 'viewmodels/entry/details' },
             map: { show: 'viewmodels/map/show' },
             calendar: { show: 'viewmodels/calendar/show' },
@@ -88,64 +86,6 @@
                 name: '<i class="icon-book"></i> Edit User',
                 visible: false,
                 caption: 'Edit User',
-                settings: { parentModule: modulesId.welcome }
-            }];
-        },
-
-        accoutTypeRoutes = function () {
-            return [{
-                url: 'accounttype/show',
-                moduleId: modulesId.accountType.show,
-                name: '<i class="icon-tag"></i> Account Types',
-                visible: true,
-                caption: 'Account Type',
-                settings: {
-                    classColor: 'red',
-                    classIcon: 'icon-tag',
-                    parentModule: modulesId.welcome
-                }
-            }, {
-                url: 'accounttype/add',
-                moduleId: modulesId.accountType.add,
-                name: '<i class="icon-plus"></i> Add Account Type',
-                visible: false,
-                caption: 'Add Account Type',
-                settings: { parentModule: modulesId.welcome }
-            }, {
-                url: 'accounttype/details/:id',
-                moduleId: modulesId.accountType.details,
-                name: '<i class="icon-book"></i> Edit Account Type',
-                visible: false,
-                caption: 'Edit Account Type',
-                settings: { parentModule: modulesId.welcome }
-            }];
-        },
-
-        accountRoutes = function () {
-            return [{
-                url: 'account/show',
-                moduleId: modulesId.account.show,
-                name: '<i class="icon-tag"></i> Account',
-                visible: true,
-                caption: 'Account',
-                settings: {
-                    classColor: 'blue',
-                    classIcon: 'icon-tag',
-                    parentModule: modulesId.welcome
-                }
-            }, {
-                url: 'account/add',
-                moduleId: modulesId.account.add,
-                name: '<i class="icon-plus"></i> Add Account',
-                visible: false,
-                caption: 'Add Account',
-                settings: { parentModule: modulesId.welcome }
-            }, {
-                url: 'account/details/:id',
-                moduleId: modulesId.account.details,
-                name: '<i class="icon-book"></i> Edit Account',
-                visible: false,
-                caption: 'Edit Account',
                 settings: { parentModule: modulesId.welcome }
             }];
         },
@@ -247,8 +187,6 @@
             routes.private = [];
             routes.private.appendRoutes(homeRoute());
             routes.private.appendRoutes(categoryRoutes());
-            routes.private.appendRoutes(accoutTypeRoutes());
-            routes.private.appendRoutes(accountRoutes());
             routes.private.appendRoutes(entryRoutes());
             routes.private.appendRoutes(mapRoute());
             routes.private.appendRoutes(calendarRoute());

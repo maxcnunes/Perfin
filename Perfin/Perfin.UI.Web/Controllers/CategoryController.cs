@@ -56,6 +56,7 @@ namespace Perfin.UI.Web.Controllers
         // PUT /api/category
         public HttpResponseMessage Put(Category category)
         {
+            category.User = new User { Id = CurrentUserId };
             Uow.Categories.Update(category);
             Uow.Commit();
 

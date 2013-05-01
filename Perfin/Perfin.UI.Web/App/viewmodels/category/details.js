@@ -50,32 +50,28 @@
             cancel = function (complete) {
                 router.navigateBack();
             },
-            canEditCategory = ko.computed(function () {
-                return category() !== undefined;
-            }),
+            cleanChanges = function () {
+                return category().dirtyFlag().reset();
+            },
             hasChanges = ko.computed(function () {
-                if (canEditCategory()) {
-                    return category().dirtyFlag().isDirty();
-                }
-                return false;
+                return category() ? category().dirtyFlag().isDirty() : false;
             }),
             isValid = function () {
-                return canEditCategory() ? validationErrors().length === 0 : true;
+                return validationErrors().length === 0;
             },
             canSave = ko.computed(function () {
                 return hasChanges() && !isSaving() && isValid();
             }),
-
             save = function () {
-
                 isSaving(true);
-                if (canEditCategory()) {
-                    $.when(datacontext.category.updateData(category()))
-                        .done(complete);//.fin(complete);
-                }
-
+   
+                $.when(datacontext.category.updateData(category()))
+                    .done(complete);//.fin(complete);
+                
                 function complete() {
+                    cleanChanges();
                     isSaving(false);
+                    router.replaceLocation('#/category/show');
                 }
             },
             canDeactivate = function () {
@@ -84,6 +80,7 @@
                     return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
                         .then(function (selectedOption) {
                             if (selectedOption === 'Yes') {
+                                //TODO:
                                 //datacontext.cancelChanges();
                             }
                             return selectedOption;

@@ -9,15 +9,13 @@
                     var data = {
                         category: ko.observable(),
                         user: ko.observable(),
-                        accounttype: ko.observable(),
-                        account: ko.observable()
+                        entry: ko.observable()
                     };
 
                     $.when(
                         datacontext.category.getData({ results: data.category }),
                         datacontext.user.getData({ results: data.user }),
-                        datacontext.accounttype.getData({ results: data.accounttype }),
-                        datacontext.account.getData({ results: data.account })
+                        datacontext.entry.getData({ results: data.entry })
                     )
 
                     .pipe(function () {
@@ -31,8 +29,7 @@
                         var msg = 'Fetched data for: '
                             + '<div>' + data.category().length + ' categories </div>'
                             + '<div>' + data.user().length + ' users </div>'
-                            + '<div>' + data.accounttype().length + ' accounttypes </div>'
-                            + '<div>' + data.account().length + ' accounts </div>';
+                            + '<div>' + data.entry().length + ' entries </div>';
 
                         logger.info(msg, true, null, null);
                     })

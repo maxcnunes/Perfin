@@ -25,6 +25,10 @@ p {
     line-height: 25px;
 }
 
+.mt10 {
+    margin-top:10px;
+}
+
 
 /*===== Layout =====*/
 #wrapper {

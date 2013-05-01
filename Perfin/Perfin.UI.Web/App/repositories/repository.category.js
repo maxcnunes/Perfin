@@ -24,7 +24,7 @@
             });
 
             return $.Deferred(function (def) {
-                $.when(datacontext.category.getData({ results: allCategories }))
+                $.when(categoryRepository.getData({ results: allCategories }))
                     .fail(function () { def.reject(); })
                     .done(function () {
                         // get just the other categories 

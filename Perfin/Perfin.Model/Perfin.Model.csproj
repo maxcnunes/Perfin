@@ -42,6 +42,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Entry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

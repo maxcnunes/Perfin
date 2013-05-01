@@ -24,10 +24,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Account Name</th>
-                        <th>Price</th>
-                        <th>Payment Date</th>
-                        <th>Registry Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Entry Date</th>
+                        <th>Create Date</th>
                         <th>Category</th>
                         <th>Actions</th>
                     </tr>
@@ -35,11 +35,11 @@
                 <tbody data-bind="foreach: entries">
                     <tr>
                         <td data-bind="text: id"></td>
-                        <td data-bind="text: account().name"></td>
-                        <td data-bind="currency: price"></td>
-                        <td data-bind="moment: paymentDate"></td>
-                        <td data-bind="moment: registryDate"></td>
-                        <td data-bind="text: account().category().name"></td>
+                        <td data-bind="text: typeTransactionName"></td>
+                        <td data-bind="currency: amount"></td>
+                        <td data-bind="moment: entryDate"></td>
+                        <td data-bind="moment: createDate"></td>
+                        <td data-bind="text: category().name"></td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>

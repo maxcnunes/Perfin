@@ -26,7 +26,7 @@ namespace Perfin.UI.Web.Controllers
                     Amount = entry.Amount,
                     Description = entry.Description,
                     CreateDate = entry.CreateDate,
-                    PaymentDate = entry.PaymentDate,
+                    EntryDate = entry.EntryDate,
                     Category = new Category { Id = entry.Category.Id },
                     User = new User { Id = entry.User.Id }
                 }).OrderBy(e => e.CreateDate);

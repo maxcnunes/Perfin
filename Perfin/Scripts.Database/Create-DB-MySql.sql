@@ -47,7 +47,7 @@ CREATE TABLE `entry` (
   `Amount` decimal(12,3) NOT NULL,
   `Description` varchar(300) DEFAULT NULL,
   `CreateDate` date NOT NULL,
-  `Date` date DEFAULT NULL,
+  `EntryDate` date DEFAULT NULL,
   `UserId` int(11) NOT NULL,
   `TypeTransaction` int(11) NOT NULL,
   `CategoryId` int(11) DEFAULT NULL,
