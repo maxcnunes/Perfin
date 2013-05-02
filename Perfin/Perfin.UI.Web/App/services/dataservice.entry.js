@@ -47,6 +47,15 @@
                     contentType: 'application/json; charset=utf-8',
                     beforeSend: authentication.authorizationHeader,
                     decoder: callbackDataservice.beforeExecCallback
+                }),
+
+                amplify.request.define('totalTypeTransactionsByMonth', 'ajax', {
+                    url: '/api/chart' + '/totalTypeTransactionsByMonth',
+                    dataType: 'json',
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
+                    //cache:true
                 });
             },
 
@@ -92,6 +101,14 @@
                     success: callbacks.success,
                     error: callbacks.error
                 });
+            },
+
+            getEntriesTotalTypeTransactionsByMonth = function (callbacks) {
+                return amplify.request({
+                    resourceId: 'totalTypeTransactionsByMonth',
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
             };
 
         init();
@@ -102,7 +119,8 @@
             getEntry: getEntry,
             addEntry: addEntry,
             updateEntry: updateEntry,
-            deleteEntry: deleteEntry
+            deleteEntry: deleteEntry,
+            getEntriesTotalTypeTransactionsByMonth: getEntriesTotalTypeTransactionsByMonth
         };
 
 

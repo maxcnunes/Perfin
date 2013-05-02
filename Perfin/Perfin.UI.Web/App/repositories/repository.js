@@ -51,8 +51,12 @@
                         if (forceRefresh || !items || !utils.hasProperties(items)) {
                             getFunction({
                                 success: function (dtoList) {
-                                    items = mapToContext(dtoList, items, results, mapper, filter, sortFunction);
-                                    def.resolve(results);
+                                    if (options.resultAsDto) {
+                                        def.resolve(dtoList);
+                                    } else {
+                                        items = mapToContext(dtoList, items, results, mapper, filter, sortFunction);
+                                        def.resolve(results);
+                                    }
                                 },
                                 error: function (response) {
                                     logger.error(config.messages.errorGettingData, true);

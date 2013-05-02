@@ -99,11 +99,8 @@
     //-------------------------
     ko.bindingHandlers.highcharts = {
         init: function (elemenet, valueAccessor) {
-            var chosenOptions = ko.utils.unwrapObservable(valueAccessor());
-            debugger;
-
-            // use setTimeout if width of select item does not set using CSS
             setTimeout(function () {
+                var chosenOptions = ko.utils.unwrapObservable(valueAccessor());
                 $(elemenet).highcharts(chosenOptions);
             }, 300);
         }
