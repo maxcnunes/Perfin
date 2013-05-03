@@ -26,7 +26,7 @@ p {
 }
 
 .mt10 {
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 
@@ -538,6 +538,79 @@ textarea:valid + .validationMessage {
 }
 
 
+/*==== CarouFredSel ====*/
+
+#tabs > div {
+	width: 700px;
+	height: 250px;
+	float: left;
+	overflow: hidden;
+}
+#tabs img {
+	display: block;
+	margin: 0 25px 0 0;
+	float: left;
+}
+#tabs h3 {
+	font-size: 30px;
+	line-height: 20px;
+	margin: 60px 0 20px 0;
+}
+ 
+#tabs #blue img {
+	margin-top: 30px;
+}
+#tabs #pink img {
+	margin-top: 0;
+}
+#tabs #white img {
+	margin-top: 50px;
+}
+ 
+#pager {
+	width: 700px;
+	margin: -76px auto 25px auto;
+	text-align: center;
+}
+#pager a {
+	border: 1px solid transparent;
+	border-bottom: none;
+	border-left: none;
+	border-color: #ccc;
+	color: #999;
+	font-size: 20px;
+	text-decoration: none;
+	line-height: 30px;
+	display: inline-block;
+	height: 30px;
+	padding: 10px 30px;
+}
+#pager a:hover {
+	color: #666;
+}
+#pager a:first-child {
+	border-left: 1px solid #ccc;
+}
+#pager a.selected {
+	background-color: #F4F0EE;
+	color: #333;
+}
+ 
+#source {
+	text-align: center;
+	width: 400px;
+	margin: 0 0 0 -200px;
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+}
+#source, #source a {
+	color: #999;
+	font-size: 12px;
+}
+
+
+
 /*==== Box Screen ====*/
 .box-center {
     background: #fefefe;
@@ -567,7 +640,7 @@ textarea:valid + .validationMessage {
 #box-register {
     width: 450px;
     margin: 30px auto;
-    height:570px;
+    height: 570px;
 }
 /*--------------
   RESPONSIVE

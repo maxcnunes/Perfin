@@ -14,7 +14,7 @@ namespace Perfin.UI.Web
             // Modernizr goes separate since it loads first
             bundles.Add(new ScriptBundle("~/bundles/modernizr")
                 .Include("~/Scripts/modernizr-{version}.js"));
-            
+
             bundles.Add(
               new ScriptBundle("~/scripts/vendor")
                 .Include("~/Scripts/jquery-{version}.js")
@@ -33,6 +33,11 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/jquery.meio.mask.js")
                 .Include("~/Scripts/jquery.currency.js")
                 .Include("~/Scripts/highcharts.js")
+                .Include("~/Scripts/jquery.carouFredSel-6.2.1.js")
+                .Include("~/Scripts/jquery.ba-throttle-debounce.min.js")//Helper CarouFredSel
+                .Include("~/Scripts/jquery.mousewheel.min.js")//Helper CarouFredSel
+                .Include("~/Scripts/jquery.touchSwipe.min.js")//Helper CarouFredSel
+                .Include("~/Scripts/jquery.transit.min.js")//Helper CarouFredSel
                 // Must be the last script to be loaded
                 .Include("~/Scripts/knockout.custom.binding.handlers.js")
               );
