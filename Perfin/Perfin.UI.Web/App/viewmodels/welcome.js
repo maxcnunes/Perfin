@@ -19,41 +19,46 @@
                         .done(function (dtos) {
 
                             var data = _.map(dtos, function (dto) {
-                                return [dto.typeTransaction, dto.amount];
+                                return { name: dto.typeTransaction, data: [dto.amount] };
                             });
+                            debugger;
+
+
 
                             var chartOptions = {
                                 chart: {
-                                    plotBackgroundColor: null,
-                                    plotBorderWidth: null,
-                                    plotShadow: false
+                                    type: 'column'
                                 },
                                 title: {
-                                    text: 'Total Type Transactions, 04/2013'
+                                    text: 'Current '
                                 },
-                                tooltip: {
-                                    pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-                                    percentageDecimals: 1
+                                //subtitle: {
+                                //    text: 'Source: WorldClimate.com'
+                                //},
+                                xAxis: {
+                                    categories: ['Type Transactions']
                                 },
-                                plotOptions: {
-                                    pie: {
-                                        allowPointSelect: true,
-                                        cursor: 'pointer',
-                                        dataLabels: {
-                                            enabled: true,
-                                            color: '#000000',
-                                            connectorColor: '#000000',
-                                            formatter: function () {
-                                                return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
-                                            }
-                                        }
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Amount ($)'
                                     }
                                 },
-                                series: [{
-                                    type: 'pie',
-                                    name: 'Total Type Transactions',
-                                    data: data
-                                }]
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0">$ <b>{point.y:.1f}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                                },
+                                plotOptions: {
+                                    column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                    }
+                                },
+                                series: data
                             };
 
                             chartTotalTypeTransactionsByMonth(chartOptions);
