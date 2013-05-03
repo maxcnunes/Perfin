@@ -62,12 +62,16 @@
                         });
 
                 }).promise();
+            },
+            viewAttached = function (view) {
+                $('#tabs').tabs();
             };
 
 
         return {
             entries: entries,
             activate: activate,
+            viewAttached: viewAttached,
             chartTotalTypeTransactionsByMonth: chartTotalTypeTransactionsByMonth,
 
             // module page info
