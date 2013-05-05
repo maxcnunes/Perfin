@@ -2,94 +2,27 @@
     <!-- ko compose: {view: 'nav-top'} -->
     <!-- /ko-->
 
-    <div id="wrapper" class="container-fluid">
-
-        <!--Main Navigation-->
-        <!-- ko compose: {view: 'nav-side'} -->
-        <!-- /ko-->
+    <div id="wrapper" class="container">
 
         <!--Main Content-->
         <section id="main_content">
 
-            <!--Sub Navigation-->
-            <nav id="sub-menu">
-
-                <!--UserInfo-->
-                <dl class="user_info">
-                    <dt><a href="#">
-                        <img  data-bind="attr: { src: currentUser().picture() }" /></a></dt>
-                    <!--"/content/images/user.png"-->
-                    <dd>
-                        <a class="welcome_user" href="#/user/details/2">Welcome,<strong data-bind="text: currentUser().name()"></strong></a>
-                        <span class="log_data">Last sign in : 16:11 Feb 27th 2012</span>
-                        <a class="logout" href="#" data-bind="click: logOut"><i class="icon-signout"></i>Logout</a>
-                        <!--@*
-                            Not delete this code below
-                            <a class="user_messages" href="#"><span>12</span></a>
-                        *@-->
-                    </dd>
-                </dl>
-
-                <!--Responsive Nav-->
-                <a class="res_icon" href="#"></a>
-                <ul id="responsive_nav" style="display: none;">
-                    <li>
-                        <a href="index.html">Dashboard</a>
-                    </li>
-
-                    <li>
-                        <a href="">Categories</a>
-                        <ul>
-                            <li><a href="">Categories</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="">Maps</a>
-                        <ul>
-                            <li><a href="">Maps</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="">Calendar</a>
-                        <ul>
-                            <li><a href="">Calendar</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="">Charts</a>
-                        <ul>
-                            <li><a href="">Charts</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="">Settings</a>
-                        <ul>
-                            <li><a href="">Settings</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-
-                <!--Responsive Nav ends-->
-
-                <!--@*@RenderSection("sub_menu")*@-->
-            </nav>
-
-            <!--Content Wrap-->
-            <div id="content_wrap">
-                <!--ko compose: { 
-                    model: router.activeItem, //wiring the router
-                    afterCompose: router.afterCompose, //wiring the router
-                    transition:'entrance', //use the 'entrance' transition when switching views
-                    cacheViews:true //telling composition to keep views in the dom, and reuse them (only a good idea with singleton view models)
-                }-->
-                <!--/ko-->
-            </div>
+            <!--ko compose: { 
+                model: router.activeItem, //wiring the router
+                afterCompose: router.afterCompose, //wiring the router
+                transition:'entrance', //use the 'entrance' transition when switching views
+                cacheViews:true //telling composition to keep views in the dom, and reuse them (only a good idea with singleton view models)
+            }-->
+            <!--/ko-->
 
         </section>
+
+        <!--Footer-->
+        <footer class="footer">
+            <div class="container">
+                <span>© 2013 Perfinster</span>
+            </div>
+        </footer>
     </div>
+
 </div>

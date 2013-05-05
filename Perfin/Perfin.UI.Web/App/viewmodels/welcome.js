@@ -21,8 +21,6 @@
                             var data = _.map(dtos, function (dto) {
                                 return { name: dto.typeTransaction, data: [dto.amount] };
                             });
-                            debugger;
-
 
 
                             var chartOptions = {
@@ -71,14 +69,15 @@
             viewAttached = function (view) {
                 //$('#tabs').tabs();
                 $('#tabs').carouFredSel({
-                    circular: false,
-                    items: 1,
+                    responsive: true,
                     width: '100%',
-                    auto: false,
-                    pagination: {
-                        container: '#pager',
-                        anchorBuilder: function (nr) {
-                            return '<a href="#">' + $(this).find('h3').text() + '</a>';
+                    scroll: 2,
+                    items: {
+                        width: 400,
+                        //	height: '30%',	//	optionally resize item-height
+                        visible: {
+                            min: 2,
+                            max: 6
                         }
                     }
                 });

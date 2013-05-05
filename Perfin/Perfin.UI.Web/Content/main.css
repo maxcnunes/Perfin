@@ -1,6 +1,5 @@
 ﻿
 body {
-    background: #ddd;
     color: #424242;
     font-family: 'Cabin', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -13,7 +12,7 @@ a {
     text-decoration: none;
 }
 
-h1, h2 {
+h1, h2, .splash .message {
     font-family: 'Lobster', Georgia, Times, serif;
     font-size: 70px;
     line-height: 100px;
@@ -29,11 +28,15 @@ p {
     margin-top: 10px;
 }
 
+.clear {
+    clear: both;
+}
+
 
 /*===== Layout =====*/
 #wrapper {
-    margin: 10px;
-    padding-top: 40px;
+    /*margin: 10px;*/
+    padding-top: 50px;
 }
 
 
@@ -286,21 +289,10 @@ dl.user_info {
 
 /*==== Main Content ====*/
 #main_content {
-    overflow: visible;
-    margin-left: 93px;
-    background: url(images/bg_main_content.png) repeat-y left center #fff;
+    /*padding: 18px;*/
+    background: #fff;
     border-radius: 4px 3px 3px 3px;
-    min-height: 750px;
-    z-index: 0;
-    position: relative;
 }
-
-#content_wrap {
-    padding: 18px;
-    display: block;
-    margin-left: 210px;
-}
-
 
 /*==== StatusContainer ====*/
 ul#status-container {
@@ -325,6 +317,10 @@ ul#status-container {
         position: relative;
         margin-bottom: 10px;
     }
+
+        ul#status-container li a {
+            text-decoration: none;
+        }
 
     ul#status-container .status-top {
         display: block;
@@ -387,7 +383,7 @@ ul#status-container {
 .title-description {
     font-family: 'Lobster', Georgia, Times, serif;
     font-size: 30px;
-    margin: 5px 5px 10px 5px;
+    margin: 5px 0 10px 0;
     line-height: 40px;
     border-bottom: solid 1px #dcdfe0;
     box-shadow: inset 0px 1px 0px #ffffff;
@@ -400,7 +396,13 @@ ul#status-container {
         font-weight: normal;
     }
 
-
+/*==== Footer ====*/
+.footer {
+    margin-top: 20px;
+    line-height: 40px;
+    border-top: solid 1px #dcdfe0;
+    box-shadow: inset 0px 1px 0px #ffffff;
+}
 
 /*==== Forms ====*/
 fieldset {
@@ -411,6 +413,15 @@ fieldset {
     fieldset .fields {
         margin: 0px 20px;
     }
+
+div.form-actions-top {
+    margin: 5px 20px;
+}
+
+div.form-actions-top-right {
+    margin: 5px 20px;
+    float: right;
+}
 
 .form-actions .btn i {
     margin-right: 5px;
@@ -537,77 +548,111 @@ textarea:valid + .validationMessage {
     display: none;
 }
 
+.chart-box-main {
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    margin-bottom: 10px;
+}
+
+
+/*==== Navbar User ====*/
+/*.navbar-user {
+    line-height: 40px;
+}*/
+
+.navbar-user a {
+}
+
+.navbar-user .user-img {
+    height: 30px;
+}
+
+.navbar-user .user-logout {
+    color: #777777;
+    text-decoration: none;
+}
+
 
 /*==== CarouFredSel ====*/
 
 #tabs > div {
-	width: 700px;
-	height: 250px;
-	float: left;
-	overflow: hidden;
+    width: 700px;
+    height: 250px;
+    float: left;
+    overflow: hidden;
 }
+
 #tabs img {
-	display: block;
-	margin: 0 25px 0 0;
-	float: left;
+    display: block;
+    margin: 0 25px 0 0;
+    float: left;
 }
+
 #tabs h3 {
-	font-size: 30px;
-	line-height: 20px;
-	margin: 60px 0 20px 0;
+    font-size: 30px;
+    line-height: 20px;
+    margin: 60px 0 20px 0;
 }
- 
+
 #tabs #blue img {
-	margin-top: 30px;
+    margin-top: 30px;
 }
+
 #tabs #pink img {
-	margin-top: 0;
+    margin-top: 0;
 }
+
 #tabs #white img {
-	margin-top: 50px;
+    margin-top: 50px;
 }
- 
+
 #pager {
-	width: 700px;
-	margin: -76px auto 25px auto;
-	text-align: center;
+    width: 700px;
+    margin: -76px auto 25px auto;
+    text-align: center;
 }
-#pager a {
-	border: 1px solid transparent;
-	border-bottom: none;
-	border-left: none;
-	border-color: #ccc;
-	color: #999;
-	font-size: 20px;
-	text-decoration: none;
-	line-height: 30px;
-	display: inline-block;
-	height: 30px;
-	padding: 10px 30px;
-}
-#pager a:hover {
-	color: #666;
-}
-#pager a:first-child {
-	border-left: 1px solid #ccc;
-}
-#pager a.selected {
-	background-color: #F4F0EE;
-	color: #333;
-}
- 
+
+    #pager a {
+        border: 1px solid transparent;
+        border-bottom: none;
+        border-left: none;
+        border-color: #ccc;
+        color: #999;
+        font-size: 20px;
+        text-decoration: none;
+        line-height: 30px;
+        display: inline-block;
+        height: 30px;
+        padding: 10px 30px;
+    }
+
+        #pager a:hover {
+            color: #666;
+        }
+
+        #pager a:first-child {
+            border-left: 1px solid #ccc;
+        }
+
+        #pager a.selected {
+            background-color: #F4F0EE;
+            color: #333;
+        }
+
 #source {
-	text-align: center;
-	width: 400px;
-	margin: 0 0 0 -200px;
-	position: absolute;
-	bottom: 10px;
-	left: 50%;
+    text-align: center;
+    width: 400px;
+    margin: 0 0 0 -200px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
 }
-#source, #source a {
-	color: #999;
-	font-size: 12px;
-}
+
+    #source, #source a {
+        color: #999;
+        font-size: 12px;
+    }
 
 
 
@@ -703,12 +748,12 @@ textarea:valid + .validationMessage {
         min-height: 400px;
     }
 
-    section#main_content {
+    /*section#main_content {
         margin-left: 0px;
         background: #ebebeb;
         background-image: none;
         border-radius: 4px 4px 0px 0px;
-    }
+    }*/
 
     nav#main-menu {
         display: none;

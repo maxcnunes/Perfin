@@ -2,6 +2,7 @@
     <!--Breadcrumb Navigation-->
     <!-- ko compose: {view: '_shared/breadcrumb'} -->
     <!-- /ko-->
+
     <form>
         <fieldset>
             <!-- Title -->
@@ -12,13 +13,11 @@
 
 
             <!-- Fields/Tables -->
-            <div class="form-actions">
-
+            <div class="form-actions-top">
                 <a href="#/entry/add" class="btn btn-primary">
                     <i class="icon-plus"></i>
                     Add an Entry
                 </a>
-
             </div>
             <table class="table table-striped">
                 <thead>
@@ -42,8 +41,8 @@
                         <td data-bind="text: category().name"></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
-                                <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                                <a class="btn btn-small btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                <a class="btn btn-small btn-danger btnDelete"><i class="icon-trash"></i></a>
                             </div>
                         </td>
                     </tr>
