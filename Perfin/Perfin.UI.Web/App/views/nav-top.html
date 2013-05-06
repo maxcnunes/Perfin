@@ -12,9 +12,9 @@
                 <a href="#" data-bind="click: logOut" class="btn btn-mini" title="Logout"><i class="icon-signout"></i></a>
             </nav>
 
-            <a class="brand" data-bind="attr: { href: router.visibleRoutes()[0].hash }">
+            <a class="brand" data-bind="attr: { href: router.allRoutes()[0].hash }" title="dashboard">
                 <i class="icon-home"></i>
-                <span>Perfin</span>
+                <span>Perfinster</span>
             </a>
             <div class="nav-collapse collapse">
                 <ul class="nav" data-bind="foreach: router.visibleRoutes">

@@ -23,7 +23,7 @@
                 url: 'welcome',
                 moduleId: modulesId.welcome,
                 name: '<i class="icon-home"></i> Welcome',
-                visible: true,
+                visible: false,
                 caption: 'Home',
                 settings: {
                     classColor: 'green',
