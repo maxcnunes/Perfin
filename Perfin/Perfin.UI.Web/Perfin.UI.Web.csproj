@@ -200,7 +200,8 @@
     <Content Include="App\repositories\datacontext.js" />
     <Content Include="App\common\logger.js" />
     <Content Include="App\common\assets.js" />
-    <Content Include="App\viewmodels\daily\show.js" />
+    <Content Include="App\viewmodels\entry\dailyhandson.js" />
+    <Content Include="App\viewmodels\entry\daily.js" />
     <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\entry\add.js" />
     <Content Include="App\viewmodels\entry\details.js" />
@@ -210,11 +211,11 @@
     <Content Include="App\viewmodels\user\details.js" />
     <Content Include="App\viewmodels\user\login.js" />
     <Content Include="App\viewmodels\user\show.js" />
-    <Content Include="App\views\daily\show.html" />
     <Content Include="App\views\entry\add.html" />
+    <Content Include="App\views\entry\dailyhandson.html" />
     <Content Include="App\views\entry\details.html" />
+    <Content Include="App\views\entry\daily.html" />
     <Content Include="App\views\entry\show.html" />
-    <Content Include="App\views\entry\[original]show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
     <Content Include="App\views\public.html" />

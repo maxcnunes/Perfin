@@ -1,0 +1,61 @@
+﻿<div>
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+    <form>
+        <fieldset>
+            <!-- Title -->
+            <legend class="title-description">
+                <span data-bind="html: pageDisplayName"></span>
+                <span class="title-description-info" data-bind="html: pageDescription"></span>
+            </legend>
+
+
+            <!-- Fields/Tables -->
+            <div class="form-actions">
+                <a href="#/entry/add" class="btn btn-primary">
+                    <i class="icon-plus"></i>
+                    New Entry
+                </a>
+            </div>
+
+            <div>
+                <h3 class="text-center"><a class="icon-chevron-left">  </a>2013 <a class="icon-chevron-right"> </a></h3>
+                <h4 class="text-center"><a class="icon-chevron-left"> </a>May <a class="icon-chevron-right">  </a></h4>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="row">
+                        <th class="span1" style="float:left;  height: 28px; width:10px; "></th>
+                   
+                        <th class="span5" style="float:left;">Category</th>
+                        <th class="span3" style="float:left;">Amount</th>
+                        <th class="span2" style="float:left;">Actions</th>
+                    </tr>
+                </thead>
+            </table>
+            <div  data-bind="foreach: groupentries">
+                <h3  data-bind="text: day"></h3>
+                <table class="table table-striped">
+                    <tbody data-bind="foreach: entries">
+                        <tr>
+                            <th style="float:left; height: 28px; width:10px; background-color:blanchedalmond;"></th>
+                         
+                            <td class="span5" style="float:left;" data-bind="text: category().name"></td>
+                            <td class="span3" style="float:left;" data-bind="currency: amount"></td>
+                            <td class="span2" style="float:left;">
+                                <div class="btn-group">
+                                    <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
+                                    <a class="btn btn-danger btnDelete"><i class="icon-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row"> <h5 class="text-right span8" data-bind="currency:  totalDay"></h5></div>
+            </div>
+            <br />
+        </fieldset>
+    </form>
+</div>
