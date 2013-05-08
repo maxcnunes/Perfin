@@ -8,5 +8,6 @@ namespace Perfin.Data.Contract
     {
         Entry GetByDate(string date);
         IQueryable<Entry> GetTotalTypeTransactionsByMonth(DateTime month, int userId);
+        IQueryable<Entry> GetTotalCategoriesByMonth(DateTime month, int userId);
     }
 }

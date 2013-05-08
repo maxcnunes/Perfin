@@ -41,5 +41,23 @@ namespace Perfin.Data.Repository
 
             return query;
         }
+
+
+        public IQueryable<Entry> GetTotalCategoriesByMonth(DateTime month, int userId)
+        {
+            var query =
+                _dbSession.Query<Entry>()
+                    .Where(e => e.User.Id == userId
+                        && e.CreateDate.Month == month.Month
+                        && e.CreateDate.Year == month.Year)
+                    .GroupBy(e => e.Category)
+                    .Select(c => new Entry
+                    {
+                        Category = c.Key,
+                        Amount = c.Sum(item => item.Amount)
+                    });
+
+            return query;
+        }
     }
 }

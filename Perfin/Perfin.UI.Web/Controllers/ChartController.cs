@@ -27,5 +27,21 @@ namespace Perfin.UI.Web.Controllers
 
             return query;
         }
+
+        // GET api/chart/TotalCategoriesByMonth
+        [HttpGet, ActionName("TotalCategoriesByMonth")]
+        public IEnumerable<object> TotalCategoriesByMonth()
+        {
+            var query = Uow.Entries.GetTotalCategoriesByMonth(DateTime.Today, CurrentUserId)
+                        .Select(i => new
+                        {
+                            Id = i.Category.Id,
+                            Category = i.Category.Name,
+                            ParentCategoryId = i.Category.ParentCategoryId,
+                            Amount = i.Amount
+                        });
+
+            return query;
+        }
     }
 }

@@ -2,6 +2,7 @@
     function (amplify, authentication, callbackDataservice) {
         var
             serviceUrl = '/api/entry',
+            serviceChartUrl = '/api/chart',
             init = function () {
 
                 amplify.request.define('entries', 'ajax', {
@@ -48,9 +49,18 @@
                     beforeSend: authentication.authorizationHeader,
                     decoder: callbackDataservice.beforeExecCallback
                 }),
-
+                
                 amplify.request.define('totalTypeTransactionsByMonth', 'ajax', {
-                    url: '/api/chart' + '/totalTypeTransactionsByMonth',
+                    url: serviceChartUrl + '/totalTypeTransactionsByMonth',
+                    dataType: 'json',
+                    type: 'GET',
+                    beforeSend: authentication.authorizationHeader,
+                    decoder: callbackDataservice.beforeExecCallback
+                    //cache:true
+                }),
+                
+                amplify.request.define('totalCategoriesByMonth', 'ajax', {
+                    url: serviceChartUrl + '/totalCategoriesByMonth',
                     dataType: 'json',
                     type: 'GET',
                     beforeSend: authentication.authorizationHeader,
@@ -109,6 +119,14 @@
                     success: callbacks.success,
                     error: callbacks.error
                 });
+            },
+        
+            getEntriesTotalCategoriesByMonth = function (callbacks) {
+                return amplify.request({
+                    resourceId: 'totalCategoriesByMonth',
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
             };
 
         init();
@@ -120,7 +138,8 @@
             addEntry: addEntry,
             updateEntry: updateEntry,
             deleteEntry: deleteEntry,
-            getEntriesTotalTypeTransactionsByMonth: getEntriesTotalTypeTransactionsByMonth
+            getEntriesTotalTypeTransactionsByMonth: getEntriesTotalTypeTransactionsByMonth,
+            getEntriesTotalCategoriesByMonth: getEntriesTotalCategoriesByMonth
         };
 
 

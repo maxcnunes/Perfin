@@ -156,6 +156,8 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\charts\chart.totalCategoriesByMonth.js" />
+    <Content Include="App\charts\chart.totalTypeTransactionsByMonth.js" />
     <Content Include="App\common\breadcrumb.js" />
     <Content Include="App\models\model.typeTransaction.js" />
     <Content Include="App\repositories\repository.js" />

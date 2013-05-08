@@ -59,7 +59,7 @@ define([
                 system.debug(true);
                 //>>excludeEnd("build");
 
-                app.title = 'Perfin';
+                app.title = 'Perfinster';
                 app.start().then(function () {
                     // route will use conventions for modules
                     // assuming viewmodels/views folder structure
