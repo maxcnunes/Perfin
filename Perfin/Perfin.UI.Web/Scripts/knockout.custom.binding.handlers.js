@@ -74,11 +74,14 @@
         update: function (element, valueAccessor, allBindingsAccessor, viewModel) {
             var value = valueAccessor(),
                 allBindings = allBindingsAccessor();
+
+            if (!value()) return;
+
             var valueUnwrapped = ko.utils.unwrapObservable(value);
             var pattern = allBindings.datePattern || 'DD/MM/YYYY';
             $(element).text(moment(valueUnwrapped).format(pattern));
         }
-    }
+    };
 
 
     // Currency JS
@@ -89,5 +92,17 @@
             var valueUnwrapped = ko.utils.unwrapObservable(value);
             $(element).text(valueUnwrapped).currency();
         }
-    }
+    };
+
+
+    // Highcharts JS
+    //-------------------------
+    ko.bindingHandlers.highcharts = {
+        init: function (elemenet, valueAccessor) {
+            setTimeout(function () {
+                var chosenOptions = ko.utils.unwrapObservable(valueAccessor());
+                $(elemenet).highcharts(chosenOptions);
+            }, 300);
+        }
+    };
 })();

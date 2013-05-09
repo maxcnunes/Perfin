@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Dialect;
 using Perfin.Common;
 using Perfin.Common.Helper;
 using System;
@@ -26,7 +27,7 @@ namespace Perfin.Data.Helper
         private ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-            .Database(MySQLConfiguration.Standard.ConnectionString(_connectionString))
+            .Database(MySQLConfiguration.Standard.Dialect<MySQL5Dialect>().ConnectionString(_connectionString))
             .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
             .BuildSessionFactory();
         }

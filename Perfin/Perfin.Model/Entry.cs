@@ -9,7 +9,7 @@ namespace Perfin.Model
     public class Entry
     {
         public virtual  int Id { get; set; }
-        public virtual decimal Amount { get; set; }
+        public virtual double Amount { get; set; }
         public virtual string Description { get; set; }
         public virtual Category Category { get; set; }
         public virtual User User { get; set; }

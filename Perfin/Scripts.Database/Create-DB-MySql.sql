@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `entry`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entry` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Amount` decimal(12,3) NOT NULL,
+  `Amount` decimal(12,2) NOT NULL,
   `Description` varchar(300) DEFAULT NULL,
   `CreateDate` date NOT NULL,
   `EntryDate` date DEFAULT NULL,

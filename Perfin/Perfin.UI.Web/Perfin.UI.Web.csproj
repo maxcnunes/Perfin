@@ -145,6 +145,7 @@
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -156,6 +157,8 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="App\charts\chart.totalCategoriesByMonth.js" />
+    <Content Include="App\charts\chart.totalTypeTransactionsByMonth.js" />
     <Content Include="App\common\breadcrumb.js" />
     <Content Include="App\models\model.typeTransaction.js" />
     <Content Include="App\repositories\repository.js" />
@@ -200,7 +203,6 @@
     <Content Include="App\repositories\datacontext.js" />
     <Content Include="App\common\logger.js" />
     <Content Include="App\common\assets.js" />
-    <Content Include="App\viewmodels\entry\dailyhandson.js" />
     <Content Include="App\viewmodels\entry\daily.js" />
     <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\entry\add.js" />
@@ -212,7 +214,6 @@
     <Content Include="App\viewmodels\user\login.js" />
     <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\entry\add.html" />
-    <Content Include="App\views\entry\dailyhandson.html" />
     <Content Include="App\views\entry\details.html" />
     <Content Include="App\views\entry\daily.html" />
     <Content Include="App\views\entry\show.html" />
@@ -300,10 +301,17 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\chosen.proto.js" />
     <Content Include="Scripts\chosen.proto.min.js" />
+    <Content Include="Scripts\knockout.custom.extenders.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.ba-throttle-debounce.min.js" />
+    <Content Include="Scripts\jquery.carouFredSel-6.2.1.js" />
     <Content Include="Scripts\jquery.currency.js" />
     <Content Include="Scripts\jquery.meio.mask.js" />
+    <Content Include="Scripts\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\jquery.touchSwipe.min.js" />
+    <Content Include="Scripts\jquery.transit.min.js" />
     <Content Include="Scripts\knockout.dirtyFlag.js" />
     <Content Include="Scripts\knockout.validation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />

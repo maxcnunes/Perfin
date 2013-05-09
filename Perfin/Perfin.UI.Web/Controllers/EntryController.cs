@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Perfin.Data.Contract;
+using Perfin.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Perfin.Data.Contract;
-using Perfin.Model;
 
 namespace Perfin.UI.Web.Controllers
 {
@@ -27,7 +27,8 @@ namespace Perfin.UI.Web.Controllers
                     Description = entry.Description,
                     CreateDate = entry.CreateDate,
                     EntryDate = entry.EntryDate,
-                    Category = new Category { Id = entry.Category.Id },
+                    TypeTransaction = entry.TypeTransaction,
+                    Category = entry.Category != null ? new Category { Id = entry.Category.Id } : null,
                     User = new User { Id = entry.User.Id }
                 }).OrderBy(e => e.CreateDate);
 
@@ -58,7 +59,7 @@ namespace Perfin.UI.Web.Controllers
 
             //Compose location header that tells how to get this session
             // e.g. ~api/entry/1
-            response.Headers.Location = 
+            response.Headers.Location =
                 new Uri(Url.Link(RouteConfig.ControllerAndId, new { id = entry.Id }));
 
             return response;
@@ -82,6 +83,5 @@ namespace Perfin.UI.Web.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.NoContent);
         }
-
     }
 }

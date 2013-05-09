@@ -1,68 +1,72 @@
-﻿<!-- Breadcrumb -->
-<nav id="breadcrumb">
-    <i class="icon-home icon-large"></i>
-    <a href="#" class="home">Perfin</a>
-    <i class="icon-double-angle-right icon-large"></i>
-    <a href="#" class="current">Dashboard</a>
-</nav>
+﻿<div>
 
-<!-- Title -->
-<h2 class="title-description">
-    <span data-bind="html: pageDisplayName"></span>
-    <span class="title-description-info" data-bind="html: pageDescription"></span>
-</h2>
-
-<!-- Status -->
-<ul id="status-container">
-    <li>
-        <a href="#">
-            <span class="status-top">
-                <i class="icon-money icon-4x pull-left green"></i>
-                <span class="status-title">Week Balance</span>
-            </span>
-            <span class="status-value">R$ 2.000,00</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="status-top">
-                <i class="icon-money icon-4x pull-left green"></i>
-                <span class="status-title">Month Balance</span>
-            </span>
-            <span class="status-value">R$ 2.000,00</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="status-top">
-                <i class="icon-money icon-4x pull-left green"></i>
-                <span class="status-title">Month Debts</span>
-            </span>
-            <span class="status-value">R$ 2.000,00</span>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <span class="status-top">
-                <i class="icon-money icon-4x pull-left green"></i>
-                <span class="status-title">Year Balance</span>
-            </span>
-            <span class="status-value">R$ 2.000,00</span>
-        </a>
-    </li>
-</ul>
-<br />
-<br />
-<br />
-<div>
-    <h4 style="font-size: 30px; text-align: center;">[ INSERT HERE: TABS WITH CHARTS AND OTHER INFORMATIONS ]</h4>
-
-    <br /><br /><br />
-    <div style="text-align: center;">
+    <!-- Shortcuts -->
+    <div class="form-actions-top-right">
         <a href="#/entry/add" class="btn btn-primary">
             <i class="icon-plus"></i>
             Add an Entry
         </a>
     </div>
 
+    <!--Breadcrumb Navigation-->
+    <!-- ko compose: {view: '_shared/breadcrumb'} -->
+    <!-- /ko-->
+
+    <!-- Title -->
+    <h2 class="title-description">
+        <span data-bind="html: pageDisplayName"></span>
+        <span class="title-description-info" data-bind="html: pageDescription"></span>
+    </h2>
+
+
+
+
+    <!-- Status -->
+    <ul id="status-container">
+        <li>
+            <a href="#">
+                <span class="status-top">
+                    <i class="icon-money icon-4x pull-left green"></i>
+                    <span class="status-title">Week Balance</span>
+                </span>
+                <span class="status-value">R$ 2.000,00</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="status-top">
+                    <i class="icon-money icon-4x pull-left green"></i>
+                    <span class="status-title">Month Balance</span>
+                </span>
+                <span class="status-value">R$ 2.000,00</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="status-top">
+                    <i class="icon-money icon-4x pull-left green"></i>
+                    <span class="status-title">Month Debts</span>
+                </span>
+                <span class="status-value">R$ 2.000,00</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <span class="status-top">
+                    <i class="icon-money icon-4x pull-left green"></i>
+                    <span class="status-title">Year Balance</span>
+                </span>
+                <span class="status-value">R$ 2.000,00</span>
+            </a>
+        </li>
+    </ul>
+    <div style="clear: both"></div>
+    <div class="row">
+        <div class="span4 chart-box-main">
+            <div id="chart-type-transactions" style="width: 100%; height: 300px; margin: 0 auto"></div>
+        </div>
+        <div class="span8 chart-box-main">
+            <div id="chart-categories" style="width: 100%; height: 300px; margin: 0 auto"></div>
+        </div>
+    </div>
 </div>

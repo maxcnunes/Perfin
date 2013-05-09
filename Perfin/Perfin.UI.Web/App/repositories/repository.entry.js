@@ -134,5 +134,36 @@
     		}).promise();
     	};
 
+        /*
+         * Charts
+         */
+    	entryRepository.getTotalTypeTransactionsByMonth = function (options) {
+    	    return $.Deferred(function (def) {
+    	        options = options || {};
+    	        _.extend(options, {
+                    resultAsDto: true,
+    	            forceRefresh: true,
+    	            getFunctionOverride: dataservice.entry.getEntriesTotalTypeTransactionsByMonth
+    	        });
+    	        $.when(entryRepository.getData(options))
+                    .done(function (dtos) { def.resolve(dtos); })
+                    .fail(function () { def.reject(); });
+    	    }).promise();
+    	};
+
+    	entryRepository.getTotalCategoriesByMonth = function (options) {
+    	    return $.Deferred(function (def) {
+    	        options = options || {};
+    	        _.extend(options, {
+    	            resultAsDto: true,
+    	            forceRefresh: true,
+    	            getFunctionOverride: dataservice.entry.getEntriesTotalCategoriesByMonth
+    	        });
+    	        $.when(entryRepository.getData(options))
+                    .done(function (dtos) { def.resolve(dtos); })
+                    .fail(function () { def.reject(); });
+    	    }).promise();
+    	};
+
     	return entryRepository;
     });
