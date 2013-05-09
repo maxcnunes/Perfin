@@ -32,12 +32,13 @@ namespace Perfin.UI.Web.Controllers
         [HttpGet, ActionName("TotalCategoriesByMonth")]
         public IEnumerable<object> TotalCategoriesByMonth()
         {
+            string nullCategoryName = "No-Categories";
             var query = Uow.Entries.GetTotalCategoriesByMonth(DateTime.Today, CurrentUserId)
                         .Select(i => new
                         {
-                            Id = i.Category.Id,
-                            Category = i.Category.Name,
-                            ParentCategoryId = i.Category.ParentCategoryId,
+                            Id = i.Category != null ? (int?)i.Category.Id : null,
+                            Category = i.Category != null ? i.Category.Name : nullCategoryName,
+                            ParentCategoryId = i.Category != null ? i.Category.ParentCategoryId : null,
                             Amount = i.Amount
                         });
 

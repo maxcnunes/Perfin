@@ -9,6 +9,9 @@
             rootCategories,
             rootCategoriesName,
             dataChart,
+            isNullCategory = function (dto) {
+                return dto.id === null;
+            },
             getRootCategories = function () {
                 return _.filter(dtos, function (dto) { return dto.parentCategoryId === null; });
             },
@@ -16,7 +19,22 @@
                 return _.map(categories, function (dto) { return dto.category; });
             },
             getChildrenCategoriesByParentId = function (parentId) {
-                return _.filter(dtos, function (dto) { return dto.parentCategoryId === parentId; });
+                return _.filter(dtos, function (dto) {
+                    return dto.parentCategoryId === parentId && !isNullCategory(dto);
+                });
+            },
+            createPointData = function (amount, color, id, parentId, childrenCategoriesDtos) {
+                // chart point data
+                return {
+                    y: amount,
+                    color: color,
+                    id: id,
+                    parentCategoryId: parentId,
+                    hasChildrenCategories: (childrenCategoriesDtos && childrenCategoriesDtos.length > 0)
+                };
+            },
+            createNullPointData = function (amount, color) {
+                return createPointData(amount, color, null, null);
             },
             getChildWithChildren = function (childrenData, id) {
                 return _.find(childrenData, function (item) { return item.id === id; });
@@ -49,16 +67,15 @@
                 return sum;
             },
             prepareDataToChartByCategory = function (categoryDto, color, parentId) {
+
+                // entries with no category
+                if (isNullCategory(categoryDto))
+                    return createNullPointData(categoryDto.amount, color);
+
                 var childrenCategoriesDtos = getChildrenCategoriesByParentId(categoryDto.id);
 
                 // chart point data
-                var pointData = {
-                    y: categoryDto.amount,
-                    color: color,
-                    id: categoryDto.id,
-                    parentCategoryId: parentId,
-                    hasChildrenCategories: (childrenCategoriesDtos.length > 0)
-                };
+                var pointData = createPointData(categoryDto.amount, color, categoryDto.id, parentId, childrenCategoriesDtos);
 
                 // has no data
                 if (!pointData.hasChildrenCategories && parentId) return;

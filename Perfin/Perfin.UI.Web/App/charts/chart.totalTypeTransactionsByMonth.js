@@ -24,7 +24,7 @@
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Amount'
+                            text: 'Total Amount'
                         }
                     },
                     tooltip: {

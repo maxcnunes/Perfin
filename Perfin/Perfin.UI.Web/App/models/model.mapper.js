@@ -51,7 +51,7 @@
 	                item.description(dto.description);
 	                item.createDate(dto.createDate);
 	                item.entryDate(dto.entryDate);
-	                item.categoryId(dto.category.id);
+	                item.categoryId(dto.category ? dto.category.id : null);
 	                item.typeTransaction(dto.typeTransaction);
 	                item.userId(dto.user.id);
 

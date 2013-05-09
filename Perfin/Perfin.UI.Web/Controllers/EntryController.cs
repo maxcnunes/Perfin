@@ -28,7 +28,7 @@ namespace Perfin.UI.Web.Controllers
                     CreateDate = entry.CreateDate,
                     EntryDate = entry.EntryDate,
                     TypeTransaction = entry.TypeTransaction,
-                    Category = new Category { Id = entry.Category.Id },
+                    Category = entry.Category != null ? new Category { Id = entry.Category.Id } : null,
                     User = new User { Id = entry.User.Id }
                 }).OrderBy(e => e.CreateDate);
 
@@ -59,7 +59,7 @@ namespace Perfin.UI.Web.Controllers
 
             //Compose location header that tells how to get this session
             // e.g. ~api/entry/1
-            response.Headers.Location = 
+            response.Headers.Location =
                 new Uri(Url.Link(RouteConfig.ControllerAndId, new { id = entry.Id }));
 
             return response;
