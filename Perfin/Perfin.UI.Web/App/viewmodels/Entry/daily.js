@@ -15,9 +15,9 @@
             entries = ko.observableArray(),
             isDeleting = ko.observable(false),
             groupentries = ko.observableArray(),
+            //totals = ko.computed()
 
             activate = function () {
-                debugger;
                 return $.Deferred(function (def) {
                     $.when(datacontext.entry.getData({ results: entries }))
 
@@ -37,12 +37,22 @@
             },
 
             groupbydays = function () {
+                debugger;
                 var groups = _.groupBy(entries(), function (entry) { return moment(entry.entryDate()).format("DD"); });
 
                 var gentries = _.map(groups, function (group, key, list) {
+
+                    //get the total per day
+                    var _total = _.reduce(group, function (memo, entry) { return memo + entry["amount"](); }, 0);
+                    //var total = 0;
+                    //for (var i = 0; i < group.length; i++) {
+                    //    total = total + group[i]["amount"]();
+                    //}
+
                     return {
                         day: key,
-                        entries: group
+                        entries: group,
+                        totalday: _total
                     };
                 });
 
@@ -50,34 +60,13 @@
             },
 
             visibleDay = function () {
-                debugger; 
-
-                group(['test']);
-                //return 'test';
                 //var _array = _.groupBy([1.3, 2.1, 2.4], function (num) { return Math.floor(num); });
-                var _arrayAllDays = [];
-                var _daysInMonth = moment(moment(entries()[0].entryDate())).daysInMonth();
-                var _dayToCompare = 0;
-                //for (var i = 1; i < _daysInMonth ; i++) {
-
-                //    var _arrayDay = _.groupBy(entries(), function (entry) {
-                //        debugger;
-                //        var _day = moment(entry.entryDate()).format("DD");
-                //        var _date = entry.entryDate();
-                                                
-                //        return moment(_dayToCompare).isSame(_day, 'day') ? 
-                //                moment(_dayToCompare).isSame(_day, 'day') : 
-                //                new [];
-                //    });
-                //    _dayToCompare = _dayToCompare + 1;
-                //    _arrayAllDays.push(_arrayDay);
-                //}
-                
+                //var _arrayAllDays = [];
+                //var _daysInMonth = moment(moment(entries()[0].entryDate())).daysInMonth();
+                //var _dayToCompare = 0;
+             
                 var testGroup = _.groupBy(entries(), function (entry) { return moment(entry.entryDate()).format("DD"); });
 
-
-                //    //=> {1: [1.3], 2: [2.1, 2.4]}  
-                debugger;
                 return _arrayAllDays;
             },
 
@@ -145,9 +134,8 @@
             entries: entries,
             activate: activate,
             viewAttached: viewAttached,
-            visibleDay: visibleDay,
             groupentries: groupentries,
-
+            
 
             // module page info
             pageDisplayName: 'List Entry',
