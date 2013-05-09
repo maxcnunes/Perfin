@@ -1,5 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using Perfin.Model;
+using System.Linq;
+using NHibernate.Linq;
 
 namespace Perfin.Data.Map
 {
@@ -12,6 +14,11 @@ namespace Perfin.Data.Map
             Map(x => x.Name).Not.Nullable().Unique();
             Map(x => x.ParentCategoryId).Nullable();
             References(x => x.User, "UserId");
+            HasMany(prop => prop.Entries)
+                .KeyColumn("CategoryId")
+                .LazyLoad()
+                .Fetch.Join()
+                .Inverse();
         }
     }
 }
