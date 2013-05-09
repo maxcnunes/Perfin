@@ -71,8 +71,8 @@
 	                    modelToJSON.user = new model.User().id(item.userId());
 	                }
 
-	                var amount = item.amount().toString().split('.').join('').replace(',', '.');
-	                modelToJSON.amount = parseFloat(amount);
+	                //var amount = item.amount().toString().split('.').join('').replace(',', '.');
+	                //modelToJSON.amount = parseFloat(amount);
 
 	                return ko.toJSON(modelToJSON);
 	            }

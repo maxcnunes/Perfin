@@ -120,7 +120,6 @@
                 chart.redraw();
             },
             onClick = function () {
-                debugger;
                 var drilldown = this.drilldown;
                 if (drilldown) {
                     setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
