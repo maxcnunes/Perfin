@@ -298,6 +298,7 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\chosen.proto.js" />
     <Content Include="Scripts\chosen.proto.min.js" />
+    <Content Include="Scripts\knockout.custom.extenders.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />

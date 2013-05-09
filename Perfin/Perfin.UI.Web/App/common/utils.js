@@ -26,6 +26,33 @@ define([], function () {
         },
         formatCurrency = function (value) {
             return $('<span />').text(value).currency().text();
+        },
+        createBackupAllProperties = function (self) {
+            for (key in self) {
+                if (ko.isObservable(self[key]) && typeof self[key].backupEnabled == 'function') {
+                    if (!self['bkp']) {
+                        self.bkp = {};
+                    }
+                    self.bkp[key] = self[key]();
+                }
+            }
+        },
+        resetAllProperties = function (self) {
+            for (key in self) {
+                if (ko.isObservable(self[key]) && typeof self[key].backupEnabled == 'function' && self.bkp) {
+                    self[key](self.bkp[key]);
+                }
+            }
+        },
+        koModelBackup = function (model) {
+            return {
+                create: function () {
+                    createBackupAllProperties(model);
+                },
+                restore: function () {
+                    resetAllProperties(model);
+                }
+            };
         };
 
     // Public Members
@@ -33,6 +60,7 @@ define([], function () {
         hasProperties: hasProperties,
         invokeFunctionIfExists: invokeFunctionIfExists,
         mapMemoToArray: mapMemoToArray,
-        formatCurrency: formatCurrency
+        formatCurrency: formatCurrency,
+        koModelBackup: koModelBackup
     };
 });

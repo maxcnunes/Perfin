@@ -40,6 +40,7 @@ namespace Perfin.UI.Web
                 .Include("~/Scripts/jquery.transit.min.js")//Helper CarouFredSel
                 // Must be the last script to be loaded
                 .Include("~/Scripts/knockout.custom.binding.handlers.js")
+                .Include("~/Scripts/knockout.custom.extenders.js")
               );
 
             // CSS Files
