@@ -41,7 +41,7 @@
                     if (completeCallback) { completeCallback(); }
                     validationErrors = ko.validation.group(entry());
 
-                    // create backup before changes
+                    // create backup before any changes
                     entry().backup().create();
                 };
 

@@ -37,6 +37,9 @@
                         completeCallback();
 
                     validationErrors = ko.validation.group(category());
+
+                    // create backup before any changes
+                    category().backup().create();
                 };
 
                 datacontext.category.getCategoryById(
@@ -54,6 +57,7 @@
                 router.navigateBack();
             },
             cleanChanges = function () {
+                category().backup().restore();
                 return category().dirtyFlag().reset();
             },
             hasChanges = ko.computed(function () {
@@ -83,8 +87,7 @@
                     return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
                         .then(function (selectedOption) {
                             if (selectedOption === 'Yes') {
-                                //TODO:
-                                //datacontext.cancelChanges();
+                                cleanChanges();
                             }
                             return selectedOption;
                         });
@@ -131,6 +134,7 @@
             category: category,
             parentCategories: parentCategories,
             activate: activate,
+            canDeactivate: canDeactivate,
 
             canSave: canSave,
             cancel: cancel,
