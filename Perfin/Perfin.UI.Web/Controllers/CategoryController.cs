@@ -67,6 +67,13 @@ namespace Perfin.UI.Web.Controllers
         // DELETE /api/category/3
         public HttpResponseMessage Delete(int id)
         {
+            var category = Uow.Categories.GetById(id);
+            if (category == null)
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+
+            if(Uow.Categories.HasDependencies(id))
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Is not possible delete a category with dependencies");
+
             Uow.Categories.Delete(id);
             Uow.Commit();
 

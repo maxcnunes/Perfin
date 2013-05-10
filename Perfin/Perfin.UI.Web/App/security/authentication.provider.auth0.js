@@ -44,6 +44,7 @@
             },
             authorizationHeader = function (request) {
                 if (getTokenId()) request.setRequestHeader("Authorization", "Bearer " + getTokenId());
+                return true;
             },
             getUserInfoAuth0 = function () {
                 /*

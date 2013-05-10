@@ -2,11 +2,14 @@
     'durandal/plugins/router',
     'repositories/datacontext',
     'durandal/app',
+    'common/logger',
+    'durandal/system',
     'common/breadcrumb',
     'common/config'],
-    function (router, datacontext, app, breadcrumb, config) {
+    function (router, datacontext, app, logger, system, breadcrumb, config) {
 
         var
+            vm = this,
             category = ko.observable(),
             parentCategories = ko.observable(),
             isSaving = ko.observable(false),
@@ -111,10 +114,9 @@
                         }
 
                         function failed(error) {
-                            cancel();
-                            var errorMsg = 'Error: ' + error.message;
-                            logger.logError(
-                                true, errorMsg, error, system.getModuleId(vm));
+                            //cancel();
+                            var errorMsg = 'Error: ' + error.responseText;
+                            logger.error(errorMsg, true, error, system.getModuleId(vm));
                         }
 
                         function finish() {

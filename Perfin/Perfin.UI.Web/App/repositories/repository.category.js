@@ -135,7 +135,7 @@
                             callbacks.success();
                         def.resolve(response);
                     },
-                    error: function (response) {
+                    error: function (response, status) {
                         logger.error(config.messages.errorSavingData);
                         if (callbacks && callbacks.error)
                             callbacks.error();

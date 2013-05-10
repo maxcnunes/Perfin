@@ -74,7 +74,6 @@
             }),
             save = function () {
                 isSaving(true);
-                debugger;
                 $.when(datacontext.entry.updateData(entry()))
                     .then(goToEditView)
                     .done(complete); //.fin(complete);

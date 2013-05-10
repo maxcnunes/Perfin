@@ -9,7 +9,7 @@
     'common/config'],
     function (datacontext, logger, system, router, $, app, breadcrumb, config) {
         var
-            show = this,
+            vm = this,
             categories = ko.observableArray(),
             isDeleting = ko.observable(false),
 
@@ -21,7 +21,7 @@
                         .pipe(function () {
 
                             logger.info('Fetched data for: ' + categories().length + ' categories ',
-                                true, null, system.getModuleId(show));
+                                true, null, system.getModuleId(vm));
                         })
 
                         .fail(function () { def.reject(); })
@@ -76,10 +76,9 @@
                         }
 
                         function failed(error) {
-                            cancel();
-                            var errorMsg = 'Error: ' + error.message;
-                            logger.logError(
-                                errorMsg, true, error, system.getModuleId(vm));
+                            //cancel();
+                            var errorMsg = 'Error: ' + error.responseText;
+                            logger.error(errorMsg, true, error, system.getModuleId(vm));
                         }
 
                         function finish() {

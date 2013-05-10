@@ -33,6 +33,17 @@ namespace Perfin.Data.Repository
                                 });
 
             return categories;
-        } 
+        }
+
+
+        public bool HasDependencies(int id)
+        {
+            var allParentIds = _dbSession.Query<Category>()
+                                    .Where(i => i.ParentCategoryId != null)
+                                    .Select(i => i.ParentCategoryId).ToList();
+
+            return _dbSession.Query<Category>()
+                        .Any(i => i.Entries.Any() || allParentIds.Contains(i.Id));
+        }
     }
 }

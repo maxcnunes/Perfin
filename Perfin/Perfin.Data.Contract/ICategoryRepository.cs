@@ -7,5 +7,6 @@ namespace Perfin.Data.Contract
     {
         Category GetByName(string name);
         IQueryable<Category> GetAllByUserId(int userId);
+        bool HasDependencies(int id);
     }
 }
