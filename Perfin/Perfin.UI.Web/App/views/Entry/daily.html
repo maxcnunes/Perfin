@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="row">
-                    <h5 class="text-right span7" >Total Month:</h5><h5 class="text-right span1" data-bind="currency: totalMonth"></h5>
+                    <h5 class="text-right span7" >Total Month:</h5><h5 class="text-right span1" data-bind="currency: totalMonth, style: { color: totalMonth < 0 ? 'red' : 'green' }"></h5>
                 </div>
 
                 <table class="table table-striped">
@@ -54,8 +54,8 @@
                             <tr>
                                 <th style="float: left; height: 28px; width: 10px; background-color: blanchedalmond;"></th>
 
-                                <td class="span5" style="float: left;" data-bind="text: category().name, hover: description"></td>
-                                <td class="span3" style="float: left;" data-bind="currency: amount"></td>
+                                <td class="span5" style="float: left;" data-bind="text: category().name, title: description"></td>
+                                <td class="span3" style="float: left;" data-bind="currency: amount, style: { color: typeTransaction() == 0 ? 'red' : 'green' }" ></td>
                                 <td class="span2" style="float: left;">
                                     <div class="btn-group">
                                         <a class="btn btn-info btnEdit"><i class="icon-pencil"></i></a>
@@ -66,7 +66,9 @@
                         </tbody>
                     </table>
                     <div class="row">
-                        <h5 class="text-right span8" data-bind="currency: totalday"></h5>
+                        <h5 class="text-right span4 " style="color:green" data-bind="currency: totalIncomesDay"></h5>
+                        <h5 class="text-right span1 " style="color:red" data-bind="currency: totalExpensesDay"></h5>
+                        <h5 class="text-right span2">subtotal:</h5> <h5 class="text-right span1 " data-bind="currency: totalday, style: { color: totalday < 0 ? 'red' : 'green' }"></h5>
                     </div>
                 </div>
                 <br />

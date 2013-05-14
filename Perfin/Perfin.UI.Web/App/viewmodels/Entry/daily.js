@@ -31,7 +31,6 @@
                                 true, null, system.getModuleId(show));
 
                             loadCurrentDate();
-                            totalMonth(0);
                             groupbydays();
                         })
 
@@ -64,9 +63,11 @@
                 groupbydays();
             },
             groupbydays = function () {
+                totalMonth(0);
+
                 //filter entries that are in current selected month
                 var filteredByMonth = _.filter(entries(), function (entry) {
-                    return  moment(entry.entryDate()).format("MM") == (currentMonth() + 1)
+                    return moment(entry.entryDate()).format("MM") == (currentMonth() + 1)
                             && moment(entry.entryDate()).format("YYYY") == currentYear()
                 })
                 //group the entries that are the same day
@@ -75,20 +76,41 @@
                 //map groups to bind the view correctely
                 var gentries = _.map(groupsbyday, function (group, key, list) {
                     debugger;
+                    var _totalByDay = 0;
+                    var _totalExpensesByDay = 0;
+                    var _totalIncomesByDay = 0;
+
                     //get the total per day
-                    var _totalByDay = _.reduce(group, function (subtotal, entry) {
+                    _totalByDay = _.reduce(group, function (subtotal, entry) {
                         //if expense subtract total
                         if (entry["typeTransaction"]() == 0)
                             return subtotal - entry["amount"]();
                         else
                             return subtotal + entry["amount"]();
                     }, 0);
+                    //get the total of Expenses per day
+                    _totalExpensesByDay = _.reduce(group, function (subtotal, entry) {
+                        //if expense sum
+                        if (entry["typeTransaction"]() == 0)
+                            return subtotal + entry["amount"]();
+                        else return subtotal + 0;
+                    }, 0);
+                    //get the total of Incomes per day
+                    _totalIncomesByDay = _.reduce(group, function (subtotal, entry) {
+                        //if income sum 
+                        if (entry["typeTransaction"]() == 1)
+                            return subtotal + entry["amount"]();
+                        else return subtotal + 0;
+                    }, 0);
+
                     totalMonth(totalMonth() + _totalByDay);
 
                     return {
                         day: key,
                         entries: group,
-                        totalday: _totalByDay
+                        totalday: _totalByDay,
+                        totalExpensesDay: _totalExpensesByDay,
+                        totalIncomesDay: _totalIncomesByDay
                     };
                 });
 
@@ -163,7 +185,7 @@
             currentMonth: currentMonth,
             currentYear: currentYear,
             prevYear: prevYear,
-            nextYear:nextYear,
+            nextYear: nextYear,
             prevMonth: prevMonth,
             nextMonth: nextMonth,
             totalMonth: totalMonth,
