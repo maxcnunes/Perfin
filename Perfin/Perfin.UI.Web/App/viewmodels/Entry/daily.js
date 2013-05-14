@@ -17,8 +17,7 @@
             groupentries = ko.observableArray(),
             currentMonth = ko.observable(),
             currentYear = ko.observable(),
-
-            //totals = ko.computed()
+            totalMonth = ko.observable(),
 
 
 
@@ -32,6 +31,7 @@
                                 true, null, system.getModuleId(show));
 
                             loadCurrentDate();
+                            totalMonth(0);
                             groupbydays();
                         })
 
@@ -43,33 +43,27 @@
             },
 
             loadCurrentDate = function () {
-                debugger;
                 currentMonth(moment().month());
                 currentYear(moment().year());
             },
 
             prevYear = function () {
-                debugger;
                 currentYear(currentYear() - 1);
                 groupbydays();
             },
             nextYear = function () {
-                debugger;
                 currentYear(currentYear() + 1);
                 groupbydays();
             },
             prevMonth = function () {
-                debugger;
                 currentMonth(currentMonth() - 1);
                 groupbydays();
             },
             nextMonth = function () {
-                debugger;
                 currentMonth(currentMonth() + 1);
                 groupbydays();
             },
             groupbydays = function () {
-                debugger;
                 //filter entries that are in current selected month
                 var filteredByMonth = _.filter(entries(), function (entry) {
                     return  moment(entry.entryDate()).format("MM") == (currentMonth() + 1)
@@ -80,8 +74,16 @@
 
                 //map groups to bind the view correctely
                 var gentries = _.map(groupsbyday, function (group, key, list) {
+                    debugger;
                     //get the total per day
-                    var _totalByDay = _.reduce(group, function (subtotal, entry) { return subtotal + entry["amount"](); }, 0);
+                    var _totalByDay = _.reduce(group, function (subtotal, entry) {
+                        //if expense subtract total
+                        if (entry["typeTransaction"]() == 0)
+                            return subtotal - entry["amount"]();
+                        else
+                            return subtotal + entry["amount"]();
+                    }, 0);
+                    totalMonth(totalMonth() + _totalByDay);
 
                     return {
                         day: key,
@@ -164,6 +166,10 @@
             nextYear:nextYear,
             prevMonth: prevMonth,
             nextMonth: nextMonth,
+            totalMonth: totalMonth,
+
+
+
             // module page info
             pageDisplayName: 'List Entry',
             pageDescription: 'Your entries listed by dailies of the month',

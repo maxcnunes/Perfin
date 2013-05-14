@@ -32,6 +32,13 @@ p {
     clear: both;
 }
 
+.pointer {
+    cursor:pointer;
+}
+    .pointer:hover {
+        background-color: Background;
+        border-radius: 5px;
+    }
 
 /*===== Layout =====*/
 #wrapper {

@@ -18,24 +18,28 @@
                     New Entry
                 </a>
             </div>
-            <div class="text-center">
+            <div >
                 <div>
                     <h3 class="text-center">
-                        <i class="icon-chevron-left" data-bind="click: prevYear"/>
-                            <span data-bind="text:currentYear"/> 
-                        <i class="icon-chevron-right" data-bind="click: nextYear" />
+                        <i class="icon-chevron-left pointer" " data-bind="click: prevYear"/>
+                            <span data-bind="text: currentYear"/> 
+                        <i class="icon-chevron-right pointer" data-bind="click: nextYear" />
                     </h3>
                     <h4 class="text-center">
-                        <b class="icon-chevron-left" data-bind="click: prevMonth"/>
+                        <b class="icon-chevron-left pointer" data-bind="click: prevMonth"/>
                             <span data-bind="text: moment().month(currentMonth()).format('MMM')"/>
-                        <i class="icon-chevron-right" data-bind="click: nextMonth"/>
+                        <i class="icon-chevron-right pointer" data-bind="click: nextMonth"/>
                     </h4>
+                </div>
+
+                <div class="row">
+                    <h5 class="text-right span7" >Total Month:</h5><h5 class="text-right span1" data-bind="currency: totalMonth"></h5>
                 </div>
 
                 <table class="table table-striped">
                     <thead>
                         <tr class="row">
-                            <th class="span1" style="float: left; height: 28px; width: 10px;"></th>
+                            <th class="span1" style="float: left; height: 28px; width: 10px;">#</th>
 
                             <th class="span5" style="float: left;">Category</th>
                             <th class="span3" style="float: left;">Amount</th>
@@ -44,13 +48,13 @@
                     </thead>
                 </table>
                 <div data-bind="foreach: groupentries">
-                    <h3 data-bind="text: day"></h3>
+                    <h3 data-bind="text: day" class="span1"></h3>
                     <table class="table table-striped">
                         <tbody data-bind="foreach: entries">
                             <tr>
                                 <th style="float: left; height: 28px; width: 10px; background-color: blanchedalmond;"></th>
 
-                                <td class="span5" style="float: left;" data-bind="text: category().name, tooltip: description"></td>
+                                <td class="span5" style="float: left;" data-bind="text: category().name, hover: description"></td>
                                 <td class="span3" style="float: left;" data-bind="currency: amount"></td>
                                 <td class="span2" style="float: left;">
                                     <div class="btn-group">
