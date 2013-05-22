@@ -144,6 +144,7 @@
     <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -202,6 +203,7 @@
     <Content Include="App\repositories\datacontext.js" />
     <Content Include="App\common\logger.js" />
     <Content Include="App\common\assets.js" />
+    <Content Include="App\viewmodels\entry\daily.js" />
     <Content Include="App\viewmodels\public.js" />
     <Content Include="App\viewmodels\entry\add.js" />
     <Content Include="App\viewmodels\entry\details.js" />
@@ -213,6 +215,7 @@
     <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\entry\add.html" />
     <Content Include="App\views\entry\details.html" />
+    <Content Include="App\views\entry\daily.html" />
     <Content Include="App\views\entry\show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />

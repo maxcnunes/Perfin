@@ -64,12 +64,18 @@
 
                 function goToEditView(result) {
                     cleanChanges();
+
                     // redirect to index page while the edit page is not finished
-                    router.replaceLocation('#/entry/show');
+
+                    //I commented this line because it would be faster to create new entries 
+                    // INFO BY MESSAGE ON THE RIGHT CORNER OF THE PAGE
+                    //router.replaceLocation('#/entry/show');
                 }
 
                 function complete() {
+                    debugger;
                     isSaving(false);
+                    activate();
                 }
             },
             canDeactivate = function () {
