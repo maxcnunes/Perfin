@@ -4,52 +4,85 @@
     'common/logger',
     'durandal/system',
     'common/breadcrumb',
-    'common/config',
-    'common/utils',
-    'moment',
-    'charts/chart.totalTypeTransactionsByMonth',
-    'charts/chart.totalCategoriesByMonth'],
-    function ($, datacontext, logger, system, breadcrumb, config, utils, moment, ChartTotalTypeTransactionsByMonth, ChartTotalTotalCategoriesByMonth) {
+    'common/config'],
+    function ($, datacontext, logger, system, breadcrumb, config) {
         var
             welcome = this,
             entries = ko.observableArray(),
+            chartTotalTypeTransactionsByMonth = ko.observable(),
             activate = function () {
-
-            },
-
-            loadChartTotalTypeTransactionsByMonth = function () {
                 return $.Deferred(function (def) {
                     $.when(datacontext.entry.getTotalTypeTransactionsByMonth())
 
                         .fail(function () { def.reject(); })
 
                         .done(function (dtos) {
-                            var chart = new ChartTotalTypeTransactionsByMonth('#chart-type-transactions', dtos);
+
+                            var data = _.map(dtos, function (dto) {
+                                return { name: dto.typeTransaction, data: [dto.amount] };
+                            });
+                            debugger;
+
+
+
+                            var chartOptions = {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Current '
+                                },
+                                //subtitle: {
+                                //    text: 'Source: WorldClimate.com'
+                                //},
+                                xAxis: {
+                                    categories: ['Type Transactions']
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Amount ($)'
+                                    }
+                                },
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        '<td style="padding:0">$ <b>{point.y:.1f}</b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                                },
+                                plotOptions: {
+                                    column: {
+                                        pointPadding: 0.2,
+                                        borderWidth: 0
+                                    }
+                                },
+                                series: data
+                            };
+
+                            chartTotalTypeTransactionsByMonth(chartOptions);
 
                             def.resolve();
                         });
 
                 }).promise();
             },
-
-            loadChartTotalCategoriesByMonth = function () {
-                return $.Deferred(function (def) {
-                    $.when(datacontext.entry.getTotalCategoriesByMonth())
-
-                        .fail(function () { def.reject(); })
-
-                        .done(function (dtos) {
-                            var chart = new ChartTotalTotalCategoriesByMonth('#chart-categories', dtos);
-
-                            def.resolve();
-                        });
-
-                }).promise();
-            },
-
             viewAttached = function (view) {
-                loadChartTotalTypeTransactionsByMonth();
-                loadChartTotalCategoriesByMonth();
+                //$('#tabs').tabs();
+                $('#tabs').carouFredSel({
+                    responsive: true,
+                    width: '100%',
+                    scroll: 2,
+                    items: {
+                        width: 400,
+                        //	height: '30%',	//	optionally resize item-height
+                        visible: {
+                            min: 2,
+                            max: 6
+                        }
+                    }
+                });
             };
 
 
@@ -57,6 +90,7 @@
             entries: entries,
             activate: activate,
             viewAttached: viewAttached,
+            chartTotalTypeTransactionsByMonth: chartTotalTypeTransactionsByMonth,
 
             // module page info
             pageDisplayName: 'Dashboard',

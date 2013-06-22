@@ -1,15 +1,15 @@
-﻿define(['ko', 'models/model.typeTransaction', 'common/utils'],
-    function (ko, typeTrans, utils) {
+﻿define(['ko', 'models/model.typeTransaction'],
+    function (ko, typeTrans) {
         var Entry = function () {
 
             var self = this;
             self.id = ko.observable();
-            self.amount = ko.observable().extend({ required: true, backupEnabled: true });
-            self.description = ko.observable().extend({ backupEnabled: true });
-            self.createDate = ko.observable().extend({ backupEnabled: true });
-            self.entryDate = ko.observable(null).extend({ backupEnabled: true });
-            self.categoryId = ko.observable(null).extend({ backupEnabled: true });
-            self.typeTransaction = ko.observable().extend({ required: true, backupEnabled: true });
+            self.amount = ko.observable().extend({ required: true });
+            self.description = ko.observable();
+            self.createDate = ko.observable();
+            self.entryDate = ko.observable(null);
+            self.categoryId = ko.observable(null);
+            self.typeTransaction = ko.observable().extend({ required: true });
 
             self.userId = ko.observable();
 
@@ -51,17 +51,11 @@
 
                 user = function () {
                     return dc().user.getLocalById(this.userId());
-                },
-
-                // add support to restore previous model values
-                backup = function () {
-                    return utils.koModelBackup(this);
                 };
             return {
                 isNullo: false,
                 category: category,
-                user: user,
-                backup: backup
+                user: user
             };
         }();
 

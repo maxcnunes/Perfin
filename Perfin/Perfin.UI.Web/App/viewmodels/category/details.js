@@ -2,14 +2,11 @@
     'durandal/plugins/router',
     'repositories/datacontext',
     'durandal/app',
-    'common/logger',
-    'durandal/system',
     'common/breadcrumb',
     'common/config'],
-    function (router, datacontext, app, logger, system, breadcrumb, config) {
+    function (router, datacontext, app, breadcrumb, config) {
 
         var
-            vm = this,
             category = ko.observable(),
             parentCategories = ko.observable(),
             isSaving = ko.observable(false),
@@ -37,9 +34,6 @@
                         completeCallback();
 
                     validationErrors = ko.validation.group(category());
-
-                    // create backup before any changes
-                    category().backup().create();
                 };
 
                 datacontext.category.getCategoryById(
@@ -57,7 +51,6 @@
                 router.navigateBack();
             },
             cleanChanges = function () {
-                category().backup().restore();
                 return category().dirtyFlag().reset();
             },
             hasChanges = ko.computed(function () {
@@ -87,7 +80,8 @@
                     return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
                         .then(function (selectedOption) {
                             if (selectedOption === 'Yes') {
-                                cleanChanges();
+                                //TODO:
+                                //datacontext.cancelChanges();
                             }
                             return selectedOption;
                         });
@@ -117,9 +111,10 @@
                         }
 
                         function failed(error) {
-                            //cancel();
-                            var errorMsg = 'Error: ' + error.responseText;
-                            logger.error(errorMsg, true, error, system.getModuleId(vm));
+                            cancel();
+                            var errorMsg = 'Error: ' + error.message;
+                            logger.logError(
+                                true, errorMsg, error, system.getModuleId(vm));
                         }
 
                         function finish() {
@@ -134,7 +129,6 @@
             category: category,
             parentCategories: parentCategories,
             activate: activate,
-            canDeactivate: canDeactivate,
 
             canSave: canSave,
             cancel: cancel,

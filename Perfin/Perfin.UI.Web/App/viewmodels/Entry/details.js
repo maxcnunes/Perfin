@@ -40,9 +40,6 @@
                 var callback = function () {
                     if (completeCallback) { completeCallback(); }
                     validationErrors = ko.validation.group(entry());
-
-                    // create backup before any changes
-                    entry().backup().create();
                 };
 
                 datacontext.entry.getEntryById(
@@ -60,7 +57,6 @@
                 router.navigateBack();
             },
             cleanChanges = function () {
-                entry().backup().restore();
                 return entry().dirtyFlag().reset();
             },
             hasChanges = ko.computed(function () {
@@ -96,7 +92,8 @@
                     return app.showMessage(msg, 'Navigate Away', ['Yes', 'No'])
                         .then(function (selectedOption) {
                             if (selectedOption === 'Yes') {
-                                cleanChanges();
+                                //TODO:
+                                //datacontext.cancelChanges();
                             }
                             return selectedOption;
                         });
@@ -108,7 +105,7 @@
                 router.navigateBack();
             },
             deleteItem = function () {
-                var msg = 'Delete this entry ?';
+                var msg = 'Delete entry "' + entry().paymentDate() + '" ?';
                 var title = 'Confirm Delete';
                 isDeleting(true);
                 return app.showMessage(msg, title, ['Yes', 'No'])
@@ -143,7 +140,6 @@
 
         var vm = {
             activate: activate,
-            canDeactivate: canDeactivate,
             entry: entry,
             categories: categories,
             typeTransactions: typeTransactions,

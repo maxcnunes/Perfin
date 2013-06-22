@@ -1,18 +1,18 @@
 ﻿define(['security/authentication'],
     function (authentication) {
-        var
+    	var
 			beforeExecCallback = function (data, status, xhr, success, error) {
-			    if (status === 'success' || status === 'nocontent') {
-			        success(data);
-			    } else {
-			        if (!authentication.onAuthFail(xhr))
-			            error(xhr);
-			    }
+				if (status === "success") {
+					success(data);
+				} else {
+					if (!authentication.onAuthFail(xhr))
+						error(xhr);
+				}
 			};
 
-        return {
-            beforeExecCallback: beforeExecCallback
-        };
+    	return {
+    		beforeExecCallback: beforeExecCallback
+    	};
     }
 );
 
