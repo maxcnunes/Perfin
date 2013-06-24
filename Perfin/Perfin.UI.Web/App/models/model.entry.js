@@ -25,6 +25,10 @@
                 return typeTrans.getNameById(self.typeTransaction());
             });
 
+            self.getDate = ko.computed(function () {
+                return self.entryDate() || self.createDate();
+            });
+
             return self;
         };
 

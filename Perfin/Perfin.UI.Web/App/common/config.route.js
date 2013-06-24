@@ -206,9 +206,11 @@
             routes.private.appendRoutes(homeRoute());
             routes.private.appendRoutes(categoryRoutes());
             routes.private.appendRoutes(entryRoutes());
-            routes.private.appendRoutes(mapRoute());
-            routes.private.appendRoutes(calendarRoute());
-            routes.private.appendRoutes(chartRoute());
+
+            // Not available yet ;(
+            //routes.private.appendRoutes(mapRoute());
+            //routes.private.appendRoutes(calendarRoute());
+            //routes.private.appendRoutes(chartRoute());
         },
         buildPublicRoutes = function () {
             routes.public = [];

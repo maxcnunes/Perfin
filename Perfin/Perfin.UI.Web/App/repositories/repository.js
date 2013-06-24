@@ -43,13 +43,13 @@
                             param = options && options.param,
                             getFunctionOverride = options && options.getFunctionOverride;
 
-                        getFunction = getFunctionOverride || getFunction;
+                        var getDataFunction = getFunctionOverride || getFunction;
 
                         // If the internal items object doesnt exist, 
                         // or it exists but has no properties, 
                         // or we force a refresh
                         if (forceRefresh || !items || !utils.hasProperties(items)) {
-                            getFunction({
+                            getDataFunction({
                                 success: function (dtoList) {
                                     if (options.resultAsDto) {
                                         def.resolve(dtoList);

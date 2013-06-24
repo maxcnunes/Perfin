@@ -63,15 +63,20 @@
                 groupbydays();
             },
             groupbydays = function () {
+                if (entries().length <= 0) return;
+
                 totalMonth(0);
 
                 //filter entries that are in current selected month
                 var filteredByMonth = _.filter(entries(), function (entry) {
-                    return moment(entry.entryDate()).format("MM") == (currentMonth() + 1)
-                            && moment(entry.entryDate()).format("YYYY") == currentYear()
+
+                    var isCurrentMonth = moment(entry.getDate()).format("MM") == (currentMonth() + 1);
+                    var isCurrentYear = moment(entry.getDate()).format("YYYY") == currentYear();
+
+                    return isCurrentMonth && isCurrentYear;
                 })
                 //group the entries that are the same day
-                var groupsbyday = _.groupBy(filteredByMonth, function (entry) { return moment(entry.entryDate()).format("DD"); });
+                var groupsbyday = _.groupBy(filteredByMonth, function (entry) { return moment(entry.getDate()).format("DD"); });
 
                 //map groups to bind the view correctely
                 var gentries = _.map(groupsbyday, function (group, key, list) {
