@@ -144,7 +144,6 @@
     <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\EntryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -214,8 +213,8 @@
     <Content Include="App\viewmodels\user\login.js" />
     <Content Include="App\viewmodels\user\show.js" />
     <Content Include="App\views\entry\add.html" />
-    <Content Include="App\views\entry\details.html" />
     <Content Include="App\views\entry\daily.html" />
+    <Content Include="App\views\entry\details.html" />
     <Content Include="App\views\entry\show.html" />
     <Content Include="App\views\nav-side.html" />
     <Content Include="App\views\nav-top.html" />
@@ -301,7 +300,6 @@
     <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\chosen.proto.js" />
     <Content Include="Scripts\chosen.proto.min.js" />
-    <Content Include="Scripts\knockout.custom.extenders.js" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
@@ -363,6 +361,8 @@
     <Content Include="App\common\config.route.js" />
     <Content Include="App\repositories\repository.assets.js" />
     <Content Include="App\repositories\repository.entry.js" />
+    <None Include="Properties\PublishProfiles\perfinster - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\perfinster - Web Deploy.pubxml" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />

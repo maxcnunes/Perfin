@@ -51,7 +51,7 @@
 	                item.description(dto.description);
 	                item.createDate(dto.createDate);
 	                item.entryDate(dto.entryDate);
-	                item.categoryId(dto.category.id);
+	                item.categoryId(dto.category && dto.category.id);
 	                item.typeTransaction(dto.typeTransaction);
 	                item.userId(dto.user.id);
 
@@ -71,7 +71,7 @@
 	                    modelToJSON.user = new model.User().id(item.userId());
 	                }
 
-	                var amount = item.amount().toString().split('.').join('').replace(',', '.');
+	                var amount = item.amount().toString().split(',').join('');
 	                modelToJSON.amount = parseFloat(amount);
 
 	                return ko.toJSON(modelToJSON);

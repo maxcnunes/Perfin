@@ -12,7 +12,7 @@
             welcome: 'viewmodels/welcome',
             category: { show: 'viewmodels/category/show', add: 'viewmodels/category/add', details: 'viewmodels/category/details' },
             user: { show: 'viewmodels/user/show', add: 'viewmodels/user/add', details: 'viewmodels/user/details' },
-            entry: { show: 'viewmodels/entry/daily', add: 'viewmodels/entry/add', details: 'viewmodels/entry/details', daily: 'viewmodels/entry/daily' },
+            entry: { show: 'viewmodels/entry/show', daily: 'viewmodels/entry/daily', add: 'viewmodels/entry/add', details: 'viewmodels/entry/details', daily: 'viewmodels/entry/daily' },
             map: { show: 'viewmodels/map/show' },
             calendar: { show: 'viewmodels/calendar/show' },
             chart: { show: 'viewmodels/chart/show' }
@@ -92,8 +92,19 @@
 
         entryRoutes = function () {
             return [{
-                url: 'entry/daily',
+                url: 'entry/show',
                 moduleId: modulesId.entry.show,
+                name: '<i class="icon-money"></i> Entry',
+                visible: false,
+                caption: 'Entry',
+                settings: {
+                    classColor: 'blue',
+                    classIcon: 'icon-money',
+                    parentModule: modulesId.welcome
+                }
+            }, {
+                url: 'entry/daily',
+                moduleId: modulesId.entry.daily,
                 name: '<i class="icon-money"></i> Entry',
                 visible: true,
                 caption: 'Entry',

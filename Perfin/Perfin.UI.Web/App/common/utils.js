@@ -24,13 +24,17 @@ define([],
                     }
                 }
                 return underlyingArray;
+            },
+            formatCurrency = function (value) {
+                return $('<span />').text(value).currency().text();
             };
 
         // Public Members
         return {
             hasProperties: hasProperties,
             invokeFunctionIfExists: invokeFunctionIfExists,
-            mapMemoToArray: mapMemoToArray
+            mapMemoToArray: mapMemoToArray,
+            formatCurrency: formatCurrency
         };
     }
 );
